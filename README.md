@@ -10,7 +10,11 @@
 
 ## Running the app locally
 
-    sm --start AGENTS_STUBS HOME_OFFICE_SETTLED_STATUS_STUBS -f
+    sm --start HOSS
+
+or
+
+    sm --start HOSS
     sm --stop HOME_OFFICE_SETTLED_STATUS_STUBS
     sbt run
 
