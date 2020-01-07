@@ -1,5 +1,3 @@
 # microservice specific routes
 
-GET         /entities                       @gov.uk.hmrc.homeofficesettledstatusstubs.controllers.HomeOfficeSettledStatusStubsController.entities
-GET         /entities/:utr                  @gov.uk.hmrc.homeofficesettledstatusstubs.controllers.HomeOfficeSettledStatusStubsController.entitiesByUtr(utr:uk.gov.hmrc.agentmtdidentifiers.model.Utr)
-
+POST        /public-funds/nino                       @gov.uk.hmrc.homeofficesettledstatusstubs.controllers.HomeOfficeSettledStatusStubsController.publicFundsByNino
