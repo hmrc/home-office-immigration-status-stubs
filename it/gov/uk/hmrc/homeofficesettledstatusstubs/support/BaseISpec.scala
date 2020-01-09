@@ -1,5 +1,6 @@
 package gov.uk.hmrc.homeofficesettledstatusstubs.support
 
+import akka.stream.Materializer
 import play.api.Application
 import play.api.i18n.{Lang, Messages, MessagesApi}
 import play.api.inject.guice.GuiceApplicationBuilder
@@ -16,11 +17,10 @@ abstract class BaseISpec extends UnitSpec with WireMockSupport with MetricsTestS
   def app: Application
   protected def appBuilder: GuiceApplicationBuilder
 
-  override def commonStubs(): Unit = {
+  override def commonStubs(): Unit =
     givenCleanMetricRegistry()
-  }
 
-  protected implicit val materializer = app.materializer
+  protected implicit def materializer: Materializer = app.materializer
 
   protected def checkHtmlResultWithBodyText(result: Result, expectedSubstring: String): Unit = {
     status(result) shouldBe 200
@@ -29,11 +29,12 @@ abstract class BaseISpec extends UnitSpec with WireMockSupport with MetricsTestS
     bodyOf(result) should include(expectedSubstring)
   }
 
-  private val messagesApi = app.injector.instanceOf[MessagesApi]
-  private implicit val messages: Messages = messagesApi.preferred(Seq.empty[Lang])
+  private lazy val messagesApi = app.injector.instanceOf[MessagesApi]
+  private implicit def messages: Messages = messagesApi.preferred(Seq.empty[Lang])
 
   protected def htmlEscapedMessage(key: String): String = HtmlFormat.escape(Messages(key)).toString
 
-  implicit def hc(implicit request: FakeRequest[_]): HeaderCarrier = HeaderCarrierConverter.fromHeadersAndSession(request.headers, Some(request.session))
+  implicit def hc(implicit request: FakeRequest[_]): HeaderCarrier =
+    HeaderCarrierConverter.fromHeadersAndSession(request.headers, Some(request.session))
 
 }
