@@ -7,7 +7,8 @@ import org.scalatestplus.play.ServerProvider
 import play.api.libs.json.JsObject
 import play.api.libs.ws.{WSClient, WSResponse}
 
-class HomeOfficeSettledStatusStubsControllerISpec extends ServerBaseISpec with JsonMatchers with StatusResultExamples {
+class HomeOfficeSettledStatusStubsControllerISpec
+    extends ServerBaseISpec with JsonMatchers with StatusResultExamples {
   this: Suite with ServerProvider =>
 
   val url = s"http://localhost:$port"
@@ -26,6 +27,7 @@ class HomeOfficeSettledStatusStubsControllerISpec extends ServerBaseISpec with J
   "HomeOfficeSettledStatusStubsController" when {
 
     "POST /status/public-funds/nino" should {
+
       "respond with 200 if request is valid" in {
         ping.status.shouldBe(200)
 

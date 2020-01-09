@@ -11,15 +11,16 @@ import uk.gov.hmrc.play.bootstrap.controller.BackendController
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
-class HomeOfficeSettledStatusStubsController @Inject()(val env: Environment, cc: ControllerComponents)(
-  implicit val configuration: Configuration,
-  ec: ExecutionContext)
+class HomeOfficeSettledStatusStubsController @Inject()(
+  val env: Environment,
+  cc: ControllerComponents)(implicit val configuration: Configuration, ec: ExecutionContext)
     extends BackendController(cc) with StatusResultExamples {
 
   final val HTTP_HEADER_CONTENT_TYPE_JSON = "Content-Type" -> "application/json"
 
   def publicFundsByNino: Action[JsValue] = Action.async(parse.tolerantJson) { implicit request =>
     val correlationId = request.headers.get("x-correlation-id").getOrElse("00000000")
+
     val response = (request.body \ "nino").asOpt[String] match {
       case Some(nino) =>
         val normalizedNino = nino.replaceAll(" ", "").toUpperCase
@@ -34,7 +35,10 @@ class HomeOfficeSettledStatusStubsController @Inject()(val env: Environment, cc:
           }
         } else {
           UnprocessableEntity(
-            errorResponseBody(correlationId, "ERR_VALIDATION", fields = Some(Seq("NINO" -> "Invalid NINO"))))
+            errorResponseBody(
+              correlationId,
+              "ERR_VALIDATION",
+              fields = Some(Seq("NINO" -> "Invalid NINO"))))
         }
 
       case None =>
@@ -43,7 +47,10 @@ class HomeOfficeSettledStatusStubsController @Inject()(val env: Environment, cc:
     Future.successful(response.withHeaders(HTTP_HEADER_CONTENT_TYPE_JSON))
   }
 
-  def errorResponseBody(correlationId: String, errCode: String, fields: Option[Seq[(String, String)]] = None): String =
+  def errorResponseBody(
+    correlationId: String,
+    errCode: String,
+    fields: Option[Seq[(String, String)]] = None): String =
     s"""{
        |  "correlationId": "$correlationId",
        |  "error": {
