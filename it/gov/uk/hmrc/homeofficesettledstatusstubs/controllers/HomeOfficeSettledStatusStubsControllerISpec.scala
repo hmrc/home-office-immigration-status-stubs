@@ -42,7 +42,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
 
     "POST /v1/status/public-funds/token" should {
 
-      "respond with 200 and return a token" in {
+      "respond with 200 and return a token when valid request" in {
         ping.status.shouldBe(200)
 
         val result = token("client_credentials", "hmrc", "TBC")
@@ -52,6 +52,14 @@ class HomeOfficeSettledStatusStubsControllerISpec
           and haveProperty[String]("refresh_token")
           and haveProperty[String]("id_token")
           and haveProperty[String]("token_type", be("Bearer")))
+      }
+
+      "respond with 400 when invalid request" in {
+        ping.status.shouldBe(200)
+
+        val result = token("client_credentials", "invalid", "TBC")
+
+        result.status shouldBe 400
       }
     }
 
