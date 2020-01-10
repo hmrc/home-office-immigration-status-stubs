@@ -25,7 +25,7 @@ class HomeOfficeSettledStatusStubsController @Inject()(
       HomeOfficeSettledStatusStubsController.tokenForm
         .bindFromRequest()
         .fold(
-          errors => BadRequest(errors.toString),
+          errors => BadRequest(Json.toJson(errors.errors.map(e => (e.key, e.message)).toMap)),
           _ => Ok(Json.parse(s"""{
                                 |   "access_token": "${UUID.randomUUID().toString}",
                                 |   "refresh_token": "${UUID.randomUUID().toString}",
