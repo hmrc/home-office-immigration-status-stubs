@@ -1,5 +1,7 @@
 package gov.uk.hmrc.homeofficesettledstatusstubs.controllers
 
+import java.net.URLEncoder
+
 import gov.uk.hmrc.homeofficesettledstatusstubs.models.StatusResultExamples
 import gov.uk.hmrc.homeofficesettledstatusstubs.support.{JsonMatchers, ServerBaseISpec}
 import org.scalatest.Suite
@@ -17,6 +19,18 @@ class HomeOfficeSettledStatusStubsControllerISpec
 
   def ping: WSResponse = wsClient.url(s"$url/ping/ping").get.futureValue
 
+  def token(grantType: String, clientId: String, clientSecret: String): WSResponse = {
+    val body =
+      Seq("grant_type" -> grantType, "client_id" -> clientId, "client_secret" -> clientSecret)
+        .map { case (k, v) => s"$k=${URLEncoder.encode(v, "utf-8")}" }
+        .mkString("&")
+    wsClient
+      .url(s"$url/v1/status/public-funds/token")
+      .addHttpHeaders("Content-Type" -> "application/x-www-form-urlencoded")
+      .post[String](body)
+      .futureValue
+  }
+
   def publicFundsByNino(payload: String): WSResponse =
     wsClient
       .url(s"$url/v1/status/public-funds/nino")
@@ -26,12 +40,28 @@ class HomeOfficeSettledStatusStubsControllerISpec
 
   "HomeOfficeSettledStatusStubsController" when {
 
-    "POST /status/public-funds/nino" should {
+    "POST /v1/status/public-funds/token" should {
+
+      "respond with 200 and return a token" in {
+        ping.status.shouldBe(200)
+
+        val result = token("client_credentials", "hmrc", "TBC")
+
+        result.status shouldBe 200
+        result.json.as[JsObject] should (haveProperty[String]("access_token")
+          and haveProperty[String]("refresh_token")
+          and haveProperty[String]("id_token")
+          and haveProperty[String]("token_type", be("Bearer")))
+      }
+    }
+
+    "POST /v1/status/public-funds/nino" should {
 
       "respond with 200 if request is valid" in {
         ping.status.shouldBe(200)
 
         val result = publicFundsByNino(s"""{"nino":"$NINO_VALID_1"}""")
+
         result.status shouldBe 200
         result.json.as[JsObject] should (haveProperty[String]("correlationId")
           and haveProperty[JsObject](

@@ -1,8 +1,10 @@
 package gov.uk.hmrc.homeofficesettledstatusstubs.controllers
 
+import java.util.UUID
+
 import gov.uk.hmrc.homeofficesettledstatusstubs.models.StatusResultExamples
 import javax.inject.{Inject, Singleton}
-import play.api.libs.json.JsValue
+import play.api.libs.json.{JsValue, Json}
 import play.api.mvc._
 import play.api.{Configuration, Environment}
 import uk.gov.hmrc.domain.Nino
@@ -17,6 +19,21 @@ class HomeOfficeSettledStatusStubsController @Inject()(
     extends BackendController(cc) with StatusResultExamples {
 
   final val HTTP_HEADER_CONTENT_TYPE_JSON = "Content-Type" -> "application/json"
+
+  def token: Action[AnyContent] = Action.async { implicit request =>
+    Future.successful(
+      HomeOfficeSettledStatusStubsController.tokenForm
+        .bindFromRequest()
+        .fold(
+          errors => BadRequest(errors.toString),
+          _ => Ok(Json.parse(s"""{
+                                |   "access_token": "${UUID.randomUUID().toString}",
+                                |   "refresh_token": "${UUID.randomUUID().toString}",
+                                |   "id_token": "${UUID.randomUUID().toString}",
+                                |   "token_type": "Bearer"
+                                |}""".stripMargin))
+        ))
+  }
 
   def publicFundsByNino: Action[JsValue] = Action.async(parse.tolerantJson) { implicit request =>
     val correlationId = request.headers.get("x-correlation-id").getOrElse("00000000")
@@ -70,5 +87,28 @@ class HomeOfficeSettledStatusStubsController @Inject()(
          .getOrElse("")}
        |  }
        |}""".stripMargin
+
+}
+
+object HomeOfficeSettledStatusStubsController {
+
+  import play.api.data.Form
+  import play.api.data.Forms._
+
+  case class TokenRequest(grant_type: String, client_id: String, client_secret: String)
+
+  object TokenRequest {
+    implicit val formats = Json.format[TokenRequest]
+  }
+
+  val tokenForm: Form[TokenRequest] = Form(
+    mapping(
+      "grant_type" -> nonEmptyText
+        .verifying("Wrong grant type.", _ == "client_credentials"),
+      "client_id" -> nonEmptyText
+        .verifying("Unknown client_id.", _ == "hmrc"),
+      "client_secret" -> nonEmptyText,
+    )(TokenRequest.apply)(TokenRequest.unapply)
+  )
 
 }
