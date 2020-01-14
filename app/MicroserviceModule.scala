@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020 HM Revenue & Customs
+ *
+ */
+
 import com.google.inject.AbstractModule
 import play.api.{Configuration, Environment, Logger}
 import uk.gov.hmrc.http._

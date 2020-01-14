@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020 HM Revenue & Customs
+ *
+ */
+
 package gov.uk.hmrc.homeofficesettledstatusstubs.controllers
 
 import java.util.UUID
