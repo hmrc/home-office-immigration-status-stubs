@@ -3,7 +3,7 @@
  *
  */
 
-package gov.uk.hmrc.homeofficesettledstatusstubs.wiring
+package uk.gov.hmrc.homeofficesettledstatusstubs.wiring
 
 import javax.inject.{Inject, Singleton}
 

@@ -3,16 +3,16 @@
  *
  */
 
-package gov.uk.hmrc.homeofficesettledstatusstubs.controllers
+package uk.gov.hmrc.homeofficesettledstatusstubs.controllers
 
 import java.util.UUID
 
-import gov.uk.hmrc.homeofficesettledstatusstubs.models.StatusResultExamples
 import javax.inject.{Inject, Singleton}
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc._
 import play.api.{Configuration, Environment}
 import uk.gov.hmrc.domain.Nino
+import uk.gov.hmrc.homeofficesettledstatusstubs.models.StatusResultExamples
 import uk.gov.hmrc.play.bootstrap.controller.BackendController
 
 import scala.concurrent.{ExecutionContext, Future}

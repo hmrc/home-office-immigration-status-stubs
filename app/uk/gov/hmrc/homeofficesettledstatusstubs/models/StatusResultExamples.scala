@@ -3,7 +3,7 @@
  *
  */
 
-package gov.uk.hmrc.homeofficesettledstatusstubs.models
+package uk.gov.hmrc.homeofficesettledstatusstubs.models
 
 trait StatusResultExamples {
 

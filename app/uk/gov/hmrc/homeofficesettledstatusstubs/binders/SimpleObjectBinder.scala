@@ -3,7 +3,7 @@
  *
  */
 
-package gov.uk.hmrc.homeofficesettledstatusstubs.binders
+package uk.gov.hmrc.homeofficesettledstatusstubs.binders
 
 import play.api.mvc.PathBindable
 

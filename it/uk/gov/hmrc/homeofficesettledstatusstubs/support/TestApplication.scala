@@ -1,4 +1,4 @@
-package gov.uk.hmrc.homeofficesettledstatusstubs.support
+package uk.gov.hmrc.homeofficesettledstatusstubs.support
 
 import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder

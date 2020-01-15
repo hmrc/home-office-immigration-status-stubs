@@ -3,7 +3,7 @@
  *
  */
 
-package gov.uk.hmrc.homeofficesettledstatusstubs.wiring
+package uk.gov.hmrc.homeofficesettledstatusstubs.wiring
 
 import java.util.regex.{Matcher, Pattern}
 import javax.inject.{Inject, Singleton}

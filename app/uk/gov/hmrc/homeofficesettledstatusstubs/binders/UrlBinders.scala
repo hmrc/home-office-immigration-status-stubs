@@ -3,6 +3,6 @@
  *
  */
 
-package gov.uk.hmrc.homeofficesettledstatusstubs.binders
+package uk.gov.hmrc.homeofficesettledstatusstubs.binders
 
 object UrlBinders {}

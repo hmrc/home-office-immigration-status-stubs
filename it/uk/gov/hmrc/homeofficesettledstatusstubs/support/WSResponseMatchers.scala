@@ -1,4 +1,4 @@
-package gov.uk.hmrc.homeofficesettledstatusstubs.support
+package uk.gov.hmrc.homeofficesettledstatusstubs.support
 
 import org.scalatest.matchers.{MatchResult, Matcher}
 import play.api.http.HeaderNames

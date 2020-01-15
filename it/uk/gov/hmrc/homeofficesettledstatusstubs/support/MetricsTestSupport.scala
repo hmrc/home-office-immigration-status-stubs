@@ -1,4 +1,4 @@
-package gov.uk.hmrc.homeofficesettledstatusstubs.support
+package uk.gov.hmrc.homeofficesettledstatusstubs.support
 
 import com.codahale.metrics.MetricRegistry
 import com.kenshoo.play.metrics.Metrics

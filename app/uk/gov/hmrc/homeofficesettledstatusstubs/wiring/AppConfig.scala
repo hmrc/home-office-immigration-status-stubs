@@ -3,7 +3,7 @@
  *
  */
 
-package gov.uk.hmrc.homeofficesettledstatusstubs.wiring
+package uk.gov.hmrc.homeofficesettledstatusstubs.wiring
 
 import com.google.inject.ImplementedBy
 import javax.inject.Inject

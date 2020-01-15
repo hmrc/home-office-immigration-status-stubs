@@ -1,4 +1,4 @@
-package gov.uk.hmrc.homeofficesettledstatusstubs.support
+package uk.gov.hmrc.homeofficesettledstatusstubs.support
 
 import java.net.URL
 

@@ -1,13 +1,15 @@
-package gov.uk.hmrc.homeofficesettledstatusstubs.controllers
+package uk.gov.hmrc.homeofficesettledstatusstubs.controllers
 
 import java.net.URLEncoder
 
-import gov.uk.hmrc.homeofficesettledstatusstubs.models.StatusResultExamples
-import gov.uk.hmrc.homeofficesettledstatusstubs.support.{JsonMatchers, ServerBaseISpec}
+import uk.gov.hmrc.homeofficesettledstatusstubs.models.StatusResultExamples
+import uk.gov.hmrc.homeofficesettledstatusstubs.support.{JsonMatchers, ServerBaseISpec}
 import org.scalatest.Suite
 import org.scalatestplus.play.ServerProvider
 import play.api.libs.json.JsObject
 import play.api.libs.ws.{WSClient, WSResponse}
+import uk.gov.hmrc.homeofficesettledstatusstubs.models.StatusResultExamples
+import uk.gov.hmrc.homeofficesettledstatusstubs.support.{JsonMatchers, ServerBaseISpec}
 
 class HomeOfficeSettledStatusStubsControllerISpec
     extends ServerBaseISpec with JsonMatchers with StatusResultExamples {

@@ -30,7 +30,7 @@ def testDeps(scope: String) = Seq(
   "uk.gov.hmrc" %% "hmrctest" % "3.9.0-play-26" % scope,
   "org.scalatest" %% "scalatest" % "3.0.8" % scope,
   "org.mockito" % "mockito-core" % "3.1.0" % scope,
-  "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % scope,
+  "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.3" % scope,
   "com.github.tomakehurst" % "wiremock" % "2.25.1" % scope
 )
 
@@ -70,7 +70,7 @@ lazy val root = (project in file("."))
     publishingSettings,
     scoverageSettings,
     unmanagedResourceDirectories in Compile += baseDirectory.value / "resources",
-    routesImport ++= Seq("gov.uk.hmrc.homeofficesettledstatusstubs.binders.UrlBinders._"),
+    routesImport ++= Seq("uk.gov.hmrc.homeofficesettledstatusstubs.binders.UrlBinders._"),
     scalafmtOnCompile in Compile := true,
     scalafmtOnCompile in Test := true
   )
@@ -89,7 +89,7 @@ lazy val root = (project in file("."))
 
 inConfig(IntegrationTest)(scalafmtCoreSettings)
 
-def oneForkedJvmPerTest(tests: Seq[TestDefinition]) = {
+def oneForkedJvmPerTest(tests: Seq[TestDefinition]): Seq[Group] = {
   tests.map { test =>
     new Group(test.name, Seq(test), SubProcess(ForkOptions().withRunJVMOptions(Vector(s"-Dtest.name=${test.name}"))))
   }
