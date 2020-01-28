@@ -54,7 +54,7 @@ trait StatusResultExamples {
                         |      {
                         |        "immigrationStatus": "ILR",
                         |        "rightToPublicFunds": true,
-                        |        "statusEndDate": "2015-09-18"
+                        |        "statusStartDate": "2015-09-18"
                         |      }
                         |    ]
                         |  }
@@ -145,7 +145,7 @@ trait StatusResultExamples {
                         |      {
                         |        "immigrationStatus": "ILR",
                         |        "rightToPublicFunds": true,
-                        |        "statusEndDate": "2018-06-28"
+                        |        "statusStartDate": "2018-06-28"
                         |      }
                         |    ]
                         |  }
