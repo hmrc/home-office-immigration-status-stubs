@@ -130,7 +130,7 @@ trait StatusResultExamples {
                         |    "statuses": [
                         |      {
                         |        "immigrationStatus": "NONE",
-                        |        "rightToPublicFunds": true
+                        |        "rightToPublicFunds": false
                         |      }
                         |    ]
                         |  }
