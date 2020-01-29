@@ -64,7 +64,7 @@ trait StatusResultExamples {
                         |  "result": {
                         |    "dateOfBirth": "1974-02-27",
                         |    "facialImage": "string",
-                        |    "fullName": "Stefano	Reese",
+                        |    "fullName": "Stefano Reese",
                         |    "statuses": [
                         |      {
                         |        "immigrationStatus": "ETLR",
@@ -80,7 +80,7 @@ trait StatusResultExamples {
                         |  "result": {
                         |    "dateOfBirth": "1983-08-10",
                         |    "facialImage": "string",
-                        |    "fullName": "Marni	Dunkley",
+                        |    "fullName": "Marni Dunkley",
                         |    "statuses": [
                         |      {
                         |        "immigrationStatus": "NONE",
@@ -94,7 +94,7 @@ trait StatusResultExamples {
                         |  "result": {
                         |    "dateOfBirth": "1983-08-26",
                         |    "facialImage": "string",
-                        |    "fullName": "Wolfgang	Traube",
+                        |    "fullName": "Wolfgang Traube",
                         |    "statuses": [
                         |      {
                         |        "immigrationStatus": "LTR",
@@ -110,7 +110,7 @@ trait StatusResultExamples {
                         |  "result": {
                         |    "dateOfBirth": "1987-04-08",
                         |    "facialImage": "string",
-                        |    "fullName": "Rosalie	Gallegos",
+                        |    "fullName": "Rosalie Gallegos",
                         |    "statuses": [
                         |      {
                         |        "immigrationStatus": "ETLR",
@@ -126,7 +126,7 @@ trait StatusResultExamples {
                         |  "result": {
                         |    "dateOfBirth": "1987-09-23",
                         |    "facialImage": "string",
-                        |    "fullName": "Aleksandrov	Cherganski",
+                        |    "fullName": "Aleksandrov Cherganski",
                         |    "statuses": [
                         |      {
                         |        "immigrationStatus": "NONE",
@@ -140,7 +140,7 @@ trait StatusResultExamples {
                         |  "result": {
                         |    "dateOfBirth": "2000-10-06",
                         |    "facialImage": "string",
-                        |    "fullName": "Maja	Glowa",
+                        |    "fullName": "Maja Glowa",
                         |    "statuses": [
                         |      {
                         |        "immigrationStatus": "ILR",
