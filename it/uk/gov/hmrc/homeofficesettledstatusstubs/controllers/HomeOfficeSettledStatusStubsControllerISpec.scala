@@ -2,8 +2,6 @@ package uk.gov.hmrc.homeofficesettledstatusstubs.controllers
 
 import java.net.URLEncoder
 
-import uk.gov.hmrc.homeofficesettledstatusstubs.models.StatusResultExamples
-import uk.gov.hmrc.homeofficesettledstatusstubs.support.{JsonMatchers, ServerBaseISpec}
 import org.scalatest.Suite
 import org.scalatestplus.play.ServerProvider
 import play.api.libs.json.JsObject
@@ -70,7 +68,8 @@ class HomeOfficeSettledStatusStubsControllerISpec
       "respond with 200 if request is valid" in {
         ping.status.shouldBe(200)
 
-        val result = publicFundsByNino(s"""{"nino":"$NINO_VALID_1"}""")
+        val result = publicFundsByNino(
+          s"""{"nino":"$NINO_VALID","givenName":"John","familyName":"Does","dateOfBirth":"2001-01-31"}""")
 
         result.status shouldBe 200
         result.json.as[JsObject] should (haveProperty[String]("correlationId")
@@ -89,10 +88,48 @@ class HomeOfficeSettledStatusStubsControllerISpec
           ))
       }
 
-      "respond with 404 if the service failed to find an identity based on the values provided" in {
+      "respond with 200 if request is valid and has only first letter of the name, and date contains a pattern" in {
         ping.status.shouldBe(200)
 
-        val result = publicFundsByNino(s"""{"nino":"$NINO_VALID_BUT_UNKNOWN"}""")
+        val result = publicFundsByNino(
+          s"""{"nino":"$NINO_VALID","givenName":"J","familyName":"Does","dateOfBirth":"2001-XX-31"}""")
+
+        result.status shouldBe 200
+        result.json.as[JsObject] should (haveProperty[String]("correlationId")
+          and haveProperty[JsObject](
+            "result",
+            haveProperty[String]("dateOfBirth", be("2001-01-31"))
+              and haveProperty[String]("facialImage", be("string"))
+              and haveProperty[String]("fullName", be("Jane Doe"))
+              and havePropertyArrayOf[JsObject](
+                "statuses",
+                haveProperty[String]("immigrationStatus", be("ILR"))
+                  and haveProperty[Boolean]("rightToPublicFunds", be(true))
+                  and haveProperty[String]("statusEndDate", be("2018-01-31"))
+                  and haveProperty[String]("statusStartDate", be("2018-12-12"))
+              )
+          ))
+      }
+
+      "respond with 404 if the service failed to find an identity because of nino" in {
+        ping.status.shouldBe(200)
+
+        val result = publicFundsByNino(
+          s"""{"nino":"$NINO_VALID_BUT_UNKNOWN","givenName":"Jane","familyName":"Doe","dateOfBirth":"2001-01-31"}""")
+
+        result.status shouldBe 404
+        result.json.as[JsObject] should (haveProperty[String]("correlationId")
+          and haveProperty[JsObject](
+            "error",
+            haveProperty[String]("errCode", be("ERR_NOT_FOUND"))
+          ))
+      }
+
+      "respond with 404 if the service failed to find an identity because of a given name" in {
+        ping.status.shouldBe(200)
+
+        val result = publicFundsByNino(
+          s"""{"nino":"$NINO_VALID","givenName":"Dane","familyName":"Doe","dateOfBirth":"2001-01-31"}""")
 
         result.status shouldBe 404
         result.json.as[JsObject] should (haveProperty[String]("correlationId")
@@ -105,20 +142,22 @@ class HomeOfficeSettledStatusStubsControllerISpec
       "respond with 400 if one of the required input parameters is missing from the request" in {
         ping.status.shouldBe(200)
 
-        val result = publicFundsByNino("{}")
+        val result =
+          publicFundsByNino("""{"nino":"$NINO_VALID","givenName":"Dane","familyName":"Doe"}""")
 
         result.status shouldBe 400
         result.json.as[JsObject] should (haveProperty[String]("correlationId")
           and haveProperty[JsObject](
             "error",
-            haveProperty[String]("errCode", be("ERR_REQUEST_INVALID"))
+            haveProperty[String]("errCode", be("ERR_VALIDATION"))
           ))
       }
 
       "respond with 422 if one of the input parameters passed in has failed validation" in {
         ping.status.shouldBe(200)
 
-        val result = publicFundsByNino("""{"nino":"invalid"}""")
+        val result = publicFundsByNino(
+          """{"nino":"invalid","givenName":"Jane","familyName":"Doe","dateOfBirth":"2001-01-31"}""")
 
         result.status shouldBe 422
         result.json.as[JsObject] should (haveProperty[String]("correlationId")
@@ -127,8 +166,8 @@ class HomeOfficeSettledStatusStubsControllerISpec
             haveProperty[String]("errCode", be("ERR_VALIDATION"))
               and havePropertyArrayOf[JsObject](
                 "fields",
-                haveProperty[String]("code", be("NINO"))
-                  and haveProperty[String]("name")
+                haveProperty[String]("code", be("nino"))
+                  and haveProperty[String]("name", be("ERR_INVALID_NINO"))
               )
           ))
       }

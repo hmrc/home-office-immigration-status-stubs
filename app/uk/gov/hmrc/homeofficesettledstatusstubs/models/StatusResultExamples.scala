@@ -7,28 +7,28 @@ package uk.gov.hmrc.homeofficesettledstatusstubs.models
 
 trait StatusResultExamples {
 
-  val NINO_VALID_1 = "RJ301829A"
+  val NINO_VALID = "RJ301829A"
   val NINO_VALID_BUT_UNKNOWN = "MG199709D"
 
   val examples: Map[String, String] =
     Map(
-      NINO_VALID_1 -> s"""{
-                         |  "correlationId": "{correlationId}",
-                         |  "result": {
-                         |    "dateOfBirth": "2001-01-31",
-                         |    "facialImage": "string",
-                         |    "fullName": "Jane Doe",
-                         |    "statuses": [
-                         |      {
-                         |        "immigrationStatus": "ILR",
-                         |        "rightToPublicFunds": true,
-                         |        "statusEndDate": "2018-01-31",
-                         |        "statusStartDate": "2018-12-12"
-                         |      }
-                         |    ]
-                         |  }
-                         |}""".stripMargin,
-      "HT423277B"  -> s"""{
+      NINO_VALID  -> s"""{
+                       |  "correlationId": "{correlationId}",
+                       |  "result": {
+                       |    "dateOfBirth": "2001-01-31",
+                       |    "facialImage": "string",
+                       |    "fullName": "Jane Doe",
+                       |    "statuses": [
+                       |      {
+                       |        "immigrationStatus": "ILR",
+                       |        "rightToPublicFunds": true,
+                       |        "statusEndDate": "2018-01-31",
+                       |        "statusStartDate": "2018-12-12"
+                       |      }
+                       |    ]
+                       |  }
+                       |}""".stripMargin,
+      "HT423277B" -> s"""{
                         |  "correlationId": "{correlationId}",
                         |  "result": {
                         |    "dateOfBirth": "1954-10-04",
@@ -44,7 +44,7 @@ trait StatusResultExamples {
                         |    ]
                         |  }
                         |}""".stripMargin,
-      "AB888330D"  -> s"""{
+      "AB888330D" -> s"""{
                         |  "correlationId": "{correlationId}",
                         |  "result": {
                         |    "dateOfBirth": "1969-06-30",
@@ -59,7 +59,7 @@ trait StatusResultExamples {
                         |    ]
                         |  }
                         |}""".stripMargin,
-      "KA339738D"  -> s"""{
+      "KA339738D" -> s"""{
                         |  "correlationId": "{correlationId}",
                         |  "result": {
                         |    "dateOfBirth": "1974-02-27",
@@ -75,7 +75,7 @@ trait StatusResultExamples {
                         |    ]
                         |  }
                         |}""".stripMargin,
-      "AB576139C"  -> s"""{
+      "AB576139C" -> s"""{
                         |  "correlationId": "{correlationId}",
                         |  "result": {
                         |    "dateOfBirth": "1983-08-10",
@@ -89,7 +89,7 @@ trait StatusResultExamples {
                         |    ]
                         |  }
                         |}""".stripMargin,
-      "AB807993C"  -> s"""{
+      "AB807993C" -> s"""{
                         |  "correlationId": "{correlationId}",
                         |  "result": {
                         |    "dateOfBirth": "1983-08-26",
@@ -105,7 +105,7 @@ trait StatusResultExamples {
                         |    ]
                         |  }
                         |}""".stripMargin,
-      "AB445870B"  -> s"""{
+      "AB445870B" -> s"""{
                         |  "correlationId": "{correlationId}",
                         |  "result": {
                         |    "dateOfBirth": "1987-04-08",
@@ -121,7 +121,7 @@ trait StatusResultExamples {
                         |    ]
                         |  }
                         |}""".stripMargin,
-      "GT948987A"  -> s"""{
+      "GT948987A" -> s"""{
                         |  "correlationId": "{correlationId}",
                         |  "result": {
                         |    "dateOfBirth": "1987-09-23",
@@ -135,7 +135,7 @@ trait StatusResultExamples {
                         |    ]
                         |  }
                         |}""".stripMargin,
-      "BS088353B"  -> s"""{
+      "BS088353B" -> s"""{
                         |  "correlationId": "{correlationId}",
                         |  "result": {
                         |    "dateOfBirth": "2000-10-06",

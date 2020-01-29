@@ -43,14 +43,42 @@ class HomeOfficeSettledStatusStubsController @Inject()(
   def publicFundsByNino: Action[JsValue] = Action.async(parse.tolerantJson) { implicit request =>
     val correlationId = request.headers.get("x-correlation-id").getOrElse("00000000")
 
-    val response = (request.body \ "nino").asOpt[String] match {
-      case Some(nino) =>
+    val ninoOpt = (request.body \ "nino").asOpt[String]
+    val givenNameOpt = (request.body \ "givenName").asOpt[String]
+    val familyNameOpt = (request.body \ "familyName").asOpt[String]
+    val dateOfBirthOpt = (request.body \ "dateOfBirth").asOpt[String]
+
+    val query = (ninoOpt, givenNameOpt, familyNameOpt, dateOfBirthOpt)
+
+    val response = query match {
+      case (Some(nino), Some(givenName), Some(familyName), Some(dateOfBirth)) =>
         val normalizedNino = nino.replaceAll(" ", "").toUpperCase
         if (Nino.isValid(normalizedNino)) {
           examples.get(normalizedNino) match {
             case Some(content) =>
               val enhancedContent = content.replaceAllLiterally("{correlationId}", correlationId)
-              Ok(enhancedContent)
+              val entity = Json.parse(enhancedContent)
+
+              val givenNameMatches = (entity \ "result" \ "fullName")
+                .asOpt[String]
+                .exists(_.split(" ").headOption
+                  .exists(_.toUpperCase.startsWith(givenName.take(1).toUpperCase)))
+
+              val familyNameMatches = (entity \ "result" \ "fullName")
+                .asOpt[String]
+                .exists(_.split(" ").reverse.headOption
+                  .exists(_.toUpperCase.startsWith(familyName.take(3).toUpperCase)))
+
+              val dateOfBirthMatches =
+                (entity \ "result" \ "dateOfBirth")
+                  .asOpt[String]
+                  .exists(_.matches(dateToPattern(dateOfBirth)))
+
+              if (givenNameMatches && familyNameMatches && dateOfBirthMatches) {
+                Ok(entity)
+              } else {
+                NotFound(errorResponseBody(correlationId, "ERR_NOT_FOUND"))
+              }
 
             case None =>
               NotFound(errorResponseBody(correlationId, "ERR_NOT_FOUND"))
@@ -60,14 +88,32 @@ class HomeOfficeSettledStatusStubsController @Inject()(
             errorResponseBody(
               correlationId,
               "ERR_VALIDATION",
-              fields = Some(Seq("NINO" -> "Invalid NINO"))))
+              fields = Some(Seq("nino" -> "ERR_INVALID_NINO"))))
         }
 
-      case None =>
-        BadRequest(errorResponseBody(correlationId, "ERR_REQUEST_INVALID"))
+      case _ =>
+        val fields = Seq(
+          errorField(ninoOpt.isEmpty, "nino", "ERR_MISSING_NINO"),
+          errorField(dateOfBirthOpt.isEmpty, "dateOfBirth", "ERR_MISSING_DOB"),
+          errorField(familyNameOpt.isEmpty, "familyName", "ERR_MISSING_FAMILY_NAME"),
+          errorField(givenNameOpt.isEmpty, "giveName", "ERR_MISSING_GIVEN_NAME")
+        ).collect { case Some(x) => x }
+
+        BadRequest(errorResponseBody(correlationId, "ERR_VALIDATION", Some(fields)))
     }
     Future.successful(response.withHeaders(HTTP_HEADER_CONTENT_TYPE_JSON))
   }
+
+  def dateToPattern(dateOfBirth: String): String =
+    dateOfBirth
+      .map {
+        case ch if ch == 'X' => "\\d"
+        case ch              => ch
+      }
+      .mkString("^", "", "$")
+
+  def errorField(hasError: Boolean, name: String, code: String): Option[(String, String)] =
+    if (hasError) Some((name, code)) else None
 
   def errorResponseBody(
     correlationId: String,
