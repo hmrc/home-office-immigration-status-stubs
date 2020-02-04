@@ -54,34 +54,42 @@ class HomeOfficeSettledStatusStubsController @Inject()(
       case (Some(nino), Some(givenName), Some(familyName), Some(dateOfBirth)) =>
         val normalizedNino = nino.replaceAll(" ", "").toUpperCase
         if (Nino.isValid(normalizedNino)) {
-          examples.get(normalizedNino) match {
-            case Some(content) =>
-              val enhancedContent = content.replaceAllLiterally("{correlationId}", correlationId)
-              val entity = Json.parse(enhancedContent)
+          normalizedNino match {
 
-              val givenNameMatches = (entity \ "result" \ "fullName")
-                .asOpt[String]
-                .exists(_.split(" ").headOption
-                  .exists(_.toUpperCase.startsWith(givenName.take(1).toUpperCase)))
+            case "HK089820A" =>
+              Conflict(errorResponseBody(correlationId, "ERR_CONFLICT"))
 
-              val familyNameMatches = (entity \ "result" \ "fullName")
-                .asOpt[String]
-                .exists(_.split(" ").reverse.headOption
-                  .exists(_.toUpperCase.startsWith(familyName.take(3).toUpperCase)))
+            case _ =>
+              examples.get(nino) match {
+                case Some(content) =>
+                  val enhancedContent =
+                    content.replaceAllLiterally("{correlationId}", correlationId)
+                  val entity = Json.parse(enhancedContent)
 
-              val dateOfBirthMatches =
-                (entity \ "result" \ "dateOfBirth")
-                  .asOpt[String]
-                  .exists(_.matches(dateToPattern(dateOfBirth)))
+                  val givenNameMatches = (entity \ "result" \ "fullName")
+                    .asOpt[String]
+                    .exists(_.split(" ").headOption
+                      .exists(_.toUpperCase.startsWith(givenName.take(1).toUpperCase)))
 
-              if (givenNameMatches && familyNameMatches && dateOfBirthMatches) {
-                Ok(entity)
-              } else {
-                NotFound(errorResponseBody(correlationId, "ERR_NOT_FOUND"))
+                  val familyNameMatches = (entity \ "result" \ "fullName")
+                    .asOpt[String]
+                    .exists(_.split(" ").reverse.headOption
+                      .exists(_.toUpperCase.startsWith(familyName.take(3).toUpperCase)))
+
+                  val dateOfBirthMatches =
+                    (entity \ "result" \ "dateOfBirth")
+                      .asOpt[String]
+                      .exists(_.matches(dateToPattern(dateOfBirth)))
+
+                  if (givenNameMatches && familyNameMatches && dateOfBirthMatches) {
+                    Ok(entity)
+                  } else {
+                    NotFound(errorResponseBody(correlationId, "ERR_NOT_FOUND"))
+                  }
+
+                case None =>
+                  NotFound(errorResponseBody(correlationId, "ERR_NOT_FOUND"))
               }
-
-            case None =>
-              NotFound(errorResponseBody(correlationId, "ERR_NOT_FOUND"))
           }
         } else {
           UnprocessableEntity(

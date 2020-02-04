@@ -140,12 +140,18 @@ trait StatusResultExamples {
                         |  "result": {
                         |    "dateOfBirth": "2000-10-06",
                         |    "facialImage": "string",
-                        |    "fullName": "Maja Glowa",
+                        |    "fullName": "Maja Głowa",
                         |    "statuses": [
+                        |      {
+                        |        "immigrationStatus": "LTR",
+                        |        "rightToPublicFunds": true,
+                        |        "statusEndDate": "2024-06-28",
+                        |        "statusStartDate": "2019-06-28"
+                        |      },
                         |      {
                         |        "immigrationStatus": "ILR",
                         |        "rightToPublicFunds": true,
-                        |        "statusStartDate": "2018-06-28"
+                        |        "statusStartDate": "2024-06-28"
                         |      }
                         |    ]
                         |  }
