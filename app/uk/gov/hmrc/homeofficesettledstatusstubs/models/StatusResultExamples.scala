@@ -22,8 +22,8 @@ trait StatusResultExamples {
                        |      {
                        |        "immigrationStatus": "ILR",
                        |        "rightToPublicFunds": true,
-                       |        "statusEndDate": "2018-01-31",
-                       |        "statusStartDate": "2018-12-12"
+                       |        "statusStartDate": "2018-01-31",
+                       |        "statusEndDate": "2018-12-12"
                        |      }
                        |    ]
                        |  }
@@ -38,8 +38,8 @@ trait StatusResultExamples {
                         |      {
                         |        "immigrationStatus": "LTR",
                         |        "rightToPublicFunds": true,
-                        |        "statusEndDate": "2015-02-26",
-                        |        "statusStartDate": "2020-03-19"
+                        |        "statusStartDate": "2015-02-26",
+                        |        "statusEndDate": "2020-03-19"
                         |      }
                         |    ]
                         |  }
@@ -69,8 +69,8 @@ trait StatusResultExamples {
                         |      {
                         |        "immigrationStatus": "ETLR",
                         |        "rightToPublicFunds": true,
-                        |        "statusEndDate": "2016-02-08",
-                        |        "statusStartDate": "2023-03-27"
+                        |        "statusStartDate": "2016-02-08",
+                        |        "statusEndDate": "2023-03-27"
                         |      }
                         |    ]
                         |  }
@@ -99,8 +99,8 @@ trait StatusResultExamples {
                         |      {
                         |        "immigrationStatus": "LTR",
                         |        "rightToPublicFunds": true,
-                        |        "statusEndDate": "2016-06-20",
-                        |        "statusStartDate": "2027-06-24"
+                        |        "statusStartDate": "2016-06-20",
+                        |        "statusEndDate": "2027-06-24"
                         |      }
                         |    ]
                         |  }
@@ -115,8 +115,8 @@ trait StatusResultExamples {
                         |      {
                         |        "immigrationStatus": "ETLR",
                         |        "rightToPublicFunds": true,
-                        |        "statusEndDate": "2016-11-08",
-                        |        "statusStartDate": "2030-06-17"
+                        |        "statusStartDate": "2016-11-08",
+                        |        "statusEndDate": "2030-06-17"
                         |      }
                         |    ]
                         |  }
@@ -145,8 +145,8 @@ trait StatusResultExamples {
                         |      {
                         |        "immigrationStatus": "LTR",
                         |        "rightToPublicFunds": true,
-                        |        "statusEndDate": "2024-06-28",
-                        |        "statusStartDate": "2019-06-28"
+                        |        "statusStartDate": "2019-06-28",
+                        |        "statusEndDate": "2024-06-28"
                         |      },
                         |      {
                         |        "immigrationStatus": "ILR",
