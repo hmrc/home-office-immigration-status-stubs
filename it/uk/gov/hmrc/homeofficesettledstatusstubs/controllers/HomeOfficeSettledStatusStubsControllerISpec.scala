@@ -82,8 +82,8 @@ class HomeOfficeSettledStatusStubsControllerISpec
                 "statuses",
                 haveProperty[String]("immigrationStatus", be("ILR"))
                   and haveProperty[Boolean]("rightToPublicFunds", be(true))
-                  and haveProperty[String]("statusEndDate", be("2018-01-31"))
-                  and haveProperty[String]("statusStartDate", be("2018-12-12"))
+                  and haveProperty[String]("statusStartDate", be("2018-01-31"))
+                  and haveProperty[String]("statusEndDate", be("2018-12-12"))
               )
           ))
       }
@@ -105,8 +105,8 @@ class HomeOfficeSettledStatusStubsControllerISpec
                 "statuses",
                 haveProperty[String]("immigrationStatus", be("ILR"))
                   and haveProperty[Boolean]("rightToPublicFunds", be(true))
-                  and haveProperty[String]("statusEndDate", be("2018-01-31"))
-                  and haveProperty[String]("statusStartDate", be("2018-12-12"))
+                  and haveProperty[String]("statusStartDate", be("2018-01-31"))
+                  and haveProperty[String]("statusEndDate", be("2018-12-12"))
               )
           ))
       }
@@ -143,7 +143,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
         ping.status.shouldBe(200)
 
         val result =
-          publicFundsByNino("""{"nino":"$NINO_VALID","givenName":"Dane","familyName":"Doe"}""")
+          publicFundsByNino(s"""{"nino":"$NINO_VALID","givenName":"Dane","familyName":"Doe"}""")
 
         result.status shouldBe 400
         result.json.as[JsObject] should (haveProperty[String]("correlationId")
