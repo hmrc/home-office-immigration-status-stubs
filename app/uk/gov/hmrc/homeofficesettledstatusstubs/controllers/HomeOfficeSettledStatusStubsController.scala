@@ -92,7 +92,7 @@ class HomeOfficeSettledStatusStubsController @Inject()(
               }
           }
         } else {
-          UnprocessableEntity(
+          BadRequest(
             errorResponseBody(
               correlationId,
               "ERR_VALIDATION",

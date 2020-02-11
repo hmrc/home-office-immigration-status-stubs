@@ -153,13 +153,13 @@ class HomeOfficeSettledStatusStubsControllerISpec
           ))
       }
 
-      "respond with 422 if one of the input parameters passed in has failed validation" in {
+      "respond with 400 if one of the input parameters passed in has failed validation" in {
         ping.status.shouldBe(200)
 
         val result = publicFundsByNino(
           """{"nino":"invalid","givenName":"Jane","familyName":"Doe","dateOfBirth":"2001-01-31"}""")
 
-        result.status shouldBe 422
+        result.status shouldBe 400
         result.json.as[JsObject] should (haveProperty[String]("correlationId")
           and haveProperty[JsObject](
             "error",
