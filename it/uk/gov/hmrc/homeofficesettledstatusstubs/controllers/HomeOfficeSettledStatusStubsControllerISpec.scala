@@ -50,7 +50,6 @@ class HomeOfficeSettledStatusStubsControllerISpec
         result.status shouldBe 200
         result.json.as[JsObject] should (haveProperty[String]("access_token")
           and haveProperty[String]("refresh_token")
-          and haveProperty[String]("id_token")
           and haveProperty[String]("token_type", be("Bearer")))
       }
 
@@ -76,14 +75,15 @@ class HomeOfficeSettledStatusStubsControllerISpec
           and haveProperty[JsObject](
             "result",
             haveProperty[String]("dateOfBirth", be("2001-01-31"))
-              and haveProperty[String]("facialImage", be("string"))
+              and haveProperty[String]("nationality", be("IRL"))
               and haveProperty[String]("fullName", be("Jane Doe"))
               and havePropertyArrayOf[JsObject](
                 "statuses",
                 haveProperty[String]("immigrationStatus", be("ILR"))
-                  and haveProperty[Boolean]("rightToPublicFunds", be(true))
+                  and haveProperty[Boolean]("noRecourseToPublicFunds", be(true))
                   and haveProperty[String]("statusStartDate", be("2018-01-31"))
                   and haveProperty[String]("statusEndDate", be("2018-12-12"))
+                  and haveProperty[String]("productType", be("EUS"))
               )
           ))
       }
@@ -99,14 +99,15 @@ class HomeOfficeSettledStatusStubsControllerISpec
           and haveProperty[JsObject](
             "result",
             haveProperty[String]("dateOfBirth", be("2001-01-31"))
-              and haveProperty[String]("facialImage", be("string"))
+              and haveProperty[String]("nationality", be("IRL"))
               and haveProperty[String]("fullName", be("Jane Doe"))
               and havePropertyArrayOf[JsObject](
                 "statuses",
                 haveProperty[String]("immigrationStatus", be("ILR"))
-                  and haveProperty[Boolean]("rightToPublicFunds", be(true))
+                  and haveProperty[Boolean]("noRecourseToPublicFunds", be(true))
                   and haveProperty[String]("statusStartDate", be("2018-01-31"))
                   and haveProperty[String]("statusEndDate", be("2018-12-12"))
+                  and haveProperty[String]("productType", be("EUS"))
               )
           ))
       }
