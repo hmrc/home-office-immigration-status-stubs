@@ -16,12 +16,13 @@ trait StatusResultExamples {
                        |  "correlationId": "{correlationId}",
                        |  "result": {
                        |    "dateOfBirth": "2001-01-31",
-                       |    "facialImage": "string",
+                       |    "nationality": "IRL",
                        |    "fullName": "Jane Doe",
                        |    "statuses": [
                        |      {
+                       |        "productType": "EUS",
                        |        "immigrationStatus": "ILR",
-                       |        "rightToPublicFunds": true,
+                       |        "noRecourseToPublicFunds": false,
                        |        "statusStartDate": "2018-01-31",
                        |        "statusEndDate": "2018-12-12"
                        |      }
@@ -32,12 +33,13 @@ trait StatusResultExamples {
                         |  "correlationId": "{correlationId}",
                         |  "result": {
                         |    "dateOfBirth": "1954-10-04",
-                        |    "facialImage": "string",
+                        |    "nationality": "CHE",
                         |    "fullName": "Lawrence Velazquez",
                         |    "statuses": [
                         |      {
+                        |        "productType": "EUS",
                         |        "immigrationStatus": "LTR",
-                        |        "rightToPublicFunds": true,
+                        |        "noRecourseToPublicFunds": false,
                         |        "statusStartDate": "2015-02-26",
                         |        "statusEndDate": "2020-03-19"
                         |      }
@@ -48,12 +50,13 @@ trait StatusResultExamples {
                         |  "correlationId": "{correlationId}",
                         |  "result": {
                         |    "dateOfBirth": "1969-06-30",
-                        |    "facialImage": "string",
+                        |    "nationality": "NLD",
                         |    "fullName": "Roos Tewes",
                         |    "statuses": [
                         |      {
+                        |        "productType": "EUS",
                         |        "immigrationStatus": "ILR",
-                        |        "rightToPublicFunds": true,
+                        |        "noRecourseToPublicFunds": false,
                         |        "statusStartDate": "2015-09-18"
                         |      }
                         |    ]
@@ -63,12 +66,13 @@ trait StatusResultExamples {
                         |  "correlationId": "{correlationId}",
                         |  "result": {
                         |    "dateOfBirth": "1974-02-27",
-                        |    "facialImage": "string",
+                        |    "nationality": "EST",
                         |    "fullName": "Stefano Reese",
                         |    "statuses": [
                         |      {
-                        |        "immigrationStatus": "ETLR",
-                        |        "rightToPublicFunds": true,
+                        |        "productType": "EUS",
+                        |        "immigrationStatus": "LTR",
+                        |        "noRecourseToPublicFunds": false,
                         |        "statusStartDate": "2016-02-08",
                         |        "statusEndDate": "2023-03-27"
                         |      }
@@ -79,12 +83,15 @@ trait StatusResultExamples {
                         |  "correlationId": "{correlationId}",
                         |  "result": {
                         |    "dateOfBirth": "1983-08-10",
-                        |    "facialImage": "string",
+                        |    "nationality": "BEL",
                         |    "fullName": "Marni Dunkley",
                         |    "statuses": [
                         |      {
-                        |        "immigrationStatus": "NONE",
-                        |        "rightToPublicFunds": false
+                        |        "productType": "EUS",
+                        |        "immigrationStatus": "LTR",
+                        |        "noRecourseToPublicFunds": false,
+                        |        "statusStartDate": "2016-11-08",
+                        |        "statusEndDate": "2030-06-17"
                         |      }
                         |    ]
                         |  }
@@ -93,14 +100,14 @@ trait StatusResultExamples {
                         |  "correlationId": "{correlationId}",
                         |  "result": {
                         |    "dateOfBirth": "1983-08-26",
-                        |    "facialImage": "string",
-                        |    "fullName": "Wolfgang Traube",
+                        |    "nationality": "D",
+                        |    "fullName": "Wolfgang Traübe",
                         |    "statuses": [
                         |      {
-                        |        "immigrationStatus": "LTR",
-                        |        "rightToPublicFunds": true,
-                        |        "statusStartDate": "2016-06-20",
-                        |        "statusEndDate": "2027-06-24"
+                        |        "productType": "EUS",
+                        |        "immigrationStatus": "ILR",
+                        |        "noRecourseToPublicFunds": false,
+                        |        "statusStartDate": "2016-06-20"
                         |      }
                         |    ]
                         |  }
@@ -109,12 +116,13 @@ trait StatusResultExamples {
                         |  "correlationId": "{correlationId}",
                         |  "result": {
                         |    "dateOfBirth": "1987-04-08",
-                        |    "facialImage": "string",
+                        |    "nationality": "ESP",
                         |    "fullName": "Rosalie Gallegos",
                         |    "statuses": [
                         |      {
-                        |        "immigrationStatus": "ETLR",
-                        |        "rightToPublicFunds": true,
+                        |        "productType": "EUS",
+                        |        "immigrationStatus": "LTR",
+                        |        "noRecourseToPublicFunds": false,
                         |        "statusStartDate": "2016-11-08",
                         |        "statusEndDate": "2030-06-17"
                         |      }
@@ -125,12 +133,14 @@ trait StatusResultExamples {
                         |  "correlationId": "{correlationId}",
                         |  "result": {
                         |    "dateOfBirth": "1987-09-23",
-                        |    "facialImage": "string",
+                        |    "nationality": "ARM",
                         |    "fullName": "Aleksandrov Cherganski",
                         |    "statuses": [
                         |      {
-                        |        "immigrationStatus": "NONE",
-                        |        "rightToPublicFunds": false
+                        |        "productType": "FOO",
+                        |        "immigrationStatus": "FOO",
+                        |        "noRecourseToPublicFunds": true,
+                        |        "statusStartDate": "2019-12-01"
                         |      }
                         |    ]
                         |  }
@@ -139,18 +149,20 @@ trait StatusResultExamples {
                         |  "correlationId": "{correlationId}",
                         |  "result": {
                         |    "dateOfBirth": "2000-10-06",
-                        |    "facialImage": "string",
+                        |    "nationality": "POL",
                         |    "fullName": "Maja Głowa",
                         |    "statuses": [
                         |      {
+                        |        "productType": "EUS",
                         |        "immigrationStatus": "LTR",
-                        |        "rightToPublicFunds": true,
+                        |        "noRecourseToPublicFunds": false,
                         |        "statusStartDate": "2019-06-28",
                         |        "statusEndDate": "2024-06-28"
                         |      },
                         |      {
+                        |        "productType": "EUS",
                         |        "immigrationStatus": "ILR",
-                        |        "rightToPublicFunds": true,
+                        |        "noRecourseToPublicFunds": false,
                         |        "statusStartDate": "2024-06-28"
                         |      }
                         |    ]

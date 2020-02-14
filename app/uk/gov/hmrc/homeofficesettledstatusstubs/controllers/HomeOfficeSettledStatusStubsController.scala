@@ -8,7 +8,7 @@ package uk.gov.hmrc.homeofficesettledstatusstubs.controllers
 import java.util.UUID
 
 import javax.inject.{Inject, Singleton}
-import play.api.libs.json.{JsValue, Json}
+import play.api.libs.json.{Format, JsValue, Json}
 import play.api.mvc._
 import play.api.{Configuration, Environment}
 import uk.gov.hmrc.domain.Nino
@@ -34,7 +34,6 @@ class HomeOfficeSettledStatusStubsController @Inject()(
           _ => Ok(Json.parse(s"""{
                                 |   "access_token": "${UUID.randomUUID().toString}",
                                 |   "refresh_token": "${UUID.randomUUID().toString}",
-                                |   "id_token": "${UUID.randomUUID().toString}",
                                 |   "token_type": "Bearer"
                                 |}""".stripMargin))
         ))
@@ -157,7 +156,7 @@ object HomeOfficeSettledStatusStubsController {
   case class TokenRequest(grant_type: String, client_id: String, client_secret: String)
 
   object TokenRequest {
-    implicit val formats = Json.format[TokenRequest]
+    implicit val formats: Format[TokenRequest] = Json.format[TokenRequest]
   }
 
   val tokenForm: Form[TokenRequest] = Form(
