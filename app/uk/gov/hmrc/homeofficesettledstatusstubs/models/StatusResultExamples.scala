@@ -105,10 +105,9 @@ trait StatusResultExamples {
                         |    "statuses": [
                         |      {
                         |        "productType": "EUS",
-                        |        "immigrationStatus": "LTR",
+                        |        "immigrationStatus": "ILR",
                         |        "noRecourseToPublicFunds": true,
-                        |        "statusStartDate": "2016-06-20",
-                        |        "statusEndDate": "2027-06-24"
+                        |        "statusStartDate": "2016-06-20"
                         |      }
                         |    ]
                         |  }
