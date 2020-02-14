@@ -101,7 +101,7 @@ trait StatusResultExamples {
                         |  "result": {
                         |    "dateOfBirth": "1983-08-26",
                         |    "nationality": "D",
-                        |    "fullName": "Wolfgang Traube",
+                        |    "fullName": "Wolfgang Traübe",
                         |    "statuses": [
                         |      {
                         |        "productType": "EUS",
@@ -141,8 +141,8 @@ trait StatusResultExamples {
                         |        "productType": "EUS",
                         |        "immigrationStatus": "LTR",
                         |        "noRecourseToPublicFunds": false,
-                        |        "statusStartDate": "2016-11-08",
-                        |        "statusEndDate": "2030-06-17"
+                        |        "statusStartDate": "2019-12-01",
+                        |        "statusEndDate": "2019-12-31"
                         |      }
                         |    ]
                         |  }
