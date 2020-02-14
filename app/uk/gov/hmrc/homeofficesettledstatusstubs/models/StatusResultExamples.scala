@@ -22,7 +22,7 @@ trait StatusResultExamples {
                        |      {
                        |        "productType": "EUS",
                        |        "immigrationStatus": "ILR",
-                       |        "noRecourseToPublicFunds": true,
+                       |        "noRecourseToPublicFunds": false,
                        |        "statusStartDate": "2018-01-31",
                        |        "statusEndDate": "2018-12-12"
                        |      }
@@ -39,7 +39,7 @@ trait StatusResultExamples {
                         |      {
                         |        "productType": "EUS",
                         |        "immigrationStatus": "LTR",
-                        |        "noRecourseToPublicFunds": true,
+                        |        "noRecourseToPublicFunds": false,
                         |        "statusStartDate": "2015-02-26",
                         |        "statusEndDate": "2020-03-19"
                         |      }
@@ -56,7 +56,7 @@ trait StatusResultExamples {
                         |      {
                         |        "productType": "EUS",
                         |        "immigrationStatus": "ILR",
-                        |        "noRecourseToPublicFunds": true,
+                        |        "noRecourseToPublicFunds": false,
                         |        "statusStartDate": "2015-09-18"
                         |      }
                         |    ]
@@ -72,7 +72,7 @@ trait StatusResultExamples {
                         |      {
                         |        "productType": "EUS",
                         |        "immigrationStatus": "LTR",
-                        |        "noRecourseToPublicFunds": true,
+                        |        "noRecourseToPublicFunds": false,
                         |        "statusStartDate": "2016-02-08",
                         |        "statusEndDate": "2023-03-27"
                         |      }
@@ -106,7 +106,7 @@ trait StatusResultExamples {
                         |      {
                         |        "productType": "EUS",
                         |        "immigrationStatus": "ILR",
-                        |        "noRecourseToPublicFunds": true,
+                        |        "noRecourseToPublicFunds": false,
                         |        "statusStartDate": "2016-06-20"
                         |      }
                         |    ]
@@ -122,7 +122,7 @@ trait StatusResultExamples {
                         |      {
                         |        "productType": "EUS",
                         |        "immigrationStatus": "LTR",
-                        |        "noRecourseToPublicFunds": true,
+                        |        "noRecourseToPublicFunds": false,
                         |        "statusStartDate": "2016-11-08",
                         |        "statusEndDate": "2030-06-17"
                         |      }
@@ -133,15 +133,14 @@ trait StatusResultExamples {
                         |  "correlationId": "{correlationId}",
                         |  "result": {
                         |    "dateOfBirth": "1987-09-23",
-                        |    "nationality": "BGR",
+                        |    "nationality": "ARM",
                         |    "fullName": "Aleksandrov Cherganski",
                         |    "statuses": [
                         |      {
-                        |        "productType": "EUS",
-                        |        "immigrationStatus": "LTR",
-                        |        "noRecourseToPublicFunds": false,
-                        |        "statusStartDate": "2019-12-01",
-                        |        "statusEndDate": "2019-12-31"
+                        |        "productType": "FOO",
+                        |        "immigrationStatus": "FOO",
+                        |        "noRecourseToPublicFunds": true,
+                        |        "statusStartDate": "2019-12-01"
                         |      }
                         |    ]
                         |  }
@@ -156,14 +155,14 @@ trait StatusResultExamples {
                         |      {
                         |        "productType": "EUS",
                         |        "immigrationStatus": "LTR",
-                        |        "noRecourseToPublicFunds": true,
+                        |        "noRecourseToPublicFunds": false,
                         |        "statusStartDate": "2019-06-28",
                         |        "statusEndDate": "2024-06-28"
                         |      },
                         |      {
                         |        "productType": "EUS",
                         |        "immigrationStatus": "ILR",
-                        |        "noRecourseToPublicFunds": true,
+                        |        "noRecourseToPublicFunds": false,
                         |        "statusStartDate": "2024-06-28"
                         |      }
                         |    ]
