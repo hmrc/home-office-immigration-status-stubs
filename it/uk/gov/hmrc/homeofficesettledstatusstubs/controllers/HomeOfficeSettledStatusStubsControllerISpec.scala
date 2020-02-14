@@ -80,7 +80,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
               and havePropertyArrayOf[JsObject](
                 "statuses",
                 haveProperty[String]("immigrationStatus", be("ILR"))
-                  and haveProperty[Boolean]("noRecourseToPublicFunds", be(true))
+                  and haveProperty[Boolean]("noRecourseToPublicFunds", be(false))
                   and haveProperty[String]("statusStartDate", be("2018-01-31"))
                   and haveProperty[String]("statusEndDate", be("2018-12-12"))
                   and haveProperty[String]("productType", be("EUS"))
@@ -104,7 +104,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
               and havePropertyArrayOf[JsObject](
                 "statuses",
                 haveProperty[String]("immigrationStatus", be("ILR"))
-                  and haveProperty[Boolean]("noRecourseToPublicFunds", be(true))
+                  and haveProperty[Boolean]("noRecourseToPublicFunds", be(false))
                   and haveProperty[String]("statusStartDate", be("2018-01-31"))
                   and haveProperty[String]("statusEndDate", be("2018-12-12"))
                   and haveProperty[String]("productType", be("EUS"))
