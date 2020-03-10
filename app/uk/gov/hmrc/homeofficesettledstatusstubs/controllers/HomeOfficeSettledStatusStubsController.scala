@@ -59,11 +59,9 @@ class HomeOfficeSettledStatusStubsController @Inject()(
               Conflict(errorResponseBody(correlationId, "ERR_CONFLICT"))
 
             case _ =>
-              examples.get(nino) match {
+              resultFor(correlationId, nino) match {
                 case Some(content) =>
-                  val enhancedContent =
-                    content.replaceAllLiterally("{correlationId}", correlationId)
-                  val entity = Json.parse(enhancedContent)
+                  val entity = Json.parse(content)
 
                   val givenNameMatches = (entity \ "result" \ "fullName")
                     .asOpt[String]
