@@ -40,7 +40,7 @@ class HomeOfficeSettledStatusStubsController @Inject()(
   }
 
   def publicFundsByNino: Action[JsValue] = Action.async(parse.tolerantJson) { implicit request =>
-    val correlationId = request.headers.get("x-correlation-id").getOrElse("00000000")
+    val correlationId = request.headers.get("X-Correlation-Id").getOrElse("00000000")
 
     val ninoOpt = (request.body \ "nino").asOpt[String]
     val givenNameOpt = (request.body \ "givenName").asOpt[String]
