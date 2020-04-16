@@ -185,6 +185,25 @@ trait StatusResultExamples {
               |  }
               |}""".stripMargin)
 
+    case "AB188148D" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "1935-04-20",
+              |    "nationality": "ITA",
+              |    "fullName": "Luigi Pisani",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "ILR",
+              |        "noRecourseToPublicFunds": true,
+              |        "statusStartDate": "2019-01-01",
+              |        "statusEndDate": "2020-02-15"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
     case _ => None
   }
 
