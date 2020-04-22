@@ -185,6 +185,81 @@ trait StatusResultExamples {
               |  }
               |}""".stripMargin)
 
+    case "OX749001C" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "1976-05-22",
+              |    "nationality": "GRC",
+              |    "fullName": "Eva Vassilis",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "ILR",
+              |        "noRecourseToPublicFunds": true,
+              |        "statusStartDate": "2014-10-12",
+              |        "statusEndDate": "2019-10-11"
+              |      },
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "LTR",
+              |        "noRecourseToPublicFunds": false,
+              |        "statusStartDate": "2020-04-01"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
+    case "LE183343C" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "1947-04-06",
+              |    "nationality": "FRA",
+              |    "fullName": "Yvonne Albin",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "ILR",
+              |        "noRecourseToPublicFunds": true,
+              |        "statusStartDate": "2015-01-19",
+              |        "statusEndDate": "2020-01-20"
+              |      },
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "LTR",
+              |        "noRecourseToPublicFunds": false,
+              |        "statusStartDate": "2020-03-20"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
+    case "OT575524B" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "2000-10-06",
+              |    "nationality": "SWE",
+              |    "fullName": "Elsa Viggo",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "LTR",
+              |        "noRecourseToPublicFunds": false,
+              |        "statusStartDate": "2017-12-17",
+              |        "statusEndDate": "2019-12-18"
+              |      },
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "LTR",
+              |        "noRecourseToPublicFunds": false,
+              |        "statusStartDate": "2020-02-15"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
     case "AB188148D" =>
       Some(s"""{
               |  "correlationId": "$correlationId",
