@@ -185,13 +185,13 @@ trait StatusResultExamples {
               |  }
               |}""".stripMargin)
 
-    case "BS186519A" =>
+    case "OX749001C" =>
       Some(s"""{
               |  "correlationId": "$correlationId",
               |  "result": {
               |    "dateOfBirth": "1976-05-22",
               |    "nationality": "GRC",
-              |    "fullName": "Alexander Junior",
+              |    "fullName": "Eva Vassilis",
               |    "statuses": [
               |      {
               |        "productType": "EUS",
@@ -210,13 +210,13 @@ trait StatusResultExamples {
               |  }
               |}""".stripMargin)
 
-    case "SL095353B" =>
+    case "LE183343C" =>
       Some(s"""{
               |  "correlationId": "$correlationId",
               |  "result": {
               |    "dateOfBirth": "1947-04-06",
               |    "nationality": "FRA",
-              |    "fullName": "Jonny Lewer",
+              |    "fullName": "Yvonne Albin",
               |    "statuses": [
               |      {
               |        "productType": "EUS",
@@ -235,13 +235,13 @@ trait StatusResultExamples {
               |  }
               |}""".stripMargin)
 
-    case "AB096363B" =>
+    case "OT575524B" =>
       Some(s"""{
               |  "correlationId": "$correlationId",
               |  "result": {
               |    "dateOfBirth": "2000-10-06",
               |    "nationality": "SWE",
-              |    "fullName": "Ben Johnson",
+              |    "fullName": "Elsa Viggo",
               |    "statuses": [
               |      {
               |        "productType": "EUS",
