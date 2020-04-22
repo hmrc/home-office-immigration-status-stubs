@@ -185,6 +185,81 @@ trait StatusResultExamples {
               |  }
               |}""".stripMargin)
 
+    case "BS186519A" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "1976-05-22",
+              |    "nationality": "GRC",
+              |    "fullName": "Alexander Junior",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "ILR",
+              |        "noRecourseToPublicFunds": true,
+              |        "statusStartDate": "2014-10-12",
+              |        "statusEndDate": "2019-10-11"
+              |      },
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "LTR",
+              |        "noRecourseToPublicFunds": false,
+              |        "statusStartDate": "2020-04-01"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
+    case "SL095353B" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "1947-04-06",
+              |    "nationality": "FRA",
+              |    "fullName": "Jonny Lewer",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "ILR",
+              |        "noRecourseToPublicFunds": true,
+              |        "statusStartDate": "2015-01-19",
+              |        "statusEndDate": "2020-01-20"
+              |      },
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "LTR",
+              |        "noRecourseToPublicFunds": false,
+              |        "statusStartDate": "2020-03-20"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
+    case "AB096363B" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "2000-10-06",
+              |    "nationality": "SWE",
+              |    "fullName": "Ben Johnson",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "LTR",
+              |        "noRecourseToPublicFunds": false,
+              |        "statusStartDate": "2017-12-17",
+              |        "statusEndDate": "2019-12-18"
+              |      },
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "LTR",
+              |        "noRecourseToPublicFunds": false,
+              |        "statusStartDate": "2020-02-15"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
     case "AB188148D" =>
       Some(s"""{
               |  "correlationId": "$correlationId",
