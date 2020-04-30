@@ -270,6 +270,7 @@ trait StatusResultExamples {
            |        "immigrationStatus": "LTR",
            |        "noRecourseToPublicFunds": false,
            |        "statusStartDate": "2020-02-15"
+           |        "statusEndDate": "2025-12-18"
            |      }
            |    ]
            |  }
