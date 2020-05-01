@@ -162,7 +162,7 @@ trait StatusResultExamples {
            |        "productType": "FOO",
            |        "immigrationStatus": "FOO",
            |        "noRecourseToPublicFunds": true,
-           |        "statusStartDate": "2019-12-01"
+           |        "statusStartDate": "2019-12-01",
            |        "statusEndDate": "2021-11-30"
            |      }
            |    ]
@@ -188,7 +188,7 @@ trait StatusResultExamples {
            |      {
            |        "productType": "EUS",
            |        "immigrationStatus": "ILR",
-           |        "noRecourseToPublicFunds": false,
+           |        "noRecourseToPublicFunds": true,
            |        "statusStartDate": "2020-01-28"
            |      }
            |    ]
@@ -243,7 +243,14 @@ trait StatusResultExamples {
            |        "immigrationStatus": "LTR",
            |        "noRecourseToPublicFunds": false,
            |        "statusStartDate": "2020-03-20",
-           |        "statusEndDate": "2022-03-19"
+           |        "statusEndDate": "2020-03-31"
+           |      },
+           |      {
+           |      "productType": "EUS",
+           |        "immigrationStatus": "LTR",
+           |        "noRecourseToPublicFunds": false,
+           |        "statusStartDate": "2020-04-01",
+           |        "statusEndDate": "2025-04-11"
            |      }
            |    ]
            |  }
