@@ -215,7 +215,7 @@ trait StatusResultExamples {
            |        "productType": "EUS",
            |        "immigrationStatus": "LTR",
            |        "noRecourseToPublicFunds": false,
-           |        "statusStartDate": "2020-04-01"
+           |        "statusStartDate": "2020-04-01",
            |        "statusEndDate": "2022-03-31"
            |      }
            |    ]
@@ -242,7 +242,7 @@ trait StatusResultExamples {
            |        "productType": "EUS",
            |        "immigrationStatus": "LTR",
            |        "noRecourseToPublicFunds": false,
-           |        "statusStartDate": "2020-03-20"
+           |        "statusStartDate": "2020-03-20",
            |        "statusEndDate": "2022-03-19"
            |      }
            |    ]
@@ -269,7 +269,7 @@ trait StatusResultExamples {
            |        "productType": "EUS",
            |        "immigrationStatus": "LTR",
            |        "noRecourseToPublicFunds": false,
-           |        "statusStartDate": "2020-02-15"
+           |        "statusStartDate": "2020-02-15",
            |        "statusEndDate": "2025-12-18"
            |      }
            |    ]
