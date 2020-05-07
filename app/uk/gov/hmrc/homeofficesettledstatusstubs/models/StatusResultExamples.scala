@@ -243,7 +243,7 @@ trait StatusResultExamples {
            |        "immigrationStatus": "LTR",
            |        "noRecourseToPublicFunds": false,
            |        "statusStartDate": "2020-03-20",
-           |        "statusEndDate": "2020-03-31",
+           |        "statusEndDate": "2020-03-31"
            |      },
            |      {
            |      "productType": "EUS",
