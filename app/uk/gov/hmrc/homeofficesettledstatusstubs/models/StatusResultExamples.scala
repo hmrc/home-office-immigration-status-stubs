@@ -296,7 +296,14 @@ trait StatusResultExamples {
            |        "productType": "EUS",
            |        "immigrationStatus": "ILR",
            |        "noRecourseToPublicFunds": true,
-           |        "statusStartDate": "2019-01-01",
+           |        "statusStartDate": "2019-02-16",
+           |        "statusEndDate": "2025-12-25"
+           |      },
+           |      {
+           |        "productType": "EUS",
+           |        "immigrationStatus": "ILR",
+           |        "noRecourseToPublicFunds": true,
+           |        "statusStartDate": "2020-02-15",
            |        "statusEndDate": "2020-02-15"
            |      }
            |    ]
