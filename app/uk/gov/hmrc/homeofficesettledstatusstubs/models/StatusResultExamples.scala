@@ -303,7 +303,7 @@ trait StatusResultExamples {
            |        "productType": "EUS",
            |        "immigrationStatus": "ILR",
            |        "noRecourseToPublicFunds": true,
-           |        "statusStartDate": "2019-02-16",
+           |        "statusStartDate": "2020-02-16",
            |        "statusEndDate": "2025-12-25"
            |      }
            |    ]
