@@ -304,7 +304,7 @@ trait StatusResultExamples {
            |        "immigrationStatus": "ILR",
            |        "noRecourseToPublicFunds": true,
            |        "statusStartDate": "2020-02-16",
-           |        "statusEndDate": "2025-12-25"
+           |        "statusEndDate": "2020-12-25"
            |      }
            |    ]
            |  }
