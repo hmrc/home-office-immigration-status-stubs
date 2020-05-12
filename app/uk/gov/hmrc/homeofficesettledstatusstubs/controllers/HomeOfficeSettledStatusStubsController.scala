@@ -8,7 +8,7 @@ package uk.gov.hmrc.homeofficesettledstatusstubs.controllers
 import java.util.UUID
 
 import javax.inject.{Inject, Singleton}
-import play.api.libs.json.{Format, JsValue, Json}
+import play.api.libs.json.{Format, JsObject, JsValue, Json}
 import play.api.mvc._
 import play.api.{Configuration, Environment}
 import uk.gov.hmrc.domain.Nino
@@ -63,6 +63,9 @@ class HomeOfficeSettledStatusStubsController @Inject()(
                 case Some(content) =>
                   val entity = Json.parse(content)
 
+                  val hasResult = entity.asOpt[JsObject].exists(_.keys.contains("result"))
+                  val hasError = entity.asOpt[JsObject].exists(_.keys.contains("error"))
+
                   val givenNameMatches = (entity \ "result" \ "fullName")
                     .asOpt[String]
                     .exists(_.split(" ").headOption
@@ -80,6 +83,11 @@ class HomeOfficeSettledStatusStubsController @Inject()(
 
                   if (givenNameMatches && familyNameMatches && dateOfBirthMatches) {
                     Ok(entity)
+                  } else if (!hasResult && !hasError) {
+                    Accepted("")
+                  } else if (hasError) {
+                    val status = (entity \ "status").asOpt[Int].getOrElse(400)
+                    new Status(status)(entity)
                   } else {
                     NotFound(errorResponseBody(correlationId, "ERR_NOT_FOUND"))
                   }
