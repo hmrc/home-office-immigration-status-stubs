@@ -172,6 +172,24 @@ class HomeOfficeSettledStatusStubsControllerISpec
               )
           ))
       }
+
+      "respond with 202 if response empty" in {
+        ping.status.shouldBe(200)
+
+        val result = publicFundsByNino(
+          s"""{"nino":"ZL198221D","givenName":"J","familyName":"Does","dateOfBirth":"2001-XX-31"}""")
+
+        result.status shouldBe 202
+      }
+
+      "respond with 429 if status is 429" in {
+        ping.status.shouldBe(200)
+
+        val result = publicFundsByNino(
+          s"""{"nino":"TP469941B","givenName":"J","familyName":"Does","dateOfBirth":"2001-XX-31"}""")
+
+        result.status shouldBe 429
+      }
     }
   }
 }
