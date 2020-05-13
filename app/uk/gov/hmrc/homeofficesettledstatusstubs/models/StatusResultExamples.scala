@@ -322,10 +322,20 @@ trait StatusResultExamples {
               |  "correlationId": "$correlationId"
               |}""".stripMargin)
 
-    // TOO MANY REQUESTS ERROR
+    // TOO MANY REQUESTS ERROR WITH 429 STATUS
     case "TP469941B" =>
       Some(s"""{
               |  "status": 429,
+              |  "correlationId": "$correlationId",
+              |  "error": {
+              |     "errCode": "[NOT_USED]"
+              |  }
+              |}""".stripMargin)
+
+    // INTERNAL SERVICE ERROR WITH STATUS 500
+    case "BY880209B" =>
+      Some(s"""{
+              |  "status": 500,
               |  "correlationId": "$correlationId",
               |  "error": {
               |     "errCode": "[NOT_USED]"
