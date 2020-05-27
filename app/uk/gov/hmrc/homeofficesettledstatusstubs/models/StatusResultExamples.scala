@@ -316,6 +316,25 @@ trait StatusResultExamples {
               |  }
               |}""".stripMargin)
 
+    case "SJ372380A" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "1956-10-09",
+              |    "nationality": "ITA",
+              |    "fullName": "Nevio Sabina",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "ILR",
+              |        "noRecourseToPublicFunds": false,
+              |        "statusStartDate": "2014-11-21",
+              |        "statusEndDate": "2019-11-20"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
     // EMPTY RESPONSE WITH 202 STATUS
     case "ZL198221D" =>
       Some(s"""{
