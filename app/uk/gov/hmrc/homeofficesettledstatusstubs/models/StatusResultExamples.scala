@@ -335,7 +335,7 @@ trait StatusResultExamples {
               |  }
               |}""".stripMargin)
 
-    // EMPTY RESPONSE WITH 202 STATUS
+    // EMPTY RESPONSE WITH 200 STATUS
     case "ZL198221D" =>
       Some(s"""{
               |  "correlationId": "$correlationId"

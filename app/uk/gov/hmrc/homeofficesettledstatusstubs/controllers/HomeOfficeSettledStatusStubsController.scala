@@ -84,7 +84,7 @@ class HomeOfficeSettledStatusStubsController @Inject()(
                   if (givenNameMatches && familyNameMatches && dateOfBirthMatches) {
                     Ok(entity)
                   } else if (!hasResult && !hasError) {
-                    Accepted("")
+                    Ok("")
                   } else if (hasError) {
                     val status = (entity \ "status").asOpt[Int].getOrElse(400)
                     new Status(status)(entity)
