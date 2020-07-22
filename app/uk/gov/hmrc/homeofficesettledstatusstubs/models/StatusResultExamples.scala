@@ -60,7 +60,7 @@ trait StatusResultExamples {
               |      {
               |        "productType": "EUS",
               |        "immigrationStatus": "ILR",
-              |        "noRecourseToPublicFunds": false,
+              |        "noRecourseToPublicFunds": true,
               |        "statusStartDate": "2015-09-18"
               |      }
               |    ]
@@ -116,7 +116,7 @@ trait StatusResultExamples {
               |      {
               |        "productType": "EUS",
               |        "immigrationStatus": "ILR",
-              |        "noRecourseToPublicFunds": false,
+              |        "noRecourseToPublicFunds": true,
               |        "statusStartDate": "2016-06-20"
               |      }
               |    ]
@@ -327,9 +327,28 @@ trait StatusResultExamples {
               |      {
               |        "productType": "EUS",
               |        "immigrationStatus": "ILR",
-              |        "noRecourseToPublicFunds": false,
+              |        "noRecourseToPublicFunds": true,
               |        "statusStartDate": "2014-11-21",
               |        "statusEndDate": "2019-11-20"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
+    case "MZ006526C" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "1956-10-20",
+              |    "nationality": "CHE",
+              |    "fullName": "Ignác Šarlota",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "ILR",
+              |        "noRecourseToPublicFunds": true,
+              |        "statusStartDate": "2015-04-30",
+              |        "statusEndDate": "2020-05-29"
               |      }
               |    ]
               |  }
