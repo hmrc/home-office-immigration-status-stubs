@@ -335,7 +335,7 @@ trait StatusResultExamples {
               |  }
               |}""".stripMargin)
 
-    case "MZ006526C" =>
+    case "MZ006526D" =>
       Some(s"""{
               |  "correlationId": "$correlationId",
               |  "result": {
