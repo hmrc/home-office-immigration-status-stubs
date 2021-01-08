@@ -29,7 +29,7 @@ lazy val compileDeps = Seq(
 
 def testDeps(scope: String) = Seq(
   "uk.gov.hmrc" %% "hmrctest" % "3.10.0-play-26" % scope,
-  "org.scalatest" %% "scalatest" % "3.2.3" % scope,
+  "org.scalatest" %% "scalatest" % "3.0.8" % scope,
   "org.mockito" % "mockito-core" % "3.1.0" % scope,
   "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.3" % scope,
   "com.github.tomakehurst" % "wiremock" % "2.27.2" % scope
