@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 HM Revenue & Customs
+ * Copyright 2021 HM Revenue & Customs
  *
  */
 
@@ -291,7 +291,7 @@ trait StatusResultExamples {
               |        "immigrationStatus": "ILR",
               |        "noRecourseToPublicFunds": true,
               |        "statusStartDate": "2020-02-16",
-              |        "statusEndDate": "2020-12-25"
+              |        "statusEndDate": "2030-12-25"
               |      }
               |    ]
               |  }
