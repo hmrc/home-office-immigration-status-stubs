@@ -23,6 +23,7 @@ lazy val compileDeps = Seq(
   "uk.gov.hmrc" %% "domain" % "5.10.0-play-26",
   "com.github.blemale" %% "scaffeine" % "3.1.0",
   "uk.gov.hmrc" %% "agent-kenshoo-monitoring" % "4.0.0",
+  "com.vladsch.flexmark" % "flexmark-all" % "0.35.10",
   ws
 )
 
