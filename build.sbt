@@ -1,58 +1,18 @@
+import AppDependencies.jettyOverrides
 import sbt.Tests.{Group, SubProcess}
-import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin._
 import uk.gov.hmrc.SbtAutoBuildPlugin
+import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin._
 
 lazy val scoverageSettings = {
   import scoverage.ScoverageKeys
   Seq(
-    // Semicolon-separated list of regexs matching classes to exclude
     ScoverageKeys.coverageExcludedPackages := """uk\.gov\.hmrc\.BuildInfo;.*\.Routes;.*\.RoutesPrefix;.*Filters?;MicroserviceAuditConnector;Module;GraphiteStartUp;.*\.Reverse[^.]*""",
-    ScoverageKeys.coverageMinimum := 80.00,
+    ScoverageKeys.coverageMinimum := 71.00,
     ScoverageKeys.coverageFailOnMinimum := false,
     ScoverageKeys.coverageHighlighting := true,
     parallelExecution in Test := false
   )
 }
-
-lazy val compileDeps = Seq(
-  ws,
-  "uk.gov.hmrc" %% "bootstrap-play-26" % "2.3.0",
-  "uk.gov.hmrc" %% "auth-client" % "3.2.0-play-26",
-  "uk.gov.hmrc" %% "agent-mtd-identifiers" % "0.20.0-play-26",
-  "com.kenshoo" %% "metrics-play" % "2.6.19_0.7.0",
-  "uk.gov.hmrc" %% "domain" % "5.10.0-play-26",
-  "com.github.blemale" %% "scaffeine" % "3.1.0",
-  "uk.gov.hmrc" %% "agent-kenshoo-monitoring" % "4.0.0",
-  "com.vladsch.flexmark" % "flexmark-all" % "0.35.10",
-  ws
-)
-
-def testDeps(scope: String) = Seq(
-  "uk.gov.hmrc" %% "hmrctest" % "3.10.0-play-26" % scope,
-  "org.scalatest" %% "scalatest" % "3.0.8" % scope,
-  "org.mockito" % "mockito-core" % "3.1.0" % scope,
-  "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.3" % scope,
-  "com.github.tomakehurst" % "wiremock" % "2.27.2" % scope
-)
-
-val jettyVersion = "9.2.24.v20180105"
-
-val jettyOverrides = Seq(
-  "org.eclipse.jetty" % "jetty-server" % jettyVersion % IntegrationTest,
-  "org.eclipse.jetty" % "jetty-servlet" % jettyVersion % IntegrationTest,
-  "org.eclipse.jetty" % "jetty-security" % jettyVersion % IntegrationTest,
-  "org.eclipse.jetty" % "jetty-servlets" % jettyVersion % IntegrationTest,
-  "org.eclipse.jetty" % "jetty-continuation" % jettyVersion % IntegrationTest,
-  "org.eclipse.jetty" % "jetty-webapp" % jettyVersion % IntegrationTest,
-  "org.eclipse.jetty" % "jetty-xml" % jettyVersion % IntegrationTest,
-  "org.eclipse.jetty" % "jetty-client" % jettyVersion % IntegrationTest,
-  "org.eclipse.jetty" % "jetty-http" % jettyVersion % IntegrationTest,
-  "org.eclipse.jetty" % "jetty-io" % jettyVersion % IntegrationTest,
-  "org.eclipse.jetty" % "jetty-util" % jettyVersion % IntegrationTest,
-  "org.eclipse.jetty.websocket" % "websocket-api" % jettyVersion % IntegrationTest,
-  "org.eclipse.jetty.websocket" % "websocket-common" % jettyVersion % IntegrationTest,
-  "org.eclipse.jetty.websocket" % "websocket-client" % jettyVersion % IntegrationTest
-)
 
 lazy val root = (project in file("."))
   .settings(
@@ -60,13 +20,8 @@ lazy val root = (project in file("."))
     organization := "uk.gov.hmrc",
     scalaVersion := "2.12.12",
     PlayKeys.playDefaultPort := 9387,
-    resolvers := Seq(
-      Resolver.bintrayRepo("hmrc", "releases"),
-      Resolver.bintrayRepo("hmrc", "release-candidates"),
-      Resolver.typesafeRepo("releases"),
-      Resolver.jcenterRepo
-    ),
-    libraryDependencies ++= compileDeps ++ testDeps("test") ++ testDeps("it"),
+    resolvers += Resolver.jcenterRepo,
+    libraryDependencies ++= AppDependencies(),
     dependencyOverrides ++= jettyOverrides,
     publishingSettings,
     scoverageSettings,
@@ -85,13 +40,16 @@ lazy val root = (project in file("."))
     scalafmtOnCompile in IntegrationTest := true,
     majorVersion := 0
   )
-  .enablePlugins(PlayScala, SbtAutoBuildPlugin, SbtGitVersioning, SbtDistributablesPlugin, SbtArtifactory)
+  .enablePlugins(PlayScala, SbtAutoBuildPlugin, SbtGitVersioning, SbtDistributablesPlugin)
 
+  scalacOptions ++= Seq(
+    "-P:silencer:pathFilters=views;routes"
+  )
 
-inConfig(IntegrationTest)(scalafmtCoreSettings)
+  inConfig(IntegrationTest)(scalafmtCoreSettings)
 
-def oneForkedJvmPerTest(tests: Seq[TestDefinition]): Seq[Group] = {
-  tests.map { test =>
-    new Group(test.name, Seq(test), SubProcess(ForkOptions().withRunJVMOptions(Vector(s"-Dtest.name=${test.name}"))))
+  def oneForkedJvmPerTest(tests: Seq[TestDefinition]): Seq[Group] = {
+    tests.map { test =>
+      Group(test.name, Seq(test), SubProcess(ForkOptions().withRunJVMOptions(Vector(s"-Dtest.name=${test.name}"))))
+    }
   }
-}

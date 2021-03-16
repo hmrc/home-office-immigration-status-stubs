@@ -39,10 +39,10 @@ trait WSResponseMatchers {
     new Matcher[WSResponse] {
       override def apply(left: WSResponse): MatchResult = Try(left.json) match {
         case Success(o: JsObject) =>
-          matchers.foldLeft(MatchResult(true, "", ""))((a, b) => if (a.matches) b(o) else a)
-        case Success(_) => MatchResult(true, "", "Have valid JSON body")
+          matchers.foldLeft(MatchResult(matches = true, "", ""))((a, b) => if (a.matches) b(o) else a)
+        case Success(_) => MatchResult(matches = true, "", "Have valid JSON body")
         case Failure(e) =>
-          MatchResult(false, s"Could not parse.tolerantJson body because of $e", "")
+          MatchResult(matches = false, s"Could not parse.tolerantJson body because of $e", "")
       }
     }
 
@@ -50,10 +50,10 @@ trait WSResponseMatchers {
     new Matcher[WSResponse] {
       override def apply(left: WSResponse): MatchResult = Try(left.json) match {
         case Success(o: JsArray) =>
-          matchers.foldLeft(MatchResult(true, "", ""))((a, b) => if (a.matches) b(o) else a)
-        case Success(x) => MatchResult(false, s"JSON value should be an array but was $x", "")
+          matchers.foldLeft(MatchResult(matches = true, "", ""))((a, b) => if (a.matches) b(o) else a)
+        case Success(x) => MatchResult(matches = false, s"JSON value should be an array but was $x", "")
         case Failure(e) =>
-          MatchResult(false, s"Could not parse.tolerantJson body because of $e", "")
+          MatchResult(matches = false, s"Could not parse.tolerantJson body because of $e", "")
       }
     }
 
