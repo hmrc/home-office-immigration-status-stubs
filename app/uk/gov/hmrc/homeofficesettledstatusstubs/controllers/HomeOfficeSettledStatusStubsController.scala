@@ -5,22 +5,21 @@
 
 package uk.gov.hmrc.homeofficesettledstatusstubs.controllers
 
-import java.util.UUID
-
-import javax.inject.{Inject, Singleton}
 import play.api.libs.json.{Format, JsObject, JsValue, Json}
 import play.api.mvc._
 import play.api.{Configuration, Environment}
 import uk.gov.hmrc.domain.Nino
 import uk.gov.hmrc.homeofficesettledstatusstubs.models.StatusResultExamples
-import uk.gov.hmrc.play.bootstrap.controller.BackendController
+import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
-import scala.concurrent.{ExecutionContext, Future}
+import java.util.UUID
+import javax.inject.{Inject, Singleton}
+import scala.concurrent.Future
 
 @Singleton
 class HomeOfficeSettledStatusStubsController @Inject()(
   val env: Environment,
-  cc: ControllerComponents)(implicit val configuration: Configuration, ec: ExecutionContext)
+  cc: ControllerComponents)(implicit val configuration: Configuration)
     extends BackendController(cc) with StatusResultExamples {
 
   final val HTTP_HEADER_CONTENT_TYPE_JSON = "Content-Type" -> "application/json"

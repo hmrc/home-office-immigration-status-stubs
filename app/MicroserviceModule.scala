@@ -11,7 +11,7 @@ import uk.gov.hmrc.play.bootstrap.http.DefaultHttpClient
 class MicroserviceModule(val environment: Environment, val configuration: Configuration)
     extends AbstractModule {
 
-  def configure(): Unit = {
+  override def configure(): Unit = {
     val appName = "home-office-settled-status-stubs"
     Logger(getClass).info(s"Starting microservice : $appName : in mode : ${environment.mode}")
 
