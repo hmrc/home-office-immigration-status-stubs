@@ -40,7 +40,7 @@ lazy val root = (project in file("."))
     scalafmtOnCompile in IntegrationTest := true,
     majorVersion := 0
   )
-  .enablePlugins(PlayScala, SbtAutoBuildPlugin, SbtGitVersioning, SbtDistributablesPlugin)
+  .enablePlugins(PlayScala, SbtAutoBuildPlugin, SbtDistributablesPlugin)
 
   scalacOptions ++= Seq(
     "-P:silencer:pathFilters=views;routes"
