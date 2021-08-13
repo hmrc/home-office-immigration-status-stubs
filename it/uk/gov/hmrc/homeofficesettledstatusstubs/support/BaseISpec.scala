@@ -1,7 +1,9 @@
 package uk.gov.hmrc.homeofficesettledstatusstubs.support
 
 import akka.stream.Materializer
-import org.scalatest.{Matchers, OptionValues, WordSpecLike}
+import org.scalatest.OptionValues
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpecLike
 import play.api.Application
 import play.api.i18n.{Lang, Messages, MessagesApi}
 import play.api.inject.guice.GuiceApplicationBuilder
@@ -10,7 +12,7 @@ import play.twirl.api.HtmlFormat
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.http.HeaderCarrierConverter
 
-abstract class BaseISpec extends WordSpecLike with Matchers with OptionValues
+abstract class BaseISpec extends AnyWordSpecLike with Matchers with OptionValues
   with WireMockSupport with MetricsTestSupport {
 
   def app: Application

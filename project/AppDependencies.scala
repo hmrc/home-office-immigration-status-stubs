@@ -5,19 +5,21 @@ object AppDependencies {
 
   private val compile = Seq(
     play.sbt.PlayImport.ws,
-    "uk.gov.hmrc" %% "bootstrap-backend-play-27" % "5.3.0",
-    "uk.gov.hmrc" %% "domain"                    % "5.10.0-play-27",
+    "uk.gov.hmrc" %% "bootstrap-backend-play-28" % "5.10.0",
+    "uk.gov.hmrc" %% "domain"                    % "6.2.0-play-28",
     "uk.gov.hmrc" %% "hmrc-stubs-core"           % "6.2.0-play-26"
   )
 
   private val test: Seq[ModuleID] = Seq(
-    "uk.gov.hmrc"            %% "hmrctest"           % "3.10.0-play-26",
-    "org.scalatest"          %% "scalatest"          % "3.0.9",
-    "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.3",
-    "org.mockito"            % "mockito-core"        % "2.10.0",
-    "org.pegdown"            % "pegdown"             % "1.6.0",
-    "com.typesafe.play"      %% "play-test"          % PlayVersion.current,
-    "com.github.tomakehurst" % "wiremock"            % "2.27.2"
+    "uk.gov.hmrc"            %% "service-integration-test" % "1.1.0-play-28",
+    "org.scalatest"          %% "scalatest"                % "3.0.9",
+    "org.scalatestplus.play" %% "scalatestplus-play"       % "5.1.0",
+    "org.scalatestplus"      %% "mockito-3-4"              % "3.2.9.0",
+    "com.vladsch.flexmark"   % "flexmark-all"              % "0.35.10",
+    "org.mockito"            % "mockito-core"              % "2.28.2",
+    "org.pegdown"            % "pegdown"                   % "1.6.0",
+    "com.typesafe.play"      %% "play-test"                % PlayVersion.current,
+    "com.github.tomakehurst" % "wiremock"                  % "2.27.2"
   ).map(_ % "test, it")
 
   private val silencerDependencies: Seq[ModuleID] = Seq(
