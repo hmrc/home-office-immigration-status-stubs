@@ -354,6 +354,236 @@ trait StatusResultExamples {
               |  }
               |}""".stripMargin)
 
+    case "AB807993D" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "1983-08-26",
+              |    "nationality": "D",
+              |    "fullName": "Wolfgang Does",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "COA_IN_TIME_GRANT",
+              |        "noRecourseToPublicFunds": false,
+              |        "statusStartDate": "2016-06-20"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
+    case "AB807993E" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "1983-08-26",
+              |    "nationality": "D",
+              |    "fullName": "Wolfgang Does",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "COA_IN_TIME_GRANT",
+              |        "noRecourseToPublicFunds": true,
+              |        "statusStartDate": "2016-06-20"
+              |        "statusEndDate": "2019-06-17"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
+    case "BS088353M" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "2000-10-06",
+              |    "nationality": "POL",
+              |    "fullName": "Maja Głowa",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "ILR",
+              |        "noRecourseToPublicFunds": false,
+              |        "statusStartDate": "2021-01-01",
+              |        "statusEndDate": "2030-01-28"
+              |      },
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "COA_IN_TIME_GRANT",
+              |        "noRecourseToPublicFunds": true,
+              |        "statusStartDate": "2018-01-28"
+              |        "statusEndDate": "2020-12-31"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
+    case "BS088353N" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "2000-10-06",
+              |    "nationality": "POL",
+              |    "fullName": "Maja Głowa",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "ILR",
+              |        "noRecourseToPublicFunds": false,
+              |        "statusStartDate": "2020-01-01",
+              |        "statusEndDate": "2021-01-28"
+              |      },
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "COA_IN_TIME_GRANT",
+              |        "noRecourseToPublicFunds": true,
+              |        "statusStartDate": "2018-01-28"
+              |        "statusEndDate": "2020-12-31"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
+    case "OX749001I" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "1976-05-22",
+              |    "nationality": "GRC",
+              |    "fullName": "Eva Vassilis",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "COA_IN_TIME_GRANT",
+              |        "noRecourseToPublicFunds": true,
+              |        "statusStartDate": "2021-01-01",
+              |        "statusEndDate": "2030-10-11"
+              |      },
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "LTR",
+              |        "noRecourseToPublicFunds": false,
+              |        "statusStartDate": "2018-01-21",
+              |        "statusEndDate": "2020-12-31"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
+    case "AB807993T" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "1983-08-26",
+              |    "nationality": "D",
+              |    "fullName": "Wolfgang Does",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "POST_GRACE_PERIOD_COA_GRANT",
+              |        "noRecourseToPublicFunds": true,
+              |        "statusStartDate": "2016-06-20"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
+    case "AB445870C" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "1987-04-08",
+              |    "nationality": "ESP",
+              |    "fullName": "Rosalie Morrison",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "POST_GRACE_PERIOD_COA_GRANT",
+              |        "noRecourseToPublicFunds": false,
+              |        "statusStartDate": "2016-11-08",
+              |        "statusEndDate": "2030-06-17"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
+    case "OX749001K" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "1976-05-22",
+              |    "nationality": "GRC",
+              |    "fullName": "Eva Vassilis",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "POST_GRACE_PERIOD_COA_GRANT",
+              |        "noRecourseToPublicFunds": true,
+              |        "statusStartDate": "2021-01-01",
+              |        "statusEndDate": "2030-10-11"
+              |      },
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "LTR",
+              |        "noRecourseToPublicFunds": false,
+              |        "statusStartDate": "2018-01-21",
+              |        "statusEndDate": "2020-12-31"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
+    case "OX749001X" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "1976-05-22",
+              |    "nationality": "GRC",
+              |    "fullName": "Eva Vassilis",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "POST_GRACE_PERIOD_COA_GRANT",
+              |        "noRecourseToPublicFunds": true,
+              |        "statusStartDate": "2019-01-01",
+              |        "statusEndDate": "2020-10-11"
+              |      },
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "LTR",
+              |        "noRecourseToPublicFunds": false,
+              |        "statusStartDate": "2018-01-21",
+              |        "statusEndDate": "2020-12-31"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
+    case "BS088353P" =>
+      Some(s"""{
+              |  "correlationId": "$correlationId",
+              |  "result": {
+              |    "dateOfBirth": "2000-10-06",
+              |    "nationality": "POL",
+              |    "fullName": "Maja Głowa",
+              |    "statuses": [
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "ILR",
+              |        "noRecourseToPublicFunds": false,
+              |        "statusStartDate": "2020-01-01",
+              |        "statusEndDate": "2030-01-28"
+              |      },
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "POST_GRACE_PERIOD_COA_GRANT",
+              |        "noRecourseToPublicFunds": true,
+              |        "statusStartDate": "2018-01-28"
+              |        "statusEndDate": "2020-12-31"
+              |      }
+              |    ]
+              |  }
+              |}""".stripMargin)
+
     // EMPTY RESPONSE WITH 200 STATUS
     case "ZL198221D" =>
       Some(s"""{
