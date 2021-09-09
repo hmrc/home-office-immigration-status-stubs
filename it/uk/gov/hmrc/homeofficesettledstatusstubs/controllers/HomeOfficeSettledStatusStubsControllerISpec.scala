@@ -88,6 +88,53 @@ class HomeOfficeSettledStatusStubsControllerISpec
           ))
       }
 
+      "respond with 200 if request is valid and immigrationStatus COA_IN_TIME_GRANT " in {
+        ping.status.shouldBe(200)
+
+        val result = publicFundsByNino(
+          s"""{"nino":"AB807993D","givenName":"Wolfgang","familyName":"Does","dateOfBirth":"1983-08-26"}""")
+
+        result.status shouldBe 200
+        result.json.as[JsObject] should (haveProperty[String]("correlationId")
+          and haveProperty[JsObject](
+          "result",
+          haveProperty[String]("dateOfBirth", be("1983-08-26"))
+            and haveProperty[String]("nationality", be("D"))
+            and haveProperty[String]("fullName", be("Wolfgang Does"))
+            and havePropertyArrayOf[JsObject](
+            "statuses",
+            haveProperty[String]("immigrationStatus", be("COA_IN_TIME_GRANT"))
+              and haveProperty[Boolean]("noRecourseToPublicFunds", be(false))
+              and haveProperty[String]("statusStartDate", be("2016-06-20"))
+              and haveProperty[String]("productType", be("EUS"))
+          )
+        ))
+      }
+
+      "respond with 200 if request is valid and immigrationStatus POST_GRACE_PERIOD_COA_GRANT" in {
+        ping.status.shouldBe(200)
+
+        val result = publicFundsByNino(
+          s"""{"nino":"AB445870C","givenName":"Rosalie","familyName":"Morrison","dateOfBirth":"1987-04-08"}""")
+
+        result.status shouldBe 200
+        result.json.as[JsObject] should (haveProperty[String]("correlationId")
+          and haveProperty[JsObject](
+          "result",
+          haveProperty[String]("dateOfBirth", be("1987-04-08"))
+            and haveProperty[String]("nationality", be("ESP"))
+            and haveProperty[String]("fullName", be("Rosalie Morrison"))
+            and havePropertyArrayOf[JsObject](
+            "statuses",
+            haveProperty[String]("immigrationStatus", be("POST_GRACE_PERIOD_COA_GRANT"))
+              and haveProperty[Boolean]("noRecourseToPublicFunds", be(false))
+              and haveProperty[String]("statusStartDate", be("2016-11-08"))
+              and haveProperty[String]("statusEndDate", be("2030-06-17"))
+              and haveProperty[String]("productType", be("EUS"))
+          )
+        ))
+      }
+
       "respond with 200 if request is valid and has only first letter of the name, and date contains a pattern" in {
         ping.status.shouldBe(200)
 
