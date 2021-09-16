@@ -372,32 +372,32 @@ trait StatusResultExamples {
               |  }
               |}""".stripMargin)
 
-    case "AB807993E" =>
+    case "AB107993D" =>
       Some(s"""{
               |  "correlationId": "$correlationId",
               |  "result": {
-              |    "dateOfBirth": "1983-08-26",
+              |    "dateOfBirth": "1976-01-10",
               |    "nationality": "D",
-              |    "fullName": "Wolfgang Does",
+              |    "fullName": "Margaret Alex",
               |    "statuses": [
               |      {
               |        "productType": "EUS",
               |        "immigrationStatus": "COA_IN_TIME_GRANT",
               |        "noRecourseToPublicFunds": true,
-              |        "statusStartDate": "2016-06-20"
+              |        "statusStartDate": "2016-06-20",
               |        "statusEndDate": "2019-06-17"
               |      }
               |    ]
               |  }
               |}""".stripMargin)
 
-    case "BS088353M" =>
+    case "BS078353C" =>
       Some(s"""{
               |  "correlationId": "$correlationId",
               |  "result": {
               |    "dateOfBirth": "2000-10-06",
               |    "nationality": "POL",
-              |    "fullName": "Maja Głowa",
+              |    "fullName": "Robert Paul",
               |    "statuses": [
               |      {
               |        "productType": "EUS",
@@ -410,20 +410,20 @@ trait StatusResultExamples {
               |        "productType": "EUS",
               |        "immigrationStatus": "COA_IN_TIME_GRANT",
               |        "noRecourseToPublicFunds": true,
-              |        "statusStartDate": "2018-01-28"
+              |        "statusStartDate": "2018-01-28",
               |        "statusEndDate": "2020-12-31"
               |      }
               |    ]
               |  }
               |}""".stripMargin)
 
-    case "BS088353N" =>
+    case "BS088353D" =>
       Some(s"""{
               |  "correlationId": "$correlationId",
               |  "result": {
-              |    "dateOfBirth": "2000-10-06",
-              |    "nationality": "POL",
-              |    "fullName": "Maja Głowa",
+              |    "dateOfBirth": "1957-10-17",
+              |    "nationality": "IND",
+              |    "fullName": "Anne Sus",
               |    "statuses": [
               |      {
               |        "productType": "EUS",
@@ -436,14 +436,14 @@ trait StatusResultExamples {
               |        "productType": "EUS",
               |        "immigrationStatus": "COA_IN_TIME_GRANT",
               |        "noRecourseToPublicFunds": true,
-              |        "statusStartDate": "2018-01-28"
+              |        "statusStartDate": "2018-01-28",
               |        "statusEndDate": "2020-12-31"
               |      }
               |    ]
               |  }
               |}""".stripMargin)
 
-    case "OX749001I" =>
+    case "OX749001A" =>
       Some(s"""{
               |  "correlationId": "$correlationId",
               |  "result": {
@@ -453,29 +453,29 @@ trait StatusResultExamples {
               |    "statuses": [
               |      {
               |        "productType": "EUS",
-              |        "immigrationStatus": "COA_IN_TIME_GRANT",
-              |        "noRecourseToPublicFunds": true,
-              |        "statusStartDate": "2021-01-01",
-              |        "statusEndDate": "2030-10-11"
-              |      },
-              |      {
-              |        "productType": "EUS",
               |        "immigrationStatus": "LTR",
               |        "noRecourseToPublicFunds": false,
               |        "statusStartDate": "2018-01-21",
               |        "statusEndDate": "2020-12-31"
+              |      },
+              |      {
+              |        "productType": "EUS",
+              |        "immigrationStatus": "COA_IN_TIME_GRANT",
+              |        "noRecourseToPublicFunds": true,
+              |        "statusStartDate": "2021-01-01",
+              |        "statusEndDate": "2030-10-11"
               |      }
               |    ]
               |  }
               |}""".stripMargin)
 
-    case "AB807993T" =>
+    case "AB877993D" =>
       Some(s"""{
               |  "correlationId": "$correlationId",
               |  "result": {
               |    "dateOfBirth": "1983-08-26",
               |    "nationality": "D",
-              |    "fullName": "Wolfgang Does",
+              |    "fullName": "Jackson Great",
               |    "statuses": [
               |      {
               |        "productType": "EUS",
@@ -506,13 +506,13 @@ trait StatusResultExamples {
               |  }
               |}""".stripMargin)
 
-    case "OX749001K" =>
+    case "OX749001B" =>
       Some(s"""{
               |  "correlationId": "$correlationId",
               |  "result": {
-              |    "dateOfBirth": "1976-05-22",
+              |    "dateOfBirth": "1966-05-21",
               |    "nationality": "GRC",
-              |    "fullName": "Eva Vassilis",
+              |    "fullName": "Martin Odersky",
               |    "statuses": [
               |      {
               |        "productType": "EUS",
@@ -523,7 +523,7 @@ trait StatusResultExamples {
               |      },
               |      {
               |        "productType": "EUS",
-              |        "immigrationStatus": "LTR",
+              |        "immigrationStatus": "ILR",
               |        "noRecourseToPublicFunds": false,
               |        "statusStartDate": "2018-01-21",
               |        "statusEndDate": "2020-12-31"
@@ -532,13 +532,13 @@ trait StatusResultExamples {
               |  }
               |}""".stripMargin)
 
-    case "OX749001X" =>
+    case "AX749001D" =>
       Some(s"""{
               |  "correlationId": "$correlationId",
               |  "result": {
-              |    "dateOfBirth": "1976-05-22",
-              |    "nationality": "GRC",
-              |    "fullName": "Eva Vassilis",
+              |    "dateOfBirth": "1977-03-22",
+              |    "nationality": "AUS",
+              |    "fullName": "Ricky Ponting",
               |    "statuses": [
               |      {
               |        "productType": "EUS",
@@ -558,13 +558,13 @@ trait StatusResultExamples {
               |  }
               |}""".stripMargin)
 
-    case "BS088353P" =>
+    case "BS088353A" =>
       Some(s"""{
               |  "correlationId": "$correlationId",
               |  "result": {
-              |    "dateOfBirth": "2000-10-06",
-              |    "nationality": "POL",
-              |    "fullName": "Maja Głowa",
+              |    "dateOfBirth": "1986-08-19",
+              |    "nationality": "FRA",
+              |    "fullName": "Samuel Amos",
               |    "statuses": [
               |      {
               |        "productType": "EUS",
@@ -577,7 +577,7 @@ trait StatusResultExamples {
               |        "productType": "EUS",
               |        "immigrationStatus": "POST_GRACE_PERIOD_COA_GRANT",
               |        "noRecourseToPublicFunds": true,
-              |        "statusStartDate": "2018-01-28"
+              |        "statusStartDate": "2018-01-28",
               |        "statusEndDate": "2020-12-31"
               |      }
               |    ]
