@@ -1,0 +1,5 @@
+# microservice specific routes
+
+
+POST        /status/public-funds/token        @uk.gov.hmrc.homeofficesettledstatusstubs.controllers.HomeOfficeSettledStatusStubsController.token
+POST        /status/public-funds/nino         @uk.gov.hmrc.homeofficesettledstatusstubs.controllers.HomeOfficeSettledStatusStubsController.publicFundsByNino
