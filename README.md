@@ -20,7 +20,7 @@ or
 
 It should then be listening on port 10212
 
-    browse http://localhost:10212/home-office-settled-status-stubs
+    browse http://localhost:10212/
 
 ### License
 
