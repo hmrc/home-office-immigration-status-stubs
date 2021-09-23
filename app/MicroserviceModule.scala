@@ -12,7 +12,7 @@ class MicroserviceModule(val environment: Environment, val configuration: Config
     extends AbstractModule {
 
   override def configure(): Unit = {
-    val appName = "home-office-settled-status-stubs"
+    val appName = "home-office-immigration-status-stubs"
     Logger(getClass).info(s"Starting microservice : $appName : in mode : ${environment.mode}")
 
     bind(classOf[HttpGet]).to(classOf[DefaultHttpClient])
