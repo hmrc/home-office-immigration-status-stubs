@@ -18,9 +18,9 @@ or
     sm --stop HOME_OFFICE_SETTLED_STATUS_STUBS
     sbt run
 
-It should then be listening on port 9387
+It should then be listening on port 10212
 
-    browse http://localhost:9387/home-office-settled-status-stubs
+    browse http://localhost:10212/home-office-settled-status-stubs
 
 ### License
 
