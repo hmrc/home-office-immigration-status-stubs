@@ -14,19 +14,22 @@
  * limitations under the License.
  */
 
-import com.google.inject.AbstractModule
-import play.api.{Configuration, Environment, Logger}
-import uk.gov.hmrc.http._
-import uk.gov.hmrc.play.bootstrap.http.DefaultHttpClient
+package uk.gov.hmrc.homeofficesettledstatusstubs.models
 
-class MicroserviceModule(val environment: Environment, val configuration: Configuration)
-    extends AbstractModule {
+import java.time.LocalDate
+import play.api.libs.json.{Format, Json}
 
-  override def configure(): Unit = {
-    val appName = "home-office-immigration-status-stubs"
-    Logger(getClass).info(s"Starting microservice : $appName : in mode : ${environment.mode}")
+final case class StatusCheckResult(
+  // <name of the migrant that has matched
+  fullName: String,
+  // Date of birth of person being checked in ISO 8601 format
+  dateOfBirth: LocalDate,
+  // <the latest nationality that the matched migrant has provided to the Home Office
+  // (ICAO 3 letter acronym - ISO 3166-1)
+  nationality: String,
+  statuses: List[ImmigrationStatus]
+)
 
-    bind(classOf[HttpGet]).to(classOf[DefaultHttpClient])
-    bind(classOf[HttpPost]).to(classOf[DefaultHttpClient])
-  }
+object StatusCheckResult {
+  implicit val formats: Format[StatusCheckResult] = Json.format[StatusCheckResult]
 }
