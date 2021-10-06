@@ -75,31 +75,46 @@ class HomeOfficeSettledStatusStubsController @Inject()(
     query match {
       case (Some(nino), Some(givenName), Some(familyName), Some(dateOfBirth)) =>
         if (Nino.isValid(nino)) {
-
           successFunc(nino, givenName, familyName, dateOfBirth)
-
         } else {
-          BadRequest(
-            StatusResponse.errorResponseBody(
-              correlationId,
-              "ERR_VALIDATION",
-              fields = Seq("nino" -> "ERR_INVALID_NINO")))
+          ninoValidationError(correlationId)
         }
-
       case _ =>
-        val fields = Seq(
-          errorField(ninoOpt.isEmpty, "nino", "ERR_MISSING_NINO"),
-          errorField(dateOfBirthOpt.isEmpty, "dateOfBirth", "ERR_MISSING_DOB"),
-          errorField(familyNameOpt.isEmpty, "familyName", "ERR_MISSING_FAMILY_NAME"),
-          errorField(givenNameOpt.isEmpty, "giveName", "ERR_MISSING_GIVEN_NAME")
-        ).collect { case Some(x) => x }
-
-        BadRequest(StatusResponse.errorResponseBody(correlationId, "ERR_VALIDATION", fields))
+        generateValidationFailure(
+          correlationId,
+          ninoOpt,
+          givenNameOpt,
+          familyNameOpt,
+          dateOfBirthOpt)
     }
+  }
+
+  private def generateValidationFailure(
+    correlationId: String,
+    ninoOpt: Option[String],
+    dateOfBirthOpt: Option[String],
+    familyNameOpt: Option[String],
+    givenNameOpt: Option[String]): Result = {
+    val fields = Seq(
+      errorField(ninoOpt.isEmpty, "nino", "ERR_MISSING_NINO"),
+      errorField(dateOfBirthOpt.isEmpty, "dateOfBirth", "ERR_MISSING_DOB"),
+      errorField(familyNameOpt.isEmpty, "familyName", "ERR_MISSING_FAMILY_NAME"),
+      errorField(givenNameOpt.isEmpty, "giveName", "ERR_MISSING_GIVEN_NAME")
+    ).collect { case Some(x) => x }
+
+    BadRequest(StatusResponse.errorResponseBody(correlationId, "ERR_VALIDATION", fields))
   }
 
   private def errorField(hasError: Boolean, name: String, code: String): Option[(String, String)] =
     if (hasError) Some((name, code)) else None
+
+  private def ninoValidationError(correlationId: String) =
+    BadRequest(
+      StatusResponse.errorResponseBody(
+        correlationId,
+        "ERR_VALIDATION",
+        fields = Seq("nino" -> "ERR_INVALID_NINO"))
+    )
 
 }
 
