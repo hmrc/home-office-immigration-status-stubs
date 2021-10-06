@@ -658,7 +658,7 @@ object DemoStubData {
     )
   )
 
-  val results = Map(
+  val results: Map[String, StatusCheckResult] = Map(
     "HT423277B" -> lawrenceVelazquez,
     "AB888330D" -> roosTewes,
     "KA339738D" -> stefanoReese,

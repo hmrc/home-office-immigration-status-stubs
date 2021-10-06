@@ -18,7 +18,7 @@ package uk.gov.hmrc.homeofficesettledstatusstubs.services
 
 import play.api.mvc._
 import uk.gov.hmrc.homeofficesettledstatusstubs.models._
-import uk.gov.hmrc.homeofficesettledstatusstubs.stubdata.DemoStubData
+import uk.gov.hmrc.homeofficesettledstatusstubs.stubdata.StubData
 import javax.inject.{Inject, Singleton}
 import play.api.libs.json.Json
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
@@ -48,7 +48,7 @@ class StubDataService @Inject()(cc: ControllerComponents) extends BackendControl
     }
 
   def resultFor(correlationId: String, nino: String): Option[StatusResponse] =
-    DemoStubData.results.get(nino) match {
+    StubData.results.get(nino) match {
       case Some(result) => Some(StatusResponse(correlationId, Some(result)))
       case None         => checkOtherStatus(correlationId, nino)
     }
