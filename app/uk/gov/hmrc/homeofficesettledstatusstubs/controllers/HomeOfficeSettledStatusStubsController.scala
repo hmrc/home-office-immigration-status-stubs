@@ -16,12 +16,13 @@
 
 package uk.gov.hmrc.homeofficesettledstatusstubs.controllers
 
-import play.api.libs.json.{Format, JsObject, JsValue, Json}
+import play.api.libs.json.{Format, JsValue, Json}
 import play.api.mvc._
 import play.api.{Configuration, Environment}
 import uk.gov.hmrc.domain.Nino
-import uk.gov.hmrc.homeofficesettledstatusstubs.models.StatusResultExamples
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
+import uk.gov.hmrc.homeofficesettledstatusstubs.models._
+import uk.gov.hmrc.homeofficesettledstatusstubs.services.StubDataService
 
 import java.util.UUID
 import javax.inject.{Inject, Singleton}
@@ -30,8 +31,9 @@ import scala.concurrent.Future
 @Singleton
 class HomeOfficeSettledStatusStubsController @Inject()(
   val env: Environment,
-  cc: ControllerComponents)(implicit val configuration: Configuration)
-    extends BackendController(cc) with StatusResultExamples {
+  cc: ControllerComponents,
+  stubDataService: StubDataService)(implicit val configuration: Configuration)
+    extends BackendController(cc) {
 
   final val HTTP_HEADER_CONTENT_TYPE_JSON = "Content-Type" -> "application/json"
 
@@ -52,66 +54,36 @@ class HomeOfficeSettledStatusStubsController @Inject()(
   def publicFundsByNino: Action[JsValue] = Action.async(parse.tolerantJson) { implicit request =>
     val correlationId = request.headers.get("X-Correlation-Id").getOrElse("00000000")
 
-    val ninoOpt = (request.body \ "nino").asOpt[String]
-    val givenNameOpt = (request.body \ "givenName").asOpt[String]
-    val familyNameOpt = (request.body \ "familyName").asOpt[String]
-    val dateOfBirthOpt = (request.body \ "dateOfBirth").asOpt[String]
+    val response = withValidParameters(correlationId, request.body) {
+      (nino, givenName, familyName, dateOfBirth) =>
+        stubDataService.ninoSearch(correlationId, nino, givenName, familyName, dateOfBirth)
+    }
+
+    Future.successful(response.withHeaders(HTTP_HEADER_CONTENT_TYPE_JSON))
+  }
+
+  private def withValidParameters(correlationId: String, body: JsValue)(
+    successFunc: (String, String, String, String) => Result): Result = {
+
+    val ninoOpt = (body \ "nino").asOpt[String].map(_.replaceAll(" ", "").toUpperCase)
+    val givenNameOpt = (body \ "givenName").asOpt[String]
+    val familyNameOpt = (body \ "familyName").asOpt[String]
+    val dateOfBirthOpt = (body \ "dateOfBirth").asOpt[String]
 
     val query = (ninoOpt, givenNameOpt, familyNameOpt, dateOfBirthOpt)
 
-    val response = query match {
+    query match {
       case (Some(nino), Some(givenName), Some(familyName), Some(dateOfBirth)) =>
-        val normalizedNino = nino.replaceAll(" ", "").toUpperCase
-        if (Nino.isValid(normalizedNino)) {
-          normalizedNino match {
+        if (Nino.isValid(nino)) {
 
-            case "HK089820A" =>
-              Conflict(errorResponseBody(correlationId, "ERR_CONFLICT"))
+          successFunc(nino, givenName, familyName, dateOfBirth)
 
-            case _ =>
-              resultFor(correlationId, nino) match {
-                case Some(content) =>
-                  val entity = Json.parse(content)
-
-                  val hasResult = entity.asOpt[JsObject].exists(_.keys.contains("result"))
-                  val hasError = entity.asOpt[JsObject].exists(_.keys.contains("error"))
-
-                  val givenNameMatches = (entity \ "result" \ "fullName")
-                    .asOpt[String]
-                    .exists(_.split(" ").headOption
-                      .exists(_.toUpperCase.startsWith(givenName.take(1).toUpperCase)))
-
-                  val familyNameMatches = (entity \ "result" \ "fullName")
-                    .asOpt[String]
-                    .exists(_.split(" ").reverse.headOption
-                      .exists(_.toUpperCase.startsWith(familyName.take(3).toUpperCase)))
-
-                  val dateOfBirthMatches =
-                    (entity \ "result" \ "dateOfBirth")
-                      .asOpt[String]
-                      .exists(_.matches(dateToPattern(dateOfBirth)))
-
-                  if (givenNameMatches && familyNameMatches && dateOfBirthMatches) {
-                    Ok(entity)
-                  } else if (!hasResult && !hasError) {
-                    Ok("")
-                  } else if (hasError) {
-                    val status = (entity \ "status").asOpt[Int].getOrElse(400)
-                    new Status(status)(entity)
-                  } else {
-                    NotFound(errorResponseBody(correlationId, "ERR_NOT_FOUND"))
-                  }
-
-                case None =>
-                  NotFound(errorResponseBody(correlationId, "ERR_NOT_FOUND"))
-              }
-          }
         } else {
           BadRequest(
-            errorResponseBody(
+            StatusResponse.errorResponseBody(
               correlationId,
               "ERR_VALIDATION",
-              fields = Some(Seq("nino" -> "ERR_INVALID_NINO"))))
+              fields = Seq("nino" -> "ERR_INVALID_NINO")))
         }
 
       case _ =>
@@ -122,45 +94,12 @@ class HomeOfficeSettledStatusStubsController @Inject()(
           errorField(givenNameOpt.isEmpty, "giveName", "ERR_MISSING_GIVEN_NAME")
         ).collect { case Some(x) => x }
 
-        BadRequest(errorResponseBody(correlationId, "ERR_VALIDATION", Some(fields)))
+        BadRequest(StatusResponse.errorResponseBody(correlationId, "ERR_VALIDATION", fields))
     }
-    Future.successful(response.withHeaders(HTTP_HEADER_CONTENT_TYPE_JSON))
   }
 
-  def dateToPattern(dateOfBirth: String): String =
-    dateOfBirth
-      .map {
-        case ch if ch == 'X' => "\\d"
-        case ch              => ch
-      }
-      .mkString("^", "", "$")
-
-  def errorField(hasError: Boolean, name: String, code: String): Option[(String, String)] =
+  private def errorField(hasError: Boolean, name: String, code: String): Option[(String, String)] =
     if (hasError) Some((name, code)) else None
-
-  def errorResponseBody(
-    correlationId: String,
-    errCode: String,
-    fields: Option[Seq[(String, String)]] = None): String =
-    s"""{
-       |  "correlationId": "$correlationId",
-       |  "error": {
-       |    "errCode": "$errCode"${fields
-         .map(f =>
-           s""",
-              |    "fields": [ ${f
-                .map {
-                  case (code, name) =>
-                    s"""|     {
-                        |       "code": "$code",
-                        |       "name": "$name"
-                        |     }""".stripMargin
-                }
-                .mkString(",\n")}
-              |     ]""".stripMargin)
-         .getOrElse("")}
-       |  }
-       |}""".stripMargin
 
 }
 
