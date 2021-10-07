@@ -146,6 +146,28 @@ object TestStubData {
     )
   )
 
+  val wolfgangTraube = StatusCheckResult(
+    "Wolfgang Traube",
+    LocalDate.parse("26/08/1983", formatter),
+    "DEU",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("29/06/2021", formatter),
+        statusEndDate = None,
+        productType = "EUS",
+        immigrationStatus = "COA_IN_TIME_GRANT",
+        noRecourseToPublicFunds = true
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("28/01/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("28/06/2021", formatter)),
+        productType = "WORK",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
+
   val benBloggs = StatusCheckResult(
     "Ben Bloggs",
     LocalDate.parse("11/05/1990", formatter),
@@ -169,7 +191,8 @@ object TestStubData {
     "HN191408A" -> sabeenMuhammad,
     "CS601937B" -> joeBloggs,
     "XC858842B" -> joshBloggs,
-    "CS601937C" -> benBloggs
+    "CS601937C" -> benBloggs,
+    "YT750325A" -> wolfgangTraube
   )
 
 }
