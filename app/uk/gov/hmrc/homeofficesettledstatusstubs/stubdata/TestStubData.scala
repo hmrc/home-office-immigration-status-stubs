@@ -100,6 +100,22 @@ object TestStubData {
       )
     )
   )
+
+//  val chidiebubeBabatunde = StatusCheckResult(
+//    "Chidiebube Babatunde",
+//    LocalDate.parse("23/06/1996", formatter),
+//    "LCA",
+//    List(
+//      ImmigrationStatus(
+//        statusStartDate = LocalDate.parse("16/08/2021", formatter),
+//        statusEndDate = Some(LocalDate.parse("15/08/2022", formatter)),
+//        productType = "FRONTIER_WORKER",
+//        immigrationStatus = "PERMIT",
+//        noRecourseToPublicFunds = false
+//      )
+//    )
+//  )
+
   val joeBloggs = StatusCheckResult(
     "Joe Bloggs",
     LocalDate.parse("06/05/1980", formatter),
@@ -130,28 +146,12 @@ object TestStubData {
     )
   )
 
-  val chidiebubeBabatunde = StatusCheckResult(
-    "Chidiebube Babatunde",
-    LocalDate.parse("23/06/1996", formatter),
-    "LCA",
-    List(
-      ImmigrationStatus(
-        statusStartDate = LocalDate.parse("16/08/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("15/08/2022", formatter)),
-        productType = "FRONTIER_WORKER",
-        immigrationStatus = "PERMIT",
-        noRecourseToPublicFunds = false
-      )
-    )
-  )
-
   val results: Map[String, StatusCheckResult] = Map(
     "MZ006526D" -> ignacSarlota,
     "AB116565A" -> robinTens,
     "HT423288B" -> lawrenceSmith,
     "KA339728D" -> stefanieReason,
     "HN191408A" -> sabeenMuhammad,
-    "TK885367D" -> chidiebubeBabatunde,
     "CS601937B" -> joeBloggs,
     "XC858842B" -> joshBloggs
   )
