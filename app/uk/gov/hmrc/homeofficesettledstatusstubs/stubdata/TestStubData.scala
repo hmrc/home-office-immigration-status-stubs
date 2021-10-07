@@ -17,6 +17,8 @@
 package uk.gov.hmrc.homeofficesettledstatusstubs.stubdata
 
 import uk.gov.hmrc.homeofficesettledstatusstubs.models._
+import uk.gov.hmrc.homeofficesettledstatusstubs.stubdata.DemoStubData.formatter
+
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -99,16 +101,83 @@ object TestStubData {
     )
   )
 
-  val chidiebubeBabatunde = StatusCheckResult(
-    "Chidiebube Babatunde",
-    LocalDate.parse("23/06/1996", formatter),
-    "LCA",
+//  val chidiebubeBabatunde = StatusCheckResult(
+//    "Chidiebube Babatunde",
+//    LocalDate.parse("23/06/1996", formatter),
+//    "LCA",
+//    List(
+//      ImmigrationStatus(
+//        statusStartDate = LocalDate.parse("16/08/2021", formatter),
+//        statusEndDate = Some(LocalDate.parse("15/08/2022", formatter)),
+//        productType = "FRONTIER_WORKER",
+//        immigrationStatus = "PERMIT",
+//        noRecourseToPublicFunds = false
+//      )
+//    )
+//  )
+
+  val joeBloggs = StatusCheckResult(
+    "Joe Bloggs",
+    LocalDate.parse("06/05/1980", formatter),
+    "SGS",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("16/08/2021", formatter),
         statusEndDate = Some(LocalDate.parse("15/08/2022", formatter)),
-        productType = "FRONTIER_WORKER",
-        immigrationStatus = "PERMIT",
+        productType = "BNO_LOTR",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val joshBloggs = StatusCheckResult(
+    "Josh Bloggs",
+    LocalDate.parse("10/05/1990", formatter),
+    "SGS",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2021", formatter)),
+        productType = "GRADUATE",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val wolfgangTraube = StatusCheckResult(
+    "Wolfgang Traube",
+    LocalDate.parse("26/08/1983", formatter),
+    "DEU",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("29/06/2021", formatter),
+        statusEndDate = None,
+        productType = "EUS",
+        immigrationStatus = "COA_IN_TIME_GRANT",
+        noRecourseToPublicFunds = true
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("28/01/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("28/06/2021", formatter)),
+        productType = "WORK",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
+
+  val benBloggs = StatusCheckResult(
+    "Ben Bloggs",
+    LocalDate.parse("11/05/1990", formatter),
+    "SGS",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2021", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       )
     )
@@ -120,7 +189,10 @@ object TestStubData {
     "HT423288B" -> lawrenceSmith,
     "KA339728D" -> stefanieReason,
     "HN191408A" -> sabeenMuhammad,
-    "TK885367D" -> chidiebubeBabatunde
+    "CS601937B" -> joeBloggs,
+    "XC858842B" -> joshBloggs,
+    "CS601937C" -> benBloggs,
+    "YT750325A" -> wolfgangTraube
   )
 
 }
