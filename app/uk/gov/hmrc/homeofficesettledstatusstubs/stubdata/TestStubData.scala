@@ -17,6 +17,8 @@
 package uk.gov.hmrc.homeofficesettledstatusstubs.stubdata
 
 import uk.gov.hmrc.homeofficesettledstatusstubs.models._
+import uk.gov.hmrc.homeofficesettledstatusstubs.stubdata.DemoStubData.formatter
+
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -98,6 +100,35 @@ object TestStubData {
       )
     )
   )
+  val joeBloggs = StatusCheckResult(
+    "Joe Bloggs",
+    LocalDate.parse("06/05/1980", formatter),
+    "SGS",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("16/08/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("15/08/2022", formatter)),
+        productType = "BNO_LOTR",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val joshBloggs = StatusCheckResult(
+    "Josh Bloggs",
+    LocalDate.parse("10/05/1990", formatter),
+    "SGS",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("2/5/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("7/10/2021", formatter)),
+        productType = "GRADUATE",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
 
   val chidiebubeBabatunde = StatusCheckResult(
     "Chidiebube Babatunde",
@@ -120,7 +151,9 @@ object TestStubData {
     "HT423288B" -> lawrenceSmith,
     "KA339728D" -> stefanieReason,
     "HN191408A" -> sabeenMuhammad,
-    "TK885367D" -> chidiebubeBabatunde
+    "TK885367D" -> chidiebubeBabatunde,
+    "CS601937B" -> joeBloggs,
+    "XC858842B" -> joshBloggs
   )
 
 }
