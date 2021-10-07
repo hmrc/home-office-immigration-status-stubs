@@ -76,7 +76,7 @@ class StubDataService @Inject()(cc: ControllerComponents) extends BackendControl
           result = None,
           error = Some(StatusError("[NOT_USED]"))
         ))
-    case "BY880209B" =>
+    case "BY880209A" =>
       Some(
         StatusResponse(
           status = Some(500),
