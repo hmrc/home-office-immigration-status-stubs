@@ -137,8 +137,8 @@ object TestStubData {
     "SGS",
     List(
       ImmigrationStatus(
-        statusStartDate = LocalDate.parse("2/5/2020", formatter),
-        statusEndDate = Some(LocalDate.parse("7/10/2021", formatter)),
+        statusStartDate = LocalDate.parse("02/05/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2021", formatter)),
         productType = "GRADUATE",
         immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
