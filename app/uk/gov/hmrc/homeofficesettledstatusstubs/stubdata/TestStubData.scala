@@ -183,6 +183,35 @@ object TestStubData {
     )
   )
 
+  val eveVassil = StatusCheckResult(
+    "Eve Vassil",
+    LocalDate.parse("22/05/1976", formatter),
+    "AUS",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("19/03/2024", formatter)),
+        productType = "WORK",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = true
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("17/06/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("19/09/2021", formatter)),
+        productType = "STUDY",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/03/2019", formatter),
+        statusEndDate = Some(LocalDate.parse("19/09/2019", formatter)),
+        productType = "STUDY",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
   val results: Map[String, StatusCheckResult] = Map(
     "MZ006526D" -> ignacSarlota,
     "AB116565A" -> robinTens,
@@ -192,7 +221,8 @@ object TestStubData {
     "CS601937B" -> joeBloggs,
     "XC858842B" -> joshBloggs,
     "CS601937C" -> benBloggs,
-    "YT750325A" -> wolfgangTraube
+    "YT750325A" -> wolfgangTraube,
+    "JE612281A" -> eveVassil
   )
 
 }
