@@ -183,6 +183,21 @@ object TestStubData {
     )
   )
 
+  val samSmith = StatusCheckResult(
+    "Sam Smith",
+    LocalDate.parse("11/05/1990", formatter),
+    "AUS",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2021", formatter)),
+        productType = "SPORTSPERSON",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
   val eveVassil = StatusCheckResult(
     "Eve Vassil",
     LocalDate.parse("22/05/1976", formatter),
@@ -222,6 +237,7 @@ object TestStubData {
     "XC858842B" -> joshBloggs,
     "CS601937C" -> benBloggs,
     "YT750325A" -> wolfgangTraube,
+    "JZ899721D" -> samSmith,
     "JE612281A" -> eveVassil
   )
 
