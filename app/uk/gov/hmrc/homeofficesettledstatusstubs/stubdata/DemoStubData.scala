@@ -186,7 +186,7 @@ object DemoStubData {
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("27/01/2021", formatter),
         statusEndDate = Some(LocalDate.parse("15/07/2021", formatter)),
-        productType = "DEPENDENT",
+        productType = "DEPENDANT",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = true
       )
@@ -274,7 +274,7 @@ object DemoStubData {
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("05/01/2021", formatter),
         statusEndDate = Some(LocalDate.parse("17/05/2021", formatter)),
-        productType = "DEPENDENT",
+        productType = "DEPENDANT",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       )
@@ -348,7 +348,7 @@ object DemoStubData {
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("19/04/2021", formatter),
         statusEndDate = Some(LocalDate.parse("19/09/2021", formatter)),
-        productType = "DEPENDENT",
+        productType = "DEPENDANT",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       )
@@ -363,7 +363,7 @@ object DemoStubData {
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("01/09/2022", formatter)),
-        productType = "DEPENDENT",
+        productType = "DEPENDANT",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = true
       ),
@@ -385,7 +385,7 @@ object DemoStubData {
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("03/08/2021", formatter),
         statusEndDate = Some(LocalDate.parse("02/08/2022", formatter)),
-        productType = "DEPENDENT",
+        productType = "DEPENDANT",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       ),
@@ -407,7 +407,7 @@ object DemoStubData {
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("04/05/2021", formatter),
         statusEndDate = Some(LocalDate.parse("03/11/2023", formatter)),
-        productType = "DEPENDENT",
+        productType = "DEPENDANT",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = true
       )
@@ -422,14 +422,14 @@ object DemoStubData {
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("05/08/2021", formatter),
         statusEndDate = Some(LocalDate.parse("04/12/2023", formatter)),
-        productType = "DEPENDENT",
+        productType = "DEPENDANT",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("09/02/2021", formatter),
         statusEndDate = Some(LocalDate.parse("04/08/2021", formatter)),
-        productType = "DEPENDENT",
+        productType = "DEPENDANT",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       )
