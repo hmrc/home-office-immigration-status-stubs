@@ -201,8 +201,38 @@ object QATestStubData {
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("07/10/2021", formatter),
         statusEndDate = Some(LocalDate.parse("05/02/2023", formatter)),
-        productType = "STUDY",
+        productType = "DEPENDANT",
         immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val johnSmith17 = StatusCheckResult(
+    "John Smith",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/02/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("09/07/2023", formatter)),
+        productType = "DEPENDANT",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val johnSmith20 = StatusCheckResult(
+    "John Smith",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/02/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("09/07/2021", formatter)),
+        productType = "DEPENDANT",
+        immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       )
     )
@@ -218,6 +248,8 @@ object QATestStubData {
     "SP048960B" -> johnSmith8,
     "SP367573C" -> johnSmith9,
     "SP306037A" -> johnSmith11,
-    "SP537999A" -> johnSmith13
+    "SP537999A" -> johnSmith13,
+    "SP018395A" -> johnSmith17,
+    "SP190167C" -> johnSmith20
   )
 }
