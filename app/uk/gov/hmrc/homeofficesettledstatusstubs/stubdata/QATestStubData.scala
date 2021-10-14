@@ -253,6 +253,21 @@ object QATestStubData {
     )
   )
 
+  val johnSmith27 = StatusCheckResult(
+    "John Smith",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/02/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("09/07/2023", formatter)),
+        productType = "BNO_LOTR",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
   val results: Map[String, StatusCheckResult] = Map(
     "SP317690D" -> johnSmith1,
     "SP233073C" -> johnSmith3,
@@ -266,6 +281,7 @@ object QATestStubData {
     "SP537999A" -> johnSmith13,
     "SP018395A" -> johnSmith17,
     "SP190167C" -> johnSmith20,
-    "SP190793C" -> johnSmith26
+    "SP190793C" -> johnSmith26,
+    "SP921303A" -> johnSmith27
   )
 }
