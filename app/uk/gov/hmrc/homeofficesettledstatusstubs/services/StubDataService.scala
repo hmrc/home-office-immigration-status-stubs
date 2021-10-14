@@ -62,7 +62,7 @@ class StubDataService @Inject()(cc: ControllerComponents) extends BackendControl
           result = None,
           error = Some(StatusError("ERR_CONFLICT"))
         ))
-    case "ZL341566D" =>
+    case "ZL341566D" | "SP426589B" =>
       Some(
         StatusResponse(
           correlationId,
