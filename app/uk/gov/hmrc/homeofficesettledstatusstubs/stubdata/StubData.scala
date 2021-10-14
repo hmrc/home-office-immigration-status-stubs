@@ -20,6 +20,7 @@ import uk.gov.hmrc.homeofficesettledstatusstubs.models._
 
 object StubData {
 
-  val results: Map[String, StatusCheckResult] = DemoStubData.results ++ TestStubData.results
+  val results
+    : Map[String, StatusCheckResult] = DemoStubData.results ++ TestStubData.results ++ QATestStubData.results
 
 }
