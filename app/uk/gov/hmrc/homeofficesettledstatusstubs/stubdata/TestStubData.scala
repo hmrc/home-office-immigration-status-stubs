@@ -189,17 +189,24 @@ object TestStubData {
     "AUS",
     List(
       ImmigrationStatus(
-        statusStartDate = LocalDate.parse("02/05/2020", formatter),
-        statusEndDate = Some(LocalDate.parse("06/10/2021", formatter)),
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2023", formatter)),
         productType = "SPORTSPERSON",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
-        statusStartDate = LocalDate.parse("01/05/2019", formatter),
-        statusEndDate = Some(LocalDate.parse("01/05/2020", formatter)),
+        statusStartDate = LocalDate.parse("01/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("01/08/2021", formatter)),
         productType = "SPORTSPERSON",
         immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("01/07/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("01/08/2020", formatter)),
+        productType = "SPORTSPERSON",
+        immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       )
     )
@@ -240,14 +247,14 @@ object TestStubData {
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
-        statusStartDate = LocalDate.parse("02/05/2020", formatter),
-        statusEndDate = Some(LocalDate.parse("06/10/2021", formatter)),
+        statusStartDate = LocalDate.parse("02/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
         productType = "TEMP_WORKER",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
-        statusStartDate = LocalDate.parse("05/10/2021", formatter),
+        statusStartDate = LocalDate.parse("05/10/2020", formatter),
         statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
         productType = "TEMP_WORKER",
         immigrationStatus = "LTR",
