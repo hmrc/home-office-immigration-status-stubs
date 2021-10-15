@@ -233,10 +233,24 @@ object TestStubData {
     "AUS",
     List(
       ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "TEMP_WORKER",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/05/2020", formatter),
         statusEndDate = Some(LocalDate.parse("06/10/2021", formatter)),
         productType = "TEMP_WORKER",
         immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/10/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
+        productType = "TEMP_WORKER",
+        immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       )
     )
@@ -286,5 +300,4 @@ object TestStubData {
     "EP640312A" -> alisonWright,
     "JE612281A" -> eveVassil
   )
-
 }
