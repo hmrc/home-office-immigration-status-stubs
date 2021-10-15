@@ -211,10 +211,17 @@ object TestStubData {
     "AUS",
     List(
       ImmigrationStatus(
-        statusStartDate = LocalDate.parse("02/05/2020", formatter),
-        statusEndDate = Some(LocalDate.parse("06/10/2021", formatter)),
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2023", formatter)),
         productType = "SETTLEMENT",
         immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("01/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("01/09/2019", formatter)),
+        productType = "SETTLEMENT",
+        immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
       )
     )
