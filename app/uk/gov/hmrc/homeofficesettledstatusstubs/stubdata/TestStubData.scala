@@ -189,10 +189,24 @@ object TestStubData {
     "AUS",
     List(
       ImmigrationStatus(
-        statusStartDate = LocalDate.parse("02/05/2020", formatter),
-        statusEndDate = Some(LocalDate.parse("06/10/2021", formatter)),
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2023", formatter)),
         productType = "SPORTSPERSON",
         immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("01/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("01/08/2021", formatter)),
+        productType = "SPORTSPERSON",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("01/07/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("01/08/2020", formatter)),
+        productType = "SPORTSPERSON",
+        immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       )
     )
@@ -204,10 +218,17 @@ object TestStubData {
     "AUS",
     List(
       ImmigrationStatus(
-        statusStartDate = LocalDate.parse("02/05/2020", formatter),
-        statusEndDate = Some(LocalDate.parse("06/10/2021", formatter)),
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2023", formatter)),
         productType = "SETTLEMENT",
         immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("01/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("01/09/2019", formatter)),
+        productType = "SETTLEMENT",
+        immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
       )
     )
@@ -219,10 +240,140 @@ object TestStubData {
     "AUS",
     List(
       ImmigrationStatus(
-        statusStartDate = LocalDate.parse("02/05/2020", formatter),
-        statusEndDate = Some(LocalDate.parse("06/10/2021", formatter)),
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
         productType = "TEMP_WORKER",
         immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
+        productType = "TEMP_WORKER",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/10/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
+        productType = "TEMP_WORKER",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val aliWrightson = StatusCheckResult(
+    "Alison Wright",
+    LocalDate.parse("11/05/1990", formatter),
+    "AUS",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/10/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val sarahSmith = StatusCheckResult(
+    "Sarah Smith",
+    LocalDate.parse("11/05/1990", formatter),
+    "AUS",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
+        productType = "BNO_LOTR",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/10/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
+        productType = "GRADUATE",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val lucySprag = StatusCheckResult(
+    "Lucy Sprag",
+    LocalDate.parse("11/05/1990", formatter),
+    "AUS",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
+        productType = "FRONTIER_WORKER",
+        immigrationStatus = "PERMIT",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/10/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
+        productType = "EUS",
+        immigrationStatus = "POST_GRACE_PERIOD_COA_GRANT",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val jimmyBrown = StatusCheckResult(
+    "Jimmy Brown",
+    LocalDate.parse("11/05/1990", formatter),
+    "AUS",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
+        productType = "EUS",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/10/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
+        productType = "WORK",
+        immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       )
     )
@@ -270,7 +421,11 @@ object TestStubData {
     "JZ899721D" -> samSmith,
     "TX721235B" -> jenBright,
     "EP640312A" -> alisonWright,
-    "JE612281A" -> eveVassil
-  )
+    "JE612281A" -> eveVassil,
+    "WY706993C" -> aliWrightson,
+    "NJ288804C" -> lucySprag,
+    "ZL048657A" -> jimmyBrown,
+    "RR741495B" -> sarahSmith
 
+  )
 }
