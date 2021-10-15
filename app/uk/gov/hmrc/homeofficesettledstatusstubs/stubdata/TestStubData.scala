@@ -263,6 +263,64 @@ object TestStubData {
     )
   )
 
+  val aliWrightson = StatusCheckResult(
+    "Alison Wright",
+    LocalDate.parse("11/05/1990", formatter),
+    "AUS",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/10/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val sarahSmith = StatusCheckResult(
+    "Sarah Smith",
+    LocalDate.parse("11/05/1990", formatter),
+    "AUS",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
+        productType = "BNO_LOTR",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/10/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
+        productType = "GRADUATE",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
   val eveVassil = StatusCheckResult(
     "Eve Vassil",
     LocalDate.parse("22/05/1976", formatter),
@@ -305,6 +363,9 @@ object TestStubData {
     "JZ899721D" -> samSmith,
     "TX721235B" -> jenBright,
     "EP640312A" -> alisonWright,
-    "JE612281A" -> eveVassil
+    "JE612281A" -> eveVassil,
+    "WY706993C" -> aliWrightson,
+    "RR741495B" -> sarahSmith
+
   )
 }
