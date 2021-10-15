@@ -194,6 +194,13 @@ object TestStubData {
         productType = "SPORTSPERSON",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("01/05/2019", formatter),
+        statusEndDate = Some(LocalDate.parse("01/05/2020", formatter)),
+        productType = "SPORTSPERSON",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
       )
     )
   )
