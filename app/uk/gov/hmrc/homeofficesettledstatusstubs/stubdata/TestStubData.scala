@@ -321,6 +321,35 @@ object TestStubData {
     )
   )
 
+  val lucySprag = StatusCheckResult(
+    "Lucy Sprag",
+    LocalDate.parse("11/05/1990", formatter),
+    "AUS",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
+        productType = "FRONTIER_WORKER",
+        immigrationStatus = "PERMIT",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/10/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
+        productType = "EUS",
+        immigrationStatus = "POST_GRACE_PERIOD_COA_GRANT",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
   val eveVassil = StatusCheckResult(
     "Eve Vassil",
     LocalDate.parse("22/05/1976", formatter),
@@ -365,6 +394,7 @@ object TestStubData {
     "EP640312A" -> alisonWright,
     "JE612281A" -> eveVassil,
     "WY706993C" -> aliWrightson,
+    "NJ288804C" -> lucySprag,
     "RR741495B" -> sarahSmith
 
   )
