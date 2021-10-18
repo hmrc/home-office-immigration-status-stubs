@@ -207,7 +207,7 @@ object TestStubData {
         statusEndDate = Some(LocalDate.parse("01/08/2020", formatter)),
         productType = "SPORTSPERSON",
         immigrationStatus = "LTE",
-        noRecourseToPublicFunds = false
+        noRecourseToPublicFunds = true
       )
     )
   )
@@ -374,7 +374,7 @@ object TestStubData {
         statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
         productType = "WORK",
         immigrationStatus = "LTR",
-        noRecourseToPublicFunds = false
+        noRecourseToPublicFunds = true
       )
     )
   )
@@ -426,6 +426,5 @@ object TestStubData {
     "NJ288804C" -> lucySprag,
     "ZL048657A" -> jimmyBrown,
     "RR741495B" -> sarahSmith
-
   )
 }
