@@ -423,6 +423,13 @@ object TestStubData {
     )
   )
 
+  val nevioSabina = StatusCheckResult(
+    "Nevio Sabina",
+    LocalDate.parse("9/10/1956", formatter),
+    "ESP",
+    Nil
+  )
+
   val results: Map[String, StatusCheckResult] = Map(
     "MZ006526D" -> ignacSarlota,
     "AB116565A" -> robinTens,
@@ -441,6 +448,7 @@ object TestStubData {
     "NJ288804C" -> lucySprag,
     "ZL048657A" -> jimmyBrown,
     "RR741495B" -> sarahSmith,
-    "RR741365B" -> peteWolf
+    "RR741365B" -> peteWolf,
+    "ZL341566D" -> nevioSabina
   )
 }

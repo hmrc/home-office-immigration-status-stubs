@@ -358,13 +358,6 @@ object QATestStubData {
     Nil
   )
 
-  val nevioSabina = StatusCheckResult(
-    "Nevio Sabina",
-    LocalDate.parse("9/10/1956", formatter),
-    "ESP",
-    Nil
-  )
-
   val results: Map[String, StatusCheckResult] = Map(
     "SP317690D" -> johnSmith1,
     "SP233073C" -> johnSmith3,
@@ -385,7 +378,6 @@ object QATestStubData {
     "SP921303A" -> johnSmith27,
     "SP323834A" -> johnSmith30,
     "SP352776C" -> johnSmith31,
-    "ZL341566D" -> nevioSabina,
     "SP426589B" -> johnSmith32
   )
 }
