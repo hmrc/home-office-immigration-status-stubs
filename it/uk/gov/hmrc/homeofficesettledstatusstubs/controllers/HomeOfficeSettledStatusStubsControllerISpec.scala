@@ -149,11 +149,11 @@ class HomeOfficeSettledStatusStubsControllerISpec
           ))
       }
 
-      "respond with 200 if response empty" in {
+      "respond with 200 if statuses empty" in {
         ping.status.shouldBe(200)
 
         val result = publicFundsByNino(
-          s"""{"nino":"ZL341566D","givenName":"J","familyName":"Does","dateOfBirth":"2001-XX-31"}""")
+          s"""{"nino":"ZL341566D","givenName":"N","familyName":"Sabina","dateOfBirth":"1956-10-09"}""")
 
         result.status shouldBe 200
       }
