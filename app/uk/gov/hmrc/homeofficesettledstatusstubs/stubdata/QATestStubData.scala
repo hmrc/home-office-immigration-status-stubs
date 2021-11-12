@@ -358,7 +358,7 @@ object QATestStubData {
     Nil
   )
 
-  val ALEXANDRACARMENQuinn = StatusCheckResult(
+  val alexQuinn = StatusCheckResult(
     "ALEXANDRA-CARMEN Quinn",
     LocalDate.parse("15/10/1971", formatter),
     "ESP",
@@ -386,7 +386,7 @@ object QATestStubData {
     )
   )
 
-  val SupermanALEXANDRACARMEN = StatusCheckResult(
+  val Supermanalex = StatusCheckResult(
     "Superman ALEXANDRA-CARMEN",
     LocalDate.parse("15/10/1971", formatter),
     "ESP",
@@ -466,9 +466,9 @@ object QATestStubData {
     "SP323834A" -> johnSmith30,
     "SP352776C" -> johnSmith31,
     "SP426589B" -> johnSmith32,
-    "SP142783D" -> ALEXANDRACARMENQuinn,
+    "SP142783D" -> alexQuinn,
     "SP911798A" -> MajaGłowa,
-    "SP715935D" -> SupermanALEXANDRACARMEN,
+    "SP715935D" -> Supermanalex,
     "SP997679C" -> ONEILLHancock,
     "SP501555A" -> árthurHancock,
     "SP183480C" -> JohnSmith33
