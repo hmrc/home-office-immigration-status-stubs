@@ -364,7 +364,7 @@ object QATestStubData {
     "ESP",
     List(
       ImmigrationStatus(
-        statusStartDate = LocalDate.parse("2021-10-20", formatter),
+        statusStartDate = LocalDate.parse("2021/10/20", formatter),
         productType = "EUS_EUN_JFM",
         immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
@@ -372,13 +372,13 @@ object QATestStubData {
     )
   )
 
-  val MajaGłowa = StatusCheckResult(
+  val MajaGlowa = StatusCheckResult(
     "Maja Głowa",
     LocalDate.parse("15/10/1971", formatter),
     "ESP",
     List(
       ImmigrationStatus(
-        statusStartDate = LocalDate.parse("2021-10-20", formatter),
+        statusStartDate = LocalDate.parse("2021/10/20", formatter),
         productType = "EUS_TCN_JFM",
         immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
@@ -392,7 +392,7 @@ object QATestStubData {
     "ESP",
     List(
       ImmigrationStatus(
-        statusStartDate = LocalDate.parse("2021-10-20", formatter),
+        statusStartDate = LocalDate.parse("2021/10/20", formatter),
         productType = "EUS_FMFW",
         immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
@@ -406,8 +406,8 @@ object QATestStubData {
     "ESP",
     List(
       ImmigrationStatus(
-        statusStartDate = LocalDate.parse("2021-10-20", formatter),
-        statusEndDate = Some(LocalDate.parse("2022-02-05", formatter)),
+        statusStartDate = LocalDate.parse("2021/10/20", formatter),
+        statusEndDate = Some(LocalDate.parse("2022/02/05", formatter)),
         productType = "EUS",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
@@ -415,14 +415,14 @@ object QATestStubData {
     )
   )
 
-  val árthurHancock = StatusCheckResult(
+  val arthurHancock = StatusCheckResult(
     "árthur Hancock",
     LocalDate.parse("15/10/1971", formatter),
     "ESP",
     List(
       ImmigrationStatus(
-        statusStartDate = LocalDate.parse("2021-10-20", formatter),
-        statusEndDate = Some(LocalDate.parse("2022-02-05", formatter)),
+        statusStartDate = LocalDate.parse("2021/10/20", formatter),
+        statusEndDate = Some(LocalDate.parse("2022/02/05", formatter)),
         productType = "EUS",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
@@ -436,8 +436,8 @@ object QATestStubData {
     "ESP",
     List(
       ImmigrationStatus(
-        statusStartDate = LocalDate.parse("2021-10-20", formatter),
-        statusEndDate = Some(LocalDate.parse("2022-02-05", formatter)),
+        statusStartDate = LocalDate.parse("2021/10/20", formatter),
+        statusEndDate = Some(LocalDate.parse("2022/02/05", formatter)),
         productType = "BNO_LOTR",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = true
@@ -467,10 +467,10 @@ object QATestStubData {
     "SP352776C" -> johnSmith31,
     "SP426589B" -> johnSmith32,
     "SP142783D" -> ALEXANDRACARMENQuinn,
-    "SP911798A" -> MajaGłowa,
+    "SP911798A" -> MajaGlowa,
     "SP715935D" -> SupermanALEXANDRACARMEN,
     "SP997679C" -> ONEILLHancock,
-    "SP501555A" -> árthurHancock,
+    "SP501555A" -> arthurHancock,
     "SP183480C" -> JohnSmith33
   )
 }
