@@ -242,7 +242,7 @@ object QATestStubData {
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("05/02/2020", formatter),
         statusEndDate = Some(LocalDate.parse("09/07/2023", formatter)),
-        productType = "DEPENDANT",
+        productType = "STUDY",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       )
