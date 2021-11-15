@@ -35,12 +35,21 @@ class HomeOfficeSettledStatusStubsControllerISpec
       .futureValue
   }
 
+  //todo seperate the endpoints to seperate specs
   def publicFundsByNino(payload: String): WSResponse =
     wsClient
       .url(s"$url/v1/status/public-funds/nino")
       .addHttpHeaders("Content-Type" -> "application/json")
       .post(payload)
       .futureValue
+
+  def publicFundsByMRZ(payload: String): WSResponse =
+    wsClient
+      .url(s"$url/v1/status/public-funds/mrz")
+      .addHttpHeaders("Content-Type" -> "application/json")
+      .post(payload)
+      .futureValue
+
 
   "HomeOfficeSettledStatusStubsController" when {
 
@@ -177,5 +186,70 @@ class HomeOfficeSettledStatusStubsControllerISpec
       }
 
     }
+
+    "POST /v1/status/public-funds/mrz" should {
+
+      "respond with 200 if request is valid" in {
+        ping.status.shouldBe(200)
+
+        val result = publicFundsByMRZ(
+          s"""{"documentType":"PASSPORT", "documentNumber" : "123456789", "nationality": "CHE", "dateOfBirth":"1954-10-04", "statusCheckRange" : {"startDate": "x", "endDate": "x"}}""")
+
+        (result.json.as[JsObject] \ "result").get shouldBe Json.toJson(DemoStubData.lawrenceVelazquez)
+
+      }
+
+      "respond with 404 if the service failed to find an identity because of incorrect number" in {
+        ping.status.shouldBe(200)
+
+        val result = publicFundsByMRZ(
+          s"""{"documentType":"PASSPORT", "documentNumber" : "NOT VALID", "nationality": "CHE","dateOfBirth":"1954-10-04", "statusCheckRange" : {"startDate": "x", "endDate": "x"}}""")
+
+        result.status shouldBe 404
+        result.json.as[JsObject] should (haveProperty[String]("correlationId")
+          and haveProperty[JsObject](
+          "error",
+          haveProperty[String]("errCode", be("ERR_NOT_FOUND"))
+        ))
+      }
+
+      "respond with 404 if the service failed to find an identity because of a nationality" in {
+        ping.status.shouldBe(200)
+
+        val result = publicFundsByMRZ(
+          s"""{"documentType":"PASSPORT", "documentNumber" : "NOT VALID", "nationality": "INVALID","dateOfBirth":"1954-10-04", "statusCheckRange" : {"startDate": "x", "endDate": "x"}}""")
+
+
+        result.status shouldBe 404
+        result.json.as[JsObject] should (haveProperty[String]("correlationId")
+          and haveProperty[JsObject](
+          "error",
+          haveProperty[String]("errCode", be("ERR_NOT_FOUND"))
+        ))
+      }
+
+      "respond with 400 if one of the required input parameters is missing from the request" in {
+        ping.status.shouldBe(200)
+
+        val result = publicFundsByMRZ(
+          s"""{"documentNumber" : "NOT VALID", "nationality": "INVALID","dateOfBirth":"1954-10-04", "statusCheckRange" : {"startDate": "x", "endDate": "x"}}""")
+
+
+        result.status shouldBe 400
+        result.json.as[JsObject] should (haveProperty[String]("correlationId")
+          and haveProperty[JsObject](
+          "error",
+          haveProperty[String]("errCode", be("ERR_VALIDATION"))
+        ))
+      }
+
+
+      "respond with 200 if statuses empty" in pending
+
+      "respond with 429 if status is 429" in pending
+
+      "respond with 409 if status is 409" in pending
+    }
+
   }
 }

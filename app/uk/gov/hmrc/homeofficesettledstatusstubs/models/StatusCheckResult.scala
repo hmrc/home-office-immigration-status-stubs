@@ -19,6 +19,7 @@ package uk.gov.hmrc.homeofficesettledstatusstubs.models
 import java.time.LocalDate
 import play.api.libs.json.{Format, Json}
 
+//todo immigrationCheckResult
 final case class StatusCheckResult(
   // <name of the migrant that has matched
   fullName: String,

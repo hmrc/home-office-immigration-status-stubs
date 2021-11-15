@@ -18,6 +18,7 @@ package uk.gov.hmrc.homeofficesettledstatusstubs.models
 
 import play.api.libs.json.{Format, Json}
 
+//todo split this in to 2 objects for Error and success
 final case class StatusResponse(
   correlationId: String,
   result: Option[StatusCheckResult],

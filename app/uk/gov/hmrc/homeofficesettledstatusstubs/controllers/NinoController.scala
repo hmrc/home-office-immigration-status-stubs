@@ -22,6 +22,7 @@ import play.api.{Configuration, Environment}
 import uk.gov.hmrc.domain.Nino
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 import uk.gov.hmrc.homeofficesettledstatusstubs.models._
+import uk.gov.hmrc.homeofficesettledstatusstubs.models.searches.NinoSearch
 import uk.gov.hmrc.homeofficesettledstatusstubs.services.StubDataService
 
 import java.util.UUID
@@ -29,63 +30,52 @@ import javax.inject.{Inject, Singleton}
 import scala.concurrent.Future
 
 @Singleton
-class HomeOfficeSettledStatusStubsController @Inject()(
+class NinoController @Inject()(
   val env: Environment,
   cc: ControllerComponents,
   stubDataService: StubDataService)(implicit val configuration: Configuration)
     extends BackendController(cc) {
 
+  //todo add filter/action to add this.
   final val HTTP_HEADER_CONTENT_TYPE_JSON = "Content-Type" -> "application/json"
 
-  def token: Action[AnyContent] = Action.async { implicit request =>
-    Future.successful(
-      HomeOfficeSettledStatusStubsController.tokenForm
-        .bindFromRequest()
-        .fold(
-          errors => BadRequest(Json.toJson(errors.errors.map(e => (e.key, e.message)).toMap)),
-          _ => Ok(Json.parse(s"""{
-                                |   "access_token": "${UUID.randomUUID().toString}",
-                                |   "refresh_token": "${UUID.randomUUID().toString}",
-                                |   "token_type": "Bearer"
-                                |}""".stripMargin))
-        ))
-  }
-
-  def publicFundsByNino: Action[JsValue] = Action.async(parse.tolerantJson) { implicit request =>
+  def publicFundsByNino: Action[JsValue] = Action(parse.tolerantJson) { implicit request =>
     val correlationId = request.headers.get("X-Correlation-Id").getOrElse("00000000")
 
-    val response = withValidParameters(correlationId, request.body) {
-      (nino, givenName, familyName, dateOfBirth) =>
-        stubDataService.ninoSearch(correlationId, nino, givenName, familyName, dateOfBirth)
-    }
-
-    Future.successful(response.withHeaders(HTTP_HEADER_CONTENT_TYPE_JSON))
+    withValidParameters(correlationId, request.body)
+      .fold(
+        identity,
+        search => stubDataService.ninoSearch(search)
+      )
+      .withHeaders(HTTP_HEADER_CONTENT_TYPE_JSON)
   }
 
-  private def withValidParameters(correlationId: String, body: JsValue)(
-    successFunc: (String, String, String, String) => Result): Result = {
-
+  private def withValidParameters(
+    correlationId: String,
+    body: JsValue): Either[Result, NinoSearch] = {
     val ninoOpt = (body \ "nino").asOpt[String].map(_.replaceAll(" ", "").toUpperCase)
     val givenNameOpt = (body \ "givenName").asOpt[String]
     val familyNameOpt = (body \ "familyName").asOpt[String]
     val dateOfBirthOpt = (body \ "dateOfBirth").asOpt[String]
+    //todo start date end date
 
     val query = (ninoOpt, givenNameOpt, familyNameOpt, dateOfBirthOpt)
 
     query match {
       case (Some(nino), Some(givenName), Some(familyName), Some(dateOfBirth)) =>
         if (Nino.isValid(nino)) {
-          successFunc(nino, givenName, familyName, dateOfBirth)
+          Right(NinoSearch(correlationId, nino, dateOfBirth, familyName, givenName))
         } else {
-          ninoValidationError(correlationId)
+          Left(ninoValidationError(correlationId))
         }
       case _ =>
-        generateValidationFailure(
-          correlationId,
-          ninoOpt,
-          givenNameOpt,
-          familyNameOpt,
-          dateOfBirthOpt)
+        Left(
+          generateValidationFailure(
+            correlationId,
+            ninoOpt,
+            givenNameOpt,
+            familyNameOpt,
+            dateOfBirthOpt))
     }
   }
 
@@ -100,7 +90,7 @@ class HomeOfficeSettledStatusStubsController @Inject()(
       errorField(dateOfBirthOpt.isEmpty, "dateOfBirth", "ERR_MISSING_DOB"),
       errorField(familyNameOpt.isEmpty, "familyName", "ERR_MISSING_FAMILY_NAME"),
       errorField(givenNameOpt.isEmpty, "giveName", "ERR_MISSING_GIVEN_NAME")
-    ).collect { case Some(x) => x }
+    ).flatten
 
     BadRequest(StatusResponse.errorResponseBody(correlationId, "ERR_VALIDATION", fields))
   }
@@ -115,28 +105,5 @@ class HomeOfficeSettledStatusStubsController @Inject()(
         "ERR_VALIDATION",
         fields = Seq("nino" -> "ERR_INVALID_NINO"))
     )
-
-}
-
-object HomeOfficeSettledStatusStubsController {
-
-  import play.api.data.Form
-  import play.api.data.Forms._
-
-  case class TokenRequest(grant_type: String, client_id: String, client_secret: String)
-
-  object TokenRequest {
-    implicit val formats: Format[TokenRequest] = Json.format[TokenRequest]
-  }
-
-  val tokenForm: Form[TokenRequest] = Form(
-    mapping(
-      "grant_type" -> nonEmptyText
-        .verifying("Wrong grant type.", _ == "client_credentials"),
-      "client_id" -> nonEmptyText
-        .verifying("Unknown client_id.", _ == "hmrc"),
-      "client_secret" -> nonEmptyText,
-    )(TokenRequest.apply)(TokenRequest.unapply)
-  )
 
 }

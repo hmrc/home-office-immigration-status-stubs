@@ -16,14 +16,14 @@
 
 package uk.gov.hmrc.homeofficesettledstatusstubs.stubdata
 
-import uk.gov.hmrc.homeofficesettledstatusstubs.models._
+import uk.gov.hmrc.homeofficesettledstatusstubs.models.StatusCheckResult
 
-object StubData {
+final case class Record(result: StatusCheckResult, nino: String, docType: String, docNum: String)
 
-  val mrzToResult: Map[(String, String), StatusCheckResult] =
-    Seq(DemoStubData).flatMap(_.mrzToResult).toMap
+trait DataSet {
+  val records: Seq[Record]
 
-  val ninoToResult: Map[String, StatusCheckResult] =
-    DemoStubData.ninoToResult ++ TestStubData.results ++ QATestStubData.results
-
+  lazy val ninoToResult: Map[String, StatusCheckResult] = records.map(r => r.nino -> r.result).toMap
+  lazy val mrzToResult: Map[(String, String), StatusCheckResult] =
+    records.map(r => (r.docType, r.docNum) -> r.result).toMap
 }

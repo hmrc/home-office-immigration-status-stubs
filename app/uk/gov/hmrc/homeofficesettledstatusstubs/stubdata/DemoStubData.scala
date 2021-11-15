@@ -17,10 +17,11 @@
 package uk.gov.hmrc.homeofficesettledstatusstubs.stubdata
 
 import uk.gov.hmrc.homeofficesettledstatusstubs.models._
+
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-object DemoStubData {
+object DemoStubData extends DataSet {
 
   val formatter = DateTimeFormatter.ofPattern("d/MM/yyyy")
 
@@ -658,39 +659,39 @@ object DemoStubData {
     )
   )
 
-  val results: Map[String, StatusCheckResult] = Map(
-    "HT423277B" -> lawrenceVelazquez,
-    "AB888330D" -> roosTewes,
-    "KA339738D" -> stefanoReese,
-    "AB576139C" -> marniDunkley,
-    "AB807993C" -> wolfgangTraube,
-    "MZ006526C" -> ignacSarlota,
-    "AB445870B" -> rosalieGallegos,
-    "SJ372380A" -> nevioSabina,
-    "CB986300D" -> johnMillar,
-    "GT948987A" -> aleksandrovCherganski,
-    "OX749001C" -> evaVassilis,
-    "LE183343C" -> yvonneAlbin,
-    "OT575524B" -> elsaViggo,
-    "BS088353B" -> majaGlowa,
-    "JJ123456A" -> jirinaJirankova,
-    "ZL198221D" -> ammarNaaji,
-    "TP469941B" -> amnaBoulos,
-    "BY880209B" -> harunaAbiodun,
-    "AB188148D" -> luigiPisani,
-    "RK334595D" -> boseMwangi,
-    "KL254611D" -> sampsonPeel,
-    "BR253184"  -> njeriSamara,
-    "MA337091B" -> srinivasVemulakonda,
-    "AX906006B" -> mohammedNajm,
-    "CP822334"  -> nabilSultan,
-    "EB119538"  -> ylliShehu,
-    "HT813285C" -> chukwumaOkorie,
-    "AH231261"  -> kefilweOkonkwo,
-    "HY950281B" -> sibusisiweKamau,
-    "TZ650906D" -> alinafeTemitope,
-    "TK885367D" -> chidiebubeBabatunde,
-    "HN191408D" -> sabeenMuhammad
-  )
+  override val records: Seq[Record] = Seq(
+    (lawrenceVelazquez, "HT423277B", "PASSPORT", "123456789"),
+    (roosTewes, "AB888330D", "PASSPORT", "234567891"),
+    (stefanoReese, "KA339738D", "PASSPORT", "345678912"),
+    (marniDunkley, "AB576139C", "PASSPORT", "456789123"),
+    (wolfgangTraube, "AB807993C", "PASSPORT", "567891234"),
+    (ignacSarlota, "MZ006526C", "PASSPORT", "678912345"),
+    (rosalieGallegos, "AB445870B", "PASSPORT", "789123456"),
+    (nevioSabina, "SJ372380A", "PASSPORT", "891234567"),
+    (johnMillar, "CB986300D", "NAT", "K5LTGREQ3"),
+    (aleksandrovCherganski, "GT948987A", "NAT", "P6NGWATE1"),
+    (evaVassilis, "OX749001C", "NAT", "N9LFUTWR4"),
+    (yvonneAlbin, "LE183343C", "NAT", "L8FYTEHE2"),
+    (elsaViggo, "OT575524B", "NAT", "M7FHRTEL6"),
+    (majaGlowa, "BS088353B", "NAT", "P9DGTHAX7"),
+    (jirinaJirankova, "JJ123456A", "NAT", "O9DAZHYX2"),
+    (ammarNaaji, "ZL198221D", "NAT", "U2ETHGPL5"),
+    (amnaBoulos, "TP469941B", "BRC", "ZU1234567"),
+    (harunaAbiodun, "BY880209B", "BRC", "BR1234567"),
+    (luigiPisani, "AB188148D", "BRC", "MY1234567"),
+    (boseMwangi, "RK334595D", "BRC", "TR1234567"),
+    (sampsonPeel, "KL254611D", "BRC", "DS1234567"),
+    (njeriSamara, "BR253184", "BRC", "PO1234567"),
+    (srinivasVemulakonda, "MA337091B", "BRC", "DC1234567"),
+    (mohammedNajm, "AX906006B", "BRC", "SE1234567"),
+    (nabilSultan, "CP822334", "BRP", "PR1234567"),
+    (ylliShehu, "EB119538", "BRP", "GH1234567"),
+    (chukwumaOkorie, "HT813285C", "BRP", "NB1234567"),
+    (kefilweOkonkwo, "AH231261", "BRP", "GH1234567"),
+    (sibusisiweKamau, "HY950281B", "BRP", "FJ1234567"),
+    (alinafeTemitope, "TZ650906D", "BRP", "DS1234567"),
+    (chidiebubeBabatunde, "TK885367D", "BRP", "PY1234567"),
+    (sabeenMuhammad, "HN191408D", "BRP", "BG1234567")
+  ).map((Record.apply _).tupled)
 
 }
