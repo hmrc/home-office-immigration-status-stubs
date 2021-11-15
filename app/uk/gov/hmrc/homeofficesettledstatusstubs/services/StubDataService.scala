@@ -44,7 +44,8 @@ class StubDataService @Inject()(cc: ControllerComponents) extends BackendControl
     }
 
   def mrzSearch(mrzSearch: MrzSearch): Result =
-    search(mrzSearch)(s => StubData.mrzToResult.get(s.docType, s.documentNum))(_ => None) //todo add fall back for error cases
+    search(mrzSearch)(s => StubData.mrzToResult.get(s.docType, s.documentNum))(s =>
+      checkOtherMrz(s.correlationId, s.docType, s.documentNum))
 
   def ninoSearch(ninoSearch: NinoSearch): Result =
     search(ninoSearch)(s => StubData.ninoToResult.get(s.nino))(s =>
@@ -57,16 +58,27 @@ class StubDataService @Inject()(cc: ControllerComponents) extends BackendControl
       case None         => fallBack
     }
 
+  def conflict(correlationId: String) =
+    StatusResponse(
+      status = Some(409),
+      correlationId = correlationId,
+      result = None,
+      error = Some(StatusError("ERR_CONFLICT"))
+    )
+
+  //todo add other cases
+  private def checkOtherMrz(
+                             correlationId: String,
+                             docType: String,
+                             docNum: String): Option[StatusResponse] =
+    (docType, docNum) match {
+      case ("NAT", "E8HDYKTB3") => Some(conflict(correlationId))
+      case _                    => None
+    }
+
   private def checkOtherNinos(correlationId: String, nino: String): Option[StatusResponse] =
     nino match {
-      case "HK089820A" =>
-        Some(
-          StatusResponse(
-            status = Some(409),
-            correlationId = correlationId,
-            result = None,
-            error = Some(StatusError("ERR_CONFLICT"))
-          ))
+      case "HK089820A" => Some(conflict(correlationId))
       case "TP991941C" =>
         Some(
           StatusResponse(

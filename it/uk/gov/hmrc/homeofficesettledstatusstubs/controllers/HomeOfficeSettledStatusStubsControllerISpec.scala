@@ -248,7 +248,12 @@ class HomeOfficeSettledStatusStubsControllerISpec
 
       "respond with 429 if status is 429" in pending
 
-      "respond with 409 if status is 409" in pending
+      "respond with 409 if status is 409" in {
+        val result = publicFundsByMRZ(
+          s"""{"documentType":"NAT", "documentNumber" : "E8HDYKTB3", "nationality": "x","dateOfBirth":"x", "statusCheckRange" : {"startDate": "x", "endDate": "x"}}""")
+
+        result.status shouldBe 409
+      }
     }
 
   }
