@@ -58,44 +58,34 @@ class StubDataService @Inject()(cc: ControllerComponents) extends BackendControl
       case None         => fallBack
     }
 
-  def conflict(correlationId: String) =
-    StatusResponse(
-      status = Some(409),
-      correlationId = correlationId,
-      result = None,
-      error = Some(StatusError("ERR_CONFLICT"))
-    )
-
-  //todo add other cases
   private def checkOtherMrz(
-                             correlationId: String,
-                             docType: String,
-                             docNum: String): Option[StatusResponse] =
-    (docType, docNum) match {
+    correlationId: String,
+    docType: String,
+    docNum: String): Option[StatusResponse] =
+    (docType, docNum) match { //todo kerry nidhi check
       case ("NAT", "E8HDYKTB3") => Some(conflict(correlationId))
+      case ("NAT", "E8HDYKTB4") => Some(tooManyRequests(correlationId))
+      case ("NAT", "E8HDYKTB5") => Some(internalServerError(correlationId))
       case _                    => None
     }
 
   private def checkOtherNinos(correlationId: String, nino: String): Option[StatusResponse] =
     nino match {
       case "HK089820A" => Some(conflict(correlationId))
-      case "TP991941C" =>
-        Some(
-          StatusResponse(
-            status = Some(429),
-            correlationId = correlationId,
-            result = None,
-            error = Some(StatusError("[NOT_USED]"))
-          ))
-      case "BY880209A" =>
-        Some(
-          StatusResponse(
-            status = Some(500),
-            correlationId = correlationId,
-            result = None,
-            error = Some(StatusError("[NOT_USED]"))
-          ))
-      case _ => None
+      case "TP991941C" => Some(tooManyRequests(correlationId))
+      case "BY880209A" => Some(internalServerError(correlationId))
+      case _           => None
     }
 
+  private val conflict: String => StatusResponse = statusResponse(CONFLICT, "ERR_CONFLICT")
+  private val tooManyRequests: String => StatusResponse = statusResponse(TOO_MANY_REQUESTS)
+  private val internalServerError: String => StatusResponse = statusResponse(INTERNAL_SERVER_ERROR)
+
+  private def statusResponse(status: Int, error: String = "[NOT_USED]")(correlationId: String) =
+    StatusResponse(
+      status = Some(status),
+      correlationId = correlationId,
+      result = None,
+      error = Some(StatusError(error))
+    )
 }

@@ -19,13 +19,9 @@ package uk.gov.hmrc.homeofficesettledstatusstubs.models
 import java.time.LocalDate
 import play.api.libs.json.{Format, Json}
 
-//todo immigrationCheckResult
 final case class StatusCheckResult(
-  // <name of the migrant that has matched
   fullName: String,
-  // Date of birth of person being checked in ISO 8601 format
   dateOfBirth: LocalDate,
-  // <the latest nationality that the matched migrant has provided to the Home Office
   // (ICAO 3 letter acronym - ISO 3166-1)
   nationality: String,
   statuses: List[ImmigrationStatus]

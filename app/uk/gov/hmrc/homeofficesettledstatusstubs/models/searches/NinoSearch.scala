@@ -40,7 +40,6 @@ case class NinoSearch(
     givenNameMatches && familyNameMatches && dateOfBirthMatches
   }
 
-  //todo this can be removed, partial dates not supported?
   private def dateToPattern(dateOfBirth: String): String =
     dateOfBirth
       .map {

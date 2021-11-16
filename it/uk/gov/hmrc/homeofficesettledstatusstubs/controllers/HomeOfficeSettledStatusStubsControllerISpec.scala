@@ -1,7 +1,6 @@
 package uk.gov.hmrc.homeofficesettledstatusstubs.controllers
 
 import java.net.URLEncoder
-
 import org.scalatest.Suite
 import org.scalatestplus.play.ServerProvider
 import play.api.libs.json.JsObject
@@ -9,6 +8,7 @@ import play.api.libs.ws.{WSClient, WSResponse}
 import uk.gov.hmrc.homeofficesettledstatusstubs.support.{JsonMatchers, ServerBaseISpec}
 import play.api.libs.json.Json
 import uk.gov.hmrc.homeofficesettledstatusstubs.stubdata.DemoStubData
+import uk.gov.hmrc.homeofficesettledstatusstubs.stubdata.TestStubData.nevioSabina
 
 class HomeOfficeSettledStatusStubsControllerISpec
     extends ServerBaseISpec with JsonMatchers {
@@ -50,6 +50,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
       .post(payload)
       .futureValue
 
+  val statusRange = """"statusCheckRange" : {"startDate": "x", "endDate": "x"}"""
 
   "HomeOfficeSettledStatusStubsController" when {
 
@@ -81,7 +82,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
         ping.status.shouldBe(200)
 
         val result = publicFundsByNino(
-          s"""{"nino":"$NINO_VALID","givenName":"Lawrence","familyName":"Velazques","dateOfBirth":"1954-10-04"}""")
+          s"""{"nino":"$NINO_VALID","givenName":"Lawrence","familyName":"Velazques","dateOfBirth":"1954-10-04", $statusRange}""")
 
         (result.json.as[JsObject] \ "result").get shouldBe Json.toJson(DemoStubData.lawrenceVelazquez)
         
@@ -91,7 +92,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
         ping.status.shouldBe(200)
 
         val result = publicFundsByNino(
-          s"""{"nino":"$NINO_VALID","givenName":"L","familyName":"Velaz","dateOfBirth":"1954-XX-04"}""")
+          s"""{"nino":"$NINO_VALID","givenName":"L","familyName":"Velaz","dateOfBirth":"1954-XX-04", $statusRange}""")
 
         result.status shouldBe 200
         (result.json.as[JsObject] \ "result").get shouldBe Json.toJson(DemoStubData.lawrenceVelazquez)
@@ -101,7 +102,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
         ping.status.shouldBe(200)
 
         val result = publicFundsByNino(
-          s"""{"nino":"$NINO_VALID_BUT_UNKNOWN","givenName":"Lawrence","familyName":"Velazques","dateOfBirth":"1954-10-04"}""")
+          s"""{"nino":"$NINO_VALID_BUT_UNKNOWN","givenName":"Lawrence","familyName":"Velazques","dateOfBirth":"1954-10-04", $statusRange}""")
 
         result.status shouldBe 404
         result.json.as[JsObject] should (haveProperty[String]("correlationId")
@@ -115,7 +116,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
         ping.status.shouldBe(200)
 
         val result = publicFundsByNino(
-          s"""{"nino":"$NINO_VALID","givenName":"Bawrence","familyName":"Velazques","dateOfBirth":"1954-10-04"}""")
+          s"""{"nino":"$NINO_VALID","givenName":"Bawrence","familyName":"Velazques","dateOfBirth":"1954-10-04", $statusRange}""")
 
         result.status shouldBe 404
         result.json.as[JsObject] should (haveProperty[String]("correlationId")
@@ -129,7 +130,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
         ping.status.shouldBe(200)
 
         val result = publicFundsByNino(
-          s"""{"nino":"$NINO_VALID","givenName":"Lawrence","familyName":"Velazques"}""")
+          s"""{"nino":"$NINO_VALID","givenName":"Lawrence","familyName":"Velazques", $statusRange}""")
 
         result.status shouldBe 400
         result.json.as[JsObject] should (haveProperty[String]("correlationId")
@@ -143,7 +144,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
         ping.status.shouldBe(200)
 
         val result = publicFundsByNino(
-          s"""{"nino":"invalid","givenName":"Lawrence","familyName":"Velazques","dateOfBirth":"1954-10-04"}""")
+          s"""{"nino":"invalid","givenName":"Lawrence","familyName":"Velazques","dateOfBirth":"1954-10-04", $statusRange}""")
 
         result.status shouldBe 400
         result.json.as[JsObject] should (haveProperty[String]("correlationId")
@@ -162,7 +163,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
         ping.status.shouldBe(200)
 
         val result = publicFundsByNino(
-          s"""{"nino":"ZL341566D","givenName":"N","familyName":"Sabina","dateOfBirth":"1956-10-09"}""")
+          s"""{"nino":"ZL341566D","givenName":"N","familyName":"Sabina","dateOfBirth":"1956-10-09", $statusRange}""")
 
         result.status shouldBe 200
       }
@@ -171,7 +172,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
         ping.status.shouldBe(200)
 
         val result = publicFundsByNino(
-          s"""{"nino":"TP991941C","givenName":"J","familyName":"Does","dateOfBirth":"2001-XX-31"}""")
+          s"""{"nino":"TP991941C","givenName":"J","familyName":"Does","dateOfBirth":"2001-XX-31", $statusRange}""")
 
         result.status shouldBe 429
       }
@@ -180,11 +181,19 @@ class HomeOfficeSettledStatusStubsControllerISpec
         ping.status.shouldBe(200)
 
         val result = publicFundsByNino(
-          s"""{"nino":"HK089820A","givenName":"J","familyName":"Does","dateOfBirth":"2001-XX-31"}""")
+          s"""{"nino":"HK089820A","givenName":"J","familyName":"Does","dateOfBirth":"2001-XX-31", $statusRange}""")
 
         result.status shouldBe 409
       }
 
+      "respond with 500 if status is 500" in {
+        ping.status.shouldBe(200)
+
+        val result = publicFundsByNino(
+          s"""{"nino":"BY880209A","givenName":"J","familyName":"Does","dateOfBirth":"2001-XX-31", $statusRange}""")
+
+        result.status shouldBe 500
+      }
     }
 
     "POST /v1/status/public-funds/mrz" should {
@@ -193,7 +202,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
         ping.status.shouldBe(200)
 
         val result = publicFundsByMRZ(
-          s"""{"documentType":"PASSPORT", "documentNumber" : "123456789", "nationality": "CHE", "dateOfBirth":"1954-10-04", "statusCheckRange" : {"startDate": "x", "endDate": "x"}}""")
+          s"""{"documentType":"PASSPORT", "documentNumber" : "123456789", "nationality": "CHE", "dateOfBirth":"1954-10-04", $statusRange}""")
 
         (result.json.as[JsObject] \ "result").get shouldBe Json.toJson(DemoStubData.lawrenceVelazquez)
 
@@ -203,7 +212,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
         ping.status.shouldBe(200)
 
         val result = publicFundsByMRZ(
-          s"""{"documentType":"PASSPORT", "documentNumber" : "NOT VALID", "nationality": "CHE","dateOfBirth":"1954-10-04", "statusCheckRange" : {"startDate": "x", "endDate": "x"}}""")
+          s"""{"documentType":"PASSPORT", "documentNumber" : "NOT VALID", "nationality": "CHE","dateOfBirth":"1954-10-04", $statusRange}""")
 
         result.status shouldBe 404
         result.json.as[JsObject] should (haveProperty[String]("correlationId")
@@ -217,7 +226,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
         ping.status.shouldBe(200)
 
         val result = publicFundsByMRZ(
-          s"""{"documentType":"PASSPORT", "documentNumber" : "NOT VALID", "nationality": "INVALID","dateOfBirth":"1954-10-04", "statusCheckRange" : {"startDate": "x", "endDate": "x"}}""")
+          s"""{"documentType":"PASSPORT", "documentNumber" : "NOT VALID", "nationality": "INVALID","dateOfBirth":"1954-10-04", $statusRange}""")
 
 
         result.status shouldBe 404
@@ -232,7 +241,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
         ping.status.shouldBe(200)
 
         val result = publicFundsByMRZ(
-          s"""{"documentNumber" : "NOT VALID", "nationality": "INVALID","dateOfBirth":"1954-10-04", "statusCheckRange" : {"startDate": "x", "endDate": "x"}}""")
+          s"""{"documentNumber" : "NOT VALID", "nationality": "INVALID","dateOfBirth":"1954-10-04", $statusRange}""")
 
 
         result.status shouldBe 400
@@ -244,15 +253,33 @@ class HomeOfficeSettledStatusStubsControllerISpec
       }
 
 
-      "respond with 200 if statuses empty" in pending
+      "respond with 200 if statuses empty" in {
+        val result = publicFundsByMRZ(
+          s"""{"documentType":"NAT", "documentNumber" : "ZL341566", "nationality": "ESP", "dateOfBirth":"1956-10-09", $statusRange}""")
 
-      "respond with 429 if status is 429" in pending
+        result.status shouldBe 200
+      }
 
       "respond with 409 if status is 409" in {
         val result = publicFundsByMRZ(
-          s"""{"documentType":"NAT", "documentNumber" : "E8HDYKTB3", "nationality": "x","dateOfBirth":"x", "statusCheckRange" : {"startDate": "x", "endDate": "x"}}""")
+          s"""{"documentType":"NAT", "documentNumber" : "E8HDYKTB3", "nationality": "x", "dateOfBirth":"x", $statusRange}"""
+        )
 
         result.status shouldBe 409
+      }
+
+      "respond with 429 if status is 429" in {
+        val result = publicFundsByMRZ(
+          s"""{"documentType":"NAT", "documentNumber" : "E8HDYKTB4", "nationality": "x","dateOfBirth":"x", $statusRange}""")
+
+        result.status shouldBe 429
+      }
+
+      "respond with 500 if status is 500" in {
+        val result = publicFundsByMRZ(
+          s"""{"documentType":"NAT", "documentNumber" : "E8HDYKTB5", "nationality": "x","dateOfBirth":"x", $statusRange}""")
+
+        result.status shouldBe 500
       }
     }
 

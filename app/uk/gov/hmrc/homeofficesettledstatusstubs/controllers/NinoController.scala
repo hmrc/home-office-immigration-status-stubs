@@ -57,12 +57,13 @@ class NinoController @Inject()(
     val givenNameOpt = (body \ "givenName").asOpt[String]
     val familyNameOpt = (body \ "familyName").asOpt[String]
     val dateOfBirthOpt = (body \ "dateOfBirth").asOpt[String]
-    //todo start date end date
+    val startDateOpt = (body \ "statusCheckRange" \ "startDate").asOpt[String]
+    val endDateOpt = (body \ "statusCheckRange" \ "endDate").asOpt[String]
 
-    val query = (ninoOpt, givenNameOpt, familyNameOpt, dateOfBirthOpt)
+    val query = (ninoOpt, givenNameOpt, familyNameOpt, dateOfBirthOpt, startDateOpt, endDateOpt)
 
     query match {
-      case (Some(nino), Some(givenName), Some(familyName), Some(dateOfBirth)) =>
+      case (Some(nino), Some(givenName), Some(familyName), Some(dateOfBirth), Some(_), Some(_)) =>
         if (Nino.isValid(nino)) {
           Right(NinoSearch(correlationId, nino, dateOfBirth, familyName, givenName))
         } else {

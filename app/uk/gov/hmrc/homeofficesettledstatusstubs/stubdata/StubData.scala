@@ -21,9 +21,9 @@ import uk.gov.hmrc.homeofficesettledstatusstubs.models._
 object StubData {
 
   val mrzToResult: Map[(String, String), StatusCheckResult] =
-    Seq(DemoStubData).flatMap(_.mrzToResult).toMap
+    Seq(DemoStubData, TestStubData, QATestStubData).flatMap(_.mrzToResult).toMap
 
   val ninoToResult: Map[String, StatusCheckResult] =
-    DemoStubData.ninoToResult ++ TestStubData.results ++ QATestStubData.results
+    Seq(DemoStubData, TestStubData, QATestStubData).flatMap(_.ninoToResult).toMap
 
 }

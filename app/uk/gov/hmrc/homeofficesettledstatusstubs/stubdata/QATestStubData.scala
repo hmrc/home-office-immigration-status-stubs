@@ -22,7 +22,7 @@ import uk.gov.hmrc.homeofficesettledstatusstubs.stubdata.DemoStubData.formatter
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-object QATestStubData {
+object QATestStubData extends DataSet {
 
   val formatter = DateTimeFormatter.ofPattern("d/MM/yyyy")
 
@@ -358,26 +358,29 @@ object QATestStubData {
     Nil
   )
 
-  val results: Map[String, StatusCheckResult] = Map(
-    "SP317690D" -> johnSmith1,
-    "SP233073C" -> johnSmith3,
-    "SP146882A" -> johnSmith4,
-    "SP996057A" -> johnSmith5,
-    "SP890342A" -> claudRoslyn6,
-    "SP810345D" -> johnSmith7,
-    "SP048960B" -> johnSmith8,
-    "SP367573C" -> johnSmith9,
-    "SP033627A" -> johnSmith12,
-    "SP537999A" -> johnSmith13,
-    "SP857496A" -> johnSmith16,
-    "SP018395A" -> johnSmith17,
-    "SP190167C" -> johnSmith20,
-    "SP003270D" -> johnSmith21,
-    "SP158163D" -> johnSmith23,
-    "SP190793C" -> johnSmith26,
-    "SP921303A" -> johnSmith27,
-    "SP323834A" -> johnSmith30,
-    "SP352776C" -> johnSmith31,
-    "SP426589B" -> johnSmith32
-  )
+  //todo nidhi kerry check these
+  //i have just used NAT and the nino with out suffix
+  override val records: Seq[Record] = Seq(
+    (johnSmith1, "SP317690D", "NAT", "SP317690"),
+    (johnSmith3, "SP233073C", "NAT", "SP233073"),
+    (johnSmith4, "SP146882A", "NAT", "SP146882"),
+    (johnSmith5, "SP996057A", "NAT", "SP996057"),
+    (claudRoslyn6, "SP890342A", "NAT", "SP890342"),
+    (johnSmith7, "SP810345D", "NAT", "SP810345"),
+    (johnSmith8, "SP048960B", "NAT", "SP048960"),
+    (johnSmith9, "SP367573C", "NAT", "SP367573"),
+    (johnSmith12, "SP033627A", "NAT", "SP033627"),
+    (johnSmith13, "SP537999A", "NAT", "SP537999"),
+    (johnSmith16, "SP857496A", "NAT", "SP857496"),
+    (johnSmith17, "SP018395A", "NAT", "SP018395"),
+    (johnSmith20, "SP190167C", "NAT", "SP190167"),
+    (johnSmith21, "SP003270D", "NAT", "SP003270"),
+    (johnSmith23, "SP158163D", "NAT", "SP158163"),
+    (johnSmith26, "SP190793C", "NAT", "SP190793"),
+    (johnSmith27, "SP921303A", "NAT", "SP921303"),
+    (johnSmith30, "SP323834A", "NAT", "SP323834"),
+    (johnSmith31, "SP352776C", "NAT", "SP352776"),
+    (johnSmith32, "SP426589B", "NAT", "SP426589")
+  ).map((Record.apply _).tupled)
+
 }
