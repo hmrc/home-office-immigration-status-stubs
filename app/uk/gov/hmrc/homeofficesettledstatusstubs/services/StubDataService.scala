@@ -29,18 +29,15 @@ import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 class StubDataService @Inject()(cc: ControllerComponents) extends BackendController(cc) {
 
   private def search[S <: Searchable](searchable: S)(firstCheck: S => Option[StatusCheckResult])(
-    fallBack: S => Option[StatusResponse]): Result =
+    fallBack: S => Option[ErrorResponse]): Result =
     resultFor(searchable.correlationId, firstCheck(searchable))(fallBack(searchable)) match {
-      case Some(response @ StatusResponse(_, _, Some(error), status)) =>
-        val newStatus = status.getOrElse(400)
-        new Status(newStatus)(Json.toJson(response))
-      case Some(StatusResponse(_, None, None, _)) => //todo no.
-        Ok("")
-      case Some(response @ StatusResponse(_, Some(result), _, _))
-          if searchable.validateResult(result) =>
+      case Some(response @ ErrorResponse(_, status, _)) => new Status(status)(Json.toJson(response))
+      case Some(response @ SuccessResponse(_, result)) if searchable.validateResult(result) =>
         Ok(Json.toJson(response))
       case _ =>
-        NotFound(StatusResponse.errorResponseBody(searchable.correlationId, "ERR_NOT_FOUND", Nil))
+        NotFound(
+          StatusResponse
+            .errorResponseBody(searchable.correlationId, "ERR_NOT_FOUND", NOT_FOUND, Nil))
     }
 
   def mrzSearch(mrzSearch: MrzSearch): Result =
@@ -52,16 +49,16 @@ class StubDataService @Inject()(cc: ControllerComponents) extends BackendControl
       checkOtherNinos(s.correlationId, s.nino))
 
   private def resultFor(correlationId: String, search: => Option[StatusCheckResult])(
-    fallBack: => Option[StatusResponse]): Option[StatusResponse] =
+    fallBack: => Option[ErrorResponse]): Option[StatusResponse] =
     search match {
-      case Some(result) => Some(StatusResponse(correlationId, Some(result)))
+      case Some(result) => Some(SuccessResponse(correlationId, result))
       case None         => fallBack
     }
 
   private def checkOtherMrz(
     correlationId: String,
     docType: String,
-    docNum: String): Option[StatusResponse] =
+    docNum: String): Option[ErrorResponse] =
     (docType, docNum) match { //todo kerry nidhi check
       case ("NAT", "E8HDYKTB3") => Some(conflict(correlationId))
       case ("NAT", "E8HDYKTB4") => Some(tooManyRequests(correlationId))
@@ -69,7 +66,7 @@ class StubDataService @Inject()(cc: ControllerComponents) extends BackendControl
       case _                    => None
     }
 
-  private def checkOtherNinos(correlationId: String, nino: String): Option[StatusResponse] =
+  private def checkOtherNinos(correlationId: String, nino: String): Option[ErrorResponse] =
     nino match {
       case "HK089820A" => Some(conflict(correlationId))
       case "TP991941C" => Some(tooManyRequests(correlationId))
@@ -77,15 +74,14 @@ class StubDataService @Inject()(cc: ControllerComponents) extends BackendControl
       case _           => None
     }
 
-  private val conflict: String => StatusResponse = statusResponse(CONFLICT, "ERR_CONFLICT")
-  private val tooManyRequests: String => StatusResponse = statusResponse(TOO_MANY_REQUESTS)
-  private val internalServerError: String => StatusResponse = statusResponse(INTERNAL_SERVER_ERROR)
+  private val conflict: String => ErrorResponse = statusResponse(CONFLICT, "ERR_CONFLICT")
+  private val tooManyRequests: String => ErrorResponse = statusResponse(TOO_MANY_REQUESTS)
+  private val internalServerError: String => ErrorResponse = statusResponse(INTERNAL_SERVER_ERROR)
 
   private def statusResponse(status: Int, error: String = "[NOT_USED]")(correlationId: String) =
-    StatusResponse(
-      status = Some(status),
+    ErrorResponse(
+      status = status,
       correlationId = correlationId,
-      result = None,
-      error = Some(StatusError(error))
+      error = StatusError(error)
     )
 }

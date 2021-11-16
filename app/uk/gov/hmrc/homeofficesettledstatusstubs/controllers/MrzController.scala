@@ -29,13 +29,11 @@ import javax.inject.Inject
 class MrzController @Inject()(
   form: MrzSearchForm,
   stubDataService: StubDataService,
+  jsonHeaders: JsonHeadersAction,
   cc: ControllerComponents
 ) extends BackendController(cc) {
 
-  //todo add filter/action to add this.
-  final val HTTP_HEADER_CONTENT_TYPE_JSON = "Content-Type" -> "application/json"
-
-  def getImmigrationStatus: Action[JsValue] = Action(parse.tolerantJson) { implicit request =>
+  def getImmigrationStatus: Action[JsValue] = jsonHeaders(parse.tolerantJson) { implicit request =>
     val correlationId = request.headers.get("X-Correlation-Id").getOrElse("00000000")
     form(correlationId)
       .bind(request.body, Form.FromJsonMaxChars)
@@ -43,10 +41,9 @@ class MrzController @Inject()(
         errored =>
           BadRequest(
             StatusResponse
-              .errorResponseBody(correlationId, "ERR_VALIDATION", errored.errors)),
+              .errorResponseBody(correlationId, "ERR_VALIDATION", fields = errored.errors)),
         search => stubDataService.mrzSearch(search)
       )
-      .withHeaders(HTTP_HEADER_CONTENT_TYPE_JSON)
   }
 
 }

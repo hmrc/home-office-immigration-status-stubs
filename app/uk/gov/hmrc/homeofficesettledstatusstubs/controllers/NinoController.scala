@@ -24,20 +24,17 @@ import uk.gov.hmrc.homeofficesettledstatusstubs.models._
 import uk.gov.hmrc.homeofficesettledstatusstubs.services.StubDataService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
-import java.time.LocalDate
 import javax.inject.{Inject, Singleton}
 
 @Singleton
 class NinoController @Inject()(
   form: NinoSearchForm,
   stubDataService: StubDataService,
+  jsonHeaders: JsonHeadersAction,
   cc: ControllerComponents
 ) extends BackendController(cc) {
 
-  //todo add filter/action to add this.
-  final val HTTP_HEADER_CONTENT_TYPE_JSON = "Content-Type" -> "application/json"
-
-  def publicFundsByNino: Action[JsValue] = Action(parse.tolerantJson) { implicit request =>
+  def publicFundsByNino: Action[JsValue] = jsonHeaders(parse.tolerantJson) { implicit request =>
     val correlationId = request.headers.get("X-Correlation-Id").getOrElse("00000000")
     form(correlationId)
       .bind(request.body, Form.FromJsonMaxChars)
@@ -45,10 +42,9 @@ class NinoController @Inject()(
         errored =>
           BadRequest(
             StatusResponse
-              .errorResponseBody(correlationId, "ERR_VALIDATION", errored.errors)),
+              .errorResponseBody(correlationId, "ERR_VALIDATION", fields = errored.errors)),
         search => stubDataService.ninoSearch(search)
       )
-      .withHeaders(HTTP_HEADER_CONTENT_TYPE_JSON)
   }
 
 }
