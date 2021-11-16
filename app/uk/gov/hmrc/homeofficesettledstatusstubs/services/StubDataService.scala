@@ -40,7 +40,7 @@ class StubDataService @Inject()(cc: ControllerComponents) extends BackendControl
           if searchable.validateResult(result) =>
         Ok(Json.toJson(response))
       case _ =>
-        NotFound(StatusResponse.errorResponseBody(searchable.correlationId, "ERR_NOT_FOUND"))
+        NotFound(StatusResponse.errorResponseBody(searchable.correlationId, "ERR_NOT_FOUND", Nil))
     }
 
   def mrzSearch(mrzSearch: MrzSearch): Result =

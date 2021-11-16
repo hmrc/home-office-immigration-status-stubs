@@ -14,10 +14,8 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.homeofficesettledstatusstubs
+package uk.gov.hmrc.homeofficesettledstatusstubs.models.searches
 
-import java.time.format.DateTimeFormatter
+import java.time.LocalDate
 
-package object stubdata {
-  val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy")
-}
+final case class StatusCheckRange(startDate: LocalDate, endDate: LocalDate)

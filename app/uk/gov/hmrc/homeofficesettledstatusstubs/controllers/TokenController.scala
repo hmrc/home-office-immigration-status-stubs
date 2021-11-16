@@ -17,16 +17,16 @@
 package uk.gov.hmrc.homeofficesettledstatusstubs.controllers
 
 import play.api.{Configuration, Environment}
-import play.api.libs.json.{Format, Json}
+import play.api.libs.json.{Format, Json, OWrites}
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
 import uk.gov.hmrc.homeofficesettledstatusstubs.controllers.TokenController.tokenForm
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import java.util.UUID
 import javax.inject.Inject
-import scala.concurrent.Future
 import play.api.data.Form
 import play.api.data.Forms._
+import TokenController.Token
 
 class TokenController @Inject()(
   val env: Environment,
@@ -34,22 +34,25 @@ class TokenController @Inject()(
 )(implicit val configuration: Configuration)
     extends BackendController(cc) {
 
-  def token: Action[AnyContent] = Action.async { implicit request =>
-    Future.successful(
-      tokenForm
-        .bindFromRequest()
-        .fold(
-          errors => BadRequest(Json.toJson(errors.errors.map(e => (e.key, e.message)).toMap)),
-          _ => Ok(Json.parse(s"""{
-                                |   "access_token": "${UUID.randomUUID().toString}",
-                                |   "refresh_token": "${UUID.randomUUID().toString}",
-                                |   "token_type": "Bearer"
-                                |}""".stripMargin))
-        ))
+  def token: Action[AnyContent] = Action { implicit request =>
+    tokenForm
+      .bindFromRequest()
+      .fold(
+        errors => BadRequest(Json.toJson(errors.errors.map(e => (e.key, e.message)).toMap)),
+        _ => Ok(Json.toJson(Token()))
+      )
   }
 }
 
 object TokenController {
+
+  final case class Token(
+    access_token: String = UUID.randomUUID().toString,
+    refresh_token: String = UUID.randomUUID().toString,
+    token_type: String = "Bearer")
+  object Token {
+    implicit val writes: OWrites[Token] = Json.writes[Token]
+  }
 
   private case class TokenRequest(grant_type: String, client_id: String, client_secret: String)
 

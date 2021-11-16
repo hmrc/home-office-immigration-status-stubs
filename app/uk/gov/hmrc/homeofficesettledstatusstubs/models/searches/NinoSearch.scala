@@ -18,12 +18,13 @@ package uk.gov.hmrc.homeofficesettledstatusstubs.models.searches
 
 import uk.gov.hmrc.homeofficesettledstatusstubs.models.StatusCheckResult
 
-case class NinoSearch(
+final case class NinoSearch(
   correlationId: String,
   nino: String,
   dateOfBirth: String,
   familyName: String,
-  givenName: String)
+  givenName: String,
+  statusCheckRange: StatusCheckRange)
     extends Searchable {
 
   override def validateResult(result: StatusCheckResult): Boolean = {

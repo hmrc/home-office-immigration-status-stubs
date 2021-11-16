@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.homeofficesettledstatusstubs.models
 
+import play.api.data.FormError
 import play.api.libs.json.{Format, Json}
 
 //todo split this in to 2 objects for Error and success
@@ -32,7 +33,7 @@ object StatusResponse {
   def errorResponseBody(
     correlationId: String,
     errCode: String,
-    fields: Seq[(String, String)] = Nil): String =
+    fields: Seq[FormError] = Nil): String =
     Json
       .toJson(
         StatusResponse(
@@ -40,7 +41,7 @@ object StatusResponse {
           error = Some(
             StatusError(
               errCode = errCode,
-              fields = fields.map { case (code, name) => Field(code, name) }
+              fields = fields.map { case FormError(name, code :: _, _) => Field(code, name) }
             )),
           result = None
         ))

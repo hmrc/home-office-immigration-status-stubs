@@ -3,10 +3,9 @@ package uk.gov.hmrc.homeofficesettledstatusstubs.controllers
 import java.net.URLEncoder
 import org.scalatest.Suite
 import org.scalatestplus.play.ServerProvider
-import play.api.libs.json.JsObject
+import play.api.libs.json.{JsLookupResult, JsObject, Json}
 import play.api.libs.ws.{WSClient, WSResponse}
 import uk.gov.hmrc.homeofficesettledstatusstubs.support.{JsonMatchers, ServerBaseISpec}
-import play.api.libs.json.Json
 import uk.gov.hmrc.homeofficesettledstatusstubs.stubdata.DemoStubData
 import uk.gov.hmrc.homeofficesettledstatusstubs.stubdata.TestStubData.nevioSabina
 
@@ -50,7 +49,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
       .post(payload)
       .futureValue
 
-  val statusRange = """"statusCheckRange" : {"startDate": "x", "endDate": "x"}"""
+  val statusRange = """"statusCheckRange" : {"startDate": "2009-01-01", "endDate": "2009-01-02"}"""
 
   "HomeOfficeSettledStatusStubsController" when {
 
@@ -84,18 +83,18 @@ class HomeOfficeSettledStatusStubsControllerISpec
         val result = publicFundsByNino(
           s"""{"nino":"$NINO_VALID","givenName":"Lawrence","familyName":"Velazques","dateOfBirth":"1954-10-04", $statusRange}""")
 
-        (result.json.as[JsObject] \ "result").get shouldBe Json.toJson(DemoStubData.lawrenceVelazquez)
-        
+        result.status shouldBe 200
+         (result.json.as[JsObject] \ "result").toOption shouldBe Some(Json.toJson(DemoStubData.lawrenceVelazquez))
       }
 
-      "respond with 200 if request is valid and has only first letter of the name, and date contains a pattern" in {
+      "respond with 200 if request is valid, and date contains a pattern, and nino has no suffix" in {
         ping.status.shouldBe(200)
 
         val result = publicFundsByNino(
-          s"""{"nino":"$NINO_VALID","givenName":"L","familyName":"Velaz","dateOfBirth":"1954-XX-04", $statusRange}""")
+          s"""{"nino":"BR253184", "givenName":"Njeri", "familyName":"Samara", "dateOfBirth":"1973-XX-16", $statusRange}""")
 
         result.status shouldBe 200
-        (result.json.as[JsObject] \ "result").get shouldBe Json.toJson(DemoStubData.lawrenceVelazquez)
+        (result.json.as[JsObject] \ "result").get shouldBe Json.toJson(DemoStubData.njeriSamara)
       }
 
       "respond with 404 if the service failed to find an identity because of nino" in {
@@ -153,8 +152,8 @@ class HomeOfficeSettledStatusStubsControllerISpec
             haveProperty[String]("errCode", be("ERR_VALIDATION"))
               and havePropertyArrayOf[JsObject](
                 "fields",
-                haveProperty[String]("code", be("nino"))
-                  and haveProperty[String]("name", be("ERR_INVALID_NINO"))
+                haveProperty[String]("name", be("nino"))
+                  and haveProperty[String]("code", be("ERR_INVALID_NINO"))
               )
           ))
       }
@@ -262,7 +261,7 @@ class HomeOfficeSettledStatusStubsControllerISpec
 
       "respond with 409 if status is 409" in {
         val result = publicFundsByMRZ(
-          s"""{"documentType":"NAT", "documentNumber" : "E8HDYKTB3", "nationality": "x", "dateOfBirth":"x", $statusRange}"""
+          s"""{"documentType":"NAT", "documentNumber" : "E8HDYKTB3", "nationality": "x", "dateOfBirth":"1956-10-09", $statusRange}"""
         )
 
         result.status shouldBe 409
@@ -270,14 +269,14 @@ class HomeOfficeSettledStatusStubsControllerISpec
 
       "respond with 429 if status is 429" in {
         val result = publicFundsByMRZ(
-          s"""{"documentType":"NAT", "documentNumber" : "E8HDYKTB4", "nationality": "x","dateOfBirth":"x", $statusRange}""")
+          s"""{"documentType":"NAT", "documentNumber" : "E8HDYKTB4", "nationality": "x", "dateOfBirth":"1956-10-09", $statusRange}""")
 
         result.status shouldBe 429
       }
 
       "respond with 500 if status is 500" in {
         val result = publicFundsByMRZ(
-          s"""{"documentType":"NAT", "documentNumber" : "E8HDYKTB5", "nationality": "x","dateOfBirth":"x", $statusRange}""")
+          s"""{"documentType":"NAT", "documentNumber" : "E8HDYKTB5", "nationality": "x", "dateOfBirth":"1956-10-09", $statusRange}""")
 
         result.status shouldBe 500
       }

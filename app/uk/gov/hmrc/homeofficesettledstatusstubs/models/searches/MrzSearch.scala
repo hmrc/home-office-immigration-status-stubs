@@ -18,15 +18,14 @@ package uk.gov.hmrc.homeofficesettledstatusstubs.models.searches
 
 import uk.gov.hmrc.homeofficesettledstatusstubs.models.StatusCheckResult
 
-case class MrzSearch(
+final case class MrzSearch(
   correlationId: String,
   docType: String,
   documentNum: String,
   dob: String,
   nationality: String,
-  startDate: String,
-  endDate: String)
-    extends Searchable {
+  statusCheckRange: StatusCheckRange
+) extends Searchable {
 
   override def validateResult(result: StatusCheckResult): Boolean =
     result.nationality == nationality && result.dateOfBirth.toString == dob
