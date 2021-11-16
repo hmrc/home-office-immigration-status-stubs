@@ -209,7 +209,7 @@ object QATestStubData extends DataSet {
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("07/10/2021", formatter),
         statusEndDate = Some(LocalDate.parse("05/02/2023", formatter)),
-        productType = "DEPENDANT",
+        productType = "STUDY",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       )
@@ -347,6 +347,93 @@ object QATestStubData extends DataSet {
     )
   )
 
+  val ALEXANDRACARMENQuinn = StatusCheckResult(
+    "ALEXANDRA-CARMEN Quinn",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2021", formatter),
+        productType = "EUS_EUN_JFM",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val MajaGlowa = StatusCheckResult(
+    "Maja Głowa",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2021", formatter),
+        productType = "EUS_TCN_JFM",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val SupermanALEXANDRACARMEN = StatusCheckResult(
+    "Superman ALEXANDRA-CARMEN",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2021", formatter),
+        productType = "EUS_FMFW",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val ONEILLHancock = StatusCheckResult(
+    "O'NEILL Hancock",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("05/02/2022", formatter)),
+        productType = "EUS",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val arthurHancock = StatusCheckResult(
+    "árthur Hancock",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("05/02/2022", formatter)),
+        productType = "EUS",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val JohnSmith33 = StatusCheckResult(
+    "John Smith",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("05/02/2022", formatter)),
+        productType = "BNO_LOTR",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
+
   val johnSmith32 = StatusCheckResult(
     "John Smith",
     LocalDate.parse("15/10/1971", formatter),
@@ -376,7 +463,13 @@ object QATestStubData extends DataSet {
     (johnSmith27, "SP921303A", "NAT", "SP921303"),
     (johnSmith30, "SP323834A", "NAT", "SP323834"),
     (johnSmith31, "SP352776C", "NAT", "SP352776"),
-    (johnSmith32, "SP426589B", "NAT", "SP426589")
+    (johnSmith32, "SP426589B", "NAT", "SP426589"),
+    (ALEXANDRACARMENQuinn, "SP142783D", "NAT", "SP142783"),
+    (MajaGlowa, "SP911798A", "NAT", "SP911798"),
+    (SupermanALEXANDRACARMEN, "SP715935D", "NAT", "SP715935"),
+    (ONEILLHancock, "SP997679C", "NAT", "SP997679"),
+    (arthurHancock, "SP501555A", "NAT", "SP501555"),
+    (JohnSmith33, "SP183480C", "NAT", "SP183480")
   ).map((Record.apply _).tupled)
 
 }
