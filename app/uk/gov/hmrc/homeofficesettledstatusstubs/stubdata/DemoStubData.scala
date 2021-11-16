@@ -19,11 +19,8 @@ package uk.gov.hmrc.homeofficesettledstatusstubs.stubdata
 import uk.gov.hmrc.homeofficesettledstatusstubs.models._
 
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 object DemoStubData extends DataSet {
-
-  val formatter = DateTimeFormatter.ofPattern("d/MM/yyyy")
 
   val lawrenceVelazquez = StatusCheckResult(
     "Lawrence Velazquez",

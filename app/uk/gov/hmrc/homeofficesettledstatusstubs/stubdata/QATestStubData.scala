@@ -17,14 +17,10 @@
 package uk.gov.hmrc.homeofficesettledstatusstubs.stubdata
 
 import uk.gov.hmrc.homeofficesettledstatusstubs.models._
-import uk.gov.hmrc.homeofficesettledstatusstubs.stubdata.DemoStubData.formatter
 
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 object QATestStubData extends DataSet {
-
-  val formatter = DateTimeFormatter.ofPattern("d/MM/yyyy")
 
   val johnSmith = StatusCheckResult(
     "John Smith",
