@@ -445,7 +445,6 @@ object QATestStubData {
     Nil
   )
 
-
   val results: Map[String, StatusCheckResult] = Map(
     "SP317690D" -> johnSmith1,
     "SP233073C" -> johnSmith3,

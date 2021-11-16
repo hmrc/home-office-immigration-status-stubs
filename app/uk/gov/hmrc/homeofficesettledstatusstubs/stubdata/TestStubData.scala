@@ -430,6 +430,50 @@ object TestStubData {
     Nil
   )
 
+  val perfTestEU = StatusCheckResult(
+    "Stefano Reese",
+    LocalDate.parse("27/02/1974", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "EUS",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
+        productType = "FRONTIER_WORKER",
+        immigrationStatus = "PERMIT",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/10/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
+        productType = "EUS",
+        immigrationStatus = "POST_GRACE_PERIOD_COA_GRANT",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val perfTestNonEU = StatusCheckResult(
+    "Sarah Smith",
+    LocalDate.parse("11/05/1990", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
+
   val results: Map[String, StatusCheckResult] = Map(
     "MZ006526D" -> ignacSarlota,
     "AB116565A" -> robinTens,
@@ -449,6 +493,8 @@ object TestStubData {
     "ZL048657A" -> jimmyBrown,
     "RR741495B" -> sarahSmith,
     "RR741365B" -> peteWolf,
-    "ZL341566D" -> nevioSabina
+    "ZL341566D" -> nevioSabina,
+    "LA199424C" -> perfTestEU,
+    "MN828773C" -> perfTestNonEU
   )
 }
