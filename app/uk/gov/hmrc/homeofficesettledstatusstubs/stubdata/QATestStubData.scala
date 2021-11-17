@@ -17,14 +17,10 @@
 package uk.gov.hmrc.homeofficesettledstatusstubs.stubdata
 
 import uk.gov.hmrc.homeofficesettledstatusstubs.models._
-import uk.gov.hmrc.homeofficesettledstatusstubs.stubdata.DemoStubData.formatter
 
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
-object QATestStubData {
-
-  val formatter = DateTimeFormatter.ofPattern("d/MM/yyyy")
+object QATestStubData extends DataSet {
 
   val johnSmith = StatusCheckResult(
     "John Smith",
@@ -445,33 +441,33 @@ object QATestStubData {
     Nil
   )
 
+  override val records: Seq[Record] = Seq(
+    (johnSmith1, "SP317690D", "PASSPORT", "SP9412794"),
+    (johnSmith3, "SP233073C", "PASSPORT", "SP5937773"),
+    (johnSmith4, "SP146882A", "PASSPORT", "SP7512294"),
+    (johnSmith5, "SP996057A", "PASSPORT", "SP2234474"),
+    (claudRoslyn6, "SP890342A", "PASSPORT", "SP3755262"),
+    (johnSmith7, "SP810345D", "PASSPORT", "SP6874856"),
+    (johnSmith8, "SP048960B", "PASSPORT", "SP6387559"),
+    (johnSmith9, "SP367573C", "PASSPORT", "SP1366811"),
+    (johnSmith12, "SP033627A", "PASSPORT", "SP5923781"),
+    (johnSmith13, "SP537999A", "PASSPORT", "SP2123990"),
+    (johnSmith16, "SP857496A", "PASSPORT", "SP6068096"),
+    (johnSmith17, "SP018395A", "PASSPORT", "SP5476028"),
+    (johnSmith20, "SP190167C", "PASSPORT", "SP8877397"),
+    (johnSmith21, "SP003270D", "PASSPORT", "SP7339518"),
+    (johnSmith23, "SP158163D", "PASSPORT", "SP7902006"),
+    (johnSmith26, "SP190793C", "PASSPORT", "SP2152606"),
+    (johnSmith27, "SP921303A", "PASSPORT", "SP9735953"),
+    (johnSmith30, "SP323834A", "PASSPORT", "SP5518985"),
+    (johnSmith31, "SP352776C", "PASSPORT", "SP7868170"),
+    (johnSmith32, "SP426589B", "PASSPORT", "SP7732098"),
+    (ALEXANDRACARMENQuinn, "SP142783D", "PASSPORT", "SP8291415"),
+    (MajaGlowa, "SP911798A", "PASSPORT", "SP2312615"),
+    (SupermanALEXANDRACARMEN, "SP715935D", "PASSPORT", "SP8700770"),
+    (ONEILLHancock, "SP997679C", "PASSPORT", "SP6368116"),
+    (arthurHancock, "SP501555A", "PASSPORT", "SP6112504"),
+    (JohnSmith33, "SP183480C", "PASSPORT", "SP4239309")
+  ).map((Record.apply _).tupled)
 
-  val results: Map[String, StatusCheckResult] = Map(
-    "SP317690D" -> johnSmith1,
-    "SP233073C" -> johnSmith3,
-    "SP146882A" -> johnSmith4,
-    "SP996057A" -> johnSmith5,
-    "SP890342A" -> claudRoslyn6,
-    "SP810345D" -> johnSmith7,
-    "SP048960B" -> johnSmith8,
-    "SP367573C" -> johnSmith9,
-    "SP033627A" -> johnSmith12,
-    "SP537999A" -> johnSmith13,
-    "SP857496A" -> johnSmith16,
-    "SP018395A" -> johnSmith17,
-    "SP190167C" -> johnSmith20,
-    "SP003270D" -> johnSmith21,
-    "SP158163D" -> johnSmith23,
-    "SP190793C" -> johnSmith26,
-    "SP921303A" -> johnSmith27,
-    "SP323834A" -> johnSmith30,
-    "SP352776C" -> johnSmith31,
-    "SP426589B" -> johnSmith32,
-    "SP142783D" -> ALEXANDRACARMENQuinn,
-    "SP911798A" -> MajaGlowa,
-    "SP715935D" -> SupermanALEXANDRACARMEN,
-    "SP997679C" -> ONEILLHancock,
-    "SP501555A" -> arthurHancock,
-    "SP183480C" -> JohnSmith33
-  )
 }

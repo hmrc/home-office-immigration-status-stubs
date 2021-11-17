@@ -14,16 +14,8 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.homeofficesettledstatusstubs.stubdata
+package uk.gov.hmrc.homeofficesettledstatusstubs.models.searches
 
-import uk.gov.hmrc.homeofficesettledstatusstubs.models._
+import java.time.LocalDate
 
-object StubData {
-
-  val mrzToResult: Map[(String, String), StatusCheckResult] =
-    Seq(DemoStubData, TestStubData, QATestStubData).flatMap(_.mrzToResult).toMap
-
-  val ninoToResult: Map[String, StatusCheckResult] =
-    Seq(DemoStubData, TestStubData, QATestStubData).flatMap(_.ninoToResult).toMap
-
-}
+final case class StatusCheckRange(startDate: LocalDate, endDate: LocalDate)

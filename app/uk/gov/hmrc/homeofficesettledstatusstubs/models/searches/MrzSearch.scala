@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.homeofficesettledstatusstubs.stubdata
+package uk.gov.hmrc.homeofficesettledstatusstubs.models.searches
 
-import uk.gov.hmrc.homeofficesettledstatusstubs.models._
+import uk.gov.hmrc.homeofficesettledstatusstubs.models.StatusCheckResult
 
-object StubData {
+final case class MrzSearch(
+  correlationId: String,
+  docType: String,
+  documentNum: String,
+  dob: String,
+  nationality: String,
+  statusCheckRange: StatusCheckRange
+) extends Searchable {
 
-  val mrzToResult: Map[(String, String), StatusCheckResult] =
-    Seq(DemoStubData, TestStubData, QATestStubData).flatMap(_.mrzToResult).toMap
-
-  val ninoToResult: Map[String, StatusCheckResult] =
-    Seq(DemoStubData, TestStubData, QATestStubData).flatMap(_.ninoToResult).toMap
-
+  override def validateResult(result: StatusCheckResult): Boolean =
+    result.nationality == nationality && result.dateOfBirth.toString == dob
 }

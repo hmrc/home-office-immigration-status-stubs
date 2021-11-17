@@ -17,14 +17,10 @@
 package uk.gov.hmrc.homeofficesettledstatusstubs.stubdata
 
 import uk.gov.hmrc.homeofficesettledstatusstubs.models._
-import uk.gov.hmrc.homeofficesettledstatusstubs.stubdata.DemoStubData.formatter
 
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
-object TestStubData {
-
-  val formatter = DateTimeFormatter.ofPattern("d/MM/yyyy")
+object TestStubData extends DataSet {
 
   val ignacSarlota = StatusCheckResult(
     "Ignác Šarlota",
@@ -430,25 +426,26 @@ object TestStubData {
     Nil
   )
 
-  val results: Map[String, StatusCheckResult] = Map(
-    "MZ006526D" -> ignacSarlota,
-    "AB116565A" -> robinTens,
-    "HT423288B" -> lawrenceSmith,
-    "KA339728D" -> stefanieReason,
-    "HN191408A" -> sabeenMuhammad,
-    "CS601937B" -> joeBloggs,
-    "XC858842B" -> joshBloggs,
-    "CS601937C" -> benBloggs,
-    "YT750325A" -> wolfgangTraube,
-    "JZ899721D" -> samSmith,
-    "TX721235B" -> jenBright,
-    "EP640312A" -> alisonWright,
-    "JE612281A" -> eveVassil,
-    "WY706993C" -> aliWrightson,
-    "NJ288804C" -> lucySprag,
-    "ZL048657A" -> jimmyBrown,
-    "RR741495B" -> sarahSmith,
-    "RR741365B" -> peteWolf,
-    "ZL341566D" -> nevioSabina
-  )
+  override val records: Seq[Record] = Seq(
+    (ignacSarlota, "MZ006526D", "NAT", "MZ006526"),
+    (robinTens, "AB116565A", "NAT", "AB116565"),
+    (lawrenceSmith, "HT423288B", "NAT", "HT423288"),
+    (stefanieReason, "KA339728D", "NAT", "KA339728"),
+    (sabeenMuhammad, "HN191408A", "NAT", "HN191408"),
+    (joeBloggs, "CS601937B", "NAT", "CS601937"),
+    (joshBloggs, "XC858842B", "NAT", "XC858842"),
+    (benBloggs, "CS601937C", "NAT", "CS601937"),
+    (wolfgangTraube, "YT750325A", "NAT", "YT750325"),
+    (samSmith, "JZ899721D", "NAT", "JZ899721"),
+    (jenBright, "TX721235B", "NAT", "TX721235"),
+    (alisonWright, "EP640312A", "NAT", "EP640312"),
+    (eveVassil, "JE612281A", "NAT", "JE612281"),
+    (aliWrightson, "WY706993C", "NAT", "WY706993"),
+    (lucySprag, "NJ288804C", "NAT", "NJ288804"),
+    (jimmyBrown, "ZL048657A", "NAT", "ZL048657"),
+    (sarahSmith, "RR741495B", "NAT", "RR741495"),
+    (peteWolf, "RR741365B", "NAT", "RR741365"),
+    (nevioSabina, "ZL341566D", "NAT", "ZL341566")
+  ).map((Record.apply _).tupled)
+
 }

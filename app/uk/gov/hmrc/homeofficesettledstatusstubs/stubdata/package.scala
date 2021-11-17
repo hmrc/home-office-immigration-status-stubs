@@ -14,16 +14,10 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.homeofficesettledstatusstubs.stubdata
+package uk.gov.hmrc.homeofficesettledstatusstubs
 
-import uk.gov.hmrc.homeofficesettledstatusstubs.models._
+import java.time.format.DateTimeFormatter
 
-object StubData {
-
-  val mrzToResult: Map[(String, String), StatusCheckResult] =
-    Seq(DemoStubData, TestStubData, QATestStubData).flatMap(_.mrzToResult).toMap
-
-  val ninoToResult: Map[String, StatusCheckResult] =
-    Seq(DemoStubData, TestStubData, QATestStubData).flatMap(_.ninoToResult).toMap
-
+package object stubdata {
+  val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy")
 }

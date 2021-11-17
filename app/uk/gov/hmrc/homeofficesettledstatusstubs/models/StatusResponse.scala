@@ -16,32 +16,42 @@
 
 package uk.gov.hmrc.homeofficesettledstatusstubs.models
 
-import play.api.libs.json.{Format, Json}
+import play.api.data.FormError
+import play.api.http.Status.BAD_REQUEST
+import play.api.libs.json.{Json, OWrites}
 
-final case class StatusResponse(
-  correlationId: String,
-  result: Option[StatusCheckResult],
-  error: Option[StatusError] = None,
-  status: Option[Int] = None
-)
+trait StatusResponse {
+  val correlationId: String
+}
+
+case class ErrorResponse(correlationId: String, status: Int = 400, error: StatusError)
+    extends StatusResponse
+
+object ErrorResponse {
+  implicit val writes: OWrites[ErrorResponse] = Json.writes[ErrorResponse]
+}
+case class SuccessResponse(correlationId: String, result: StatusCheckResult) extends StatusResponse
+
+object SuccessResponse {
+  implicit val writes: OWrites[SuccessResponse] = Json.writes[SuccessResponse]
+}
 
 object StatusResponse {
-  implicit val formats: Format[StatusResponse] = Json.format[StatusResponse]
-
   def errorResponseBody(
     correlationId: String,
     errCode: String,
-    fields: Seq[(String, String)] = Nil): String =
+    status: Int = BAD_REQUEST,
+    fields: Seq[FormError] = Nil): String =
     Json
       .toJson(
-        StatusResponse(
+        ErrorResponse(
+          status = status,
           correlationId = correlationId,
-          error = Some(
-            StatusError(
-              errCode = errCode,
-              fields = fields.map { case (code, name) => Field(code, name) }
-            )),
-          result = None
-        ))
+          error = StatusError(
+            errCode = errCode,
+            fields = fields.map { case FormError(name, code :: _, _) => Field(code, name) }
+          )
+        )
+      )
       .toString
 }
