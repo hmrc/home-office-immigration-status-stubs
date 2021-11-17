@@ -59,7 +59,7 @@ class StubDataService @Inject()(cc: ControllerComponents) extends BackendControl
     correlationId: String,
     docType: String,
     docNum: String): Option[ErrorResponse] =
-    (docType, docNum) match { //todo kerry nidhi check
+    (docType, docNum) match {
       case ("NAT", "E8HDYKTB3") => Some(conflict(correlationId))
       case ("NAT", "E8HDYKTB4") => Some(tooManyRequests(correlationId))
       case ("NAT", "E8HDYKTB5") => Some(internalServerError(correlationId))

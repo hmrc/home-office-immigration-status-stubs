@@ -426,8 +426,6 @@ object TestStubData extends DataSet {
     Nil
   )
 
-  //todo nidhi kerry check these
-  //i have just used NAT and the nino with out suffix
   override val records: Seq[Record] = Seq(
     (ignacSarlota, "MZ006526D", "NAT", "MZ006526"),
     (robinTens, "AB116565A", "NAT", "AB116565"),
