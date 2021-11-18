@@ -425,7 +425,49 @@ object TestStubData extends DataSet {
     "ESP",
     Nil
   )
+  val perfTestEU = StatusCheckResult(
+    "Stefano Reese",
+    LocalDate.parse("27/02/1974", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "EUS",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
+        productType = "FRONTIER_WORKER",
+        immigrationStatus = "PERMIT",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/10/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
+        productType = "EUS",
+        immigrationStatus = "POST_GRACE_PERIOD_COA_GRANT",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
 
+  val perfTestNonEU = StatusCheckResult(
+    "Sarah Smith",
+    LocalDate.parse("11/05/1990", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
   override val records: Seq[Record] = Seq(
     (ignacSarlota, "MZ006526D", "NAT", "MZ006526"),
     (robinTens, "AB116565A", "NAT", "AB116565"),
@@ -445,7 +487,15 @@ object TestStubData extends DataSet {
     (jimmyBrown, "ZL048657A", "NAT", "ZL048657"),
     (sarahSmith, "RR741495B", "NAT", "RR741495"),
     (peteWolf, "RR741365B", "NAT", "RR741365"),
-    (nevioSabina, "ZL341566D", "NAT", "ZL341566")
+    (nevioSabina, "ZL341566D", "NAT", "ZL341566"),
+    (perfTestEU, "LA199424C", "NAT", "11111111"),
+    (perfTestEU, "EK993922B", "BRP", "11111111"),
+    (perfTestEU, "MS742656C", "BRC", "11111111"),
+    (perfTestEU, "PC398873D", "PASSPORT", "11111111"),
+    (perfTestNonEU, "MN828773C", "NAT", "11111112"),
+    (perfTestNonEU, "EJ836244D", "BRP", "11111112"),
+    (perfTestNonEU, "RP568106D", "BRC", "11111112"),
+    (perfTestNonEU, "PB321979B", "PASSPORT", "11111112")
   ).map((Record.apply _).tupled)
 
 }
