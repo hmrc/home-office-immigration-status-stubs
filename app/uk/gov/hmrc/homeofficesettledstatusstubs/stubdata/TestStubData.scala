@@ -18,6 +18,7 @@ package uk.gov.hmrc.homeofficesettledstatusstubs.stubdata
 
 import uk.gov.hmrc.homeofficesettledstatusstubs.models._
 
+
 import java.time.LocalDate
 
 object TestStubData extends DataSet {
@@ -426,6 +427,114 @@ object TestStubData extends DataSet {
     Nil
   )
 
+  val lawrenceVelazquez = StatusCheckResult(
+    "Lawrence Velazquez",
+    LocalDate.parse("04/10/1954", formatter),
+    "CHE",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/07/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("19/01/2024", formatter)),
+        productType = "EUS",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("26/01/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("19/07/2021", formatter)),
+        productType = "EUS",
+        immigrationStatus = "COA_IN_TIME_GRANT",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val ammarNaaji = StatusCheckResult(
+    "Ammar Naaji",
+    LocalDate.parse("25/07/1978", formatter),
+    "AFG",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("19/03/2024", formatter)),
+        productType = "STUDY",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("26/06/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("19/09/2021", formatter)),
+        productType = "STUDY",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("19/04/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("19/09/2021", formatter)),
+        productType = "DEPENDANT",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val amnaBoulos = StatusCheckResult(
+    "Amna Boulos",
+    LocalDate.parse("27/03/1981", formatter),
+    "Bahrain",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("01/09/2022", formatter)),
+        productType = "DEPENDANT",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = true
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("27/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("26/09/2021", formatter)),
+        productType = "WORK",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+  val alinafeTemitope = StatusCheckResult(
+    "Alinafe Temitope",
+    LocalDate.parse("18/07/1974", formatter),
+    "BLM",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("15/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("14/11/2023", formatter)),
+        productType = "GRADUATE",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+  val wolfgangTraub = StatusCheckResult(
+    "Wolfgang Traube",
+    LocalDate.parse("26/08/1983", formatter),
+    "DE",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("29/06/2021", formatter),
+        statusEndDate = None,
+        productType = "EUS",
+        immigrationStatus = "COA_IN_TIME_GRANT",
+        noRecourseToPublicFunds = true
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("28/10/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("28/06/2021", formatter)),
+        productType = "WORK",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
+
   override val records: Seq[Record] = Seq(
     (ignacSarlota, "MZ006526D", "NAT", "MZ006526"),
     (robinTens, "AB116565A", "NAT", "AB116565"),
@@ -445,7 +554,13 @@ object TestStubData extends DataSet {
     (jimmyBrown, "ZL048657A", "NAT", "ZL048657"),
     (sarahSmith, "RR741495B", "NAT", "RR741495"),
     (peteWolf, "RR741365B", "NAT", "RR741365"),
-    (nevioSabina, "ZL341566D", "NAT", "ZL341566")
+    (nevioSabina, "ZL341566D", "NAT", "ZL341566"),
+    (lawrenceVelazquez, "HT423277B", "PASSPORT", "123456789"),
+    (ammarNaaji, "ZL198221D", "NAT", "U2ETHGPL5"),
+    (amnaBoulos, "TP469941B", "BRC", "ZU1234567"),
+    (alinafeTemitope, "TZ650906D", "BRP", "DS1234567"),
+    (wolfgangTraub, "AB807993C", "PASSPORT", "567891234"),
+
   ).map((Record.apply _).tupled)
 
 }
