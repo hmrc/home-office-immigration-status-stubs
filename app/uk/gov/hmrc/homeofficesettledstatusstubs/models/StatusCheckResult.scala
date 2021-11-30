@@ -25,7 +25,9 @@ final case class StatusCheckResult(
   // (ICAO 3 letter acronym - ISO 3166-1)
   nationality: String,
   statuses: List[ImmigrationStatus]
-)
+) {
+  require(nationality.length == 3, "nationality should be a 3 letter ISO 3166-1 code")
+}
 
 object StatusCheckResult {
   implicit val formats: Format[StatusCheckResult] = Json.format[StatusCheckResult]
