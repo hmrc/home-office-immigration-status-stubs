@@ -600,7 +600,7 @@ object DemoStubData extends DataSet {
   val alinafeTemitope = StatusCheckResult(
     "Alinafe Temitope",
     LocalDate.parse("18/07/1974", formatter),
-    "BLM",
+    "CRI",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("15/05/2021", formatter),
