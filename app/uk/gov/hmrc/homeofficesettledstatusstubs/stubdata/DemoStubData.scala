@@ -113,7 +113,7 @@ object DemoStubData extends DataSet {
   val wolfgangTraube = StatusCheckResult(
     "Wolfgang Traube",
     LocalDate.parse("26/08/1983", formatter),
-    "DE",
+    "DEU",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("29/06/2021", formatter),
@@ -282,7 +282,7 @@ object DemoStubData extends DataSet {
   val elsaViggo = StatusCheckResult(
     "Elsa Viggo",
     LocalDate.parse("06/10/2000", formatter),
-    "SW",
+    "SWE",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("19/02/2021", formatter),
