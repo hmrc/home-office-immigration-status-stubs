@@ -468,6 +468,47 @@ object TestStubData extends DataSet {
       )
     )
   )
+  val SuzyWolf = StatusCheckResult(
+    "Suzy Wolf",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2021", formatter),
+        productType = "EUS|TCNBRC_JFM",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val SuzyWolf1 = StatusCheckResult(
+    "Suzy Wolf",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2021", formatter),
+        productType = "EUS|_JFM",
+        immigrationStatus = "COA_IN_TIME_GRANT",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val SuzyWolf2 = StatusCheckResult(
+    "Suzy Wolf",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2021", formatter),
+        productType = "EUS|_JFM",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
   override val records: Seq[Record] = Seq(
     (ignacSarlota, "MZ006526D", "NAT", "MZ006526"),
     (robinTens, "AB116565A", "NAT", "AB116565"),
@@ -495,7 +536,10 @@ object TestStubData extends DataSet {
     (perfTestNonEU, "MN828773C", "NAT", "11111112"),
     (perfTestNonEU, "EJ836244D", "BRP", "11111112"),
     (perfTestNonEU, "RP568106D", "BRC", "11111112"),
-    (perfTestNonEU, "PB321979B", "PASSPORT", "11111112")
+    (perfTestNonEU, "PB321979B", "PASSPORT", "11111112"),
+    (SuzyWolf, "YB987611D", "PASSPORT", "11111112"),
+    (SuzyWolf1, "TM200512A", "NAT", "11111112"),
+    (SuzyWolf2, "GX467424A", "BRP", "11111112")
   ).map((Record.apply _).tupled)
 
 }
