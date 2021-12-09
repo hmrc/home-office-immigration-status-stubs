@@ -468,6 +468,166 @@ object TestStubData extends DataSet {
       )
     )
   )
+  val SuzyWolf = StatusCheckResult(
+    "Suzy Wolf",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2021", formatter),
+        productType = "EUS|TCNBRC_JFM",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val SuzyWolf1 = StatusCheckResult(
+    "Suzy Wolf",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2021", formatter),
+        productType = "EUS|_JFM",
+        immigrationStatus = "COA_IN_TIME_GRANT",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val SuzyWolf2 = StatusCheckResult(
+    "Suzy Wolf",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2021", formatter),
+        productType = "EUS|_JFM",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+  val SuzyWolf3 = StatusCheckResult(
+    "Suzy Wolf",
+    LocalDate.parse("25/07/1978", formatter),
+    "AFG",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("19/03/2024", formatter)),
+        productType = "EUS",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("26/06/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("19/09/2021", formatter)),
+        productType = "EUS|EUN_JFM",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("19/04/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("25/06/2021", formatter)),
+        productType = "EUS|EUN_JFM",
+        immigrationStatus = "COA_IN_TIME_GRANT",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("19/04/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("25/06/2020", formatter)),
+        productType = "EUS|EUN_JFM",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("19/04/2019", formatter),
+        statusEndDate = Some(LocalDate.parse("25/06/2019", formatter)),
+        productType = "EUS|TCN_JFM",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("19/04/2018", formatter),
+        statusEndDate = Some(LocalDate.parse("25/06/2018", formatter)),
+        productType = "EUS|TCN_JFM",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("19/04/2017", formatter),
+        statusEndDate = Some(LocalDate.parse("25/06/2017", formatter)),
+        productType = "EUS|TCN_JFM",
+        immigrationStatus = "COA_IN_TIME_GRANT",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("19/04/2016", formatter),
+        statusEndDate = Some(LocalDate.parse("25/06/2016", formatter)),
+        productType = "EUS|TCNBRC_JFM",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("19/04/2015", formatter),
+        statusEndDate = Some(LocalDate.parse("25/06/2015", formatter)),
+        productType = "EUS|TCNBRC_JFM",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("19/04/2014", formatter),
+        statusEndDate = Some(LocalDate.parse("25/06/2014", formatter)),
+        productType = "EUS|TCNBRC_JFM",
+        immigrationStatus = "COA_IN_TIME_GRANT",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("19/04/2013", formatter),
+        statusEndDate = Some(LocalDate.parse("25/06/2013", formatter)),
+        productType = "EUS|_JFM",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("19/04/2012", formatter),
+        statusEndDate = Some(LocalDate.parse("25/06/2012", formatter)),
+        productType = "EUS|_JFM",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("19/04/2011", formatter),
+        statusEndDate = Some(LocalDate.parse("25/06/2011", formatter)),
+        productType = "EUS|_JFM",
+        immigrationStatus = "COA_IN_TIME_GRANT",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("19/04/2010", formatter),
+        statusEndDate = Some(LocalDate.parse("25/06/2010", formatter)),
+        productType = "EUS|_FMFW",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("19/04/2009", formatter),
+        statusEndDate = Some(LocalDate.parse("25/06/2009", formatter)),
+        productType = "EUS|_FMFW",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("19/04/2008", formatter),
+        statusEndDate = Some(LocalDate.parse("25/06/2008", formatter)),
+        productType = "EUS|_FMFW",
+        immigrationStatus = "COA_IN_TIME_GRANT",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
   override val records: Seq[Record] = Seq(
     (ignacSarlota, "MZ006526D", "NAT", "MZ006526"),
     (robinTens, "AB116565A", "NAT", "AB116565"),
@@ -495,7 +655,11 @@ object TestStubData extends DataSet {
     (perfTestNonEU, "MN828773C", "NAT", "11111112"),
     (perfTestNonEU, "EJ836244D", "BRP", "11111112"),
     (perfTestNonEU, "RP568106D", "BRC", "11111112"),
-    (perfTestNonEU, "PB321979B", "PASSPORT", "11111112")
+    (perfTestNonEU, "PB321979B", "PASSPORT", "11111112"),
+    (SuzyWolf, "YB987611D", "PASSPORT", "11111112"),
+    (SuzyWolf1, "TM200512A", "NAT", "11111112"),
+    (SuzyWolf2, "GX467424A", "BRP", "11111112"),
+    (SuzyWolf3, "NL989651A", "BRP", "11111112")
   ).map((Record.apply _).tupled)
 
 }

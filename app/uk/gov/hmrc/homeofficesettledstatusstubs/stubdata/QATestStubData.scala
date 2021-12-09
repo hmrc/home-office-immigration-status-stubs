@@ -354,7 +354,7 @@ object QATestStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/10/2021", formatter),
-        productType = "EUS_EUN_JFM",
+        productType = "EUS|EUN_JFM",
         immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
       )
@@ -368,7 +368,7 @@ object QATestStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/10/2021", formatter),
-        productType = "EUS_TCN_JFM",
+        productType = "EUS|TCN_JFM",
         immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
       )
