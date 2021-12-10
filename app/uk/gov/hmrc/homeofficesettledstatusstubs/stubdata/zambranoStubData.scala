@@ -25,14 +25,14 @@ object zambranoStubData extends DataSet {
   val swiss1 = StatusCheckResult(
     "Sarah Smith",
     LocalDate.parse("11/05/1990", formatter),
-    "AUT",
+    "AFG",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
-        productType = "BNO",
+        productType = "EUS",
         immigrationStatus = "LTE",
-        noRecourseToPublicFunds = true
+        noRecourseToPublicFunds = false
       )
     )
   )
@@ -40,7 +40,7 @@ object zambranoStubData extends DataSet {
   val swiss2 = StatusCheckResult(
     "Ignác Šarlota",
     LocalDate.parse("20/10/1956", formatter),
-    "BEL",
+    "ALB",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("30/04/2015", formatter),
@@ -55,7 +55,7 @@ object zambranoStubData extends DataSet {
   val swiss3 = StatusCheckResult(
     "Robin Tens",
     LocalDate.parse("30/06/1969", formatter),
-    "BGR",
+    "DZA",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("21/07/2021", formatter),
@@ -70,7 +70,7 @@ object zambranoStubData extends DataSet {
   val swiss4 = StatusCheckResult(
     "Lawrence Smith",
     LocalDate.parse("04/10/1954", formatter),
-    "HRV",
+    "ASM",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/07/2020", formatter),
@@ -85,7 +85,7 @@ object zambranoStubData extends DataSet {
   val swiss5 = StatusCheckResult(
     "Stefanie Reason",
     LocalDate.parse("27/02/1974", formatter),
-    "CYP",
+    "AND",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/01/2021", formatter),
@@ -100,14 +100,14 @@ object zambranoStubData extends DataSet {
   val swiss6 = StatusCheckResult(
     "Sabeen Muhammad",
     LocalDate.parse("06/05/1980", formatter),
-    "CZE",
+    "AGO",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/07/2020", formatter),
         statusEndDate = Some(LocalDate.parse("19/09/2021", formatter)),
         productType = "FRONTIER_WORKER",
         immigrationStatus = "PERMIT",
-        noRecourseToPublicFunds = true
+        noRecourseToPublicFunds = false
       )
     )
   )
@@ -115,7 +115,7 @@ object zambranoStubData extends DataSet {
   val swiss7 = StatusCheckResult(
     "Joe Bloggs",
     LocalDate.parse("06/05/1980", formatter),
-    "DNK",
+    "AIA",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("16/08/2021", formatter),
@@ -130,7 +130,7 @@ object zambranoStubData extends DataSet {
   val swiss8 = StatusCheckResult(
     "Josh Bloggs",
     LocalDate.parse("10/05/1990", formatter),
-    "EST",
+    "ATA",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/05/2020", formatter),
@@ -145,7 +145,7 @@ object zambranoStubData extends DataSet {
   val swiss9 = StatusCheckResult(
     "Wolfgang Traube",
     LocalDate.parse("26/08/1983", formatter),
-    "FIN",
+    "ATG",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("29/06/2021", formatter),
@@ -167,12 +167,12 @@ object zambranoStubData extends DataSet {
   val swiss10 = StatusCheckResult(
     "Ben Bloggs",
     LocalDate.parse("11/05/1990", formatter),
-    "FRA",
+    "ARG",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/05/2020", formatter),
         statusEndDate = Some(LocalDate.parse("06/10/2021", formatter)),
-        productType = "BNO",
+        productType = "EUS",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       )
@@ -182,12 +182,12 @@ object zambranoStubData extends DataSet {
   val swiss11 = StatusCheckResult(
     "Sam Smith",
     LocalDate.parse("11/05/1990", formatter),
-    "DEU",
+    "ARM",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("02/02/2023", formatter)),
-        productType = "SPORTSPERSON",
+        productType = "EUS",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       ),
@@ -211,12 +211,12 @@ object zambranoStubData extends DataSet {
   val swiss12 = StatusCheckResult(
     "Jen Bright",
     LocalDate.parse("11/05/1990", formatter),
-    "GRC",
+    "ABW",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("06/10/2023", formatter)),
-        productType = "SETTLEMENT",
+        productType = "EUS",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       ),
@@ -233,12 +233,12 @@ object zambranoStubData extends DataSet {
   val swiss13 = StatusCheckResult(
     "Alison Wright",
     LocalDate.parse("11/05/1990", formatter),
-    "HUN",
+    "AUS",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
-        productType = "TEMP_WORKER",
+        productType = "EUS",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       ),
@@ -262,12 +262,12 @@ object zambranoStubData extends DataSet {
   val swiss14 = StatusCheckResult(
     "Alison Wright",
     LocalDate.parse("11/05/1990", formatter),
-    "ISL",
+    "AZE",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
-        productType = "BNO",
+        productType = "EUS",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       ),
@@ -291,12 +291,12 @@ object zambranoStubData extends DataSet {
   val swiss15 = StatusCheckResult(
     "Sarah Smith",
     LocalDate.parse("11/05/1990", formatter),
-    "IRL",
+    "BHS",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
-        productType = "BNO",
+        productType = "EUS",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       ),
@@ -320,12 +320,12 @@ object zambranoStubData extends DataSet {
   val swiss16 = StatusCheckResult(
     "Lucy Sprag",
     LocalDate.parse("11/05/1990", formatter),
-    "ITA",
+    "BHR",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
-        productType = "BNO",
+        productType = "EUS",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       ),
@@ -349,12 +349,12 @@ object zambranoStubData extends DataSet {
   val swiss17 = StatusCheckResult(
     "Jimmy Brown",
     LocalDate.parse("11/05/1990", formatter),
-    "LVA",
+    "BGD",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
-        productType = "BNO",
+        productType = "EUS",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       ),
@@ -378,12 +378,12 @@ object zambranoStubData extends DataSet {
   val swiss18 = StatusCheckResult(
     "Eve Vassil",
     LocalDate.parse("22/05/1976", formatter),
-    "LIE",
+    "BRB",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("19/03/2024", formatter)),
-        productType = "WORK",
+        productType = "EUS",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = true
       ),
@@ -407,12 +407,12 @@ object zambranoStubData extends DataSet {
   val swiss19 = StatusCheckResult(
     "Pete Wolf",
     LocalDate.parse("30/06/1969", formatter),
-    "LTU",
+    "BLR",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("21/07/2021", formatter),
         statusEndDate = Some(LocalDate.parse("20/07/2050", formatter)),
-        productType = "LEM",
+        productType = "EUS",
         immigrationStatus = "ING",
         noRecourseToPublicFunds = false
       )
@@ -422,7 +422,7 @@ object zambranoStubData extends DataSet {
   val swiss20 = StatusCheckResult(
     "Stefano Reese",
     LocalDate.parse("27/02/1974", formatter),
-    "LUX",
+    "BLZ",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
@@ -451,12 +451,12 @@ object zambranoStubData extends DataSet {
   val swiss21 = StatusCheckResult(
     "Sarah Smith",
     LocalDate.parse("11/05/1990", formatter),
-    "MLT",
+    "BEN",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
-        productType = "BNO",
+        productType = "EUS",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = true
       )
@@ -466,12 +466,12 @@ object zambranoStubData extends DataSet {
   val swiss22 = StatusCheckResult(
     "Sam Smith",
     LocalDate.parse("11/05/1990", formatter),
-    "NLD",
+    "BMU",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("02/02/2023", formatter)),
-        productType = "SPORTSPERSON",
+        productType = "EUS",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       ),
@@ -495,12 +495,12 @@ object zambranoStubData extends DataSet {
   val swiss23 = StatusCheckResult(
     "Jen Bright",
     LocalDate.parse("11/05/1990", formatter),
-    "NOR",
+    "BTN",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("06/10/2023", formatter)),
-        productType = "SETTLEMENT",
+        productType = "EUS",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       ),
@@ -517,12 +517,12 @@ object zambranoStubData extends DataSet {
   val swiss24 = StatusCheckResult(
     "Alison Wright",
     LocalDate.parse("11/05/1990", formatter),
-    "POL",
+    "BOL",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
-        productType = "TEMP_WORKER",
+        productType = "EUS",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       ),
@@ -546,12 +546,12 @@ object zambranoStubData extends DataSet {
   val swiss25 = StatusCheckResult(
     "Alison Wright",
     LocalDate.parse("11/05/1990", formatter),
-    "PRT",
+    "BES",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
-        productType = "BNO",
+        productType = "EUS",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       ),
@@ -575,12 +575,12 @@ object zambranoStubData extends DataSet {
   val swiss26 = StatusCheckResult(
     "Sarah Smith",
     LocalDate.parse("11/05/1990", formatter),
-    "ROU",
+    "BIH",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
-        productType = "BNO",
+        productType = "EUS",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       ),
@@ -604,12 +604,12 @@ object zambranoStubData extends DataSet {
   val swiss27 = StatusCheckResult(
     "Lucy Sprag",
     LocalDate.parse("11/05/1990", formatter),
-    "SVK",
+    "BWA",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
-        productType = "BNO",
+        productType = "EUS",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       ),
@@ -633,12 +633,12 @@ object zambranoStubData extends DataSet {
   val swiss28 = StatusCheckResult(
     "Jimmy Brown",
     LocalDate.parse("11/05/1990", formatter),
-    "SVN",
+    "BVT",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
-        productType = "BNO",
+        productType = "EUS",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       ),
@@ -662,12 +662,12 @@ object zambranoStubData extends DataSet {
   val swiss29 = StatusCheckResult(
     "Eve Vassil",
     LocalDate.parse("22/05/1976", formatter),
-    "ESP",
+    "BRA",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("19/03/2024", formatter)),
-        productType = "WORK",
+        productType = "EUS",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = true
       ),
@@ -691,12 +691,12 @@ object zambranoStubData extends DataSet {
   val swiss30 = StatusCheckResult(
     "Pete Wolf",
     LocalDate.parse("30/06/1969", formatter),
-    "SWE",
+    "IOT",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("21/07/2021", formatter),
         statusEndDate = Some(LocalDate.parse("20/07/2050", formatter)),
-        productType = "LEM",
+        productType = "EUS",
         immigrationStatus = "ING",
         noRecourseToPublicFunds = false
       )
@@ -706,7 +706,7 @@ object zambranoStubData extends DataSet {
   val swiss31 = StatusCheckResult(
     "Stefano Reese",
     LocalDate.parse("27/02/1974", formatter),
-    "CHE",
+    "BRN",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
@@ -731,7 +731,6 @@ object zambranoStubData extends DataSet {
       )
     )
   )
-
 
   override val records: Seq[Record] = Seq(
     (swiss1, "NP806400D", "PASSPORT", "21111112"),
