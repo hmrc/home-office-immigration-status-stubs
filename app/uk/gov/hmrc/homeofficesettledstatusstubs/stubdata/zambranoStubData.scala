@@ -20,12 +20,27 @@ import uk.gov.hmrc.homeofficesettledstatusstubs.models._
 
 import java.time.LocalDate
 
-object TestStubData extends DataSet {
+object zambranoStubData extends DataSet {
 
-  val ignacSarlota = StatusCheckResult(
+  val swiss1 = StatusCheckResult(
+    "Sarah Smith",
+    LocalDate.parse("11/05/1990", formatter),
+    "AUT",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
+
+  val swiss2 = StatusCheckResult(
     "Ignác Šarlota",
     LocalDate.parse("20/10/1956", formatter),
-    "CHE",
+    "BEL",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("30/04/2015", formatter),
@@ -37,10 +52,10 @@ object TestStubData extends DataSet {
     )
   )
 
-  val robinTens = StatusCheckResult(
+  val swiss3 = StatusCheckResult(
     "Robin Tens",
     LocalDate.parse("30/06/1969", formatter),
-    "NLD",
+    "BGR",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("21/07/2021", formatter),
@@ -52,10 +67,10 @@ object TestStubData extends DataSet {
     )
   )
 
-  val lawrenceSmith = StatusCheckResult(
+  val swiss4 = StatusCheckResult(
     "Lawrence Smith",
     LocalDate.parse("04/10/1954", formatter),
-    "CHE",
+    "HRV",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/07/2020", formatter),
@@ -67,10 +82,10 @@ object TestStubData extends DataSet {
     )
   )
 
-  val stefanieReason = StatusCheckResult(
+  val swiss5 = StatusCheckResult(
     "Stefanie Reason",
     LocalDate.parse("27/02/1974", formatter),
-    "EST",
+    "CYP",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/01/2021", formatter),
@@ -82,10 +97,10 @@ object TestStubData extends DataSet {
     )
   )
 
-  val sabeenMuhammad = StatusCheckResult(
+  val swiss6 = StatusCheckResult(
     "Sabeen Muhammad",
     LocalDate.parse("06/05/1980", formatter),
-    "SGS",
+    "CZE",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/07/2020", formatter),
@@ -97,25 +112,10 @@ object TestStubData extends DataSet {
     )
   )
 
-//  val chidiebubeBabatunde = StatusCheckResult(
-//    "Chidiebube Babatunde",
-//    LocalDate.parse("23/06/1996", formatter),
-//    "LCA",
-//    List(
-//      ImmigrationStatus(
-//        statusStartDate = LocalDate.parse("16/08/2021", formatter),
-//        statusEndDate = Some(LocalDate.parse("15/08/2022", formatter)),
-//        productType = "FRONTIER_WORKER",
-//        immigrationStatus = "PERMIT",
-//        noRecourseToPublicFunds = false
-//      )
-//    )
-//  )
-
-  val joeBloggs = StatusCheckResult(
+  val swiss7 = StatusCheckResult(
     "Joe Bloggs",
     LocalDate.parse("06/05/1980", formatter),
-    "SGS",
+    "DNK",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("16/08/2021", formatter),
@@ -127,10 +127,10 @@ object TestStubData extends DataSet {
     )
   )
 
-  val joshBloggs = StatusCheckResult(
+  val swiss8 = StatusCheckResult(
     "Josh Bloggs",
     LocalDate.parse("10/05/1990", formatter),
-    "SGS",
+    "EST",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/05/2020", formatter),
@@ -142,10 +142,10 @@ object TestStubData extends DataSet {
     )
   )
 
-  val wolfgangTraube = StatusCheckResult(
+  val swiss9 = StatusCheckResult(
     "Wolfgang Traube",
     LocalDate.parse("26/08/1983", formatter),
-    "DEU",
+    "FIN",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("29/06/2021", formatter),
@@ -164,10 +164,10 @@ object TestStubData extends DataSet {
     )
   )
 
-  val benBloggs = StatusCheckResult(
+  val swiss10 = StatusCheckResult(
     "Ben Bloggs",
     LocalDate.parse("11/05/1990", formatter),
-    "SGS",
+    "FRA",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/05/2020", formatter),
@@ -179,10 +179,10 @@ object TestStubData extends DataSet {
     )
   )
 
-  val samSmith = StatusCheckResult(
+  val swiss11 = StatusCheckResult(
     "Sam Smith",
     LocalDate.parse("11/05/1990", formatter),
-    "AUS",
+    "DEU",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
@@ -208,10 +208,10 @@ object TestStubData extends DataSet {
     )
   )
 
-  val jenBright = StatusCheckResult(
+  val swiss12 = StatusCheckResult(
     "Jen Bright",
     LocalDate.parse("11/05/1990", formatter),
-    "AUS",
+    "GRC",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
@@ -230,10 +230,10 @@ object TestStubData extends DataSet {
     )
   )
 
-  val alisonWright = StatusCheckResult(
+  val swiss13 = StatusCheckResult(
     "Alison Wright",
     LocalDate.parse("11/05/1990", formatter),
-    "AUS",
+    "HUN",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
@@ -259,10 +259,10 @@ object TestStubData extends DataSet {
     )
   )
 
-  val aliWrightson = StatusCheckResult(
+  val swiss14 = StatusCheckResult(
     "Alison Wright",
     LocalDate.parse("11/05/1990", formatter),
-    "AUS",
+    "ISL",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
@@ -288,10 +288,10 @@ object TestStubData extends DataSet {
     )
   )
 
-  val sarahSmith = StatusCheckResult(
+  val swiss15 = StatusCheckResult(
     "Sarah Smith",
     LocalDate.parse("11/05/1990", formatter),
-    "AUS",
+    "IRL",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
@@ -317,10 +317,10 @@ object TestStubData extends DataSet {
     )
   )
 
-  val lucySprag = StatusCheckResult(
+  val swiss16 = StatusCheckResult(
     "Lucy Sprag",
     LocalDate.parse("11/05/1990", formatter),
-    "AUS",
+    "ITA",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
@@ -346,10 +346,10 @@ object TestStubData extends DataSet {
     )
   )
 
-  val jimmyBrown = StatusCheckResult(
+  val swiss17 = StatusCheckResult(
     "Jimmy Brown",
     LocalDate.parse("11/05/1990", formatter),
-    "AUS",
+    "LVA",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
@@ -375,10 +375,10 @@ object TestStubData extends DataSet {
     )
   )
 
-  val eveVassil = StatusCheckResult(
+  val swiss18 = StatusCheckResult(
     "Eve Vassil",
     LocalDate.parse("22/05/1976", formatter),
-    "AUS",
+    "LIE",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/09/2021", formatter),
@@ -404,10 +404,10 @@ object TestStubData extends DataSet {
     )
   )
 
-  val peteWolf = StatusCheckResult(
+  val swiss19 = StatusCheckResult(
     "Pete Wolf",
     LocalDate.parse("30/06/1969", formatter),
-    "NLD",
+    "LTU",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("21/07/2021", formatter),
@@ -419,16 +419,10 @@ object TestStubData extends DataSet {
     )
   )
 
-  val nevioSabina = StatusCheckResult(
-    "Nevio Sabina",
-    LocalDate.parse("9/10/1956", formatter),
-    "ESP",
-    Nil
-  )
-  val perfTestEU = StatusCheckResult(
+  val swiss20 = StatusCheckResult(
     "Stefano Reese",
     LocalDate.parse("27/02/1974", formatter),
-    "ESP",
+    "LUX",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
@@ -454,10 +448,10 @@ object TestStubData extends DataSet {
     )
   )
 
-  val perfTestNonEU = StatusCheckResult(
+  val swiss21 = StatusCheckResult(
     "Sarah Smith",
     LocalDate.parse("11/05/1990", formatter),
-    "ESP",
+    "MLT",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
@@ -469,48 +463,308 @@ object TestStubData extends DataSet {
     )
   )
 
-  val swiss1 = StatusCheckResult(
-    "Sarah Smith",
+  val swiss22 = StatusCheckResult(
+    "Sam Smith",
     LocalDate.parse("11/05/1990", formatter),
-    "AUT",
+    "NLD",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2023", formatter)),
+        productType = "SPORTSPERSON",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("01/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("01/08/2021", formatter)),
+        productType = "SPORTSPERSON",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("01/07/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("01/08/2020", formatter)),
+        productType = "SPORTSPERSON",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
+
+  val swiss23 = StatusCheckResult(
+    "Jen Bright",
+    LocalDate.parse("11/05/1990", formatter),
+    "NOR",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2023", formatter)),
+        productType = "SETTLEMENT",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("01/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("01/09/2019", formatter)),
+        productType = "SETTLEMENT",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val swiss24 = StatusCheckResult(
+    "Alison Wright",
+    LocalDate.parse("11/05/1990", formatter),
+    "POL",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "TEMP_WORKER",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
+        productType = "TEMP_WORKER",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/10/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
+        productType = "TEMP_WORKER",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val swiss25 = StatusCheckResult(
+    "Alison Wright",
+    LocalDate.parse("11/05/1990", formatter),
+    "PRT",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
         productType = "BNO",
         immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/10/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val swiss26 = StatusCheckResult(
+    "Sarah Smith",
+    LocalDate.parse("11/05/1990", formatter),
+    "ROU",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
+        productType = "BNO_LOTR",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/10/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
+        productType = "GRADUATE",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val swiss27 = StatusCheckResult(
+    "Lucy Sprag",
+    LocalDate.parse("11/05/1990", formatter),
+    "SVK",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
+        productType = "FRONTIER_WORKER",
+        immigrationStatus = "PERMIT",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/10/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
+        productType = "EUS",
+        immigrationStatus = "POST_GRACE_PERIOD_COA_GRANT",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val swiss28 = StatusCheckResult(
+    "Jimmy Brown",
+    LocalDate.parse("11/05/1990", formatter),
+    "SVN",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "BNO",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
+        productType = "EUS",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/10/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
+        productType = "WORK",
+        immigrationStatus = "LTR",
         noRecourseToPublicFunds = true
       )
     )
   )
+
+  val swiss29 = StatusCheckResult(
+    "Eve Vassil",
+    LocalDate.parse("22/05/1976", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("19/03/2024", formatter)),
+        productType = "WORK",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = true
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("17/06/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("19/09/2021", formatter)),
+        productType = "STUDY",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/03/2019", formatter),
+        statusEndDate = Some(LocalDate.parse("19/09/2019", formatter)),
+        productType = "STUDY",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val swiss30 = StatusCheckResult(
+    "Pete Wolf",
+    LocalDate.parse("30/06/1969", formatter),
+    "SWE",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("21/07/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("20/07/2050", formatter)),
+        productType = "LEM",
+        immigrationStatus = "ING",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val swiss31 = StatusCheckResult(
+    "Stefano Reese",
+    LocalDate.parse("27/02/1974", formatter),
+    "CHE",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "EUS",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
+        productType = "FRONTIER_WORKER",
+        immigrationStatus = "PERMIT",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/10/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
+        productType = "EUS",
+        immigrationStatus = "POST_GRACE_PERIOD_COA_GRANT",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+
   override val records: Seq[Record] = Seq(
-    (ignacSarlota, "MZ006526D", "NAT", "MZ006526"),
-    (robinTens, "AB116565A", "NAT", "AB116565"),
-    (lawrenceSmith, "HT423288B", "NAT", "HT423288"),
-    (stefanieReason, "KA339728D", "NAT", "KA339728"),
-    (sabeenMuhammad, "HN191408A", "NAT", "HN191408"),
-    (joeBloggs, "CS601937B", "NAT", "CS601937"),
-    (joshBloggs, "XC858842B", "NAT", "XC858842"),
-    (benBloggs, "CS601937C", "NAT", "CS601937"),
-    (wolfgangTraube, "YT750325A", "NAT", "YT750325"),
-    (samSmith, "JZ899721D", "NAT", "JZ899721"),
-    (jenBright, "TX721235B", "NAT", "TX721235"),
-    (alisonWright, "EP640312A", "NAT", "EP640312"),
-    (eveVassil, "JE612281A", "NAT", "JE612281"),
-    (aliWrightson, "WY706993C", "NAT", "WY706993"),
-    (lucySprag, "NJ288804C", "NAT", "NJ288804"),
-    (jimmyBrown, "ZL048657A", "NAT", "ZL048657"),
-    (sarahSmith, "RR741495B", "NAT", "RR741495"),
-    (peteWolf, "RR741365B", "NAT", "RR741365"),
-    (nevioSabina, "ZL341566D", "NAT", "ZL341566"),
-    (perfTestEU, "LA199424C", "NAT", "11111111"),
-    (perfTestEU, "EK993922B", "BRP", "11111111"),
-    (perfTestEU, "MS742656C", "BRC", "11111111"),
-    (perfTestEU, "PC398873D", "PASSPORT", "11111111"),
-    (perfTestNonEU, "MN828773C", "NAT", "11111112"),
-    (perfTestNonEU, "EJ836244D", "BRP", "11111112"),
-    (perfTestNonEU, "RP568106D", "BRC", "11111112"),
-    (perfTestNonEU, "PB321979B", "PASSPORT", "11111112")
+    (swiss1, "NP806400D", "PASSPORT", "21111112"),
+    (swiss2, "ZK192387A", "PASSPORT", "12111112"),
+    (swiss3, "SG699952C", "PASSPORT", "11211112"),
+    (swiss4, "AB586891B", "PASSPORT", "11121112"),
+    (swiss5, "NZ138230D", "PASSPORT", "11112112"),
+    (swiss6, "MZ999673A", "PASSPORT", "11111212"),
+    (swiss7, "KC463235B", "PASSPORT", "11111122"),
+    (swiss8, "SK206961B", "PASSPORT", "31111112"),
+    (swiss9, "CL621962D", "PASSPORT", "13111112"),
+    (swiss10, "ZB858372C", "PASSPORT", "11311112"),
+    (swiss11, "MW449616D", "PASSPORT", "11131112"),
+    (swiss12, "EP324395A", "PASSPORT", "11113112"),
+    (swiss13, "HX655935B", "PASSPORT", "11111312"),
+    (swiss14, "YX582198A", "PASSPORT", "11111132"),
+    (swiss15, "JA386912A", "PASSPORT", "41111112"),
+    (swiss16, "OR467671C", "PASSPORT", "14111112"),
+    (swiss17, "KZ590149B", "PASSPORT", "11411112"),
+    (swiss18, "XS956634C", "PASSPORT", "11141112"),
+    (swiss19, "BS615566D", "PASSPORT", "11114112"),
+    (swiss20, "HE312289B", "PASSPORT", "11111412"),
+    (swiss21, "BP316737A", "PASSPORT", "11111142"),
+    (swiss22, "CR998059A", "PASSPORT", "51111112"),
+    (swiss23, "HM837305B", "PASSPORT", "15111112"),
+    (swiss24, "JA362166C", "PASSPORT", "11511112"),
+    (swiss25, "AZ750242B", "PASSPORT", "11151112"),
+    (swiss26, "AG567289A", "PASSPORT", "11115112"),
+    (swiss27, "ZT637433B", "PASSPORT", "11111512"),
+    (swiss28, "ST155067A", "PASSPORT", "11111152"),
+    (swiss29, "LW801391B", "PASSPORT", "61111112"),
+    (swiss30, "BR019651A", "PASSPORT", "16111112"),
+    (swiss31, "AC165243D", "PASSPORT", "11611112")
   ).map((Record.apply _).tupled)
 
 }
