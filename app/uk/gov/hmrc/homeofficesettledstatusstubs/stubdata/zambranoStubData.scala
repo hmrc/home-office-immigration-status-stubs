@@ -70,7 +70,7 @@ object zambranoStubData extends DataSet {
   val swiss4 = StatusCheckResult(
     "Lawrence Smith",
     LocalDate.parse("04/10/1954", formatter),
-    "ASM",
+    "WSM",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/07/2020", formatter),
