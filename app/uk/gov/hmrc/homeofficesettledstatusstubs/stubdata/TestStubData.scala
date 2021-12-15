@@ -524,105 +524,105 @@ object TestStubData extends DataSet {
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("26/06/2021", formatter),
         statusEndDate = Some(LocalDate.parse("19/09/2021", formatter)),
-        productType = "EUS|EUN_JFM",
+        productType = "EUS_EUN_JFM",
         immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("19/04/2021", formatter),
         statusEndDate = Some(LocalDate.parse("25/06/2021", formatter)),
-        productType = "EUS|EUN_JFM",
+        productType = "EUS_EUN_JFM",
         immigrationStatus = "COA_IN_TIME_GRANT",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("19/04/2020", formatter),
         statusEndDate = Some(LocalDate.parse("25/06/2020", formatter)),
-        productType = "EUS|EUN_JFM",
+        productType = "EUS_EUN_JFM",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("19/04/2019", formatter),
         statusEndDate = Some(LocalDate.parse("25/06/2019", formatter)),
-        productType = "EUS|TCN_JFM",
+        productType = "EUS_TCN_JFM",
         immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("19/04/2018", formatter),
         statusEndDate = Some(LocalDate.parse("25/06/2018", formatter)),
-        productType = "EUS|TCN_JFM",
+        productType = "EUS_TCN_JFM",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("19/04/2017", formatter),
         statusEndDate = Some(LocalDate.parse("25/06/2017", formatter)),
-        productType = "EUS|TCN_JFM",
+        productType = "EUS_TCN_JFM",
         immigrationStatus = "COA_IN_TIME_GRANT",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("19/04/2016", formatter),
         statusEndDate = Some(LocalDate.parse("25/06/2016", formatter)),
-        productType = "EUS|TCNBRC_JFM",
+        productType = "EUS_TCNBRC_JFM",
         immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("19/04/2015", formatter),
         statusEndDate = Some(LocalDate.parse("25/06/2015", formatter)),
-        productType = "EUS|TCNBRC_JFM",
+        productType = "EUS_TCNBRC_JFM",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("19/04/2014", formatter),
         statusEndDate = Some(LocalDate.parse("25/06/2014", formatter)),
-        productType = "EUS|TCNBRC_JFM",
+        productType = "EUS_TCNBRC_JFM",
         immigrationStatus = "COA_IN_TIME_GRANT",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("19/04/2013", formatter),
         statusEndDate = Some(LocalDate.parse("25/06/2013", formatter)),
-        productType = "EUS|_JFM",
+        productType = "EUS_JFM",
         immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("19/04/2012", formatter),
         statusEndDate = Some(LocalDate.parse("25/06/2012", formatter)),
-        productType = "EUS|_JFM",
+        productType = "EUS_JFM",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("19/04/2011", formatter),
         statusEndDate = Some(LocalDate.parse("25/06/2011", formatter)),
-        productType = "EUS|_JFM",
+        productType = "EUS_JFM",
         immigrationStatus = "COA_IN_TIME_GRANT",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("19/04/2010", formatter),
         statusEndDate = Some(LocalDate.parse("25/06/2010", formatter)),
-        productType = "EUS|_FMFW",
+        productType = "EUS_FMFW",
         immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("19/04/2009", formatter),
         statusEndDate = Some(LocalDate.parse("25/06/2009", formatter)),
-        productType = "EUS|_FMFW",
+        productType = "EUS_FMFW",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("19/04/2008", formatter),
         statusEndDate = Some(LocalDate.parse("25/06/2008", formatter)),
-        productType = "EUS|_FMFW",
+        productType = "EUS_FMFW",
         immigrationStatus = "COA_IN_TIME_GRANT",
         noRecourseToPublicFunds = false
       )
