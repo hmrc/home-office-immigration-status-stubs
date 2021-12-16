@@ -31,7 +31,7 @@ object zambranoStubData extends DataSet {
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
         productType = "EUS",
-        immigrationStatus = "LTE",
+        immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       )
     )
