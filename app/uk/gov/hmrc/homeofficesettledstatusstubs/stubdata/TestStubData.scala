@@ -475,7 +475,7 @@ object TestStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/10/2021", formatter),
-        productType = "EUS|TCNBRC_JFM",
+        productType = "EUS_TCNBRC_JFM",
         immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
       )
@@ -489,7 +489,7 @@ object TestStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/10/2021", formatter),
-        productType = "EUS|_JFM",
+        productType = "EUS_JFM",
         immigrationStatus = "COA_IN_TIME_GRANT",
         noRecourseToPublicFunds = false
       )
@@ -503,7 +503,7 @@ object TestStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/10/2021", formatter),
-        productType = "EUS|_JFM",
+        productType = "EUS_JFM",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       )
