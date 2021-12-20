@@ -496,6 +496,20 @@ object TestStubData extends DataSet {
     )
   )
 
+  val accessibility = StatusCheckResult(
+    "Suzy Wolf",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2021", formatter),
+        productType = "EUS_JFM",
+        immigrationStatus = "COA_IN_TIME_GRANT",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
   val SuzyWolf2 = StatusCheckResult(
     "Suzy Wolf",
     LocalDate.parse("15/10/1971", formatter),
@@ -658,6 +672,7 @@ object TestStubData extends DataSet {
     (perfTestNonEU, "PB321979B", "PASSPORT", "11111112"),
     (SuzyWolf, "YB987611D", "PASSPORT", "11111112"),
     (SuzyWolf1, "TM200512A", "NAT", "11111112"),
+    (accessibility, "TM200512R", "BRC", "9999999999"),
     (SuzyWolf2, "GX467424A", "BRP", "11111112"),
     (SuzyWolf3, "NL989651A", "BRP", "11111112")
   ).map((Record.apply _).tupled)
