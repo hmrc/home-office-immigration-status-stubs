@@ -642,6 +642,21 @@ object TestStubData extends DataSet {
       )
     )
   )
+  val accessibility1 = StatusCheckResult(
+    "Alinafe Temitope",
+    LocalDate.parse("18/07/1974", formatter),
+    "CRI",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("15/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("14/11/2023", formatter)),
+        productType = "GRADUATE",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
+
   override val records: Seq[Record] = Seq(
     (ignacSarlota, "MZ006526D", "NAT", "MZ006526"),
     (robinTens, "AB116565A", "NAT", "AB116565"),
@@ -674,7 +689,8 @@ object TestStubData extends DataSet {
     (SuzyWolf1, "TM200512A", "NAT", "11111112"),
     (accessibility, "TM200512R", "BRC", "9999999999"),
     (SuzyWolf2, "GX467424A", "BRP", "11111112"),
-    (SuzyWolf3, "NL989651A", "BRP", "11111112")
+    (SuzyWolf3, "NL989651A", "BRP", "11111112"),
+    (accessibility1, "NL989659S", "BRP", "888888888")
   ).map((Record.apply _).tupled)
 
 }
