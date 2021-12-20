@@ -332,8 +332,8 @@ object DemoStubData extends DataSet {
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("20/10/2021", formatter)),
-        productType = "STUDY",
-        immigrationStatus = "LTR",
+        productType = "EUS",
+        immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
       )
     )
