@@ -713,6 +713,71 @@ object TestStubData extends DataSet {
     )
   )
 
+  val frankieHolliwood = StatusCheckResult(
+    "Frank Hollywood",
+    LocalDate.parse("11/05/1990", formatter),
+    "AUS",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("04/09/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2023", formatter)),
+        productType = "SETTLEMENT",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("01/09/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("03/09/2020", formatter)),
+        productType = "PROTECTION",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2019", formatter),
+        statusEndDate = Some(LocalDate.parse("03/09/2019", formatter)),
+        productType = "DEPENDANT",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val emmaBunton = StatusCheckResult(
+    "Emma Bunton",
+    LocalDate.parse("11/05/1990", formatter),
+    "AUS",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("06/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2023", formatter)),
+        productType = "SETTLEMENT",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("04/09/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("05/09/2020", formatter)),
+        productType = "PROTECTION_ROUTE",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("03/09/2020", formatter)),
+        productType = "BNO_LOTR",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("01/09/2019", formatter),
+        statusEndDate = Some(LocalDate.parse("01/09/2020", formatter)),
+        productType = "BNO_LOTR",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
   val DEPENDANT1 = StatusCheckResult(
     "Suzy Wolf",
     LocalDate.parse("15/10/1971", formatter),
@@ -779,6 +844,8 @@ object TestStubData extends DataSet {
     (PROTECTION2, "RN207514D", "BRP", "ABCDE8888"),
     (PROTECTION3, "RJ485028C", "BRP", "ABCDEF888"),
     (PROTECTION4, "MJ738984A", "BRP", "ABC88888"),
+    (frankieHolliwood, "CM878654C", "BRC", "ABC88888"),
+    (emmaBunton, "HS193209B", "BRC", "ABC88888"),
     (DEPENDANT1, "OR198031C", "BRP", "ABC8888A"),
     (DEPENDANT2, "LM020319A", "BRP", "ABC8888B")
   ).map((Record.apply _).tupled)
