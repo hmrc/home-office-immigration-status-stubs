@@ -844,7 +844,7 @@ object TestStubData extends DataSet {
     (PROTECTION2, "RN207514D", "BRP", "ABCDE8888"),
     (PROTECTION3, "RJ485028C", "BRP", "ABCDEF888"),
     (PROTECTION4, "MJ738984A", "BRP", "ABC88888"),
-    (frankieHolliwood, "CM878654C", "BRC", "ABC88888"),
+    (frankieHolliwood, "CM878654C", "BRC", "ABC8D888"),
     (emmaBunton, "HS193209B", "BRC", "ABC88888"),
     (DEPENDANT1, "OR198031C", "BRP", "ABC8888A"),
     (DEPENDANT2, "LM020319A", "BRP", "ABC8888B")
