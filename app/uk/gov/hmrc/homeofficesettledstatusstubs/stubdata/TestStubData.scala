@@ -727,13 +727,13 @@ object TestStubData extends DataSet {
       ),
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("01/09/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("01/09/2019", formatter)),
+        statusEndDate = Some(LocalDate.parse("03/09/2020", formatter)),
         productType = "PROTECTION",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
-        statusStartDate = LocalDate.parse("01/09/2021", formatter),
+        statusStartDate = LocalDate.parse("02/09/2020", formatter),
         statusEndDate = Some(LocalDate.parse("01/09/2019", formatter)),
         productType = "DEPENDANT",
         immigrationStatus = "ILR",
@@ -756,20 +756,20 @@ object TestStubData extends DataSet {
       ),
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("01/09/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("01/09/2019", formatter)),
+        statusEndDate = Some(LocalDate.parse("05/09/2020", formatter)),
         productType = "PROTECTION_ROUTE",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
-        statusStartDate = LocalDate.parse("01/09/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("01/09/2019", formatter)),
+        statusStartDate = LocalDate.parse("04/09/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("02/09/2020", formatter)),
         productType = "BNO_LOTR",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
-        statusStartDate = LocalDate.parse("01/09/2021", formatter),
+        statusStartDate = LocalDate.parse("01/09/2020", formatter),
         statusEndDate = Some(LocalDate.parse("01/09/2019", formatter)),
         productType = "BNO_LOTR",
         immigrationStatus = "LTR",
