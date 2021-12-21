@@ -99,7 +99,7 @@ class MrzSearchEndpointISpec extends ServerBaseISpec with JsonMatchers {
 
     "respond with 429 if status is 429" in {
       val result = publicFundsByMRZ(
-        s"""{"documentType":"NAT", "documentNumber" : "E8HDYKTB4", "nationality": "x", "dateOfBirth":"1956-10-09", $statusRange}""")
+        s"""{"documentType":"NAT", "documentNumber" : "E8HDYKTB5", "nationality": "x", "dateOfBirth":"1956-10-09", $statusRange}""")
 
       result.status shouldBe 429
     }

@@ -97,20 +97,20 @@ object TestStubData extends DataSet {
     )
   )
 
-//  val chidiebubeBabatunde = StatusCheckResult(
-//    "Chidiebube Babatunde",
-//    LocalDate.parse("23/06/1996", formatter),
-//    "LCA",
-//    List(
-//      ImmigrationStatus(
-//        statusStartDate = LocalDate.parse("16/08/2021", formatter),
-//        statusEndDate = Some(LocalDate.parse("15/08/2022", formatter)),
-//        productType = "FRONTIER_WORKER",
-//        immigrationStatus = "PERMIT",
-//        noRecourseToPublicFunds = false
-//      )
-//    )
-//  )
+  //  val chidiebubeBabatunde = StatusCheckResult(
+  //    "Chidiebube Babatunde",
+  //    LocalDate.parse("23/06/1996", formatter),
+  //    "LCA",
+  //    List(
+  //      ImmigrationStatus(
+  //        statusStartDate = LocalDate.parse("16/08/2021", formatter),
+  //        statusEndDate = Some(LocalDate.parse("15/08/2022", formatter)),
+  //        productType = "FRONTIER_WORKER",
+  //        immigrationStatus = "PERMIT",
+  //        noRecourseToPublicFunds = false
+  //      )
+  //    )
+  //  )
 
   val joeBloggs = StatusCheckResult(
     "Joe Bloggs",
@@ -657,6 +657,90 @@ object TestStubData extends DataSet {
     )
   )
 
+  val PROTECTION1 = StatusCheckResult(
+    "Suzy Wolf",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2021", formatter),
+        productType = "PROTECTION",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val PROTECTION2 = StatusCheckResult(
+    "Suzy Wolf",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("15/11/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("15/12/2021", formatter)),
+        productType = "PROTECTION",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
+  val PROTECTION3 = StatusCheckResult(
+    "Suzy Wolf",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2022", formatter),
+        productType = "PROTECTION_ROUTE",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
+  val PROTECTION4 = StatusCheckResult(
+    "Suzy Wolf",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("15/11/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("15/12/2021", formatter)),
+        productType = "PROTECTION_ROUTE",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
+
+  val DEPENDANT1 = StatusCheckResult(
+    "Suzy Wolf",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2022", formatter),
+        productType = "DEPENDANT",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
+  val DEPENDANT2 = StatusCheckResult(
+    "Suzy Wolf",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("15/11/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("15/12/2021", formatter)),
+        productType = "DEPENDANT",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
+
   override val records: Seq[Record] = Seq(
     (ignacSarlota, "MZ006526D", "NAT", "MZ006526"),
     (robinTens, "AB116565A", "NAT", "AB116565"),
@@ -690,7 +774,13 @@ object TestStubData extends DataSet {
     (accessibility, "TM200512R", "BRC", "9999999999"),
     (SuzyWolf2, "GX467424A", "BRP", "11111112"),
     (SuzyWolf3, "NL989651A", "BRP", "11111112"),
-    (accessibility1, "NL989659S", "BRP", "888888888")
+    (accessibility1, "NL989659S", "BRP", "88888888"),
+    (PROTECTION1, "EC930911B", "BRP", "ABCD88888"),
+    (PROTECTION2, "RN207514D", "BRP", "ABCDE8888"),
+    (PROTECTION3, "RJ485028C", "BRP", "ABCDEF888"),
+    (PROTECTION4, "MJ738984A", "BRP", "ABC88888"),
+    (DEPENDANT1, "OR198031C", "BRP", "ABC8888A"),
+    (DEPENDANT2, "LM020319A", "BRP", "ABC8888B")
   ).map((Record.apply _).tupled)
 
 }
