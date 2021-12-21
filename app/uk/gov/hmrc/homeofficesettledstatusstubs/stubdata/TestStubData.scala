@@ -774,7 +774,7 @@ object TestStubData extends DataSet {
     (accessibility, "TM200512R", "BRC", "9999999999"),
     (SuzyWolf2, "GX467424A", "BRP", "11111112"),
     (SuzyWolf3, "NL989651A", "BRP", "11111112"),
-    (accessibility1, "NL989659S", "BRP", "88888888"),
+    (accessibility1, "NL989659S", "BRP", "888888888"),
     (PROTECTION1, "EC930911B", "BRP", "ABCD88888"),
     (PROTECTION2, "RN207514D", "BRP", "ABCDE8888"),
     (PROTECTION3, "RJ485028C", "BRP", "ABCDEF888"),
