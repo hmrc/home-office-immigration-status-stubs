@@ -25,12 +25,14 @@ import play.api.libs.json.Json
 import uk.gov.hmrc.homeofficesettledstatusstubs.models.searches._
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
+import java.time.LocalDate
+
 @Singleton
 class StubDataService @Inject()(cc: ControllerComponents) extends BackendController(cc) {
 
   private def search[S <: Searchable](searchable: S)(firstCheck: S => Option[StatusCheckResult])(
-    fallBack: S => Option[ErrorResponse]): Result =
-    resultFor(searchable.correlationId, firstCheck(searchable))(fallBack(searchable)) match {
+    makeString: String)(fallBack: S => Option[ErrorResponse]): Result =
+    resultFor(searchable.correlationId, firstCheck(searchable))(makeString)(fallBack(searchable)) match {
       case Some(response @ ErrorResponse(_, status, _)) => new Status(status)(Json.toJson(response))
       case Some(response @ SuccessResponse(_, result)) if searchable.validateResult(result) =>
         Ok(Json.toJson(response))
@@ -41,19 +43,41 @@ class StubDataService @Inject()(cc: ControllerComponents) extends BackendControl
     }
 
   def mrzSearch(mrzSearch: MrzSearch): Result =
-    search(mrzSearch)(s => StubData.mrzToResult.get(s.docType, s.documentNum))(s =>
-      checkOtherMrz(s.correlationId, s.docType, s.documentNum))
+    search(mrzSearch)(s => StubData.mrzToResult.get(s.docType, s.documentNum))(
+      mrzSearch.documentNum)(s => checkOtherMrz(s.correlationId, s.docType, s.documentNum))
 
   def ninoSearch(ninoSearch: NinoSearch): Result =
-    search(ninoSearch)(s => StubData.ninoToResult.get(s.nino))(s =>
+    search(ninoSearch)(s => StubData.ninoToResult.get(s.nino))(ninoSearch.givenName)(s =>
       checkOtherNinos(s.correlationId, s.nino))
 
   private def resultFor(correlationId: String, search: => Option[StatusCheckResult])(
-    fallBack: => Option[ErrorResponse]): Option[StatusResponse] =
+    makeString: String)(fallBack: => Option[ErrorResponse]): Option[StatusResponse] =
     search match {
       case Some(result) => Some(SuccessResponse(correlationId, result))
-      case None         => fallBack
+      case None =>
+        if (makeString.toUpperCase.startsWith("MAKE"))
+          Some(SuccessResponse(correlationId, makeResponse(makeString)))
+        else
+          fallBack
     }
+
+  private def makeResponse(makeString: String): StatusCheckResult = {
+    val _ :: product :: status :: expired =
+      makeString.toUpperCase.replace("--", "_").split("-").toList
+
+    val now = LocalDate.now()
+    val isExpired = expired.contains("EX")
+    val expiredDate = Some(if (isExpired) now.minusDays(1) else now.plusDays(1))
+    StatusCheckResult(
+      "Michael Makson",
+      LocalDate.of(2000, 1, 1),
+      "AFG",
+      List(
+        ImmigrationStatus(now.minusDays(2), expiredDate, product, status, false),
+        ImmigrationStatus(now.minusDays(10), Some(now.minusDays(9)), product, status, false),
+      )
+    )
+  }
 
   private def checkOtherMrz(
     correlationId: String,
