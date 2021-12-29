@@ -30,11 +30,13 @@ where `MAKE-PRODUCTTYPE-IMMIGRATIONSTATUS-EX` \
 the parameter must be prefixed with `MAKE`, with the fields separated by dashes `-`, if you require an underscore in the 
 string `_` instead use 2 dashes `--`; this is because the form's validation will stop underscores. \
 the `-EX` parameter is optional and defines if the most recent status is expired \
-For nino searches, the nino doesnt matter, the givenName should be the coded parameter, the familyName should be `Make`
+For nino searches, the nino should be a nino not defined in the stub `AA123456A`, the givenName should be the coded parameter, the familyName should be `Make`
 and the dob should be `01/01/2000`.
 
 For MRZ searches, the document type doesn't matter, the documentNumber should be the coded parameter, the nationality should 
 be `Afghanistan`, and the dob should be `01/01/2000`.
+
+The documentNumber field is shorter so may not allow a string as long as the example to be used.
 
 
 
