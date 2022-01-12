@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 HM Revenue & Customs
+ * Copyright 2022 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -441,6 +441,86 @@ object QATestStubData extends DataSet {
     Nil
   )
 
+  val JohnSmith34 = StatusCheckResult(
+    "John Smith",
+    LocalDate.parse("15/10/1971", formatter),
+    "AFG",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("04/01/2022", formatter),
+        statusEndDate = Some(LocalDate.parse("05/02/2022", formatter)),
+        productType = "EUS",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val JohnSmith35 = StatusCheckResult(
+    "John Smith",
+    LocalDate.parse("15/10/1971", formatter),
+    "AFG",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("04/01/2022", formatter),
+        statusEndDate = Some(LocalDate.parse("05/02/2022", formatter)),
+        productType = "EUS",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val JohnSmith36 = StatusCheckResult(
+    "John Smith",
+    LocalDate.parse("15/10/1971", formatter),
+    "AFG",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("04/01/2022", formatter),
+        statusEndDate = Some(LocalDate.parse("05/02/2022", formatter)),
+        productType = "EUS",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val JohnSmith37 = StatusCheckResult(
+    "John Smith",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/01/2022", formatter),
+        statusEndDate = Some(LocalDate.parse("05/02/2022", formatter)),
+        productType = "BNO_LOTR",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("07/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("25/09/2021", formatter)),
+        productType = "BNO_LOTR",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
+
+  val JohnSmith38 = StatusCheckResult(
+    "John Smith",
+    LocalDate.parse("15/10/1971", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("04/01/2022", formatter),
+        productType = "EUS_TCN_JFM",
+        immigrationStatus = "COA_IN_TIME_GRANT",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
   override val records: Seq[Record] = Seq(
     (johnSmith1, "SP317690D", "PASSPORT", "SP9412794"),
     (johnSmith3, "SP233073C", "PASSPORT", "SP5937773"),
@@ -467,7 +547,12 @@ object QATestStubData extends DataSet {
     (SupermanALEXANDRACARMEN, "SP715935D", "PASSPORT", "SP8700770"),
     (ONEILLHancock, "SP997679C", "PASSPORT", "SP6368116"),
     (arthurHancock, "SP501555A", "PASSPORT", "SP6112504"),
-    (JohnSmith33, "SP183480C", "PASSPORT", "SP4239309")
+    (JohnSmith33, "SP183480C", "PASSPORT", "SP4239309"),
+    (JohnSmith34, "SP302268B", "BRP", "SP2243562"),
+    (JohnSmith35, "SP634479A", "NAT", "SP8258744"),
+    (JohnSmith36, "SP845484A", "BRC", "SP9490655"),
+    (JohnSmith37, "SP422112A", "PASSPORT", "SP0101543"),
+    (JohnSmith38, "SP843664D", "PASSPORT", "SP7586550")
   ).map((Record.apply _).tupled)
 
 }
