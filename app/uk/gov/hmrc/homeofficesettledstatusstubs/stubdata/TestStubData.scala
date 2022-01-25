@@ -834,6 +834,49 @@ object TestStubData extends DataSet {
       )
     )
   )
+  val coaIndate = StatusCheckResult(
+    "Kerry Kane",
+    LocalDate.parse("24/09/1983", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("25/02/2022", formatter)),
+        productType = "EUS_JFM",
+        immigrationStatus = "COA_IN_TIME_GRANT",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val coaNoEnd = StatusCheckResult(
+    "Kerry Kane",
+    LocalDate.parse("24/09/1983", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2021", formatter),
+        productType = "EUS_JFM",
+        immigrationStatus = "COA_IN_TIME_GRANT",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val coaexp = StatusCheckResult(
+    "Kerry Kane",
+    LocalDate.parse("24/09/1983", formatter),
+    "ESP",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/10/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("23/01/2022", formatter)),
+        productType = "EUS_JFM",
+        immigrationStatus = "COA_IN_TIME_GRANT",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
 
   override val records: Seq[Record] = Seq(
     (ignacSarlota, "MZ006526D", "NAT", "MZ006526"),
@@ -877,7 +920,10 @@ object TestStubData extends DataSet {
     (emmaBunton, "HS193209B", "BRC", "ABC88888"),
     (DEPENDANT1, "OR198031C", "BRP", "ABC8888A"),
     (DEPENDANT2, "LM020319A", "BRP", "ABC8888B"),
-    (sabShah, "RE742652B", "BRP", "ABC1888B")
+    (sabShah, "RE742652B", "BRP", "ABC1888B"),
+    (coaIndate, "TP923351D", "BRP", "UTD1888B"),
+    (coaexp, "RH758871B", "BRP", "UTD4488B"),
+    (coaNoEnd, "JP547629C", "BRP", "UTD4499B")
   ).map((Record.apply _).tupled)
 
 }
