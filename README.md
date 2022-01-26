@@ -29,7 +29,7 @@ current status and the previous status to allow testing of all content for this 
 
 #### Dynamic stub identifier
 The dynamic identifier should be constructed using the following pattern:
-```MAKE-[Product type]-[Immigration status](-EX)``` \
+`MAKE-[Product type]-[Immigration status](-EX)`
 
 Underscores in either the product type or immigration status should be replaced by two dashes `--`
 
