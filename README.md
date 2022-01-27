@@ -33,7 +33,7 @@ The dynamic identifier should be constructed using the following pattern:
 
 Underscores in either the product type or immigration status should be replaced by two dashes `--`
 
-The `-EX` parameter is optional and defines if the most recent status is expired \
+The `-EX` parameter is optional and defines if the most recent status is expired
 
 So for example:
 - if you want to return data where the individual's statuses have the product type `EUS` and immigration status `LTR` 
