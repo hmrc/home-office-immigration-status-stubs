@@ -393,13 +393,6 @@ object TestStubData extends DataSet {
         productType = "STUDY",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
-      ),
-      ImmigrationStatus(
-        statusStartDate = LocalDate.parse("20/03/2019", formatter),
-        statusEndDate = Some(LocalDate.parse("19/09/2019", formatter)),
-        productType = "STUDY",
-        immigrationStatus = "LTE",
-        noRecourseToPublicFunds = false
       )
     )
   )
