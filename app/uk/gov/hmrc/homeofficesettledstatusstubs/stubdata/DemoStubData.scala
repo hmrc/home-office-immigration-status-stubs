@@ -388,6 +388,20 @@ object DemoStubData extends DataSet {
       )
     )
   )
+  val amnaBoulos1 = StatusCheckResult(
+    "Amna Boulos",
+    LocalDate.parse("27/03/1981", formatter),
+    "BHR",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("01/01/2022", formatter)),
+        productType = "DEPENDANT",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
 
   val harunaAbiodun = StatusCheckResult(
     "Haruna Abiodun",
@@ -689,6 +703,7 @@ object DemoStubData extends DataSet {
     (ammarNaaji, "ZL198221D", "NAT", "U2ETHGPL5"),
     (ammarNaaji2, "ZL198221A", "NAT", "A2ETHGPL5"),
     (amnaBoulos, "TP469941B", "BRC", "ZU1234567"),
+    (amnaBoulos1, "WH094524D", "BRC", "ZU1234568"),
     (harunaAbiodun, "BY880209B", "BRC", "BR1234567"),
     (luigiPisani, "AB188148D", "BRC", "MY1234567"),
     (boseMwangi, "RK334595D", "BRC", "TR1234567"),
