@@ -117,16 +117,9 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("29/06/2021", formatter),
-        statusEndDate = None,
+        statusEndDate = Some(LocalDate.parse("28/01/2022", formatter)),
         productType = "EUS",
         immigrationStatus = "COA_IN_TIME_GRANT",
-        noRecourseToPublicFunds = true
-      ),
-      ImmigrationStatus(
-        statusStartDate = LocalDate.parse("28/10/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("28/06/2021", formatter)),
-        productType = "WORK",
-        immigrationStatus = "LTE",
         noRecourseToPublicFunds = true
       )
     )
