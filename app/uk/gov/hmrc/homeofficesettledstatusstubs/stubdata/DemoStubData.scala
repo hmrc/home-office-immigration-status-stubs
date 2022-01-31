@@ -670,6 +670,58 @@ object DemoStubData extends DataSet {
     )
   )
 
+  val joeBloggs = StatusCheckResult(
+    "Joe Bloggs",
+    LocalDate.parse("01/01/1970", formatter),
+    "FRA",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("01/06/2021", formatter),
+        statusEndDate = None,
+        productType = "EUS",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val anneBond = StatusCheckResult(
+    "Anne Bond",
+    LocalDate.parse("01/12/1975", formatter),
+    "JAM",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("15/03/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("14/03/2026", formatter)),
+        productType = "EUS",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val johnSmith = StatusCheckResult(
+    "John Smith",
+    LocalDate.parse("01/06/1999", formatter),
+    "AUS",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("10/01/2022", formatter),
+        statusEndDate = Some(LocalDate.parse("09/01/2027", formatter)),
+        productType = "WORK",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = true
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/09/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("09/01/2022", formatter)),
+        productType = "STUDY",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
+
   override val records: Seq[Record] = Seq(
     (lawrenceVelazquez, "HT423277B", "PASSPORT", "123456789"),
     (roosTewes, "AB888330D", "PASSPORT", "234567891"),
@@ -703,7 +755,10 @@ object DemoStubData extends DataSet {
     (sibusisiweKamau, "HY950281B", "BRP", "FJ1234567"),
     (alinafeTemitope, "TZ650906D", "BRP", "DS1234567"),
     (chidiebubeBabatunde, "TK885367D", "BRP", "PY1234567"),
-    (sabeenMuhammad, "HN191408D", "BRP", "BG1234567")
+    (sabeenMuhammad, "HN191408D", "BRP", "BG1234567"),
+    (joeBloggs, "AB123456A", "PASSPORT", "XY1234567"),
+    (anneBond, "AC123456B", "PASSPORT", "HJ1234567"),
+    (johnSmith, "AE123456C", "PASSPORT", "RS1234567")
   ).map((Record.apply _).tupled)
 
 }
