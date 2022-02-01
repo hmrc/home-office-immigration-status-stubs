@@ -678,25 +678,28 @@ object DemoStubData extends DataSet {
   )
 
   override val records: Seq[Record] = Seq(
+    //    used in ATs--------
     (lawrenceVelazquez, "HT423277B", "PASSPORT", "123456789"),
+    (wolfgangTraube, "AB807993C", "PASSPORT", "567891234"),
+    (rosalieGallegos, "AB445870B", "PASSPORT", "789123456"),
+    (johnMillar, "CB986300D", "NAT", "K5LTGREQ3"),
+    (majaGlowa, "BS088353B", "NAT", "P9DGTHAX7"),
+    (ammarNaaji, "ZL198221D", "NAT", "U2ETHGPL5"),
+    (amnaBoulos, "TP469941B", "BRC", "ZU1234567"),
+    (alinafeTemitope, "TZ650906D", "BRP", "DS1234567"),
+    (chidiebubeBabatunde, "TK885367D", "BRP", "PY1234567"),
+    //    --------
     (roosTewes, "AB888330D", "PASSPORT", "234567891"),
     (stefanoReese, "KA339738D", "PASSPORT", "345678912"),
     (marniDunkley, "AB576139C", "PASSPORT", "456789123"),
-    (wolfgangTraube, "AB807993C", "PASSPORT", "567891234"),
     (ignacSarlota, "MZ006526C", "PASSPORT", "678912345"),
-    (rosalieGallegos, "AB445870B", "PASSPORT", "789123456"),
     (nevioSabina, "SJ372380A", "PASSPORT", "891234567"),
-    (johnMillar, "CB986300D", "NAT", "K5LTGREQ3"),
     (aleksandrovCherganski, "GT948987A", "NAT", "P6NGWATE1"),
     (evaVassilis, "OX749001C", "NAT", "N9LFUTWR4"),
     (yvonneAlbin, "LE183343C", "NAT", "L8FYTEHE2"),
     (elsaViggo, "OT575524B", "NAT", "M7FHRTEL6"),
-    (majaGlowa, "BS088353B", "NAT", "P9DGTHAX7"),
     (jirinaJirankova, "JJ123456A", "NAT", "O9DAZHYX2"),
-    (ammarNaaji, "ZL198221D", "NAT", "U2ETHGPL5"),
     (ammarNaaji2, "ZL198221A", "NAT", "A2ETHGPL5"),
-    (amnaBoulos, "TP469941B", "BRC", "ZU1234567"),
-    (amnaBoulos1, "WH094524D", "BRC", "ZU1234568"),
     (harunaAbiodun, "BY880209B", "BRC", "BR1234567"),
     (luigiPisani, "AB188148D", "BRC", "MY1234567"),
     (boseMwangi, "RK334595D", "BRC", "TR1234567"),
@@ -709,8 +712,6 @@ object DemoStubData extends DataSet {
     (chukwumaOkorie, "HT813285C", "BRP", "NB1234567"),
     (kefilweOkonkwo, "AH231261", "BRP", "GH1234567"),
     (sibusisiweKamau, "HY950281B", "BRP", "FJ1234567"),
-    (alinafeTemitope, "TZ650906D", "BRP", "DS1234567"),
-    (chidiebubeBabatunde, "TK885367D", "BRP", "PY1234567"),
     (sabeenMuhammad, "HN191408D", "BRP", "BG1234567")
   ).map((Record.apply _).tupled)
 

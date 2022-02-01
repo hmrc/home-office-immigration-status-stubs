@@ -870,6 +870,49 @@ object TestStubData extends DataSet {
       )
     )
   )
+  val swiss6 = StatusCheckResult(
+    "Sabeen Muhammad",
+    LocalDate.parse("06/05/1980", formatter),
+    "AGO",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/07/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("19/09/2021", formatter)),
+        productType = "FRONTIER_WORKER",
+        immigrationStatus = "PERMIT",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
+
+  val swiss13 = StatusCheckResult(
+    "Alison Wright",
+    LocalDate.parse("11/05/1990", formatter),
+    "AUS",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "EUS",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/05/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
+        productType = "TEMP_WORKER",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = false
+      ),
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("05/10/2020", formatter),
+        statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
+        productType = "TEMP_WORKER",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
 
   override val records: Seq[Record] = Seq(
     (ignacSarlota, "MZ006526D", "NAT", "MZ006526"),
@@ -884,13 +927,6 @@ object TestStubData extends DataSet {
     (samSmith, "JZ899721D", "NAT", "JZ899721"),
     (jenBright, "TX721235B", "NAT", "TX721235"),
     (alisonWright, "EP640312A", "NAT", "EP640312"),
-    (eveVassil, "JE612281A", "NAT", "JE612281"),
-    (aliWrightson, "WY706993C", "NAT", "WY706993"),
-    (lucySprag, "NJ288804C", "NAT", "NJ288804"),
-    (jimmyBrown, "ZL048657A", "NAT", "ZL048657"),
-    (sarahSmith, "RR741495B", "NAT", "RR741495"),
-    (peteWolf, "RR741365B", "NAT", "RR741365"),
-    (nevioSabina, "ZL341566D", "NAT", "ZL341566"),
     (perfTestEU, "LA199424C", "NAT", "11111111"),
     (perfTestEU, "EK993922B", "BRP", "11111111"),
     (perfTestEU, "MS742656C", "BRC", "11111111"),
@@ -899,24 +935,37 @@ object TestStubData extends DataSet {
     (perfTestNonEU, "EJ836244D", "BRP", "11111117"),
     (perfTestNonEU, "RP568106D", "BRC", "11111117"),
     (perfTestNonEU, "PB321979B", "PASSPORT", "11111117"),
-    (SuzyWolf, "YB987611D", "PASSPORT", "11111112"),
-    (SuzyWolf1, "TM200512A", "NAT", "11111112"),
-    (accessibility, "TM200512R", "BRC", "9999999999"),
-    (SuzyWolf2, "GX467424A", "BRP", "11111112"),
+    (peteWolf, "RR741365B", "NAT", "RR741365"),
     (SuzyWolf3, "NL989651A", "BRP", "11111112"),
-    (accessibility1, "NL989659S", "BRP", "888888888"),
-    (PROTECTION1, "EC930911B", "BRP", "ABCD88888"),
-    (PROTECTION2, "RN207514D", "BRP", "ABCDE8888"),
-    (PROTECTION3, "RJ485028C", "BRP", "ABCDEF888"),
-    (PROTECTION4, "MJ738984A", "BRP", "ABC88888"),
-    (frankieHolliwood, "CM878654C", "BRC", "ABC8D888"),
-    (emmaBunton, "HS193209B", "BRC", "ABC88888"),
-    (DEPENDANT1, "OR198031C", "BRP", "ABC8888A"),
-    (DEPENDANT2, "LM020319A", "BRP", "ABC8888B"),
     (sabShah, "RE742652B", "BRP", "ABC1888B"),
     (coaIndate, "TP923351D", "BRP", "UTD1888B"),
     (coaexp, "RH758871B", "BRP", "UTD4488B"),
-    (coaNoEnd, "JP547629C", "BRP", "UTD4499B")
+    (coaNoEnd, "JP547629C", "BRP", "UTD4499B"),
+    (eveVassil, "JE612281A", "NAT", "JE612281"),
+    (nevioSabina, "ZL341566D", "NAT", "ZL341566"),
+    (swiss13, "HX655935B", "PASSPORT", "11111312"),
+    (swiss6, "MZ999673A", "PASSPORT", "11111212"),
+      (amnaBoulos1, "WH094524D", "BRC", "ZU1234568")
+    //
+    //delete -------------------------------------------
+    //
+    //    (aliWrightson, "WY706993C", "NAT", "WY706993"),
+    //    (DEPENDANT2, "LM020319A", "BRP", "ABC8888B"),
+    //    (DEPENDANT1, "OR198031C", "BRP", "ABC8888A"),
+    //    (emmaBunton, "HS193209B", "BRC", "ABC88888"),
+    //    (frankieHolliwood, "CM878654C", "BRC", "ABC8D888"),
+    //    (PROTECTION4, "MJ738984A", "BRP", "ABC88888"),
+    //    (PROTECTION3, "RJ485028C", "BRP", "ABCDEF888"),
+    //    (PROTECTION2, "RN207514D", "BRP", "ABCDE8888"),
+    //    (PROTECTION1, "EC930911B", "BRP", "ABCD88888"),
+    //    (accessibility1, "NL989659S", "BRP", "888888888"),
+    //    (SuzyWolf2, "GX467424A", "BRP", "11111112"),
+    //    (accessibility, "TM200512R", "BRC", "9999999999"),
+    //    (SuzyWolf1, "TM200512A", "NAT", "11111112"),
+    //    (SuzyWolf, "YB987611D", "PASSPORT", "11111112"),
+    //    (lucySprag, "NJ288804C", "NAT", "NJ288804"),
+    //    (jimmyBrown, "ZL048657A", "NAT", "ZL048657"),
+    //    (sarahSmith, "RR741495B", "NAT", "RR741495"),
   ).map((Record.apply _).tupled)
 
 }
