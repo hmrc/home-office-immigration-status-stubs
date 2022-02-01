@@ -927,6 +927,20 @@ object TestStubData extends DataSet {
       )
     )
   )
+  val swiss1 = StatusCheckResult(
+    "Sarah Smith",
+    LocalDate.parse("11/05/1990", formatter),
+    "AFG",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        productType = "EUS",
+        immigrationStatus = "LTR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
 
   override val records: Seq[Record] = Seq(
     (ignacSarlota, "MZ006526D", "NAT", "MZ006526"),
@@ -959,7 +973,8 @@ object TestStubData extends DataSet {
     (nevioSabina, "ZL341566D", "NAT", "ZL341566"),
     (swiss13, "HX655935B", "PASSPORT", "11111312"),
     (swiss6, "MZ999673A", "PASSPORT", "11111212"),
-    (amnaBoulos1, "WH094524D", "BRC", "ZU1234568")
+    (amnaBoulos1, "WH094524D", "BRC", "ZU1234568"),
+    (swiss1, "NP806400D", "PASSPORT", "21111112")
     //
     //delete -------------------------------------------
     //
