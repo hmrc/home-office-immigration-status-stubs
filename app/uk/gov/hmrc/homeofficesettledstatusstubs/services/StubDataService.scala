@@ -43,7 +43,7 @@ class StubDataService @Inject()(cc: ControllerComponents) extends BackendControl
     }
 
   def mrzSearch(mrzSearch: MrzSearch): Result =
-    search(mrzSearch)(s => StubData.mrzToResult.get(s.docType, s.documentNum))(
+    search(mrzSearch)(s => StubData.mrzToResult.get((s.docType, s.documentNum)))(
       mrzSearch.documentNum)(s => checkOtherMrz(s.correlationId, s.docType, s.documentNum))
 
   def ninoSearch(ninoSearch: NinoSearch): Result =

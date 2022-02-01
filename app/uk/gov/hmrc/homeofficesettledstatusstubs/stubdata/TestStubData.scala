@@ -884,6 +884,20 @@ object TestStubData extends DataSet {
       )
     )
   )
+  val amnaBoulos1 = StatusCheckResult(
+    "Amna Boulos",
+    LocalDate.parse("27/03/1981", formatter),
+    "BHR",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("02/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("01/01/2022", formatter)),
+        productType = "DEPENDANT",
+        immigrationStatus = "LTE",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
 
   val swiss13 = StatusCheckResult(
     "Alison Wright",
@@ -945,7 +959,7 @@ object TestStubData extends DataSet {
     (nevioSabina, "ZL341566D", "NAT", "ZL341566"),
     (swiss13, "HX655935B", "PASSPORT", "11111312"),
     (swiss6, "MZ999673A", "PASSPORT", "11111212"),
-      (amnaBoulos1, "WH094524D", "BRC", "ZU1234568")
+    (amnaBoulos1, "WH094524D", "BRC", "ZU1234568")
     //
     //delete -------------------------------------------
     //
