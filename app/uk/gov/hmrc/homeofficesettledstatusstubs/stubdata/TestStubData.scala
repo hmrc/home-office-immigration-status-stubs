@@ -262,13 +262,13 @@ object TestStubData extends DataSet {
   val aliWrightson = StatusCheckResult(
     "Alison Wright",
     LocalDate.parse("11/05/1990", formatter),
-    "AUS",
+    "AFG",
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
         statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
-        productType = "BNO",
-        immigrationStatus = "LTE",
+        productType = "SETTLEMENT_ALES",
+        immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
@@ -651,7 +651,7 @@ object TestStubData extends DataSet {
   )
 
   val PROTECTION1 = StatusCheckResult(
-    "Suzy Wolf",
+    "Suzy Wolf-Smith",
     LocalDate.parse("15/10/1971", formatter),
     "ESP",
     List(
@@ -974,27 +974,9 @@ object TestStubData extends DataSet {
     (swiss13, "HX655935B", "PASSPORT", "11111312"),
     (swiss6, "MZ999673A", "PASSPORT", "11111212"),
     (amnaBoulos1, "WH094524D", "BRC", "ZU1234568"),
-    (swiss1, "NP806400D", "PASSPORT", "21111112")
-    //
-    //delete -------------------------------------------
-    //
-    //    (aliWrightson, "WY706993C", "NAT", "WY706993"),
-    //    (DEPENDANT2, "LM020319A", "BRP", "ABC8888B"),
-    //    (DEPENDANT1, "OR198031C", "BRP", "ABC8888A"),
-    //    (emmaBunton, "HS193209B", "BRC", "ABC88888"),
-    //    (frankieHolliwood, "CM878654C", "BRC", "ABC8D888"),
-    //    (PROTECTION4, "MJ738984A", "BRP", "ABC88888"),
-    //    (PROTECTION3, "RJ485028C", "BRP", "ABCDEF888"),
-    //    (PROTECTION2, "RN207514D", "BRP", "ABCDE8888"),
-    //    (PROTECTION1, "EC930911B", "BRP", "ABCD88888"),
-    //    (accessibility1, "NL989659S", "BRP", "888888888"),
-    //    (SuzyWolf2, "GX467424A", "BRP", "11111112"),
-    //    (accessibility, "TM200512R", "BRC", "9999999999"),
-    //    (SuzyWolf1, "TM200512A", "NAT", "11111112"),
-    //    (SuzyWolf, "YB987611D", "PASSPORT", "11111112"),
-    //    (lucySprag, "NJ288804C", "NAT", "NJ288804"),
-    //    (jimmyBrown, "ZL048657A", "NAT", "ZL048657"),
-    //    (sarahSmith, "RR741495B", "NAT", "RR741495"),
+    (PROTECTION1, "EC930911B", "BRP", "ABCD88888"),
+    (swiss1, "NP806400D", "PASSPORT", "21111112"),
+    (aliWrightson, "WY706993C", "NAT", "WY706993")
   ).map((Record.apply _).tupled)
 
 }
