@@ -97,21 +97,6 @@ object TestStubData extends DataSet {
     )
   )
 
-  //  val chidiebubeBabatunde = StatusCheckResult(
-  //    "Chidiebube Babatunde",
-  //    LocalDate.parse("23/06/1996", formatter),
-  //    "LCA",
-  //    List(
-  //      ImmigrationStatus(
-  //        statusStartDate = LocalDate.parse("16/08/2021", formatter),
-  //        statusEndDate = Some(LocalDate.parse("15/08/2022", formatter)),
-  //        productType = "FRONTIER_WORKER",
-  //        immigrationStatus = "PERMIT",
-  //        noRecourseToPublicFunds = false
-  //      )
-  //    )
-  //  )
-
   val joeBloggs = StatusCheckResult(
     "Joe Bloggs",
     LocalDate.parse("06/05/1980", formatter),
@@ -237,7 +222,7 @@ object TestStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        statusEndDate = Some(LocalDate.parse("02/08/2025", formatter)),
         productType = "TEMP_WORKER",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
@@ -266,7 +251,6 @@ object TestStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
         productType = "SETTLEMENT_ALES",
         immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
@@ -274,15 +258,15 @@ object TestStubData extends DataSet {
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/05/2021", formatter),
         statusEndDate = Some(LocalDate.parse("06/10/2020", formatter)),
-        productType = "BNO",
-        immigrationStatus = "LTE",
+        productType = "DEPENDANT_ALES_PARTNER",
+        immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
       ),
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("05/10/2020", formatter),
         statusEndDate = Some(LocalDate.parse("06/10/2019", formatter)),
-        productType = "BNO",
-        immigrationStatus = "LTR",
+        productType = "DEPENDANT_AOP_OTHER",
+        immigrationStatus = "ILE",
         noRecourseToPublicFunds = false
       )
     )

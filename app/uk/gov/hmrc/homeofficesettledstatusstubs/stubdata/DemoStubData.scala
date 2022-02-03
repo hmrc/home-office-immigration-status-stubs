@@ -716,7 +716,6 @@ object DemoStubData extends DataSet {
   )
 
   override val records: Seq[Record] = Seq(
-
     (lawrenceVelazquez, "HT423277B", "PASSPORT", "123456789"),
     (wolfgangTraube, "AB807993C", "PASSPORT", "567891234"),
     (rosalieGallegos, "AB445870B", "PASSPORT", "789123456"),
@@ -730,7 +729,7 @@ object DemoStubData extends DataSet {
     (nabilSultan, "CP822334A", "BRP", "PR1234567"),
     (joeBloggs, "AB123456A", "PASSPORT", "XY1234567"),
     (anneBond, "AC123456B", "PASSPORT", "HJ1234567"),
-    (johnSmith, "AE123456C", "PASSPORT", "RS1234567")
+    (johnSmith, "AE123456C", "PASSPORT", "RS1234567"),
     (roosTewes, "AB888330D", "PASSPORT", "234567891"),
     (stefanoReese, "KA339738D", "PASSPORT", "345678912"),
     (marniDunkley, "AB576139C", "PASSPORT", "456789123"),
@@ -752,7 +751,7 @@ object DemoStubData extends DataSet {
     (chukwumaOkorie, "HT813285C", "BRP", "NB1234567"),
     (kefilweOkonkwo, "AH231261", "BRP", "GH1234567"),
     (sibusisiweKamau, "HY950281B", "BRP", "FJ1234567"),
-    (sabeenMuhammad, "HN191408D", "BRP", "BG1234567")
+    (sabeenMuhammad, "HN191408D", "BRP", "BG1234567"),
     (alinafeTemitope, "TZ650906D", "BRP", "DS1234567"),
     (chidiebubeBabatunde, "TK885367D", "BRP", "PY1234567"),
     (sabeenMuhammad, "HN191408D", "BRP", "BG1234567"),
