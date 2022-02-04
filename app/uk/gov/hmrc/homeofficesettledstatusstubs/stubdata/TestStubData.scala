@@ -17,6 +17,7 @@
 package uk.gov.hmrc.homeofficesettledstatusstubs.stubdata
 
 import java.time.LocalDate
+import uk.gov.hmrc.homeofficesettledstatusstubs.models._
 
 object TestStubData extends DataSet {
 
@@ -320,7 +321,7 @@ object TestStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        statusEndDate = Some(LocalDate.parse("02/02/2025", formatter)),
         productType = "EUS",
         immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
@@ -349,7 +350,7 @@ object TestStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        statusEndDate = Some(LocalDate.parse("02/02/2025", formatter)),
         productType = "BNO",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = true
