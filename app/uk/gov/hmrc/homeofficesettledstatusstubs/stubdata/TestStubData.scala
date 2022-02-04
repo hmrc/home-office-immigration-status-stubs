@@ -16,9 +16,8 @@
 
 package uk.gov.hmrc.homeofficesettledstatusstubs.stubdata
 
-import uk.gov.hmrc.homeofficesettledstatusstubs.models._
-
 import java.time.LocalDate
+import uk.gov.hmrc.homeofficesettledstatusstubs.models._
 
 object TestStubData extends DataSet {
 
@@ -322,7 +321,7 @@ object TestStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        statusEndDate = Some(LocalDate.parse("02/02/2025", formatter)),
         productType = "EUS",
         immigrationStatus = "ILR",
         noRecourseToPublicFunds = false
@@ -351,7 +350,7 @@ object TestStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("02/02/2022", formatter)),
+        statusEndDate = Some(LocalDate.parse("02/02/2025", formatter)),
         productType = "BNO",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = true
@@ -635,7 +634,20 @@ object TestStubData extends DataSet {
       )
     )
   )
-
+  val ammarNaaji2 = StatusCheckResult(
+    "Ammar Naaji",
+    LocalDate.parse("24/09/1983", formatter),
+    "AFG",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("20/09/2021", formatter),
+        statusEndDate = Some(LocalDate.parse("20/10/2021", formatter)),
+        productType = "EUS",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = false
+      )
+    )
+  )
   override val records: Seq[Record] = Seq(
     (ignacSarlota, "MZ006526D", "NAT", "MZ006526"),
     (robinTens, "AB116565A", "NAT", "AB116565"),
@@ -670,6 +682,7 @@ object TestStubData extends DataSet {
     (amnaBoulos1, "WH094524D", "BRC", "ZU1234568"),
     (PROTECTION1, "EC930911B", "BRP", "ABCD88888"),
     (swiss1, "NP806400D", "PASSPORT", "21111112"),
+    (ammarNaaji2, "ZL198221A", "NAT", "A2ETHGPL5"),
     (aliWrightson, "WY706993C", "NAT", "WY706993")
   ).map((Record.apply _).tupled)
 

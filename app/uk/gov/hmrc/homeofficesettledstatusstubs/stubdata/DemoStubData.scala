@@ -317,20 +317,6 @@ object DemoStubData extends DataSet {
     )
   )
 
-  val ammarNaaji2 = StatusCheckResult(
-    "Ammar Naaji",
-    LocalDate.parse("24/09/1983", formatter),
-    "AFG",
-    List(
-      ImmigrationStatus(
-        statusStartDate = LocalDate.parse("20/09/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("20/10/2021", formatter)),
-        productType = "EUS",
-        immigrationStatus = "ILR",
-        noRecourseToPublicFunds = false
-      )
-    )
-  )
   val ammarNaaji = StatusCheckResult(
     "Ammar Naaji",
     LocalDate.parse("25/07/1978", formatter),
@@ -739,7 +725,6 @@ object DemoStubData extends DataSet {
     (yvonneAlbin, "LE183343C", "NAT", "L8FYTEHE2"),
     (elsaViggo, "OT575524B", "NAT", "M7FHRTEL6"),
     (jirinaJirankova, "JJ123456A", "NAT", "O9DAZHYX2"),
-    (ammarNaaji2, "ZL198221A", "NAT", "A2ETHGPL5"),
     (harunaAbiodun, "BY880209B", "BRC", "BR1234567"),
     (luigiPisani, "AB188148D", "BRC", "MY1234567"),
     (boseMwangi, "RK334595D", "BRC", "TR1234567"),
@@ -747,14 +732,12 @@ object DemoStubData extends DataSet {
     (njeriSamara, "BR253184", "BRC", "PO1234567"),
     (srinivasVemulakonda, "MA337091B", "BRC", "DC1234567"),
     (mohammedNajm, "AX906006B", "BRC", "SE1234567"),
-    (ylliShehu, "EB119538", "BRP", "GH1234567"),
+    (ylliShehu, "EB119538A", "BRP", "GH1234567"),
     (chukwumaOkorie, "HT813285C", "BRP", "NB1234567"),
-    (kefilweOkonkwo, "AH231261", "BRP", "GH1234567"),
+    (kefilweOkonkwo, "AH231261A", "BRP", "GH1234567"),
     (sibusisiweKamau, "HY950281B", "BRP", "FJ1234567"),
-    (sabeenMuhammad, "HN191408D", "BRP", "BG1234567"),
-    (alinafeTemitope, "TZ650906D", "BRP", "DS1234567"),
     (chidiebubeBabatunde, "TK885367D", "BRP", "PY1234567"),
-    (sabeenMuhammad, "HN191408D", "BRP", "BG1234567"),
+    (sabeenMuhammad, "HN191408D", "BRP", "BG1234567")
   ).map((Record.apply _).tupled)
 
 }
