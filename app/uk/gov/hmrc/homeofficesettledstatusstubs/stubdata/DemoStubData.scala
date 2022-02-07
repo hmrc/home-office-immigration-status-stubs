@@ -29,7 +29,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/07/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("19/01/2024", formatter)),
+        statusEndDate = Some(LocalDate.parse("19/01/2028", formatter)),
         productType = "EUS",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = true
@@ -51,7 +51,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("21/07/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("20/01/2024", formatter)),
+        statusEndDate = Some(LocalDate.parse("20/01/2028", formatter)),
         productType = "EUS",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = true
@@ -191,7 +191,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("17/02/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("16/02/2022", formatter)),
+        statusEndDate = Some(LocalDate.parse("16/02/2028", formatter)),
         productType = "WORK",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
@@ -228,7 +228,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/09/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("19/03/2024", formatter)),
+        statusEndDate = Some(LocalDate.parse("19/03/2028", formatter)),
         productType = "WORK",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = true
@@ -257,7 +257,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("18/05/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("17/11/2023", formatter)),
+        statusEndDate = Some(LocalDate.parse("17/11/2028", formatter)),
         productType = "WORK",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
@@ -309,7 +309,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("19/02/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("18/08/2023", formatter)),
+        statusEndDate = Some(LocalDate.parse("18/08/2028", formatter)),
         productType = "STUDY",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = true
@@ -324,7 +324,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("20/09/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("19/03/2024", formatter)),
+        statusEndDate = Some(LocalDate.parse("19/03/2028", formatter)),
         productType = "STUDY",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
@@ -353,7 +353,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("02/09/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("01/09/2022", formatter)),
+        statusEndDate = Some(LocalDate.parse("01/09/2028", formatter)),
         productType = "DEPENDANT",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = true
@@ -375,7 +375,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("03/08/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("02/08/2022", formatter)),
+        statusEndDate = Some(LocalDate.parse("02/08/2028", formatter)),
         productType = "DEPENDANT",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
@@ -397,7 +397,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("04/05/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("03/11/2023", formatter)),
+        statusEndDate = Some(LocalDate.parse("03/11/2028", formatter)),
         productType = "DEPENDANT",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = true
@@ -412,7 +412,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("05/08/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("04/12/2023", formatter)),
+        statusEndDate = Some(LocalDate.parse("04/12/2028", formatter)),
         productType = "DEPENDANT",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
@@ -449,7 +449,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("07/06/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("06/06/2022", formatter)),
+        statusEndDate = Some(LocalDate.parse("06/06/2028", formatter)),
         productType = "BNO",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
@@ -471,7 +471,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("08/04/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("07/12/2023", formatter)),
+        statusEndDate = Some(LocalDate.parse("07/12/2028", formatter)),
         productType = "BNO",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = true
@@ -486,7 +486,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("15/07/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("14/12/2023", formatter)),
+        statusEndDate = Some(LocalDate.parse("14/12/2028", formatter)),
         productType = "BNO",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
@@ -508,7 +508,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("10/03/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("09/03/2022", formatter)),
+        statusEndDate = Some(LocalDate.parse("09/03/2028", formatter)),
         productType = "BNO_LOTR",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
@@ -523,7 +523,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("11/08/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("10/08/2022", formatter)),
+        statusEndDate = Some(LocalDate.parse("10/08/2028", formatter)),
         productType = "BNO_LOTR",
         immigrationStatus = "LTE",
         noRecourseToPublicFunds = false
@@ -545,7 +545,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("12/06/2020", formatter),
-        statusEndDate = Some(LocalDate.parse("11/12/2023", formatter)),
+        statusEndDate = Some(LocalDate.parse("11/12/2028", formatter)),
         productType = "BNO_LOTR",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = true
@@ -560,7 +560,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("13/09/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("12/03/2024", formatter)),
+        statusEndDate = Some(LocalDate.parse("12/03/2028", formatter)),
         productType = "BNO_LOTR",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
@@ -582,7 +582,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("14/02/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("13/08/2023", formatter)),
+        statusEndDate = Some(LocalDate.parse("13/08/2028", formatter)),
         productType = "GRADUATE",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = true
@@ -597,7 +597,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("15/05/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("14/11/2023", formatter)),
+        statusEndDate = Some(LocalDate.parse("14/11/2028", formatter)),
         productType = "GRADUATE",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
@@ -612,7 +612,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("16/08/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("15/08/2022", formatter)),
+        statusEndDate = Some(LocalDate.parse("15/08/2028", formatter)),
         productType = "FRONTIER_WORKER",
         immigrationStatus = "PERMIT",
         noRecourseToPublicFunds = true
@@ -634,7 +634,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("17/06/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("16/06/2022", formatter)),
+        statusEndDate = Some(LocalDate.parse("16/06/2028", formatter)),
         productType = "FRONTIER_WORKER",
         immigrationStatus = "PERMIT",
         noRecourseToPublicFunds = false
@@ -671,7 +671,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("15/03/2021", formatter),
-        statusEndDate = Some(LocalDate.parse("14/03/2026", formatter)),
+        statusEndDate = Some(LocalDate.parse("14/03/2028", formatter)),
         productType = "EUS",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = false
@@ -686,7 +686,7 @@ object DemoStubData extends DataSet {
     List(
       ImmigrationStatus(
         statusStartDate = LocalDate.parse("10/01/2022", formatter),
-        statusEndDate = Some(LocalDate.parse("09/01/2027", formatter)),
+        statusEndDate = Some(LocalDate.parse("09/01/2028", formatter)),
         productType = "WORK",
         immigrationStatus = "LTR",
         noRecourseToPublicFunds = true
