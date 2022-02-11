@@ -7,7 +7,7 @@ lazy val scoverageSettings = {
   import scoverage.ScoverageKeys
   Seq(
     ScoverageKeys.coverageExcludedPackages := """uk\.gov\.hmrc\.BuildInfo;.*\.Routes;.*\.RoutesPrefix;.*Filters?;MicroserviceAuditConnector;Module;GraphiteStartUp;.*\.Reverse[^.]*""",
-    ScoverageKeys.coverageMinimum := 71.00,
+    ScoverageKeys.coverageMinimum := 90.00,
     ScoverageKeys.coverageFailOnMinimum := false,
     ScoverageKeys.coverageHighlighting := true,
     parallelExecution in Test := false
@@ -26,7 +26,6 @@ lazy val root = (project in file("."))
     publishingSettings,
     scoverageSettings,
     unmanagedResourceDirectories in Compile += baseDirectory.value / "resources",
-    routesImport ++= Seq("uk.gov.hmrc.homeofficesettledstatusstubs.binders.UrlBinders._"),
     scalafmtOnCompile in Compile := true,
     scalafmtOnCompile in Test := true
   )
