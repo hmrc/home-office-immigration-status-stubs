@@ -5,8 +5,8 @@ object AppDependencies {
 
   private val compile = Seq(
     play.sbt.PlayImport.ws,
-    "uk.gov.hmrc" %% "bootstrap-backend-play-28" % "5.19.0",
-    "uk.gov.hmrc" %% "domain"                    % "6.2.0-play-28",
+    "uk.gov.hmrc" %% "bootstrap-backend-play-28" % "5.20.0",
+    "uk.gov.hmrc" %% "domain"                    % "7.0.0-play-28",
     "uk.gov.hmrc" %% "hmrc-stubs-core"           % "6.2.0-play-26"
   )
 

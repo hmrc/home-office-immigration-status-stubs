@@ -1,21 +1,23 @@
-# Home Office Settled Status Stubs
+# Home Office Immigration Status Stubs
+
+Stub data for the Check Immigration Status service.
 
 ## Running the tests
 
-    sbt test it:test
+    sbt it:test
 
 ## Running the tests with coverage
 
-    sbt clean coverageOn test it:test coverageReport
+    sbt clean coverageOn it:test coverageReport
 
 ## Running the app locally
 
-    sm --start HOSS
+    sm --start HOME_OFFICE_IMMIGRATION_STATUS_ALL
 
 or
 
-    sm --start HOSS
-    sm --stop HOME_OFFICE_SETTLED_STATUS_STUBS
+    sm --start HOME_OFFICE_IMMIGRATION_STATUS_ALL
+    sm --stop HOME_OFFICE_IMMIGRATION_STATUS_STUBS
     sbt run
 
 It should then be listening on port 10212
