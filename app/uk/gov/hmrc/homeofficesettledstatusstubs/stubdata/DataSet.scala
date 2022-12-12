@@ -23,7 +23,7 @@ final case class Record(result: StatusCheckResult, nino: String, docType: String
 trait DataSet {
   val records: Seq[Record]
 
-  lazy val ninoToResult: Map[String, StatusCheckResult] = records.map(r => r.nino -> r.result).toMap
+  lazy val ninoToResult: Map[String, StatusCheckResult]          = records.map(r => r.nino -> r.result).toMap
   lazy val mrzToResult: Map[(String, String), StatusCheckResult] =
     records.map(r => (r.docType, r.docNum) -> r.result).toMap
 }

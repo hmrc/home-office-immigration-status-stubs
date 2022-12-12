@@ -24,15 +24,15 @@ final case class NinoSearch(
   dateOfBirth: String,
   familyName: String,
   givenName: String,
-  statusCheckRange: StatusCheckRange)
-    extends Searchable {
+  statusCheckRange: StatusCheckRange
+) extends Searchable {
 
   override def validateResult(result: StatusCheckResult): Boolean = {
-    val givenNameMatches = result.fullName
+    val givenNameMatches   = result.fullName
       .split(" ")
       .headOption
       .exists(_.toUpperCase.startsWith(givenName.take(1).toUpperCase))
-    val familyNameMatches = result.fullName
+    val familyNameMatches  = result.fullName
       .split(" ")
       .reverse
       .headOption

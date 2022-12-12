@@ -43,7 +43,7 @@ trait StatusSearchForm {
       .verifying(invalid, s => Try(LocalDate.parse(s)).isSuccess)
       .transform[LocalDate](LocalDate.parse, _.toString)
 
-  def startDateEndDateMapping: Mapping[StatusCheckRange] = {
+  private def startDateEndDateMapping: Mapping[StatusCheckRange] = {
     val invalid = "ERR_INVALID_CHECK_STATUS_RANGE"
     mapping(
       "startDate" -> validDate(invalid, invalid),
@@ -60,8 +60,7 @@ trait StatusSearchForm {
       .verifying("ERR_MISSING_CHECK_STATUS_RANGE", _.isDefined)
       .transform(_.get, Some(_))
 
-  def dobConstraints(today: LocalDate): Constraint[LocalDate] = Constraint[LocalDate](
-    (date: LocalDate) => if (date.isBefore(today)) Valid else Invalid("ERR_INVALID_DOB")
-  )
+  def dobConstraints(today: LocalDate): Constraint[LocalDate] =
+    Constraint[LocalDate]((date: LocalDate) => if (date.isBefore(today)) Valid else Invalid("ERR_INVALID_DOB"))
 
 }

@@ -16,23 +16,19 @@
 
 package uk.gov.hmrc.homeofficesettledstatusstubs.controllers
 
-import play.api.mvc.{ActionBuilder, AnyContent, BodyParsers, Request, Result}
+import play.api.mvc._
 
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
-class JsonHeadersAction @Inject()(
+class JsonHeadersAction @Inject() (
   override val parser: BodyParsers.Default
-)(
-  implicit
-  val executionContext: ExecutionContext)
+)(implicit val executionContext: ExecutionContext)
     extends ActionBuilder[Request, AnyContent] {
 
   private val HTTP_HEADER_CONTENT_TYPE_JSON = "Content-Type" -> "application/json"
 
-  override def invokeBlock[A](
-    request: Request[A],
-    block: Request[A] => Future[Result]): Future[Result] =
+  override def invokeBlock[A](request: Request[A], block: Request[A] => Future[Result]): Future[Result] =
     block(request).map(_.withHeaders(HTTP_HEADER_CONTENT_TYPE_JSON))
 
 }

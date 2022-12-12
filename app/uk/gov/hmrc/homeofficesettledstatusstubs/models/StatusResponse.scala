@@ -24,8 +24,7 @@ trait StatusResponse {
   val correlationId: String
 }
 
-case class ErrorResponse(correlationId: String, status: Int = 400, error: StatusError)
-    extends StatusResponse
+case class ErrorResponse(correlationId: String, status: Int = BAD_REQUEST, error: StatusError) extends StatusResponse
 
 object ErrorResponse {
   implicit val writes: OWrites[ErrorResponse] = Json.writes[ErrorResponse]
@@ -41,7 +40,8 @@ object StatusResponse {
     correlationId: String,
     errCode: String,
     status: Int = BAD_REQUEST,
-    fields: Seq[FormError] = Nil): String =
+    fields: Seq[FormError] = Nil
+  ): String =
     Json
       .toJson(
         ErrorResponse(
@@ -49,7 +49,10 @@ object StatusResponse {
           correlationId = correlationId,
           error = StatusError(
             errCode = errCode,
-            fields = fields.map { case FormError(name, code :: _, _) => Field(code, name) }
+            fields = fields.flatMap {
+              case FormError(name, code :: _, _) => Option(Field(code, name))
+              case _                             => None
+            }
           )
         )
       )

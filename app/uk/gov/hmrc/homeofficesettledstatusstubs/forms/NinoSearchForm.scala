@@ -26,20 +26,18 @@ import java.time.LocalDate
 
 class NinoSearchForm extends StatusSearchForm {
 
-  private def ninoConstraint: Constraint[String] = Constraint[String](
-    (string: String) => {
-      //some ninos are not provided with a suffix but it appears to the home office these are valid
-      val validate = if (string.length < 9) string + "A" else string
-      if (Nino.isValid(validate)) Valid else Invalid("ERR_INVALID_NINO")
-    }
-  )
+  private def ninoConstraint: Constraint[String] = Constraint[String] { (string: String) =>
+    //some ninos are not provided with a suffix but it appears to the home office these are valid
+    val validate = if (string.length < 9) string + "A" else string
+    if (Nino.isValid(validate)) Valid else Invalid("ERR_INVALID_NINO")
+  }
 
   def apply(correlationId: String, today: LocalDate = LocalDate.now()): Form[NinoSearch] =
     Form[NinoSearch] {
       mapping(
-        "correlationId" -> maintain(correlationId),
-        "nino"          -> nonEmptyText("ERR_MISSING_NINO").verifying(ninoConstraint),
-        "dateOfBirth" -> validDate("ERR_MISSING_DOB", "ERR_INVALID_DOB", allowWild = true)
+        "correlationId"    -> maintain(correlationId),
+        "nino"             -> nonEmptyText("ERR_MISSING_NINO").verifying(ninoConstraint),
+        "dateOfBirth"      -> validDate("ERR_MISSING_DOB", "ERR_INVALID_DOB", allowWild = true)
           .verifying(dobConstraints(today))
           .transform(_.toString, LocalDate.parse),
         "familyName"       -> nonEmptyText("ERR_MISSING_FAMILY_NAME"),

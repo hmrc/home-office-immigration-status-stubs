@@ -16,22 +16,18 @@
 
 package uk.gov.hmrc.homeofficesettledstatusstubs.controllers
 
-import play.api.{Configuration, Environment}
-import play.api.libs.json.{Format, Json, OWrites}
+import play.api.Configuration
+import play.api.data.Form
+import play.api.data.Forms._
+import play.api.libs.json.{Json, OWrites}
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
-import uk.gov.hmrc.homeofficesettledstatusstubs.controllers.TokenController.tokenForm
+import uk.gov.hmrc.homeofficesettledstatusstubs.controllers.TokenController.{Token, tokenForm}
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import java.util.UUID
 import javax.inject.Inject
-import play.api.data.Form
-import play.api.data.Forms._
-import TokenController.Token
 
-class TokenController @Inject()(
-  val env: Environment,
-  cc: ControllerComponents
-)(implicit val configuration: Configuration)
+class TokenController @Inject() (cc: ControllerComponents)(implicit val configuration: Configuration)
     extends BackendController(cc) {
 
   def token: Action[AnyContent] = Action { implicit request =>
@@ -49,24 +45,21 @@ object TokenController {
   final case class Token(
     access_token: String = UUID.randomUUID().toString,
     refresh_token: String = UUID.randomUUID().toString,
-    token_type: String = "Bearer")
+    token_type: String = "Bearer"
+  )
   object Token {
     implicit val writes: OWrites[Token] = Json.writes[Token]
   }
 
   private case class TokenRequest(grant_type: String, client_id: String, client_secret: String)
 
-  private object TokenRequest {
-    implicit val formats: Format[TokenRequest] = Json.format[TokenRequest]
-  }
-
   private val tokenForm: Form[TokenRequest] = Form(
     mapping(
-      "grant_type" -> nonEmptyText
+      "grant_type"    -> nonEmptyText
         .verifying("Wrong grant type.", _ == "client_credentials"),
-      "client_id" -> nonEmptyText
+      "client_id"     -> nonEmptyText
         .verifying("Unknown client_id.", _ == "hmrc"),
-      "client_secret" -> nonEmptyText,
+      "client_secret" -> nonEmptyText
     )(TokenRequest.apply)(TokenRequest.unapply)
   )
 

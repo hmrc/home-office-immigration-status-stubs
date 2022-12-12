@@ -21,7 +21,7 @@ import uk.gov.hmrc.homeofficesettledstatusstubs.models._
 
 object TestStubData extends DataSet {
 
-  val ignacSarlota = StatusCheckResult(
+  val ignacSarlota: StatusCheckResult = StatusCheckResult(
     "Ignác Šarlota",
     LocalDate.parse("20/10/1956", formatter),
     "CHE",
@@ -36,7 +36,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val robinTens = StatusCheckResult(
+  private val robinTens: StatusCheckResult = StatusCheckResult(
     "Robin Tens",
     LocalDate.parse("30/06/1969", formatter),
     "NLD",
@@ -51,7 +51,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val lawrenceSmith = StatusCheckResult(
+  private val lawrenceSmith: StatusCheckResult = StatusCheckResult(
     "Lawrence Smith",
     LocalDate.parse("04/10/1954", formatter),
     "CHE",
@@ -66,7 +66,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val stefanieReason = StatusCheckResult(
+  private val stefanieReason: StatusCheckResult = StatusCheckResult(
     "Stefanie Reason",
     LocalDate.parse("27/02/1974", formatter),
     "EST",
@@ -81,7 +81,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val sabeenMuhammad = StatusCheckResult(
+  val sabeenMuhammad: StatusCheckResult = StatusCheckResult(
     "Sabeen Muhammad",
     LocalDate.parse("06/05/1980", formatter),
     "SGS",
@@ -96,7 +96,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val joeBloggs = StatusCheckResult(
+  val joeBloggs: StatusCheckResult = StatusCheckResult(
     "Joe Bloggs",
     LocalDate.parse("06/05/1980", formatter),
     "SGS",
@@ -111,7 +111,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val joshBloggs = StatusCheckResult(
+  private val joshBloggs: StatusCheckResult = StatusCheckResult(
     "Josh Bloggs",
     LocalDate.parse("10/05/1990", formatter),
     "SGS",
@@ -126,7 +126,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val wolfgangTraube = StatusCheckResult(
+  val wolfgangTraube: StatusCheckResult = StatusCheckResult(
     "Wolfgang Traube",
     LocalDate.parse("26/08/1983", formatter),
     "DEU",
@@ -148,7 +148,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val benBloggs = StatusCheckResult(
+  private val benBloggs: StatusCheckResult = StatusCheckResult(
     "Ben Bloggs",
     LocalDate.parse("11/05/1990", formatter),
     "SGS",
@@ -163,7 +163,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val samSmith = StatusCheckResult(
+  private val samSmith: StatusCheckResult = StatusCheckResult(
     "Sam Smith",
     LocalDate.parse("11/05/1990", formatter),
     "AUS",
@@ -192,7 +192,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val jenBright = StatusCheckResult(
+  private val jenBright: StatusCheckResult = StatusCheckResult(
     "Jen Bright",
     LocalDate.parse("11/05/1990", formatter),
     "AUS",
@@ -214,7 +214,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val alisonWright = StatusCheckResult(
+  private val alisonWright: StatusCheckResult = StatusCheckResult(
     "Alison Wright",
     LocalDate.parse("11/05/1990", formatter),
     "AUS",
@@ -243,7 +243,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val aliWrightson = StatusCheckResult(
+  private val aliWrightson: StatusCheckResult = StatusCheckResult(
     "Alison Wright",
     LocalDate.parse("11/05/1990", formatter),
     "AFG",
@@ -271,7 +271,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val eveVassil = StatusCheckResult(
+  private val eveVassil: StatusCheckResult = StatusCheckResult(
     "Eve Vassil",
     LocalDate.parse("22/05/1976", formatter),
     "AUS",
@@ -293,7 +293,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val peteWolf = StatusCheckResult(
+  private val peteWolf: StatusCheckResult = StatusCheckResult(
     "Pete Wolf",
     LocalDate.parse("30/06/1969", formatter),
     "NLD",
@@ -308,13 +308,13 @@ object TestStubData extends DataSet {
     )
   )
 
-  val nevioSabina = StatusCheckResult(
+  val nevioSabina: StatusCheckResult        = StatusCheckResult(
     "Nevio Sabina",
     LocalDate.parse("9/10/1956", formatter),
     "ESP",
     Nil
   )
-  val perfTestEU = StatusCheckResult(
+  private val perfTestEU: StatusCheckResult = StatusCheckResult(
     "Stefano Reese",
     LocalDate.parse("27/02/1974", formatter),
     "ESP",
@@ -343,7 +343,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val perfTestNonEU = StatusCheckResult(
+  private val perfTestNonEU: StatusCheckResult = StatusCheckResult(
     "Sarah Smith",
     LocalDate.parse("11/05/1990", formatter),
     "ESP",
@@ -358,7 +358,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val SuzyWolf3 = StatusCheckResult(
+  private val SuzyWolf3: StatusCheckResult = StatusCheckResult(
     "Suzy Wolf",
     LocalDate.parse("25/07/1978", formatter),
     "AFG",
@@ -478,7 +478,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val PROTECTION1 = StatusCheckResult(
+  private val PROTECTION1: StatusCheckResult = StatusCheckResult(
     "Suzy Wolf-Smith",
     LocalDate.parse("15/10/1971", formatter),
     "ESP",
@@ -492,7 +492,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val sabShah = StatusCheckResult(
+  private val sabShah: StatusCheckResult   = StatusCheckResult(
     "Sab Shah",
     LocalDate.parse("06/05/1980", formatter),
     "AFG",
@@ -520,7 +520,7 @@ object TestStubData extends DataSet {
       )
     )
   )
-  val coaIndate = StatusCheckResult(
+  private val coaIndate: StatusCheckResult = StatusCheckResult(
     "Kerry Kane",
     LocalDate.parse("24/09/1983", formatter),
     "ESP",
@@ -535,7 +535,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val coaNoEnd = StatusCheckResult(
+  private val coaNoEnd: StatusCheckResult = StatusCheckResult(
     "Kerry Kane",
     LocalDate.parse("24/09/1983", formatter),
     "ESP",
@@ -549,7 +549,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val coaexp = StatusCheckResult(
+  private val coaexp: StatusCheckResult      = StatusCheckResult(
     "Kerry Kane",
     LocalDate.parse("24/09/1983", formatter),
     "ESP",
@@ -563,7 +563,7 @@ object TestStubData extends DataSet {
       )
     )
   )
-  val swiss6 = StatusCheckResult(
+  private val swiss6: StatusCheckResult      = StatusCheckResult(
     "Sabeen Muhammad",
     LocalDate.parse("06/05/1980", formatter),
     "AGO",
@@ -577,7 +577,7 @@ object TestStubData extends DataSet {
       )
     )
   )
-  val amnaBoulos1 = StatusCheckResult(
+  private val amnaBoulos1: StatusCheckResult = StatusCheckResult(
     "Amna Boulos",
     LocalDate.parse("27/03/1981", formatter),
     "BHR",
@@ -592,7 +592,7 @@ object TestStubData extends DataSet {
     )
   )
 
-  val swiss13 = StatusCheckResult(
+  private val swiss13: StatusCheckResult     = StatusCheckResult(
     "Alison Wright",
     LocalDate.parse("11/05/1990", formatter),
     "AUS",
@@ -620,7 +620,7 @@ object TestStubData extends DataSet {
       )
     )
   )
-  val swiss1 = StatusCheckResult(
+  private val swiss1: StatusCheckResult      = StatusCheckResult(
     "Sarah Smith",
     LocalDate.parse("11/05/1990", formatter),
     "AFG",
@@ -634,7 +634,7 @@ object TestStubData extends DataSet {
       )
     )
   )
-  val ammarNaaji2 = StatusCheckResult(
+  private val ammarNaaji2: StatusCheckResult = StatusCheckResult(
     "Ammar Naaji",
     LocalDate.parse("24/09/1983", formatter),
     "AFG",
@@ -648,7 +648,7 @@ object TestStubData extends DataSet {
       )
     )
   )
-  override val records: Seq[Record] = Seq(
+  override val records: Seq[Record]          = Seq(
     (ignacSarlota, "MZ006526D", "NAT", "MZ006526"),
     (robinTens, "AB116565A", "NAT", "AB116565"),
     (lawrenceSmith, "HT423288B", "NAT", "HT423288"),
