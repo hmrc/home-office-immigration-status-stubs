@@ -16,8 +16,9 @@
 
 package uk.gov.hmrc.homeofficesettledstatusstubs.models
 
-import java.time.LocalDate
 import play.api.libs.json.{Format, Json}
+
+import java.time.LocalDate
 
 final case class StatusCheckResult(
   fullName: String,

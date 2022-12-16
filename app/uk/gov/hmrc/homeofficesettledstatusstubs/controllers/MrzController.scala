@@ -26,7 +26,7 @@ import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject.Inject
 
-class MrzController @Inject()(
+class MrzController @Inject() (
   form: MrzSearchForm,
   stubDataService: StubDataService,
   jsonHeaders: JsonHeadersAction,
@@ -41,7 +41,8 @@ class MrzController @Inject()(
         errored =>
           BadRequest(
             StatusResponse
-              .errorResponseBody(correlationId, "ERR_VALIDATION", fields = errored.errors)),
+              .errorResponseBody(correlationId, "ERR_VALIDATION", fields = errored.errors)
+          ),
         search => stubDataService.mrzSearch(search)
       )
   }

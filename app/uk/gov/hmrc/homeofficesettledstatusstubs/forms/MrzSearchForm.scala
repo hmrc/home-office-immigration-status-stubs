@@ -27,10 +27,10 @@ class MrzSearchForm extends StatusSearchForm {
   def apply(correlationId: String, today: LocalDate = LocalDate.now()): Form[MrzSearch] =
     Form[MrzSearch] {
       mapping(
-        "correlationId"  -> maintain(correlationId),
-        "documentType"   -> nonEmptyText("ERR_MISSING_DOCUMENT_TYPE"),
-        "documentNumber" -> nonEmptyText("ERR_MISSING_DOCUMENT_NUMBER"),
-        "dateOfBirth" -> validDate("ERR_MISSING_DOB", "ERR_INVALID_DOB", allowWild = true)
+        "correlationId"    -> maintain(correlationId),
+        "documentType"     -> nonEmptyText("ERR_MISSING_DOCUMENT_TYPE"),
+        "documentNumber"   -> nonEmptyText("ERR_MISSING_DOCUMENT_NUMBER"),
+        "dateOfBirth"      -> validDate("ERR_MISSING_DOB", "ERR_INVALID_DOB", allowWild = true)
           .verifying(dobConstraints(today))
           .transform(_.toString, LocalDate.parse),
         "nationality"      -> nonEmptyText("ERR_MISSING_NATIONALITY"),

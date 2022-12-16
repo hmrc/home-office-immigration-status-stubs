@@ -53,11 +53,7 @@
 
     <logger name="uk.gov.hmrc.homeofficesettledstatusstubs" level="INFO"/>
 
-    <logger name="uk.gov.hmrc.homeofficesettledstatusstubs.repository" level="ERROR"/>
-
     <logger name="akka" level="ERROR"/>
-
-    <logger name="reactivemongo" level="ERROR"/>
 
     <logger name="org.asynchttpclient" level="ERROR"/>
 

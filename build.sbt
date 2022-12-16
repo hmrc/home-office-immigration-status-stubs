@@ -1,16 +1,16 @@
-import AppDependencies.jettyOverrides
 import sbt.Tests.{Group, SubProcess}
 import uk.gov.hmrc.SbtAutoBuildPlugin
+import uk.gov.hmrc.DefaultBuildSettings
 import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin._
+import sbt.Keys._
 
 lazy val scoverageSettings = {
   import scoverage.ScoverageKeys
   Seq(
     ScoverageKeys.coverageExcludedPackages := """uk\.gov\.hmrc\.BuildInfo;.*\.Routes;.*\.RoutesPrefix;.*Filters?;MicroserviceAuditConnector;Module;GraphiteStartUp;.*\.Reverse[^.]*""",
-    ScoverageKeys.coverageMinimum := 90.00,
+    ScoverageKeys.coverageMinimumStmtTotal := 98,
     ScoverageKeys.coverageFailOnMinimum := false,
-    ScoverageKeys.coverageHighlighting := true,
-    parallelExecution in Test := false
+    ScoverageKeys.coverageHighlighting := true
   )
 }
 
@@ -18,37 +18,34 @@ lazy val root = (project in file("."))
   .settings(
     name := "home-office-immigration-status-stubs",
     organization := "uk.gov.hmrc",
-    scalaVersion := "2.12.12",
+    scalaVersion := "2.12.15",
     PlayKeys.playDefaultPort := 10212,
-    resolvers += Resolver.jcenterRepo,
+    majorVersion := 0,
     libraryDependencies ++= AppDependencies(),
-    dependencyOverrides ++= jettyOverrides,
     publishingSettings,
     scoverageSettings,
-    unmanagedResourceDirectories in Compile += baseDirectory.value / "resources",
-    scalafmtOnCompile in Compile := true,
-    scalafmtOnCompile in Test := true
+    Compile / unmanagedResourceDirectories += baseDirectory.value / "resources"
   )
   .configs(IntegrationTest)
+  .settings(DefaultBuildSettings.integrationTestSettings())
   .settings(
-    Keys.fork in IntegrationTest := false,
-    Defaults.itSettings,
-    unmanagedSourceDirectories in IntegrationTest += baseDirectory(_ / "it").value,
-    parallelExecution in IntegrationTest := false,
-    testGrouping in IntegrationTest := oneForkedJvmPerTest((definedTests in IntegrationTest).value),
-    scalafmtOnCompile in IntegrationTest := true,
-    majorVersion := 0
+    IntegrationTest / fork := false,
+    IntegrationTest / unmanagedSourceDirectories += baseDirectory(_ / "it").value,
+    IntegrationTest / parallelExecution := false,
+    IntegrationTest / testGrouping := oneForkedJvmPerTest((IntegrationTest / definedTests).value)
   )
   .enablePlugins(PlayScala, SbtAutoBuildPlugin, SbtDistributablesPlugin)
 
-  scalacOptions ++= Seq(
-    "-P:silencer:pathFilters=views;routes"
-  )
+scalacOptions ++= Seq(
+  "-feature",
+  "-Wconf:src=routes/.*:s",
+  "-Wconf:cat=unused-imports&src=html/.*:s"
+)
 
-  inConfig(IntegrationTest)(scalafmtCoreSettings)
-
-  def oneForkedJvmPerTest(tests: Seq[TestDefinition]): Seq[Group] = {
-    tests.map { test =>
-      Group(test.name, Seq(test), SubProcess(ForkOptions().withRunJVMOptions(Vector(s"-Dtest.name=${test.name}"))))
-    }
+def oneForkedJvmPerTest(tests: Seq[TestDefinition]): Seq[Group] =
+  tests.map { test =>
+    Group(test.name, Seq(test), SubProcess(ForkOptions().withRunJVMOptions(Vector(s"-Dtest.name=${test.name}"))))
   }
+
+addCommandAlias("scalafmtAll", "all scalafmtSbt scalafmt it:scalafmt")
+addCommandAlias("scalastyleAll", "all scalastyle it:scalastyle")

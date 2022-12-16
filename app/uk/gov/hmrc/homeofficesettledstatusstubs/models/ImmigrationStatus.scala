@@ -16,19 +16,15 @@
 
 package uk.gov.hmrc.homeofficesettledstatusstubs.models
 
-import java.time.LocalDate
 import play.api.libs.json.{Format, Json}
 
+import java.time.LocalDate
+
 final case class ImmigrationStatus(
-  // start date of this status
   statusStartDate: LocalDate,
-  // end date of this status
   statusEndDate: Option[LocalDate] = None,
-  // code representing the type of product that the status was associated with
   productType: String,
-  // code representing the immigration status that is held
   immigrationStatus: String,
-  // right to public funds status for this person
   noRecourseToPublicFunds: Boolean
 )
 

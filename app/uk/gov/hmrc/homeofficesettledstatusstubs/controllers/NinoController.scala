@@ -27,7 +27,7 @@ import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 import javax.inject.{Inject, Singleton}
 
 @Singleton
-class NinoController @Inject()(
+class NinoController @Inject() (
   form: NinoSearchForm,
   stubDataService: StubDataService,
   jsonHeaders: JsonHeadersAction,
@@ -42,7 +42,8 @@ class NinoController @Inject()(
         errored =>
           BadRequest(
             StatusResponse
-              .errorResponseBody(correlationId, "ERR_VALIDATION", fields = errored.errors)),
+              .errorResponseBody(correlationId, "ERR_VALIDATION", fields = errored.errors)
+          ),
         search => stubDataService.ninoSearch(search)
       )
   }
