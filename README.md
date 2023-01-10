@@ -3,22 +3,20 @@
 Stub data for the Check Immigration Status service.
 
 ## Running the tests
-
-    sbt it:test
-
-## Running the tests with coverage
-
-    sbt clean coverageOn it:test coverageReport
+```shell
+./run_all_tests.sh
+```
 
 ## Running the app locally
-
-    sm --start HOME_OFFICE_IMMIGRATION_STATUS_ALL
-
-or
-
+```shell
+sm --start HOME_OFFICE_IMMIGRATION_STATUS_ALL
+```
+OR
+```shell
     sm --start HOME_OFFICE_IMMIGRATION_STATUS_ALL
     sm --stop HOME_OFFICE_IMMIGRATION_STATUS_STUBS
     sbt run
+```
 
 It should then be listening on port 10212
 

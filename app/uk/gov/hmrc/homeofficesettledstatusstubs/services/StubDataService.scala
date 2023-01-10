@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -76,8 +76,11 @@ class StubDataService @Inject() (cc: ControllerComponents) extends BackendContro
     }
 
   private def makeResponse(makeString: String): StatusCheckResult = {
-    val _ :: product :: status :: expired =
-      makeString.toUpperCase.replace("--", "_").split("-").toList
+    val split = makeString.toUpperCase.replace("--", "_").split("-").toList
+
+    val product = split(1)
+    val status  = split(2)
+    val expired = split.lift(3)
 
     val now         = LocalDate.now()
     val isExpired   = expired.contains("EX")
