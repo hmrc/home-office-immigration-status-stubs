@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ class MrzSearchEndpointISpec extends ServerBaseISpec with JsonMatchers {
 
   lazy val wsClient: WSClient = app.injector.instanceOf[WSClient]
 
-  def ping: WSResponse = wsClient.url(s"$url/ping/ping").get.futureValue
+  def ping: WSResponse = wsClient.url(s"$url/ping/ping").get().futureValue
 
   def publicFundsByMRZ(payload: String): WSResponse =
     wsClient

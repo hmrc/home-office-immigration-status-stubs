@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,8 @@ trait TestApplication {
   protected override def appBuilder: GuiceApplicationBuilder =
     new GuiceApplicationBuilder()
       .configure(
-        "metrics.enabled"                -> true,
-        "auditing.enabled"               -> false,
-        "auditing.consumer.baseUri.host" -> wireMockHost,
-        "auditing.consumer.baseUri.port" -> wireMockPort
+        "metrics.enabled"  -> false,
+        "auditing.enabled" -> false
       )
 
 }
