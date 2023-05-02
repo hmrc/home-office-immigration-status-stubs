@@ -86,7 +86,7 @@ class StubDataService @Inject() (cc: ControllerComponents) extends BackendContro
     val isExpired   = expired.contains("EX")
     val expiredDate = Some(if (isExpired) now.minusDays(1) else now.plusDays(1))
     StatusCheckResult(
-      "John Doe",
+      "Michael Makson",
       defaultDate,
       "AFG",
       List(
