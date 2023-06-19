@@ -700,6 +700,20 @@ object DemoStubData extends DataSet {
       )
     )
   )
+  private val uberUser: StatusCheckResult  = StatusCheckResult(
+    "Uber User",
+    LocalDate.parse("01/06/1999", formatter),
+    "AFG",
+    List(
+      ImmigrationStatus(
+        statusStartDate = LocalDate.parse("10/01/2022", formatter),
+        statusEndDate = Some(LocalDate.parse("09/01/2028", formatter)),
+        productType = "SETTLEMENT_LOTR",
+        immigrationStatus = "ILR",
+        noRecourseToPublicFunds = true
+      )
+    )
+  )
 
   override val records: Seq[Record] = Seq(
     (lawrenceVelazquez, "HT423277B", "PASSPORT", "123456789"),
@@ -737,7 +751,8 @@ object DemoStubData extends DataSet {
     (kefilweOkonkwo, "AH231261A", "BRP", "GH1234567"),
     (sibusisiweKamau, "HY950281B", "BRP", "FJ1234567"),
     (chidiebubeBabatunde, "TK885367D", "BRP", "PY1234567"),
-    (sabeenMuhammad, "HN191408D", "BRP", "BG1234567")
+    (sabeenMuhammad, "HN191408D", "BRP", "BG1234567"),
+    (uberUser, "SP123456A", "PASSPORT", "LOTR_TEST")
   ).map((Record.apply _).tupled)
 
 }

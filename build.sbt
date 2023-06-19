@@ -1,12 +1,11 @@
-import uk.gov.hmrc.SbtAutoBuildPlugin
-import uk.gov.hmrc.DefaultBuildSettings._
-import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin._
-import sbt.Keys._
+import uk.gov.hmrc.DefaultBuildSettings.*
+import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin.*
+import sbt.Keys.*
 
 lazy val scoverageSettings = {
   import scoverage.ScoverageKeys
   Seq(
-    ScoverageKeys.coverageExcludedPackages := """uk\.gov\.hmrc\.BuildInfo;.*\.Routes;.*\.RoutesPrefix;.*Filters?;MicroserviceAuditConnector;Module;GraphiteStartUp;.*\.Reverse[^.]*""",
+    ScoverageKeys.coverageExcludedPackages := """.*\.Routes;.*\.RoutesPrefix;.*\.Reverse[^.]*""",
     ScoverageKeys.coverageMinimumStmtTotal := 98,
     ScoverageKeys.coverageFailOnMinimum := true,
     ScoverageKeys.coverageHighlighting := true
@@ -29,18 +28,11 @@ lazy val root = (project in file("."))
   )
   .configs(IntegrationTest)
   .settings(integrationTestSettings())
-  .settings(
-    IntegrationTest / fork := false,
-    IntegrationTest / unmanagedSourceDirectories += baseDirectory(_ / "it").value,
-    IntegrationTest / parallelExecution := false,
-    IntegrationTest / testGrouping := oneForkedJvmPerTest((IntegrationTest / definedTests).value)
-  )
-  .enablePlugins(PlayScala, SbtAutoBuildPlugin, SbtDistributablesPlugin)
+  .enablePlugins(PlayScala, SbtDistributablesPlugin)
 
 scalacOptions ++= Seq(
   "-feature",
-  "-Wconf:src=routes/.*:s",
-  "-Wconf:cat=unused-imports&src=html/.*:s"
+  "-Wconf:src=routes/.*:s"
 )
 
 addCommandAlias("scalafmtAll", "all scalafmtSbt scalafmt IntegrationTest/scalafmt")
