@@ -9,12 +9,12 @@ Stub data for the Check Immigration Status service.
 
 ## Running the app locally
 ```shell
-sm --start HOME_OFFICE_IMMIGRATION_STATUS_ALL
+sm2 --start HOME_OFFICE_IMMIGRATION_STATUS_ALL
 ```
 OR
 ```shell
-    sm --start HOME_OFFICE_IMMIGRATION_STATUS_ALL
-    sm --stop HOME_OFFICE_IMMIGRATION_STATUS_STUBS
+    sm2 --start HOME_OFFICE_IMMIGRATION_STATUS_ALL
+    sm2 --stop HOME_OFFICE_IMMIGRATION_STATUS_STUBS
     sbt run
 ```
 

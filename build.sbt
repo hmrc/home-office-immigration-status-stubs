@@ -17,7 +17,7 @@ lazy val root = (project in file("."))
   .settings(
     name := "home-office-immigration-status-stubs",
     organization := "uk.gov.hmrc",
-    scalaVersion := "2.13.10",
+    scalaVersion := "2.13.11",
     // To resolve a bug with version 2.x.x of the scoverage plugin - https://github.com/sbt/sbt/issues/6997
     libraryDependencySchemes ++= Seq("org.scala-lang.modules" %% "scala-xml" % VersionScheme.Always),
     PlayKeys.playDefaultPort := 10212,
