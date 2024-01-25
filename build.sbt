@@ -1,47 +1,29 @@
-import uk.gov.hmrc.SbtAutoBuildPlugin
-import uk.gov.hmrc.DefaultBuildSettings._
-import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin._
-import sbt.Keys._
+import uk.gov.hmrc.DefaultBuildSettings.*
 
-lazy val scoverageSettings = {
-  import scoverage.ScoverageKeys
-  Seq(
-    ScoverageKeys.coverageExcludedPackages := """uk\.gov\.hmrc\.BuildInfo;.*\.Routes;.*\.RoutesPrefix;.*Filters?;MicroserviceAuditConnector;Module;GraphiteStartUp;.*\.Reverse[^.]*""",
-    ScoverageKeys.coverageMinimumStmtTotal := 98,
-    ScoverageKeys.coverageFailOnMinimum := true,
-    ScoverageKeys.coverageHighlighting := true
-  )
-}
+val appName = "home-office-immigration-status-stubs"
 
-lazy val root = (project in file("."))
+ThisBuild / majorVersion := 0
+ThisBuild / scalaVersion := "2.13.12"
+
+lazy val microservice = Project(appName, file("."))
+  .enablePlugins(PlayScala, SbtDistributablesPlugin)
   .settings(
-    name := "home-office-immigration-status-stubs",
-    organization := "uk.gov.hmrc",
-    scalaVersion := "2.13.11",
-    // To resolve a bug with version 2.x.x of the scoverage plugin - https://github.com/sbt/sbt/issues/6997
-    libraryDependencySchemes ++= Seq("org.scala-lang.modules" %% "scala-xml" % VersionScheme.Always),
     PlayKeys.playDefaultPort := 10212,
-    majorVersion := 0,
     libraryDependencies ++= AppDependencies(),
-    publishingSettings,
-    scoverageSettings,
-    Compile / unmanagedResourceDirectories += baseDirectory.value / "resources"
+    CodeCoverageSettings.settings
   )
-  .configs(IntegrationTest)
-  .settings(integrationTestSettings())
   .settings(
-    IntegrationTest / fork := false,
-    IntegrationTest / unmanagedSourceDirectories += baseDirectory(_ / "it").value,
-    IntegrationTest / parallelExecution := false,
-    IntegrationTest / testGrouping := oneForkedJvmPerTest((IntegrationTest / definedTests).value)
+    scalacOptions ++= Seq(
+      "-feature",
+      "-Wconf:src=routes/.*:s"
+    )
   )
-  .enablePlugins(PlayScala, SbtAutoBuildPlugin, SbtDistributablesPlugin)
 
-scalacOptions ++= Seq(
-  "-feature",
-  "-Wconf:src=routes/.*:s",
-  "-Wconf:cat=unused-imports&src=html/.*:s"
-)
+lazy val it = project
+  .enablePlugins(PlayScala)
+  .dependsOn(microservice % "test->test") // the "test->test" allows reusing test code and test dependencies
+  .settings(itSettings())
+  .settings(libraryDependencies ++= AppDependencies.itDependencies)
 
-addCommandAlias("scalafmtAll", "all scalafmtSbt scalafmt IntegrationTest/scalafmt")
-addCommandAlias("scalastyleAll", "all scalastyle IntegrationTest/scalastyle")
+addCommandAlias("scalafmtAll", "all scalafmtSbt scalafmt it/Test/scalafmt")
+addCommandAlias("scalastyleAll", "all scalastyle it/Test/scalastyle")
