@@ -1,0 +1,10 @@
+{
+  "dateOfBirth": "2000-01-01",
+  "familyName": "Make",
+  "givenName": "MAKE-ARMED--FORCES-LTR",
+  "nino": "SP123456A",
+  "statusCheckRange": {
+    "startDate": "2021-08-20",
+    "endDate": "2023-04-27"
+  }
+}

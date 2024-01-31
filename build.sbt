@@ -25,5 +25,5 @@ lazy val it = project
   .settings(itSettings())
   .settings(libraryDependencies ++= AppDependencies.itDependencies)
 
-addCommandAlias("scalafmtAll", "all scalafmtSbt scalafmt it/Test/scalafmt")
-addCommandAlias("scalastyleAll", "all scalastyle it/Test/scalastyle")
+addCommandAlias("scalafmtAll", "all scalafmtSbt scalafmt Test/scalafmt it/Test/scalafmt")
+addCommandAlias("scalastyleAll", "all scalastyle Test/scalastyle it/Test/scalastyle")
