@@ -1,0 +1,10 @@
+{
+  "documentType": "PASSPORT",
+  "documentNumber": "MAKE-ARMED--FORCES-ILR-EX",
+  "dateOfBirth": "2000-01-01",
+  "nationality": "AFG",
+  "statusCheckRange": {
+    "startDate": "2021-08-20",
+    "endDate": "2023-04-27"
+  }
+}

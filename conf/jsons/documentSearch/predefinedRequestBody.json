@@ -1,0 +1,10 @@
+{
+  "documentType": "PASSPORT",
+  "documentNumber": "567891234",
+  "dateOfBirth": "1983-08-26",
+  "nationality": "DEU",
+  "statusCheckRange": {
+    "startDate": "2021-08-20",
+    "endDate": "2023-04-27"
+  }
+}
