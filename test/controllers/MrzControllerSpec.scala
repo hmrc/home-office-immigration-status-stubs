@@ -18,7 +18,7 @@ package controllers
 
 import forms.MrzSearchForm
 import play.api.libs.json._
-import play.api.mvc.Result
+import play.api.mvc.{AnyContentAsJson, Result}
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 import support.BaseSpec
@@ -32,7 +32,6 @@ class MrzControllerSpec extends BaseSpec {
   private val controller: MrzController = new MrzController(
     form = form,
     stubDataService = stubDataService,
-    jsonHeaders = jsonHeadersAction,
     cc = stubControllerComponents()
   )
 
@@ -106,8 +105,8 @@ class MrzControllerSpec extends BaseSpec {
     """.stripMargin
   )
 
-  private def request(body: JsValue): FakeRequest[JsValue] =
-    FakeRequest().withBody(body).withHeaders(("Content-Type", "application/json"))
+  private def request(body: JsValue): FakeRequest[AnyContentAsJson] =
+    FakeRequest().withJsonBody(body).withHeaders(("Content-Type", "application/json"))
 
   "MrzController" when {
     "the request body is valid" should {

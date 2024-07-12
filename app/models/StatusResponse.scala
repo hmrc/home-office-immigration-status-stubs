@@ -18,10 +18,15 @@ package models
 
 import play.api.data.FormError
 import play.api.http.Status.BAD_REQUEST
-import play.api.libs.json.{Json, OWrites}
+import play.api.libs.json.{JsValue, Json, OWrites}
 
-trait StatusResponse {
+sealed trait StatusResponse {
   val correlationId: String
+
+  val asJson: JsValue = this match {
+    case e: ErrorResponse   => Json.toJson(e)
+    case s: SuccessResponse => Json.toJson(s)
+  }
 }
 
 case class ErrorResponse(correlationId: String, status: Int = BAD_REQUEST, error: StatusError) extends StatusResponse
@@ -36,25 +41,20 @@ object SuccessResponse {
 }
 
 object StatusResponse {
+
   def errorResponseBody(
     correlationId: String,
     errCode: String,
-    status: Int = BAD_REQUEST,
-    fields: Seq[FormError] = Nil
-  ): String =
-    Json
-      .toJson(
-        ErrorResponse(
-          status = status,
-          correlationId = correlationId,
-          error = StatusError(
-            errCode = errCode,
-            fields = fields.flatMap {
-              case FormError(name, code :: _, _) => Option(Field(code, name))
-              case _                             => None
-            }
-          )
-        )
+    status: Int,
+    fields: Seq[FormError]
+  ): ErrorResponse =
+    ErrorResponse(
+      status = status,
+      correlationId = correlationId,
+      error = StatusError(
+        errCode = errCode,
+        fields = fields.map(error => Field(error.message, error.key))
       )
-      .toString
+    )
+
 }

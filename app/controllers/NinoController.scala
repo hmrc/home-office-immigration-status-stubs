@@ -18,33 +18,34 @@ package controllers
 
 import forms.NinoSearchForm
 import models.StatusResponse
-import play.api.data.Form
-import play.api.libs.json.JsValue
 import play.api.mvc._
 import services.StubDataService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject._
+import scala.concurrent.Future
 
 @Singleton
 class NinoController @Inject() (
   form: NinoSearchForm,
   stubDataService: StubDataService,
-  jsonHeaders: JsonHeadersAction,
   cc: ControllerComponents
 ) extends BackendController(cc) {
 
-  def publicFundsByNino: Action[JsValue] = jsonHeaders(parse.tolerantJson) { implicit request =>
+  def publicFundsByNino: Action[AnyContent] = Action.async { implicit request =>
     val correlationId = request.headers.get("X-Correlation-Id").getOrElse("00000000")
-    form(correlationId)
-      .bind(request.body, Form.FromJsonMaxChars)
+    val result        = form(correlationId)
+      .bindFromRequest()
       .fold(
-        errors =>
+        errorForm =>
           BadRequest(
             StatusResponse
-              .errorResponseBody(correlationId, "ERR_VALIDATION", fields = errors.errors)
+              .errorResponseBody(correlationId, "ERR_VALIDATION", BAD_REQUEST, errorForm.errors)
+              .asJson
           ),
         search => stubDataService.ninoSearch(search)
       )
+
+    Future.successful(result)
   }
 }

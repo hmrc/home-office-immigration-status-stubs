@@ -1,11 +1,9 @@
 import uk.gov.hmrc.DefaultBuildSettings.*
 
-val appName = "home-office-immigration-status-stubs"
-
 ThisBuild / majorVersion := 0
-ThisBuild / scalaVersion := "2.13.12"
+ThisBuild / scalaVersion := "2.13.14"
 
-lazy val microservice = Project(appName, file("."))
+lazy val microservice = Project("home-office-immigration-status-stubs", file("."))
   .enablePlugins(PlayScala, SbtDistributablesPlugin)
   .disablePlugins(JUnitXmlReportPlugin)
   .settings(
@@ -24,7 +22,5 @@ lazy val it = project
   .enablePlugins(PlayScala)
   .dependsOn(microservice % "test->test") // the "test->test" allows reusing test code and test dependencies
   .settings(itSettings())
-  .settings(libraryDependencies ++= AppDependencies.itDependencies)
 
 addCommandAlias("scalafmtAll", "all scalafmtSbt scalafmt Test/scalafmt it/Test/scalafmt")
-addCommandAlias("scalastyleAll", "all scalastyle Test/scalastyle it/Test/scalastyle")

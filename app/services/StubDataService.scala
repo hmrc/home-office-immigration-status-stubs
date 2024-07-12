@@ -49,6 +49,7 @@ class StubDataService @Inject() (cc: ControllerComponents) extends BackendContro
         NotFound(
           StatusResponse
             .errorResponseBody(searchable.correlationId, "ERR_NOT_FOUND", NOT_FOUND, Nil)
+            .asJson
         )
     }
 

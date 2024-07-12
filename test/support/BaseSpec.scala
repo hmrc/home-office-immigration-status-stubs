@@ -16,17 +16,14 @@
 
 package support
 
-import controllers.JsonHeadersAction
 import models._
 import models.searches._
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpecLike
-import play.api.mvc.BodyParsers
 import play.api.test.Helpers.stubControllerComponents
 import services.StubDataService
 
 import java.time.LocalDate
-import scala.concurrent.ExecutionContext.Implicits.global
 
 trait BaseSpec extends AnyWordSpecLike with Matchers {
 
@@ -37,9 +34,7 @@ trait BaseSpec extends AnyWordSpecLike with Matchers {
   val yesterday: String   = LocalDate.now().minusDays(1).toString
   val tomorrow: String    = LocalDate.now().plusDays(1).toString
 
-  private val parser: BodyParsers.Default  = new BodyParsers.Default(stubControllerComponents().parsers)
-  val stubDataService: StubDataService     = new StubDataService(stubControllerComponents())
-  val jsonHeadersAction: JsonHeadersAction = new JsonHeadersAction(parser)
+  val stubDataService: StubDataService = new StubDataService(stubControllerComponents())
 
   val ninoSearch: NinoSearch = NinoSearch(
     correlationId = "00000000",
