@@ -18,7 +18,7 @@ package controllers
 
 import forms.NinoSearchForm
 import play.api.libs.json._
-import play.api.mvc.Result
+import play.api.mvc.{AnyContentAsJson, Result}
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 import support.BaseSpec
@@ -32,7 +32,6 @@ class NinoControllerSpec extends BaseSpec {
   private val controller: NinoController = new NinoController(
     form = form,
     stubDataService = stubDataService,
-    jsonHeaders = jsonHeadersAction,
     cc = stubControllerComponents()
   )
 
@@ -105,13 +104,13 @@ class NinoControllerSpec extends BaseSpec {
     """.stripMargin
   )
 
-  private def request(body: JsValue): FakeRequest[JsValue] =
-    FakeRequest().withBody(body).withHeaders(("Content-Type", "application/json"))
+  private def request(body: JsValue): FakeRequest[AnyContentAsJson] =
+    FakeRequest().withJsonBody(body).withHeaders(("Content-Type", "application/json"))
 
   "NinoController" when {
     "the request body is valid" should {
       "return 200 with a successful response when the service returns no errors" in {
-        val result: Future[Result] = controller.publicFundsByNino(request(validRequestJson()))
+        val result: Future[Result] = controller.publicFundsByNino.apply(request(validRequestJson()))
 
         status(result)        shouldBe OK
         contentAsJson(result) shouldBe successResponseJson
@@ -163,7 +162,7 @@ class NinoControllerSpec extends BaseSpec {
           """.stripMargin
         )
 
-        val result: Future[Result] = controller.publicFundsByNino(request(invalidRequestJson))
+        val result: Future[Result] = controller.publicFundsByNino()(request(invalidRequestJson))
 
         status(result)        shouldBe BAD_REQUEST
         contentAsJson(result) shouldBe errorResponseJson

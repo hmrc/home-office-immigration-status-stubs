@@ -9,13 +9,10 @@ object AppDependencies {
     "uk.gov.hmrc" %% "domain-play-30"            % "10.0.0"
   )
 
-  private val test: Seq[ModuleID]   = Seq(
-    "com.fasterxml.jackson.module" %% "jackson-module-scala"   % "2.17.1",
-    "uk.gov.hmrc"                  %% "bootstrap-test-play-30" % bootstrapPlayVersion
+  private val test: Seq[ModuleID] = Seq(
+    "uk.gov.hmrc" %% "bootstrap-test-play-30" % bootstrapPlayVersion
   ).map(_ % Test)
 
-  // only add additional dependencies here - it test inherit test dependencies above already
-  val itDependencies: Seq[ModuleID] = Seq()
+  def apply(): Seq[ModuleID]      = compile ++ test
 
-  def apply(): Seq[ModuleID] = compile ++ test
 }

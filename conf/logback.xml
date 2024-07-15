@@ -27,6 +27,8 @@
 
     <logger name="play" level="INFO"/>
 
+    <logger name="org.apache.pekko.actor" level="INFO"/>
+
     <logger name="org.asynchttpclient" level="ERROR"/>
 
     <logger name="org.eclipse.jetty" level="ERROR"/>
@@ -37,7 +39,7 @@
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <root level="ERROR">
+    <root level="DEBUG">
         <appender-ref ref="FILE"/>
         <appender-ref ref="STDOUT"/>
     </root>

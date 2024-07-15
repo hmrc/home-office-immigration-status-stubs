@@ -17,16 +17,21 @@
 package models
 
 import play.api.data.FormError
+import play.api.http.Status.BAD_REQUEST
 import play.api.libs.json.Json
 import support.BaseSpec
 
 class StatusResponseSpec extends BaseSpec {
 
-  private def errorResponseBody(fields: Seq[FormError]): String = StatusResponse.errorResponseBody(
-    correlationId = "00000000",
-    errCode = "ERR_VALIDATION",
-    fields = fields
-  )
+  private def errorResponseBody(fields: Seq[FormError]): String = StatusResponse
+    .errorResponseBody(
+      correlationId = "00000000",
+      errCode = "ERR_VALIDATION",
+      status = BAD_REQUEST,
+      fields = fields
+    )
+    .asJson
+    .toString
 
   private def errorResponse(fields: Seq[Field]): ErrorResponse = ErrorResponse(
     correlationId = "00000000",

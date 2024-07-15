@@ -23,16 +23,19 @@ import play.api.mvc._
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject._
+import scala.concurrent.Future
 
 @Singleton
 class TokenController @Inject() (form: TokenForm, cc: ControllerComponents) extends BackendController(cc) {
 
-  def token: Action[AnyContent] = Action { implicit request =>
-    form()
+  def token: Action[AnyContent] = Action.async { implicit request =>
+    val result = form()
       .bindFromRequest()
       .fold(
         errors => BadRequest(Json.toJson(errors.errors.map(e => (e.key, e.message)).toMap)),
         _ => Ok(Json.toJson(Token()))
       )
+
+    Future.successful(result)
   }
 }
