@@ -41,6 +41,6 @@ class NinoSearchForm extends StatusSearchForm {
         "familyName"       -> nonEmptyText("ERR_MISSING_FAMILY_NAME"),
         "givenName"        -> nonEmptyText("ERR_MISSING_GIVEN_NAME"),
         "statusCheckRange" -> statusCheckRangeMapping
-      )(NinoSearch.apply)(NinoSearch.unapply)
+      )(NinoSearch.apply)(n => Option(Tuple.fromProductTyped(n)))
     }
 }

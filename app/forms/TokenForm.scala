@@ -29,6 +29,6 @@ class TokenForm {
       "client_id"     -> nonEmptyText
         .verifying("Unknown client_id.", _ == "hmrc"),
       "client_secret" -> nonEmptyText
-    )(TokenRequest.apply)(TokenRequest.unapply)
+    )(TokenRequest.apply)(t => Option(Tuple.fromProductTyped(t)))
   )
 }

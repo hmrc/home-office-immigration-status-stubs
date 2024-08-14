@@ -48,7 +48,7 @@ trait StatusSearchForm {
     mapping(
       "startDate" -> validDate(invalid, invalid),
       "endDate"   -> validDate(invalid, invalid)
-    )(StatusCheckRange.apply)(StatusCheckRange.unapply)
+    )(StatusCheckRange.apply)(s => Option(Tuple.fromProductTyped(s)))
       .verifying(
         invalid,
         scr => scr.startDate.isBefore(scr.endDate)
