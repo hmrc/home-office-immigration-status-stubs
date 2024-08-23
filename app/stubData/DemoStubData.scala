@@ -16,7 +16,7 @@
 
 package stubData
 
-import models._
+import models.*
 
 import java.time.LocalDate
 
@@ -249,5 +249,5 @@ object DemoStubData extends DataSet {
     (nevioSabina, "SJ372380A", "PASSPORT", "891234567"),
     (nabilSultan, "CP822334A", "BRP", "PR1234567"),
     (chidiebubeBabatunde, "TK885367D", "BRP", "PY1234567")
-  ).map((Record.apply _).tupled)
+  ).map(Record.apply.tupled)
 }

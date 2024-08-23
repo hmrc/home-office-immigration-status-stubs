@@ -24,7 +24,7 @@ import support.IntegrationBaseSpec
 
 class MrzSearchEndpointISpec extends IntegrationBaseSpec {
 
-  def request(): WSRequest                                                                =
+  def request(): WSRequest =
     buildRequest("/v1/status/public-funds/mrz")
       .withHttpHeaders("Content-Type" -> "application/json")
 
@@ -146,6 +146,6 @@ class MrzSearchEndpointISpec extends IntegrationBaseSpec {
       ("NAT", "E8HDYKTB5", "CHE", INTERNAL_SERVER_ERROR, "[NOT_USED]", None)
     )
 
-    input.foreach(args => (test _).tupled(args))
+    input.foreach(args => test.tupled(args))
   }
 }

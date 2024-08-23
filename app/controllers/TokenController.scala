@@ -18,17 +18,19 @@ package controllers
 
 import forms.TokenForm
 import models.token.Token
-import play.api.libs.json._
-import play.api.mvc._
+import play.api.libs.json.*
+import play.api.mvc.*
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
-import javax.inject._
+import javax.inject.*
 import scala.concurrent.Future
 
 @Singleton
 class TokenController @Inject() (form: TokenForm, cc: ControllerComponents) extends BackendController(cc) {
 
-  def token: Action[AnyContent] = Action.async { implicit request =>
+  def token: Action[AnyContent] = Action.async { request =>
+    given Request[AnyContent] = request
+
     val result = form()
       .bindFromRequest()
       .fold(

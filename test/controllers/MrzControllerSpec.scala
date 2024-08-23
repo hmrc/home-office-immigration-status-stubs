@@ -17,10 +17,10 @@
 package controllers
 
 import forms.MrzSearchForm
-import play.api.libs.json._
+import play.api.libs.json.*
 import play.api.mvc.{AnyContentAsJson, Result}
 import play.api.test.FakeRequest
-import play.api.test.Helpers._
+import play.api.test.Helpers.*
 import support.BaseSpec
 
 import scala.concurrent.Future
@@ -123,7 +123,7 @@ class MrzControllerSpec extends BaseSpec {
         ("MAKE-ARMED--FORCES-ILR-EX", yesterday)
       )
 
-      successTestInput.foreach(args => (successTest _).tupled(args))
+      successTestInput.foreach(args => successTest.tupled(args))
 
       def errorTest(documentNumber: String, errorStatus: Int, errCode: String): Unit =
         s"return $errorStatus with an error response when the service returns $errorStatus" in {
@@ -140,7 +140,7 @@ class MrzControllerSpec extends BaseSpec {
         ("E8HDYKTB5", INTERNAL_SERVER_ERROR, "[NOT_USED]")
       )
 
-      errorTestInput.foreach(args => (errorTest _).tupled(args))
+      errorTestInput.foreach(args => errorTest.tupled(args))
     }
 
     "the request body is invalid" should {

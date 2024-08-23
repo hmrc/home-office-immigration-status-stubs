@@ -35,6 +35,6 @@ class MrzSearchForm extends StatusSearchForm {
           .transform(_.toString, LocalDate.parse),
         "nationality"      -> nonEmptyText("ERR_MISSING_NATIONALITY"),
         "statusCheckRange" -> statusCheckRangeMapping
-      )(MrzSearch.apply)(MrzSearch.unapply)
+      )(MrzSearch.apply)(m => Some(Tuple.fromProductTyped(m)))
     }
 }

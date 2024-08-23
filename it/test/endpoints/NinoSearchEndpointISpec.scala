@@ -24,7 +24,7 @@ import support.IntegrationBaseSpec
 
 class NinoSearchEndpointISpec extends IntegrationBaseSpec {
 
-  def request(): WSRequest                                                                       =
+  def request(): WSRequest =
     buildRequest("/v1/status/public-funds/nino")
       .withHttpHeaders("Content-Type" -> "application/json")
 
@@ -60,7 +60,7 @@ class NinoSearchEndpointISpec extends IntegrationBaseSpec {
         ("1988-04-XX", "with wildcard")
       )
 
-      input.foreach(args => (test _).tupled(args))
+      input.foreach(args => test.tupled(args))
     }
 
     "return 400 with an error response when an invalid request" which {
@@ -188,6 +188,6 @@ class NinoSearchEndpointISpec extends IntegrationBaseSpec {
       ("BY880209A", "2001-XX-31", "Does", "J", INTERNAL_SERVER_ERROR, "[NOT_USED]", None)
     )
 
-    input.foreach(args => (test _).tupled(args))
+    input.foreach(args => test.tupled(args))
   }
 }
