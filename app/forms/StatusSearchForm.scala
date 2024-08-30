@@ -17,9 +17,9 @@
 package forms
 
 import models.searches.StatusCheckRange
-import play.api.data.Forms._
+import play.api.data.Forms.*
 import play.api.data.Mapping
-import play.api.data.validation._
+import play.api.data.validation.*
 
 import java.time.LocalDate
 import scala.util.Try
@@ -48,7 +48,7 @@ trait StatusSearchForm {
     mapping(
       "startDate" -> validDate(invalid, invalid),
       "endDate"   -> validDate(invalid, invalid)
-    )(StatusCheckRange.apply)(StatusCheckRange.unapply)
+    )(StatusCheckRange.apply)(s => Some(Tuple.fromProductTyped(s)))
       .verifying(
         invalid,
         scr => scr.startDate.isBefore(scr.endDate)

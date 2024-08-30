@@ -18,7 +18,7 @@ package forms
 
 import models.token.TokenRequest
 import play.api.data.Form
-import play.api.data.Forms._
+import play.api.data.Forms.*
 
 class TokenForm {
 
@@ -29,6 +29,6 @@ class TokenForm {
       "client_id"     -> nonEmptyText
         .verifying("Unknown client_id.", _ == "hmrc"),
       "client_secret" -> nonEmptyText
-    )(TokenRequest.apply)(TokenRequest.unapply)
+    )(TokenRequest.apply)(t => Some(Tuple.fromProductTyped(t)))
   )
 }

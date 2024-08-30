@@ -18,11 +18,11 @@ package controllers
 
 import forms.MrzSearchForm
 import models.StatusResponse
-import play.api.mvc._
+import play.api.mvc.*
 import services.StubDataService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
-import javax.inject._
+import javax.inject.*
 import scala.concurrent.Future
 
 @Singleton
@@ -32,7 +32,9 @@ class MrzController @Inject() (
   cc: ControllerComponents
 ) extends BackendController(cc) {
 
-  def getImmigrationStatus: Action[AnyContent] = Action.async { implicit request =>
+  def getImmigrationStatus: Action[AnyContent] = Action.async { request =>
+    given Request[AnyContent] = request
+
     val correlationId = request.headers.get("X-Correlation-Id").getOrElse("00000000")
     val result        = form(correlationId)
       .bindFromRequest()

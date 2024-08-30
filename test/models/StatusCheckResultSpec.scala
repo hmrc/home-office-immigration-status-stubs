@@ -16,6 +16,7 @@
 
 package models
 
+import play.api.libs.json.{JsError, JsObject, Json}
 import stubData.DemoStubData
 import support.BaseSpec
 
@@ -27,7 +28,34 @@ class StatusCheckResultSpec extends BaseSpec {
   private def statusCheckResult(nationality: String): StatusCheckResult =
     DemoStubData.wolfgangTraube.copy(nationality = nationality)
 
+  val json: JsObject = Json.obj(
+    "fullName"    -> "Wolfgang Traube",
+    "dateOfBirth" -> "1983-08-26",
+    "nationality" -> "DEU",
+    "statuses"    -> List(
+      Json.obj(
+        "productType"             -> "EUS",
+        "statusStartDate"         -> "2021-06-29",
+        "statusEndDate"           -> "2022-01-28",
+        "immigrationStatus"       -> "COA_IN_TIME_GRANT",
+        "noRecourseToPublicFunds" -> true
+      )
+    )
+  )
+
   "StatusCheckResult" should {
+    "serialise to Json" in {
+      Json.toJson(DemoStubData.wolfgangTraube) shouldBe json
+    }
+
+    "deserialise from Json" in {
+      json.as[StatusCheckResult] shouldBe DemoStubData.wolfgangTraube
+    }
+
+    "error when JSON is invalid" in {
+      JsObject.empty.validate[StatusCheckResult] shouldBe a[JsError]
+    }
+
     validNationalities.foreach { nationality =>
       s"return the nationality $nationality when valid nationality passed=[$nationality]" in {
         statusCheckResult(nationality).nationality shouldBe nationality

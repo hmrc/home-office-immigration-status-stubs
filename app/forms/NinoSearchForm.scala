@@ -19,7 +19,7 @@ package forms
 import models.searches.NinoSearch
 import play.api.data.Form
 import play.api.data.Forms.mapping
-import play.api.data.validation._
+import play.api.data.validation.*
 import uk.gov.hmrc.domain.Nino
 
 import java.time.LocalDate
@@ -41,6 +41,6 @@ class NinoSearchForm extends StatusSearchForm {
         "familyName"       -> nonEmptyText("ERR_MISSING_FAMILY_NAME"),
         "givenName"        -> nonEmptyText("ERR_MISSING_GIVEN_NAME"),
         "statusCheckRange" -> statusCheckRangeMapping
-      )(NinoSearch.apply)(NinoSearch.unapply)
+      )(NinoSearch.apply)(n => Some(Tuple.fromProductTyped(n)))
     }
 }

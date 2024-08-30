@@ -1,7 +1,7 @@
 import uk.gov.hmrc.DefaultBuildSettings.*
 
 ThisBuild / majorVersion := 0
-ThisBuild / scalaVersion := "2.13.14"
+ThisBuild / scalaVersion := "3.4.2"
 
 lazy val microservice = Project("home-office-immigration-status-stubs", file("."))
   .enablePlugins(PlayScala, SbtDistributablesPlugin)
@@ -12,10 +12,7 @@ lazy val microservice = Project("home-office-immigration-status-stubs", file("."
     CodeCoverageSettings.settings
   )
   .settings(
-    scalacOptions ++= Seq(
-      "-feature",
-      "-Wconf:src=routes/.*:s"
-    )
+    scalacOptions := scalacOptions.value.diff(Seq("-Wunused:all"))
   )
 
 lazy val it = project

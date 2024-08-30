@@ -17,10 +17,10 @@
 package controllers
 
 import forms.NinoSearchForm
-import play.api.libs.json._
+import play.api.libs.json.*
 import play.api.mvc.{AnyContentAsJson, Result}
 import play.api.test.FakeRequest
-import play.api.test.Helpers._
+import play.api.test.Helpers.*
 import support.BaseSpec
 
 import scala.concurrent.Future
@@ -131,7 +131,7 @@ class NinoControllerSpec extends BaseSpec {
         ("BY880209A", INTERNAL_SERVER_ERROR, "[NOT_USED]")
       )
 
-      input.foreach(args => (test _).tupled(args))
+      input.foreach(args => test.tupled(args))
     }
 
     "the request body is invalid" should {

@@ -17,10 +17,10 @@
 package controllers
 
 import forms.TokenForm
-import play.api.libs.json._
-import play.api.mvc._
+import play.api.libs.json.*
+import play.api.mvc.*
 import play.api.test.FakeRequest
-import play.api.test.Helpers._
+import play.api.test.Helpers.*
 import support.BaseSpec
 
 import java.util.UUID
@@ -102,7 +102,7 @@ class TokenControllerSpec extends BaseSpec {
         (invalidInputRequestJson, invalidInputErrorResponseJson, "invalid input scenario")
       )
 
-      input.foreach(args => (test _).tupled(args))
+      input.foreach(args => test.tupled(args))
     }
   }
 }

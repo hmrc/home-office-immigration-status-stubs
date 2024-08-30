@@ -32,7 +32,12 @@ class NinoSearchSpec extends BaseSpec {
         "validation is unsuccessful" in {
           ninoSearch.copy(familyName = "Fun").validateResult(statusCheckResult) shouldBe false
         }
+
+        "validate result correctly when dateOfBirth contains 'X'" in {
+          ninoSearch.copy(dateOfBirth = "198X-01-01").validateResult(statusCheckResult) shouldBe false
+        }
       }
+
     }
   }
 }
