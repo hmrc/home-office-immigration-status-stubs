@@ -39,6 +39,13 @@ and were not expired, the dynamic identifier would be `MAKE-EUS-LTR`
 - for product type `WORK` and immigration status `LTE` with an expired status, the dynamic identifier would be `MAKE-WORK-LTE-EX`
 - and for product type `EUS_JFM` and immigration status `ILR`, the dynamic identifier would be `MAKE-EUS--JFM-ILR`
 
+## Service URLs
+### Search by NINO
+
+Staging: https://admin.staging.tax.service.gov.uk/check-immigration-status/search-by-nino (Uses agents-external-stubs-frontend to login)
+
+### Search by passport or ID card
+Staging: https://admin.staging.tax.service.gov.uk/check-immigration-status/search-by-passport (Uses agents-external-stubs-frontend to login)
 ## Endpoints
 The use of this functionality differs slightly between the NINO search and the document search endpoints.
 
@@ -66,7 +73,11 @@ curl --location --request POST 'http://localhost:10212/v1/status/public-funds/ni
 --header 'Content-Type: application/json' \
 --data 'PUT JSON BODY HERE'
 ```
-Once the endpoint has been completed successfully, complete the login instructions for environment as stated here: https://confluence.tools.tax.service.gov.uk/display/DDCNE/4.2.1+CIS+-+Manual+Testing. 
+Once the endpoint has been completed successfully, using the **Search By NINO** Service URL link, complete the following login instructions:
+* Sign in by clicking on the green `Sign in button` with a random valid user ID and planet. An example can be seen below
+* This should redirect to the `Create User` page. Leave as is and click the green `Create and Continue` button.
+* Once redirected to the `Configure User` page, input `TBC` in the **Stride Roles** section and click the green `Update and continue` button.
+* This should redirect to `Search by National Insurance number` page if login has been successful.
 
 Enter the same details i.e. NINO, first name (givenName), last name (familyName) and date of birth, used in the request body and click on the green Search button display the customer's immigration status and rights to public funds.
 
@@ -94,8 +105,11 @@ curl --location --request POST 'http://localhost:10212/v1/status/public-funds/mr
 --header 'Content-Type: application/json' \
 --data 'PUT JSON BODY HERE'
 ```
-
-Once the endpoint has been completed successfully, complete the login instructions for environment as stated here: https://confluence.tools.tax.service.gov.uk/display/DDCNE/4.2.1+CIS+-+Manual+Testing.
+Once the endpoint has been completed successfully, using the **Search by passport or ID card** Service URL link, complete the following login instructions:
+* Sign in by clicking on the green `Sign in button` with a random valid user ID and planet. An example can be seen below
+* This should redirect to the `Create User` page. Leave as is and click the green `Create and Continue` button.
+* Once redirected to the `Configure User` page, input `TBC` in the **Stride Roles** section and click the green `Update and continue` button.
+* This should redirect to `Search by passport or ID card` page if login has been successful.
 
 Enter the same details i.e. NINO, first name (givenName), last name (familyName) and date of birth, used in the request body and click on the green Search button to display the customer's immigration status and rights to public funds.
 
