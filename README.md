@@ -66,6 +66,9 @@ curl --location --request POST 'http://localhost:10212/v1/status/public-funds/ni
 --header 'Content-Type: application/json' \
 --data 'PUT JSON BODY HERE'
 ```
+Once the endpoint has been completed successfully, complete the login instructions for environment as stated here: https://confluence.tools.tax.service.gov.uk/display/DDCNE/4.2.1+CIS+-+Manual+Testing. 
+
+Enter the same details i.e. NINO, first name (givenName), last name (familyName) and date of birth, used in the request body and click on the green Search button display the customer's immigration status and rights to public funds.
 
 ### MRZ or Document Search
 `POST /v1/status/public-funds/mrz`
@@ -91,6 +94,10 @@ curl --location --request POST 'http://localhost:10212/v1/status/public-funds/mr
 --header 'Content-Type: application/json' \
 --data 'PUT JSON BODY HERE'
 ```
+
+Once the endpoint has been completed successfully, complete the login instructions for environment as stated here: https://confluence.tools.tax.service.gov.uk/display/DDCNE/4.2.1+CIS+-+Manual+Testing.
+
+Enter the same details i.e. NINO, first name (givenName), last name (familyName) and date of birth, used in the request body and click on the green Search button to display the customer's immigration status and rights to public funds.
 
 ### License
 
