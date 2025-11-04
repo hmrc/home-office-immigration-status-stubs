@@ -22,8 +22,14 @@ It should then be listening on port 10212.
 
 ## Dynamic Stubbing
 This stub has dynamic stubbing functionality which allows the user to test certain product types and immigration statuses 
-without having to add new data to the stub. The product type and immigration status entered will be returned as both the 
-current status and the previous status to allow testing of all content for this combination.
+without having to add new data to the stub. 
+
+To do this, the document number or NINO will be entered as a special value, the dynamic stub identifier **(see below)** containing the product type, 
+immigration status and whether the most recent status has expired. 
+
+The product type and immigration status entered will be returned as both the
+current status and the previous status (with the current state expired if specified) which is useful for certain tests.
+
 
 ### Dynamic stub identifier
 The dynamic identifier should be constructed using the following pattern:
@@ -42,10 +48,10 @@ and were not expired, the dynamic identifier would be `MAKE-EUS-LTR`
 ## Service URLs
 ### Search by NINO
 
-Staging: https://admin.staging.tax.service.gov.uk/check-immigration-status/search-by-nino (Uses agents-external-stubs-frontend to login)
+Local: http://localhost:10210/check-immigration-status/search-by-nino (Uses agents-external-stubs-frontend to login)
 
 ### Search by passport or ID card
-Staging: https://admin.staging.tax.service.gov.uk/check-immigration-status/search-by-passport (Uses agents-external-stubs-frontend to login)
+Local: http://localhost:10210/check-immigration-status/search-by-passport (Uses agents-external-stubs-frontend to login)
 ## Endpoints
 The use of this functionality differs slightly between the NINO search and the document search endpoints.
 
@@ -79,7 +85,13 @@ Once the endpoint has been completed successfully, using the **Search By NINO** 
 * Once redirected to the `Configure User` page, input `TBC` in the **Stride Roles** section and click the green `Update and continue` button.
 * This should redirect to `Search by National Insurance number` page if login has been successful.
 
-Enter the same details i.e. NINO, first name (givenName), last name (familyName) and date of birth, used in the request body and click on the green Search button display the customer's immigration status and rights to public funds.
+Enter the details in the fields as follows:
+* National Insurance Number: any valid NINO (e.g. `SP123456A`)
+* First name: The dynamic stub (e.g. `MAKE-EUS-LTR`) 
+* Last name: `Make`
+* Date of birth:  `2000-01-01`
+
+Click on the green Search button to display the customer's immigration status and rights to public funds.
 
 ### MRZ or Document Search
 `POST /v1/status/public-funds/mrz`
@@ -111,7 +123,13 @@ Once the endpoint has been completed successfully, using the **Search by passpor
 * Once redirected to the `Configure User` page, input `TBC` in the **Stride Roles** section and click the green `Update and continue` button.
 * This should redirect to `Search by passport or ID card` page if login has been successful.
 
-Enter the same details i.e. NINO, first name (givenName), last name (familyName) and date of birth, used in the request body and click on the green Search button to display the customer's immigration status and rights to public funds.
+Enter the details in the fields as follows:
+* Identity document type: any valid type (e.g. `Passport`)
+* Document number : The dynamic stub (e.g. `MAKE-EUS-LTR`)
+* Nationality: `AFG`
+* Date of birth:  `2000-01-01`
+
+Click on the green Search button to display the customer's immigration status and rights to public funds.
 
 ### License
 
