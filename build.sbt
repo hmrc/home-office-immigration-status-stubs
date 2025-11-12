@@ -12,7 +12,8 @@ lazy val microservice = Project("home-office-immigration-status-stubs", file("."
     CodeCoverageSettings.settings
   )
   .settings(
-    scalacOptions := scalacOptions.value.diff(Seq("-Wunused:all"))
+    scalacOptions := scalacOptions.value.diff(Seq("-Wunused:all")),
+    scalacOptions ++= Seq("-Wconf:msg=Flag.*repeatedly:s")
   )
 
 lazy val it = project
