@@ -31,4 +31,5 @@ final case class StatusCheckResult(
 
 object StatusCheckResult {
   implicit val formats: Format[StatusCheckResult] = Json.format[StatusCheckResult]
+
 }
