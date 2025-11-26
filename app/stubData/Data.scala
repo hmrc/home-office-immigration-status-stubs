@@ -19,7 +19,7 @@ package stubData
 import models.*
 import java.time.LocalDate
 
-object DemoStubData extends DataSet {
+object Data extends DataSet {
 
   val lawrenceVelazquez: StatusCheckResult = StatusCheckResult(
     "Lawrence Velazquez",

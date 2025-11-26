@@ -20,7 +20,7 @@ import models.*
 import models.searches.*
 import play.api.libs.json.Json
 import play.api.mvc.*
-import stubData.DemoStubData
+import stubData.Data
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import java.time.LocalDate
@@ -54,12 +54,12 @@ class StubDataService @Inject() (cc: ControllerComponents) extends BackendContro
     }
 
   def mrzSearch(mrzSearch: MrzSearch): Result =
-    search(mrzSearch)(s => DemoStubData.mrzToResult.get((s.docType, s.documentNum)))(mrzSearch.documentNum)(s =>
+    search(mrzSearch)(s => Data.mrzToResult.get((s.docType, s.documentNum)))(mrzSearch.documentNum)(s =>
       checkOtherMrz(s.correlationId, s.docType, s.documentNum)
     )
 
   def ninoSearch(ninoSearch: NinoSearch): Result =
-    search(ninoSearch)(s => DemoStubData.ninoToResult.get(s.nino))(ninoSearch.givenName)(s =>
+    search(ninoSearch)(s => Data.ninoToResult.get(s.nino))(ninoSearch.givenName)(s =>
       checkOtherNinos(s.correlationId, s.nino)
     )
 

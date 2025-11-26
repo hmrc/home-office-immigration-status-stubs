@@ -19,7 +19,7 @@ package endpoints
 import play.api.http.Status._
 import play.api.libs.json._
 import play.api.libs.ws._
-import stubData.DemoStubData
+import stubData.Data
 import support.IntegrationBaseSpec
 
 class NinoSearchEndpointISpec extends IntegrationBaseSpec {
@@ -52,7 +52,7 @@ class NinoSearchEndpointISpec extends IntegrationBaseSpec {
           val response: WSResponse = request().post(requestBody).futureValue
 
           response.status                shouldBe OK
-          (response.json \ "result").get shouldBe Json.toJson(DemoStubData.nabilSultan)
+          (response.json \ "result").get shouldBe Json.toJson(Data.nabilSultan)
         }
 
       val input: Seq[(String, String)] = Seq(
