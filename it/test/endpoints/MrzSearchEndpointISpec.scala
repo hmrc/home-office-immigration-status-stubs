@@ -19,7 +19,7 @@ package endpoints
 import play.api.http.Status._
 import play.api.libs.json._
 import play.api.libs.ws._
-import stubData.DemoStubData
+import stubData.Data
 import support.IntegrationBaseSpec
 
 class MrzSearchEndpointISpec extends IntegrationBaseSpec {
@@ -50,7 +50,7 @@ class MrzSearchEndpointISpec extends IntegrationBaseSpec {
       val response: WSResponse = request().post(requestBody).futureValue
 
       response.status                shouldBe OK
-      (response.json \ "result").get shouldBe Json.toJson(DemoStubData.lawrenceVelazquez)
+      (response.json \ "result").get shouldBe Json.toJson(Data.lawrenceVelazquez)
     }
 
     "return 400 with an error response when an invalid request with missing required fields is supplied" in {

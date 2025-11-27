@@ -17,12 +17,13 @@
 package stubData
 
 import models.StatusCheckResult
+import java.time.format.DateTimeFormatter
 
 final case class Record(result: StatusCheckResult, nino: String, docType: String, docNum: String)
 
 trait DataSet {
   val records: Seq[Record]
-
+  val formatter: DateTimeFormatter                               = DateTimeFormatter.ofPattern("d/MM/yyyy")
   lazy val ninoToResult: Map[String, StatusCheckResult]          = records.map(r => r.nino -> r.result).toMap
   lazy val mrzToResult: Map[(String, String), StatusCheckResult] =
     records.map(r => (r.docType, r.docNum) -> r.result).toMap

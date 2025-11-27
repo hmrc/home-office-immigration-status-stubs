@@ -16,15 +16,15 @@
 
 package services
 
-import models._
-import models.searches._
+import models.*
+import models.searches.*
 import play.api.libs.json.Json
-import play.api.mvc._
-import stubData.StubData
+import play.api.mvc.*
+import stubData.Data
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import java.time.LocalDate
-import javax.inject._
+import javax.inject.*
 
 @Singleton
 class StubDataService @Inject() (cc: ControllerComponents) extends BackendController(cc) {
@@ -40,8 +40,8 @@ class StubDataService @Inject() (cc: ControllerComponents) extends BackendContro
 
   private def search[S <: Searchable](
     searchable: S
-  )(firstCheck: S => Option[StatusCheckResult])(makeString: String)(fallBack: S => Option[ErrorResponse]): Result =
-    resultFor(searchable.correlationId, firstCheck(searchable))(makeString)(fallBack(searchable)) match {
+  )(firstCheck: S => Option[StatusCheckResult])(dynamicStubbingIdentifier: String)(fallBack: S => Option[ErrorResponse]): Result =
+    resultFor(searchable.correlationId, firstCheck(searchable))(dynamicStubbingIdentifier)(fallBack(searchable)) match {
       case Some(response @ ErrorResponse(_, status, _))                                     => new Status(status)(Json.toJson(response))
       case Some(response @ SuccessResponse(_, result)) if searchable.validateResult(result) =>
         Ok(Json.toJson(response))
@@ -54,30 +54,30 @@ class StubDataService @Inject() (cc: ControllerComponents) extends BackendContro
     }
 
   def mrzSearch(mrzSearch: MrzSearch): Result =
-    search(mrzSearch)(s => StubData.mrzToResult.get((s.docType, s.documentNum)))(mrzSearch.documentNum)(s =>
+    search(mrzSearch)(s => Data.mrzToResult.get((s.docType, s.documentNum)))(mrzSearch.documentNum)(s =>
       checkOtherMrz(s.correlationId, s.docType, s.documentNum)
     )
 
   def ninoSearch(ninoSearch: NinoSearch): Result =
-    search(ninoSearch)(s => StubData.ninoToResult.get(s.nino))(ninoSearch.givenName)(s =>
+    search(ninoSearch)(s => Data.ninoToResult.get(s.nino))(ninoSearch.givenName)(s =>
       checkOtherNinos(s.correlationId, s.nino)
     )
 
   private def resultFor(correlationId: String, search: => Option[StatusCheckResult])(
-    makeString: String
+    dynamicStubbingIdentifier: String
   )(fallBack: => Option[ErrorResponse]): Option[StatusResponse] =
     search match {
       case Some(result) => Some(SuccessResponse(correlationId, result))
       case None         =>
-        if (makeString.toUpperCase.startsWith("MAKE")) {
-          Some(SuccessResponse(correlationId, makeResponse(makeString)))
+        if (dynamicStubbingIdentifier.toUpperCase.startsWith("MAKE")) {
+          Some(SuccessResponse(correlationId, makeResponse(dynamicStubbingIdentifier)))
         } else {
           fallBack
         }
     }
 
-  private def makeResponse(makeString: String): StatusCheckResult = {
-    val split = makeString.toUpperCase.replace("--", "_").split("-").toList
+  private def makeResponse(dynamicStubbingIdentifier: String): StatusCheckResult = {
+    val split = dynamicStubbingIdentifier.toUpperCase.replace("--", "_").split("-").toList
 
     val product = split(1)
     val status  = split(2)

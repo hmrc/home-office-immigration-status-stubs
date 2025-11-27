@@ -17,7 +17,7 @@
 package models
 
 import play.api.libs.json.{JsError, JsObject, Json}
-import stubData.DemoStubData
+import stubData.Data
 import support.BaseSpec
 
 class StatusCheckResultSpec extends BaseSpec {
@@ -26,7 +26,7 @@ class StatusCheckResultSpec extends BaseSpec {
   private val invalidNationalities: List[String] = List("", " ", "A", "AB", "ABCD")
 
   private def statusCheckResult(nationality: String): StatusCheckResult =
-    DemoStubData.wolfgangTraube.copy(nationality = nationality)
+    Data.wolfgangTraube.copy(nationality = nationality)
 
   val json: JsObject = Json.obj(
     "fullName"    -> "Wolfgang Traube",
@@ -45,11 +45,11 @@ class StatusCheckResultSpec extends BaseSpec {
 
   "StatusCheckResult" should {
     "serialise to Json" in {
-      Json.toJson(DemoStubData.wolfgangTraube) shouldBe json
+      Json.toJson(Data.wolfgangTraube) shouldBe json
     }
 
     "deserialise from Json" in {
-      json.as[StatusCheckResult] shouldBe DemoStubData.wolfgangTraube
+      json.as[StatusCheckResult] shouldBe Data.wolfgangTraube
     }
 
     "error when JSON is invalid" in {
