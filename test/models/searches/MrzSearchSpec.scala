@@ -16,12 +16,12 @@
 
 package models.searches
 
-import support.BaseSpec
+import base.BaseSpec
 
 class MrzSearchSpec extends BaseSpec {
 
   "MrzSearch" when {
-    ".validateResult" should {
+    "calling validateResult" should {
       "return true" when {
         "validation is successful" in {
           mrzSearch.validateResult(statusCheckResult) shouldBe true
@@ -31,6 +31,10 @@ class MrzSearchSpec extends BaseSpec {
       "return false" when {
         "validation is unsuccessful" in {
           mrzSearch.copy(dob = "1980-01-01").validateResult(statusCheckResult) shouldBe false
+        }
+
+        "dateOfBirth is invalid" in {
+          mrzSearch.copy(dob = "198X-01-01").validateResult(statusCheckResult) shouldBe false
         }
       }
     }

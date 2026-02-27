@@ -40,7 +40,9 @@ class StubDataService @Inject() (cc: ControllerComponents) extends BackendContro
 
   private def search[S <: Searchable](
     searchable: S
-  )(firstCheck: S => Option[StatusCheckResult])(dynamicStubbingIdentifier: String)(fallBack: S => Option[ErrorResponse]): Result =
+  )(
+    firstCheck: S => Option[StatusCheckResult]
+  )(dynamicStubbingIdentifier: String)(fallBack: S => Option[ErrorResponse]): Result =
     resultFor(searchable.correlationId, firstCheck(searchable))(dynamicStubbingIdentifier)(fallBack(searchable)) match {
       case Some(response @ ErrorResponse(_, status, _))                                     => new Status(status)(Json.toJson(response))
       case Some(response @ SuccessResponse(_, result)) if searchable.validateResult(result) =>

@@ -16,21 +16,18 @@
 
 package controllers
 
-import forms.NinoSearchForm
+import forms.NinoSearchFormBuilder
 import play.api.libs.json.*
 import play.api.mvc.{AnyContentAsJson, Result}
 import play.api.test.FakeRequest
 import play.api.test.Helpers.*
-import support.BaseSpec
+import base.BaseSpec
 
 import scala.concurrent.Future
 
 class NinoControllerSpec extends BaseSpec {
 
-  private val form: NinoSearchForm = new NinoSearchForm()
-
   private val controller: NinoController = new NinoController(
-    form = form,
     stubDataService = stubDataService,
     cc = stubControllerComponents()
   )
@@ -116,22 +113,19 @@ class NinoControllerSpec extends BaseSpec {
         contentAsJson(result) shouldBe successResponseJson
       }
 
-      def test(nino: String, errorStatus: Int, errCode: String): Unit =
+      Seq(
+        ("AB445870C", NOT_FOUND, "ERR_NOT_FOUND"),
+        ("HK089820A", CONFLICT, "ERR_CONFLICT"),
+        ("TP991941C", TOO_MANY_REQUESTS, "[NOT_USED]"),
+        ("BY880209A", INTERNAL_SERVER_ERROR, "[NOT_USED]")
+      ).foreach { case (nino, errorStatus, errCode) =>
         s"return $errorStatus with an error response when the service returns $errorStatus" in {
           val result: Future[Result] = controller.publicFundsByNino(request(validRequestJson(nino)))
 
           status(result)        shouldBe errorStatus
           contentAsJson(result) shouldBe errorResponseJson(errorStatus, errCode)
         }
-
-      val input: Seq[(String, Int, String)] = Seq(
-        ("AB445870C", NOT_FOUND, "ERR_NOT_FOUND"),
-        ("HK089820A", CONFLICT, "ERR_CONFLICT"),
-        ("TP991941C", TOO_MANY_REQUESTS, "[NOT_USED]"),
-        ("BY880209A", INTERNAL_SERVER_ERROR, "[NOT_USED]")
-      )
-
-      input.foreach(args => test.tupled(args))
+      }
     }
 
     "the request body is invalid" should {

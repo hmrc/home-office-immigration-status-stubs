@@ -18,15 +18,11 @@ package forms
 
 import models.searches.NinoSearch
 import play.api.data._
-import support.BaseSpec
+import base.BaseSpec
 
-class NinoSearchFormSpec extends BaseSpec {
+class NinoSearchFormBuilderSpec extends BaseSpec {
 
-  private val emptyNinoSearchForm: Form[NinoSearch] =
-    new NinoSearchForm().apply(correlationId = "00000000").bind(Map.empty[String, String])
-
-  private val validNinoSearchForm: Form[NinoSearch] = new NinoSearchForm()
-    .apply(correlationId = "00000000")
+  private val validNinoSearchForm: Form[NinoSearch] = NinoSearchFormBuilder(correlationId = "00000000")
     .bind(
       Map(
         "correlationId"              -> "00000000",
@@ -39,19 +35,6 @@ class NinoSearchFormSpec extends BaseSpec {
       )
     )
 
-  private val invalidNinoSearchForm: Form[NinoSearch] = new NinoSearchForm()
-    .apply(correlationId = "00000000")
-    .bind(
-      Map(
-        "nino"                       -> "SP12345",
-        "dateOfBirth"                -> tomorrow,
-        "familyName"                 -> "Make",
-        "givenName"                  -> "MAKE-GRADUATE-ILR",
-        "statusCheckRange.startDate" -> "2024-01-24",
-        "statusCheckRange.endDate"   -> "2024-01-24"
-      )
-    )
-
   "NinoSearchForm" should {
     "return no errors when form is valid" in {
       validNinoSearchForm.get       shouldBe ninoSearch
@@ -59,11 +42,30 @@ class NinoSearchFormSpec extends BaseSpec {
     }
 
     "return errors when form is invalid" in {
+      val invalidNinoSearchForm: Form[NinoSearch] = NinoSearchFormBuilder(correlationId = "00000000")
+        .bind(
+          Map(
+            "nino"                       -> "SP12345",
+            "dateOfBirth"                -> tomorrow,
+            "familyName"                 -> "Make",
+            "givenName"                  -> "MAKE-GRADUATE-ILR",
+            "statusCheckRange.startDate" -> "2024-01-24",
+            "statusCheckRange.endDate"   -> "2024-01-24"
+          )
+        )
+
       invalidNinoSearchForm.errors shouldBe List(
         FormError("nino", List("ERR_INVALID_NINO")),
         FormError("dateOfBirth", List("ERR_INVALID_DOB")),
         FormError("statusCheckRange", List("ERR_INVALID_CHECK_STATUS_RANGE"))
       )
+
+      invalidNinoSearchForm.hasErrors shouldBe true
+    }
+
+    "return errors when form is empty" in {
+      val emptyNinoSearchForm: Form[NinoSearch] =
+        NinoSearchFormBuilder(correlationId = "00000000").bind(Map.empty[String, String])
 
       emptyNinoSearchForm.errors shouldBe List(
         FormError("nino", List("ERR_MISSING_NINO")),
@@ -73,11 +75,13 @@ class NinoSearchFormSpec extends BaseSpec {
         FormError("statusCheckRange", List("ERR_MISSING_CHECK_STATUS_RANGE"))
       )
 
-      invalidNinoSearchForm.hasErrors shouldBe true
-      emptyNinoSearchForm.hasErrors   shouldBe true
+      emptyNinoSearchForm.hasErrors shouldBe true
     }
 
     "return the correct result when filled" in {
+      val emptyNinoSearchForm: Form[NinoSearch] =
+        NinoSearchFormBuilder(correlationId = "00000000").bind(Map.empty[String, String])
+
       emptyNinoSearchForm.fill(ninoSearch).get shouldBe ninoSearch
     }
   }

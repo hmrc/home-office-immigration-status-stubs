@@ -19,7 +19,7 @@ package models
 import play.api.data.FormError
 import play.api.http.Status.BAD_REQUEST
 import play.api.libs.json.Json
-import support.BaseSpec
+import base.BaseSpec
 
 class StatusResponseSpec extends BaseSpec {
 
@@ -42,7 +42,7 @@ class StatusResponseSpec extends BaseSpec {
   )
 
   "StatusResponse" when {
-    ".errorResponseBody" should {
+    "calling errorResponseBody" should {
       "produce the expected error response body JSON string" when {
         "key and messages are present" in {
           val errorResponseBodyFields: Seq[FormError] = Seq(
@@ -63,7 +63,7 @@ class StatusResponseSpec extends BaseSpec {
         }
 
         "key and messages are absent" in {
-          errorResponseBody(Nil) shouldBe Json.toJson(errorResponse(Nil)).toString()
+          errorResponseBody(Seq.empty) shouldBe Json.toJson(errorResponse(Seq.empty)).toString()
         }
       }
     }

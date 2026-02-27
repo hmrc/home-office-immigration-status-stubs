@@ -16,7 +16,7 @@
 
 package controllers
 
-import forms.NinoSearchForm
+import forms.NinoSearchFormBuilder
 import models.StatusResponse
 import play.api.mvc.*
 import services.StubDataService
@@ -27,16 +27,13 @@ import scala.concurrent.Future
 
 @Singleton
 class NinoController @Inject() (
-  form: NinoSearchForm,
   stubDataService: StubDataService,
   cc: ControllerComponents
 ) extends BackendController(cc) {
 
-  def publicFundsByNino: Action[AnyContent] = Action.async { request =>
-    given Request[AnyContent] = request
-
+  def publicFundsByNino: Action[AnyContent] = Action.async { implicit request =>
     val correlationId = request.headers.get("X-Correlation-Id").getOrElse("00000000")
-    val result        = form(correlationId)
+    val result        = NinoSearchFormBuilder(correlationId)
       .bindFromRequest()
       .fold(
         errorForm =>

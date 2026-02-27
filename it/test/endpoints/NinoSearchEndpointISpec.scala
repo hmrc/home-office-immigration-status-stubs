@@ -20,7 +20,7 @@ import play.api.http.Status._
 import play.api.libs.json._
 import play.api.libs.ws._
 import stubData.Data
-import support.IntegrationBaseSpec
+import base.IntegrationBaseSpec
 
 class NinoSearchEndpointISpec extends IntegrationBaseSpec {
 
@@ -45,7 +45,10 @@ class NinoSearchEndpointISpec extends IntegrationBaseSpec {
 
   "POST /v1/status/public-funds/nino" should {
     "return 200 when a valid request" which {
-      def test(dob: String, scenario: String): Unit =
+      Seq(
+        ("1988-04-01", "without wildcard"),
+        ("1988-04-XX", "with wildcard")
+      ).foreach { case (dob, scenario) =>
         s"has date of birth $scenario is supplied" in {
           val requestBody: JsValue = payload("CP822334A", dob, "Sultan", "Nabil")
 
@@ -54,13 +57,7 @@ class NinoSearchEndpointISpec extends IntegrationBaseSpec {
           response.status                shouldBe OK
           (response.json \ "result").get shouldBe Json.toJson(Data.nabilSultan)
         }
-
-      val input: Seq[(String, String)] = Seq(
-        ("1988-04-01", "without wildcard"),
-        ("1988-04-XX", "with wildcard")
-      )
-
-      input.foreach(args => test.tupled(args))
+      }
     }
 
     "return 400 with an error response when an invalid request" which {
@@ -133,38 +130,7 @@ class NinoSearchEndpointISpec extends IntegrationBaseSpec {
       }
     }
 
-    def test(
-      nino: String,
-      dateOfBirth: String,
-      familyName: String,
-      givenName: String,
-      errorStatus: Int,
-      errCode: String,
-      scenario: Option[String]
-    ): Unit =
-      s"return $errorStatus with an error response when the service returns $errorStatus ${scenario.getOrElse("")}" in {
-        def errorResponseJson(status: Int, errCode: String): JsValue = Json.parse(
-          s"""
-             |{
-             |    "correlationId": "00000000",
-             |    "status": $status,
-             |    "error": {
-             |        "errCode": "$errCode",
-             |        "fields": []
-             |    }
-             |}
-          """.stripMargin
-        )
-
-        val requestBody: JsValue = payload(nino, dateOfBirth, familyName, givenName)
-
-        val response: WSResponse = request().post(requestBody).futureValue
-
-        response.status shouldBe errorStatus
-        response.json   shouldBe errorResponseJson(errorStatus, errCode)
-      }
-
-    val input: Seq[(String, String, String, String, Int, String, Option[String])] = Seq(
+    Seq(
       (
         "AB123123B",
         "1954-10-04",
@@ -186,8 +152,28 @@ class NinoSearchEndpointISpec extends IntegrationBaseSpec {
       ("HK089820A", "2001-XX-31", "Does", "J", CONFLICT, "ERR_CONFLICT", None),
       ("TP991941C", "2001-XX-31", "Does", "J", TOO_MANY_REQUESTS, "[NOT_USED]", None),
       ("BY880209A", "2001-XX-31", "Does", "J", INTERNAL_SERVER_ERROR, "[NOT_USED]", None)
-    )
+    ).foreach { case (nino, dateOfBirth, familyName, givenName, errorStatus, errCode, scenario) =>
+      s"return $errorStatus with an error response when the service returns $errorStatus ${scenario.getOrElse("")}" in {
+        def errorResponseJson(status: Int, errCode: String): JsValue = Json.parse(
+          s"""
+             |{
+             |    "correlationId": "00000000",
+             |    "status": $status,
+             |    "error": {
+             |        "errCode": "$errCode",
+             |        "fields": []
+             |    }
+             |}
+          """.stripMargin
+        )
 
-    input.foreach(args => test.tupled(args))
+        val requestBody: JsValue = payload(nino, dateOfBirth, familyName, givenName)
+
+        val response: WSResponse = request().post(requestBody).futureValue
+
+        response.status shouldBe errorStatus
+        response.json   shouldBe errorResponseJson(errorStatus, errCode)
+      }
+    }
   }
 }
