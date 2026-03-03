@@ -16,12 +16,12 @@
 
 package models.searches
 
-import support.BaseSpec
+import base.BaseSpec
 
 class NinoSearchSpec extends BaseSpec {
 
   "NinoSearch" when {
-    ".validateResult" should {
+    "calling validateResult" should {
       "return true" when {
         "validation is successful" in {
           ninoSearch.validateResult(statusCheckResult) shouldBe true
@@ -33,7 +33,7 @@ class NinoSearchSpec extends BaseSpec {
           ninoSearch.copy(familyName = "Fun").validateResult(statusCheckResult) shouldBe false
         }
 
-        "validate result correctly when dateOfBirth contains 'X'" in {
+        "dateOfBirth is invalid" in {
           ninoSearch.copy(dateOfBirth = "198X-01-01").validateResult(statusCheckResult) shouldBe false
         }
       }

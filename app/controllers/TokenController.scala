@@ -16,7 +16,7 @@
 
 package controllers
 
-import forms.TokenForm
+import forms.TokenFormBuilder
 import models.token.Token
 import play.api.libs.json.*
 import play.api.mvc.*
@@ -26,15 +26,13 @@ import javax.inject.*
 import scala.concurrent.Future
 
 @Singleton
-class TokenController @Inject() (form: TokenForm, cc: ControllerComponents) extends BackendController(cc) {
+class TokenController @Inject() (cc: ControllerComponents) extends BackendController(cc) {
 
-  def token: Action[AnyContent] = Action.async { request =>
-    given Request[AnyContent] = request
-
-    val result = form()
+  def token: Action[AnyContent] = Action.async { implicit request =>
+    val result = TokenFormBuilder()
       .bindFromRequest()
       .fold(
-        errors => BadRequest(Json.toJson(errors.errors.map(e => (e.key, e.message)).toMap)),
+        errors => BadRequest(Json.toJson(errors.errors.map(e => e.key -> e.message).toMap)),
         _ => Ok(Json.toJson(Token()))
       )
 

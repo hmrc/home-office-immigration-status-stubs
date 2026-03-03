@@ -18,7 +18,7 @@ package models
 
 import play.api.libs.json.{JsError, JsObject, Json}
 import stubData.Data
-import support.BaseSpec
+import base.BaseSpec
 
 class StatusCheckResultSpec extends BaseSpec {
 
@@ -56,13 +56,13 @@ class StatusCheckResultSpec extends BaseSpec {
       JsObject.empty.validate[StatusCheckResult] shouldBe a[JsError]
     }
 
-    validNationalities.foreach { nationality =>
+    Seq("ABC", "ZZZ", "MDA").foreach { nationality =>
       s"return the nationality $nationality when valid nationality passed=[$nationality]" in {
         statusCheckResult(nationality).nationality shouldBe nationality
       }
     }
 
-    invalidNationalities.foreach { nationality =>
+    Seq("", " ", "A", "AB", "ABCD").foreach { nationality =>
       s"return error when invalid nationality passed=[$nationality]" in {
         val exception: RuntimeException = intercept[RuntimeException] {
           statusCheckResult(nationality)

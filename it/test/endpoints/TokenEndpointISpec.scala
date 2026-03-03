@@ -19,7 +19,7 @@ package endpoints
 import play.api.http.Status._
 import play.api.libs.json._
 import play.api.libs.ws._
-import support.IntegrationBaseSpec
+import base.IntegrationBaseSpec
 
 import java.util.UUID
 

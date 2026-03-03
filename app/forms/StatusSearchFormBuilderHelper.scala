@@ -24,7 +24,7 @@ import play.api.data.validation.*
 import java.time.LocalDate
 import scala.util.Try
 
-trait StatusSearchForm {
+trait StatusSearchFormBuilderHelper {
 
   def maintain(correlationId: String): Mapping[String] =
     optional(text).transform[String](_ => correlationId, _ => None)
@@ -35,7 +35,7 @@ trait StatusSearchForm {
         error,
         maybeAns => maybeAns.exists(_.trim.nonEmpty)
       )
-      .transform(_.get, Some(_))
+      .transform(_.getOrElse(throw new IllegalArgumentException("Text in form expected not empty")), Some(_))
 
   def validDate(missing: String, invalid: String, allowWild: Boolean = false): Mapping[LocalDate] =
     nonEmptyText(missing)
@@ -58,7 +58,7 @@ trait StatusSearchForm {
   def statusCheckRangeMapping: Mapping[StatusCheckRange] =
     optional(startDateEndDateMapping)
       .verifying("ERR_MISSING_CHECK_STATUS_RANGE", _.isDefined)
-      .transform(_.get, Some(_))
+      .transform(_.getOrElse(throw new IllegalArgumentException("Status check range mapping expected")), Some(_))
 
   def dobConstraints(today: LocalDate): Constraint[LocalDate] =
     Constraint[LocalDate]((date: LocalDate) => if (date.isBefore(today)) Valid else Invalid("ERR_INVALID_DOB"))

@@ -22,7 +22,7 @@ import play.api.data.Forms.mapping
 
 import java.time.LocalDate
 
-class MrzSearchForm extends StatusSearchForm {
+object MrzSearchFormBuilder extends StatusSearchFormBuilderHelper {
 
   def apply(correlationId: String, today: LocalDate = LocalDate.now()): Form[MrzSearch] =
     Form[MrzSearch] {

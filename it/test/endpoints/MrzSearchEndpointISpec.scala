@@ -20,7 +20,7 @@ import play.api.http.Status._
 import play.api.libs.json._
 import play.api.libs.ws._
 import stubData.Data
-import support.IntegrationBaseSpec
+import base.IntegrationBaseSpec
 
 class MrzSearchEndpointISpec extends IntegrationBaseSpec {
 
@@ -94,37 +94,7 @@ class MrzSearchEndpointISpec extends IntegrationBaseSpec {
       response.json   shouldBe responseJson
     }
 
-    def test(
-      documentType: String,
-      documentNumber: String,
-      nationality: String,
-      errorStatus: Int,
-      errCode: String,
-      scenario: Option[String]
-    ): Unit =
-      s"return $errorStatus with an error response when the service returns $errorStatus ${scenario.getOrElse("")}" in {
-        def errorResponseJson(status: Int, errCode: String): JsValue = Json.parse(
-          s"""
-             |{
-             |    "correlationId": "00000000",
-             |    "status": $status,
-             |    "error": {
-             |        "errCode": "$errCode",
-             |        "fields": []
-             |    }
-             |}
-          """.stripMargin
-        )
-
-        val requestBody: JsValue = payload(documentType, documentNumber, nationality)
-
-        val response: WSResponse = request().post(requestBody).futureValue
-
-        response.status shouldBe errorStatus
-        response.json   shouldBe errorResponseJson(errorStatus, errCode)
-      }
-
-    val input: Seq[(String, String, String, Int, String, Option[String])] = Seq(
+    Seq(
       (
         "PASSPORT",
         "NOT VALID",
@@ -144,8 +114,28 @@ class MrzSearchEndpointISpec extends IntegrationBaseSpec {
       ("NAT", "E8HDYKTB3", "CHE", CONFLICT, "ERR_CONFLICT", None),
       ("NAT", "E8HDYKTB4", "CHE", TOO_MANY_REQUESTS, "[NOT_USED]", None),
       ("NAT", "E8HDYKTB5", "CHE", INTERNAL_SERVER_ERROR, "[NOT_USED]", None)
-    )
+    ).foreach { case (documentType, documentNumber, nationality, errorStatus, errCode, scenario) =>
+      s"return $errorStatus with an error response when the service returns $errorStatus ${scenario.getOrElse("")}" in {
+        def errorResponseJson(status: Int, errCode: String): JsValue = Json.parse(
+          s"""
+               |{
+               |    "correlationId": "00000000",
+               |    "status": $status,
+               |    "error": {
+               |        "errCode": "$errCode",
+               |        "fields": []
+               |    }
+               |}
+            """.stripMargin
+        )
 
-    input.foreach(args => test.tupled(args))
+        val requestBody: JsValue = payload(documentType, documentNumber, nationality)
+
+        val response: WSResponse = request().post(requestBody).futureValue
+
+        response.status shouldBe errorStatus
+        response.json   shouldBe errorResponseJson(errorStatus, errCode)
+      }
+    }
   }
 }

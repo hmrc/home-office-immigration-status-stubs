@@ -18,51 +18,53 @@ package forms
 
 import models.searches.MrzSearch
 import play.api.data._
-import support.BaseSpec
+import base.BaseSpec
 
-class MrzSearchFormSpec extends BaseSpec {
-
-  private val emptyMrzSearchForm: Form[MrzSearch] =
-    new MrzSearchForm().apply(correlationId = "00000000").bind(Map.empty[String, String])
-
-  private val validMrzSearchForm: Form[MrzSearch] = new MrzSearchForm()
-    .apply(correlationId = "00000000")
-    .bind(
-      Map(
-        "correlationId"              -> "00000000",
-        "documentType"               -> "PASSPORT",
-        "documentNumber"             -> "MAKE-GRADUATE-ILR",
-        "dateOfBirth"                -> "2000-01-01",
-        "nationality"                -> "AFG",
-        "statusCheckRange.startDate" -> "2024-01-24",
-        "statusCheckRange.endDate"   -> "2024-01-27"
-      )
-    )
-
-  private val invalidMrzSearchForm: Form[MrzSearch] = new MrzSearchForm()
-    .apply(correlationId = "00000000")
-    .bind(
-      Map(
-        "documentType"               -> "PASSPORT",
-        "documentNumber"             -> "MAKE-GRADUATE-ILR",
-        "dateOfBirth"                -> tomorrow,
-        "nationality"                -> "AFG",
-        "statusCheckRange.startDate" -> "2024-01-24",
-        "statusCheckRange.endDate"   -> "2024-01-24"
-      )
-    )
+class MrzSearchFormBuilderSpec extends BaseSpec {
 
   "MrzSearchForm" should {
     "return no errors when form is valid" in {
+      val validMrzSearchForm: Form[MrzSearch] = MrzSearchFormBuilder(correlationId = "00000000")
+        .bind(
+          Map(
+            "correlationId"              -> "00000000",
+            "documentType"               -> "PASSPORT",
+            "documentNumber"             -> "MAKE-GRADUATE-ILR",
+            "dateOfBirth"                -> "2000-01-01",
+            "nationality"                -> "AFG",
+            "statusCheckRange.startDate" -> "2024-01-24",
+            "statusCheckRange.endDate"   -> "2024-01-27"
+          )
+        )
+
       validMrzSearchForm.get       shouldBe mrzSearch
       validMrzSearchForm.hasErrors shouldBe false
     }
 
     "return errors when form is invalid" in {
+      val invalidMrzSearchForm: Form[MrzSearch] = MrzSearchFormBuilder(correlationId = "00000000")
+        .bind(
+          Map(
+            "documentType"               -> "PASSPORT",
+            "documentNumber"             -> "MAKE-GRADUATE-ILR",
+            "dateOfBirth"                -> tomorrow,
+            "nationality"                -> "AFG",
+            "statusCheckRange.startDate" -> "2024-01-24",
+            "statusCheckRange.endDate"   -> "2024-01-24"
+          )
+        )
+
       invalidMrzSearchForm.errors shouldBe List(
         FormError("dateOfBirth", List("ERR_INVALID_DOB")),
         FormError("statusCheckRange", List("ERR_INVALID_CHECK_STATUS_RANGE"))
       )
+
+      invalidMrzSearchForm.hasErrors shouldBe true
+    }
+
+    "return errors when form is empty" in {
+      val emptyMrzSearchForm: Form[MrzSearch] =
+        MrzSearchFormBuilder(correlationId = "00000000").bind(Map.empty[String, String])
 
       emptyMrzSearchForm.errors shouldBe List(
         FormError("documentType", List("ERR_MISSING_DOCUMENT_TYPE")),
@@ -72,11 +74,13 @@ class MrzSearchFormSpec extends BaseSpec {
         FormError("statusCheckRange", List("ERR_MISSING_CHECK_STATUS_RANGE"))
       )
 
-      invalidMrzSearchForm.hasErrors shouldBe true
-      emptyMrzSearchForm.hasErrors   shouldBe true
+      emptyMrzSearchForm.hasErrors shouldBe true
     }
 
     "return the correct result when filled" in {
+      val emptyMrzSearchForm: Form[MrzSearch] =
+        MrzSearchFormBuilder(correlationId = "00000000").bind(Map.empty[String, String])
+
       emptyMrzSearchForm.fill(mrzSearch).get shouldBe mrzSearch
     }
   }

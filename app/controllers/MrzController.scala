@@ -16,7 +16,7 @@
 
 package controllers
 
-import forms.MrzSearchForm
+import forms.MrzSearchFormBuilder
 import models.StatusResponse
 import play.api.mvc.*
 import services.StubDataService
@@ -27,16 +27,13 @@ import scala.concurrent.Future
 
 @Singleton
 class MrzController @Inject() (
-  form: MrzSearchForm,
   stubDataService: StubDataService,
   cc: ControllerComponents
 ) extends BackendController(cc) {
 
-  def getImmigrationStatus: Action[AnyContent] = Action.async { request =>
-    given Request[AnyContent] = request
-
+  def getImmigrationStatus: Action[AnyContent] = Action.async { implicit request =>
     val correlationId = request.headers.get("X-Correlation-Id").getOrElse("00000000")
-    val result        = form(correlationId)
+    val result        = MrzSearchFormBuilder(correlationId)
       .bindFromRequest()
       .fold(
         errorForm =>

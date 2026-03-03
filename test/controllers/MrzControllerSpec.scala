@@ -16,21 +16,18 @@
 
 package controllers
 
-import forms.MrzSearchForm
+import forms.MrzSearchFormBuilder
 import play.api.libs.json.*
 import play.api.mvc.{AnyContentAsJson, Result}
 import play.api.test.FakeRequest
 import play.api.test.Helpers.*
-import support.BaseSpec
+import base.BaseSpec
 
 import scala.concurrent.Future
 
 class MrzControllerSpec extends BaseSpec {
 
-  private val form: MrzSearchForm = new MrzSearchForm()
-
   private val controller: MrzController = new MrzController(
-    form = form,
     stubDataService = stubDataService,
     cc = stubControllerComponents()
   )
@@ -110,37 +107,31 @@ class MrzControllerSpec extends BaseSpec {
 
   "MrzController" when {
     "the request body is valid" should {
-      def successTest(documentNumber: String, statusEndDate: String): Unit =
+      Seq(
+        ("MAKE-ARMED--FORCES-ILR", tomorrow),
+        ("MAKE-ARMED--FORCES-ILR-EX", yesterday)
+      ).foreach { case (documentNumber, statusEndDate) =>
         s"return 200 with a successful response when documentNumber is $documentNumber and the service returns no errors" in {
           val result: Future[Result] = controller.getImmigrationStatus(request(validRequestJson(documentNumber)))
 
           status(result)        shouldBe OK
           contentAsJson(result) shouldBe successResponseJson(statusEndDate)
         }
+      }
 
-      val successTestInput: Seq[(String, String)] = Seq(
-        ("MAKE-ARMED--FORCES-ILR", tomorrow),
-        ("MAKE-ARMED--FORCES-ILR-EX", yesterday)
-      )
-
-      successTestInput.foreach(args => successTest.tupled(args))
-
-      def errorTest(documentNumber: String, errorStatus: Int, errCode: String): Unit =
+      Seq(
+        ("DOC_NUMBER", NOT_FOUND, "ERR_NOT_FOUND"),
+        ("E8HDYKTB3", CONFLICT, "ERR_CONFLICT"),
+        ("E8HDYKTB4", TOO_MANY_REQUESTS, "[NOT_USED]"),
+        ("E8HDYKTB5", INTERNAL_SERVER_ERROR, "[NOT_USED]")
+      ).foreach { case (documentNumber, errorStatus, errCode) =>
         s"return $errorStatus with an error response when the service returns $errorStatus" in {
           val result: Future[Result] = controller.getImmigrationStatus(request(validRequestJson(documentNumber)))
 
           status(result)        shouldBe errorStatus
           contentAsJson(result) shouldBe errorResponseJson(errorStatus, errCode)
         }
-
-      val errorTestInput: Seq[(String, Int, String)] = Seq(
-        ("DOC_NUMBER", NOT_FOUND, "ERR_NOT_FOUND"),
-        ("E8HDYKTB3", CONFLICT, "ERR_CONFLICT"),
-        ("E8HDYKTB4", TOO_MANY_REQUESTS, "[NOT_USED]"),
-        ("E8HDYKTB5", INTERNAL_SERVER_ERROR, "[NOT_USED]")
-      )
-
-      errorTestInput.foreach(args => errorTest.tupled(args))
+      }
     }
 
     "the request body is invalid" should {

@@ -14,25 +14,23 @@
  * limitations under the License.
  */
 
-package support
+package base
 
-import models._
-import models.searches._
-import org.scalatest.matchers.should.Matchers
-import org.scalatest.wordspec.AnyWordSpecLike
+import models.{ImmigrationStatus, StatusCheckResult}
+import models.searches.{MrzSearch, NinoSearch, StatusCheckRange}
 import play.api.test.Helpers.stubControllerComponents
 import services.StubDataService
 
 import java.time.LocalDate
 
-trait BaseSpec extends AnyWordSpecLike with Matchers {
+trait TestData {
+  private val now = LocalDate.now()
 
-  private val (nine, ten) = (9, 10)
-  val twoDaysAgo: String  = LocalDate.now().minusDays(2).toString
-  val nineDaysAgo: String = LocalDate.now().minusDays(nine).toString
-  val tenDaysAgo: String  = LocalDate.now().minusDays(ten).toString
-  val yesterday: String   = LocalDate.now().minusDays(1).toString
-  val tomorrow: String    = LocalDate.now().plusDays(1).toString
+  val twoDaysAgo: String  = now.minusDays(2).toString
+  val nineDaysAgo: String = now.minusDays(9).toString
+  val tenDaysAgo: String  = now.minusDays(10).toString
+  val yesterday: String   = now.minusDays(1).toString
+  val tomorrow: String    = now.plusDays(1).toString
 
   val stubDataService: StubDataService = new StubDataService(stubControllerComponents())
 

@@ -16,22 +16,18 @@
 
 package controllers
 
-import forms.TokenForm
 import play.api.libs.json.*
 import play.api.mvc.*
 import play.api.test.FakeRequest
 import play.api.test.Helpers.*
-import support.BaseSpec
+import base.BaseSpec
 
 import java.util.UUID
 import scala.concurrent.Future
 
 class TokenControllerSpec extends BaseSpec {
 
-  private val form: TokenForm = new TokenForm()
-
   private val controller: TokenController = new TokenController(
-    form = form,
     cc = stubControllerComponents()
   )
 
@@ -89,20 +85,17 @@ class TokenControllerSpec extends BaseSpec {
     }
 
     "the request body is invalid" should {
-      def test(requestBody: JsValue, responseBody: JsValue, scenario: String): Unit =
+      Seq(
+        (JsObject.empty, emptyBodyErrorResponseJson, "empty body scenario"),
+        (invalidInputRequestJson, invalidInputErrorResponseJson, "invalid input scenario")
+      ).foreach { case (requestBody, responseBody, scenario) =>
         s"return 400 with an error response i.e. an $scenario" in {
           val result: Future[Result] = controller.token(request(requestBody))
 
           status(result)        shouldBe BAD_REQUEST
           contentAsJson(result) shouldBe responseBody
         }
-
-      val input: Seq[(JsValue, JsValue, String)] = Seq(
-        (JsObject.empty, emptyBodyErrorResponseJson, "empty body scenario"),
-        (invalidInputRequestJson, invalidInputErrorResponseJson, "invalid input scenario")
-      )
-
-      input.foreach(args => test.tupled(args))
+      }
     }
   }
 }

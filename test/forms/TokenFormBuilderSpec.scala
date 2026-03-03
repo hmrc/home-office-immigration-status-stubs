@@ -18,9 +18,9 @@ package forms
 
 import models.token.TokenRequest
 import play.api.data._
-import support.BaseSpec
+import base.BaseSpec
 
-class TokenFormSpec extends BaseSpec {
+class TokenFormBuilderSpec extends BaseSpec {
 
   private val tokenRequest: TokenRequest = TokenRequest(
     grant_type = "client_credentials",
@@ -28,39 +28,41 @@ class TokenFormSpec extends BaseSpec {
     client_secret = "TBC"
   )
 
-  private val emptyTokenForm: Form[TokenRequest] = new TokenForm().apply().bind(Map.empty[String, String])
-
-  private val validTokenForm: Form[TokenRequest] = new TokenForm()
-    .apply()
-    .bind(
-      Map(
-        "grant_type"    -> "client_credentials",
-        "client_id"     -> "hmrc",
-        "client_secret" -> "TBC"
-      )
-    )
-
-  private val invalidTokenForm: Form[TokenRequest] = new TokenForm()
-    .apply()
-    .bind(
-      Map(
-        "grant_type"    -> "grant",
-        "client_id"     -> "id",
-        "client_secret" -> "TBC"
-      )
-    )
-
   "TokenForm" should {
     "return no errors when form is valid" in {
+      val validTokenForm: Form[TokenRequest] = TokenFormBuilder()
+        .bind(
+          Map(
+            "grant_type"    -> tokenRequest.grant_type,
+            "client_id"     -> tokenRequest.client_id,
+            "client_secret" -> tokenRequest.client_secret
+          )
+        )
+
       validTokenForm.get       shouldBe tokenRequest
       validTokenForm.hasErrors shouldBe false
     }
 
     "return errors when form is invalid" in {
+      val invalidTokenForm: Form[TokenRequest] = TokenFormBuilder()
+        .bind(
+          Map(
+            "grant_type"    -> "grant",
+            "client_id"     -> "id",
+            "client_secret" -> "TBC"
+          )
+        )
+
       invalidTokenForm.errors shouldBe List(
         FormError("grant_type", List("Wrong grant type.")),
         FormError("client_id", List("Unknown client_id."))
       )
+
+      invalidTokenForm.hasErrors shouldBe true
+    }
+
+    "return errors when form is empty" in {
+      val emptyTokenForm: Form[TokenRequest] = TokenFormBuilder().bind(Map.empty[String, String])
 
       emptyTokenForm.errors shouldBe List(
         FormError("grant_type", List("error.required")),
@@ -68,11 +70,12 @@ class TokenFormSpec extends BaseSpec {
         FormError("client_secret", List("error.required"))
       )
 
-      invalidTokenForm.hasErrors shouldBe true
-      emptyTokenForm.hasErrors   shouldBe true
+      emptyTokenForm.hasErrors shouldBe true
     }
 
     "return the correct result when filled" in {
+      val emptyTokenForm: Form[TokenRequest] = TokenFormBuilder().bind(Map.empty[String, String])
+
       emptyTokenForm.fill(tokenRequest).get shouldBe tokenRequest
     }
   }

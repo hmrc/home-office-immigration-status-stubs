@@ -17,7 +17,7 @@
 package models
 
 import play.api.libs.json.{JsError, JsObject, Json}
-import support.BaseSpec
+import base.BaseSpec
 
 class StatusErrorSpec extends BaseSpec {
 

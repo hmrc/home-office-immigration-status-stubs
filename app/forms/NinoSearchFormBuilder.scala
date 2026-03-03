@@ -24,7 +24,7 @@ import uk.gov.hmrc.domain.Nino
 
 import java.time.LocalDate
 
-class NinoSearchForm extends StatusSearchForm {
+object NinoSearchFormBuilder extends StatusSearchFormBuilderHelper {
 
   private def ninoConstraint: Constraint[String] = Constraint[String] { (nino: String) =>
     if (Nino.isValid(nino)) Valid else Invalid("ERR_INVALID_NINO")

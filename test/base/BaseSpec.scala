@@ -14,21 +14,9 @@
  * limitations under the License.
  */
 
-package forms
+package base
 
-import models.token.TokenRequest
-import play.api.data.Form
-import play.api.data.Forms.*
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpecLike
 
-class TokenForm {
-
-  def apply(): Form[TokenRequest] = Form(
-    mapping(
-      "grant_type"    -> nonEmptyText
-        .verifying("Wrong grant type.", _ == "client_credentials"),
-      "client_id"     -> nonEmptyText
-        .verifying("Unknown client_id.", _ == "hmrc"),
-      "client_secret" -> nonEmptyText
-    )(TokenRequest.apply)(t => Some(Tuple.fromProductTyped(t)))
-  )
-}
+trait BaseSpec extends AnyWordSpecLike with Matchers with TestData

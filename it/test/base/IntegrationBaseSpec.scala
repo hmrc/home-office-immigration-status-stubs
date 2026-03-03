@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package support
+package base
 
 import org.scalatest.TestSuite
 import org.scalatest.concurrent._
