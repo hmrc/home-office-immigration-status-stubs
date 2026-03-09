@@ -68,7 +68,7 @@ class StatusCheckResultSpec extends BaseSpec {
           statusCheckResult(nationality)
         }
 
-        exception.getMessage mustBe "requirement failed: nationality should be a 3 letter ISO 3166-1 code"
+        exception.getMessage mustBe "requirement failed: nationality must be a 3 letter ISO 3166-1 code"
       }
     }
   }
