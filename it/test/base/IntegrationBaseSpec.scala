@@ -18,7 +18,7 @@ package base
 
 import org.scalatest.TestSuite
 import org.scalatest.concurrent._
-import org.scalatest.matchers.should.Matchers
+import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpecLike
 import org.scalatestplus.play.guice.GuiceOneServerPerSuite
 import play.api.libs.ws._

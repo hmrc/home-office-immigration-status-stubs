@@ -106,7 +106,7 @@ class MrzControllerSpec extends BaseSpec {
     FakeRequest().withJsonBody(body).withHeaders(("Content-Type", "application/json"))
 
   "MrzController" when {
-    "the request body is valid" should {
+    "the request body is valid" must {
       Seq(
         ("MAKE-ARMED--FORCES-ILR", tomorrow),
         ("MAKE-ARMED--FORCES-ILR-EX", yesterday)
@@ -114,8 +114,8 @@ class MrzControllerSpec extends BaseSpec {
         s"return 200 with a successful response when documentNumber is $documentNumber and the service returns no errors" in {
           val result: Future[Result] = controller.getImmigrationStatus(request(validRequestJson(documentNumber)))
 
-          status(result)        shouldBe OK
-          contentAsJson(result) shouldBe successResponseJson(statusEndDate)
+          status(result)        mustBe OK
+          contentAsJson(result) mustBe successResponseJson(statusEndDate)
         }
       }
 
@@ -128,13 +128,13 @@ class MrzControllerSpec extends BaseSpec {
         s"return $errorStatus with an error response when the service returns $errorStatus" in {
           val result: Future[Result] = controller.getImmigrationStatus(request(validRequestJson(documentNumber)))
 
-          status(result)        shouldBe errorStatus
-          contentAsJson(result) shouldBe errorResponseJson(errorStatus, errCode)
+          status(result)        mustBe errorStatus
+          contentAsJson(result) mustBe errorResponseJson(errorStatus, errCode)
         }
       }
     }
 
-    "the request body is invalid" should {
+    "the request body is invalid" must {
       "return 400 with an error response" in {
         val errorResponseJson: JsValue = Json.parse(
           """
@@ -160,8 +160,8 @@ class MrzControllerSpec extends BaseSpec {
 
         val result: Future[Result] = controller.getImmigrationStatus(request(invalidRequestJson))
 
-        status(result)        shouldBe BAD_REQUEST
-        contentAsJson(result) shouldBe errorResponseJson
+        status(result)        mustBe BAD_REQUEST
+        contentAsJson(result) mustBe errorResponseJson
       }
     }
   }

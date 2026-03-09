@@ -43,22 +43,22 @@ class StatusCheckResultSpec extends BaseSpec {
     )
   )
 
-  "StatusCheckResult" should {
+  "StatusCheckResult" must {
     "serialise to Json" in {
-      Json.toJson(Data.wolfgangTraube) shouldBe json
+      Json.toJson(Data.wolfgangTraube) mustBe json
     }
 
     "deserialise from Json" in {
-      json.as[StatusCheckResult] shouldBe Data.wolfgangTraube
+      json.as[StatusCheckResult] mustBe Data.wolfgangTraube
     }
 
     "error when JSON is invalid" in {
-      JsObject.empty.validate[StatusCheckResult] shouldBe a[JsError]
+      JsObject.empty.validate[StatusCheckResult] mustBe a[JsError]
     }
 
     Seq("ABC", "ZZZ", "MDA").foreach { nationality =>
       s"return the nationality $nationality when valid nationality passed=[$nationality]" in {
-        statusCheckResult(nationality).nationality shouldBe nationality
+        statusCheckResult(nationality).nationality mustBe nationality
       }
     }
 
@@ -68,7 +68,7 @@ class StatusCheckResultSpec extends BaseSpec {
           statusCheckResult(nationality)
         }
 
-        exception.getMessage shouldBe "requirement failed: nationality should be a 3 letter ISO 3166-1 code"
+        exception.getMessage mustBe "requirement failed: nationality should be a 3 letter ISO 3166-1 code"
       }
     }
   }

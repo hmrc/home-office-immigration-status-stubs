@@ -43,7 +43,7 @@ class NinoSearchEndpointISpec extends IntegrationBaseSpec {
     """.stripMargin
   )
 
-  "POST /v1/status/public-funds/nino" should {
+  "POST /v1/status/public-funds/nino" must {
     "return 200 when a valid request" which {
       Seq(
         ("1988-04-01", "without wildcard"),
@@ -54,8 +54,8 @@ class NinoSearchEndpointISpec extends IntegrationBaseSpec {
 
           val response: WSResponse = request().post(requestBody).futureValue
 
-          response.status                shouldBe OK
-          (response.json \ "result").get shouldBe Json.toJson(Data.nabilSultan)
+          response.status                mustBe OK
+          (response.json \ "result").get mustBe Json.toJson(Data.nabilSultan)
         }
       }
     }
@@ -98,8 +98,8 @@ class NinoSearchEndpointISpec extends IntegrationBaseSpec {
 
         val response: WSResponse = request().post(JsObject.empty).futureValue
 
-        response.status shouldBe BAD_REQUEST
-        response.json   shouldBe responseJson
+        response.status mustBe BAD_REQUEST
+        response.json   mustBe responseJson
       }
 
       "has an invalid nino is supplied" in {
@@ -125,8 +125,8 @@ class NinoSearchEndpointISpec extends IntegrationBaseSpec {
 
         val response: WSResponse = request().post(requestBody).futureValue
 
-        response.status shouldBe BAD_REQUEST
-        response.json   shouldBe responseJson
+        response.status mustBe BAD_REQUEST
+        response.json   mustBe responseJson
       }
     }
 
@@ -171,8 +171,8 @@ class NinoSearchEndpointISpec extends IntegrationBaseSpec {
 
         val response: WSResponse = request().post(requestBody).futureValue
 
-        response.status shouldBe errorStatus
-        response.json   shouldBe errorResponseJson(errorStatus, errCode)
+        response.status mustBe errorStatus
+        response.json   mustBe errorResponseJson(errorStatus, errCode)
       }
     }
   }

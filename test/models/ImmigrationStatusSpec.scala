@@ -39,17 +39,17 @@ class ImmigrationStatusSpec extends BaseSpec {
     "noRecourseToPublicFunds" -> true
   )
 
-  "ImmigrationStatus" should {
+  "ImmigrationStatus" must {
     "serialise to JSON" in {
-      Json.toJson(status) shouldBe json
+      Json.toJson(status) mustBe json
     }
 
     "deserialise from JSON" in {
-      json.as[ImmigrationStatus] shouldBe status
+      json.as[ImmigrationStatus] mustBe status
     }
 
     "error when JSON is invalid" in {
-      JsObject.empty.validate[ImmigrationStatus] shouldBe a[JsError]
+      JsObject.empty.validate[ImmigrationStatus] mustBe a[JsError]
     }
 
   }

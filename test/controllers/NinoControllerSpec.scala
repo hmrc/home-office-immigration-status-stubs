@@ -105,12 +105,12 @@ class NinoControllerSpec extends BaseSpec {
     FakeRequest().withJsonBody(body).withHeaders(("Content-Type", "application/json"))
 
   "NinoController" when {
-    "the request body is valid" should {
+    "the request body is valid" must {
       "return 200 with a successful response when the service returns no errors" in {
         val result: Future[Result] = controller.publicFundsByNino.apply(request(validRequestJson()))
 
-        status(result)        shouldBe OK
-        contentAsJson(result) shouldBe successResponseJson
+        status(result)        mustBe OK
+        contentAsJson(result) mustBe successResponseJson
       }
 
       Seq(
@@ -122,13 +122,13 @@ class NinoControllerSpec extends BaseSpec {
         s"return $errorStatus with an error response when the service returns $errorStatus" in {
           val result: Future[Result] = controller.publicFundsByNino(request(validRequestJson(nino)))
 
-          status(result)        shouldBe errorStatus
-          contentAsJson(result) shouldBe errorResponseJson(errorStatus, errCode)
+          status(result)        mustBe errorStatus
+          contentAsJson(result) mustBe errorResponseJson(errorStatus, errCode)
         }
       }
     }
 
-    "the request body is invalid" should {
+    "the request body is invalid" must {
       "return 400 with an error response" in {
         val errorResponseJson: JsValue = Json.parse(
           """
@@ -158,8 +158,8 @@ class NinoControllerSpec extends BaseSpec {
 
         val result: Future[Result] = controller.publicFundsByNino()(request(invalidRequestJson))
 
-        status(result)        shouldBe BAD_REQUEST
-        contentAsJson(result) shouldBe errorResponseJson
+        status(result)        mustBe BAD_REQUEST
+        contentAsJson(result) mustBe errorResponseJson
       }
     }
   }

@@ -22,7 +22,7 @@ import base.BaseSpec
 
 class MrzSearchFormBuilderSpec extends BaseSpec {
 
-  "MrzSearchForm" should {
+  "MrzSearchForm" must {
     "return no errors when form is valid" in {
       val validMrzSearchForm: Form[MrzSearch] = MrzSearchFormBuilder(correlationId = "00000000")
         .bind(
@@ -37,8 +37,8 @@ class MrzSearchFormBuilderSpec extends BaseSpec {
           )
         )
 
-      validMrzSearchForm.get       shouldBe mrzSearch
-      validMrzSearchForm.hasErrors shouldBe false
+      validMrzSearchForm.get       mustBe mrzSearch
+      validMrzSearchForm.hasErrors mustBe false
     }
 
     "return errors when form is invalid" in {
@@ -54,19 +54,19 @@ class MrzSearchFormBuilderSpec extends BaseSpec {
           )
         )
 
-      invalidMrzSearchForm.errors shouldBe List(
+      invalidMrzSearchForm.errors mustBe List(
         FormError("dateOfBirth", List("ERR_INVALID_DOB")),
         FormError("statusCheckRange", List("ERR_INVALID_CHECK_STATUS_RANGE"))
       )
 
-      invalidMrzSearchForm.hasErrors shouldBe true
+      invalidMrzSearchForm.hasErrors mustBe true
     }
 
     "return errors when form is empty" in {
       val emptyMrzSearchForm: Form[MrzSearch] =
         MrzSearchFormBuilder(correlationId = "00000000").bind(Map.empty[String, String])
 
-      emptyMrzSearchForm.errors shouldBe List(
+      emptyMrzSearchForm.errors mustBe List(
         FormError("documentType", List("ERR_MISSING_DOCUMENT_TYPE")),
         FormError("documentNumber", List("ERR_MISSING_DOCUMENT_NUMBER")),
         FormError("dateOfBirth", List("ERR_MISSING_DOB")),
@@ -74,14 +74,14 @@ class MrzSearchFormBuilderSpec extends BaseSpec {
         FormError("statusCheckRange", List("ERR_MISSING_CHECK_STATUS_RANGE"))
       )
 
-      emptyMrzSearchForm.hasErrors shouldBe true
+      emptyMrzSearchForm.hasErrors mustBe true
     }
 
     "return the correct result when filled" in {
       val emptyMrzSearchForm: Form[MrzSearch] =
         MrzSearchFormBuilder(correlationId = "00000000").bind(Map.empty[String, String])
 
-      emptyMrzSearchForm.fill(mrzSearch).get shouldBe mrzSearch
+      emptyMrzSearchForm.fill(mrzSearch).get mustBe mrzSearch
     }
   }
 }
