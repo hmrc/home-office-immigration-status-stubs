@@ -21,20 +21,20 @@ import base.BaseSpec
 class MrzSearchSpec extends BaseSpec {
 
   "MrzSearch" when {
-    "calling validateResult" should {
+    "calling validateResult" must {
       "return true" when {
         "validation is successful" in {
-          mrzSearch.validateResult(statusCheckResult) shouldBe true
+          mrzSearch.validateResult(statusCheckResult) mustBe true
         }
       }
 
       "return false" when {
         "validation is unsuccessful" in {
-          mrzSearch.copy(dob = "1980-01-01").validateResult(statusCheckResult) shouldBe false
+          mrzSearch.copy(dob = "1980-01-01").validateResult(statusCheckResult) mustBe false
         }
 
         "dateOfBirth is invalid" in {
-          mrzSearch.copy(dob = "198X-01-01").validateResult(statusCheckResult) shouldBe false
+          mrzSearch.copy(dob = "198X-01-01").validateResult(statusCheckResult) mustBe false
         }
       }
     }

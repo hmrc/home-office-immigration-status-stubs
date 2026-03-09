@@ -21,20 +21,20 @@ import base.BaseSpec
 class NinoSearchSpec extends BaseSpec {
 
   "NinoSearch" when {
-    "calling validateResult" should {
+    "calling validateResult" must {
       "return true" when {
         "validation is successful" in {
-          ninoSearch.validateResult(statusCheckResult) shouldBe true
+          ninoSearch.validateResult(statusCheckResult) mustBe true
         }
       }
 
       "return false" when {
         "validation is unsuccessful" in {
-          ninoSearch.copy(familyName = "Fun").validateResult(statusCheckResult) shouldBe false
+          ninoSearch.copy(familyName = "Fun").validateResult(statusCheckResult) mustBe false
         }
 
         "dateOfBirth is invalid" in {
-          ninoSearch.copy(dateOfBirth = "198X-01-01").validateResult(statusCheckResult) shouldBe false
+          ninoSearch.copy(dateOfBirth = "198X-01-01").validateResult(statusCheckResult) mustBe false
         }
       }
 

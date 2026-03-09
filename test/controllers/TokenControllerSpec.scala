@@ -73,18 +73,18 @@ class TokenControllerSpec extends BaseSpec {
   private def request(body: JsValue): FakeRequest[AnyContent] = FakeRequest().withJsonBody(body)
 
   "TokenController" when {
-    "the request body is valid" should {
+    "the request body is valid" must {
       "return 200 with a successful response" in {
         val result: Future[Result] = controller.token(request(validRequestJson))
 
-        status(result)                                           shouldBe OK
-        (contentAsJson(result) \ "access_token").validate[UUID]  shouldBe Symbol("success")
-        (contentAsJson(result) \ "refresh_token").validate[UUID] shouldBe Symbol("success")
-        (contentAsJson(result) \ "token_type").as[String]        shouldBe "Bearer"
+        status(result)                                           mustBe OK
+        (contentAsJson(result) \ "access_token").validate[UUID]  mustBe Symbol("success")
+        (contentAsJson(result) \ "refresh_token").validate[UUID] mustBe Symbol("success")
+        (contentAsJson(result) \ "token_type").as[String]        mustBe "Bearer"
       }
     }
 
-    "the request body is invalid" should {
+    "the request body is invalid" must {
       Seq(
         (JsObject.empty, emptyBodyErrorResponseJson, "empty body scenario"),
         (invalidInputRequestJson, invalidInputErrorResponseJson, "invalid input scenario")
@@ -92,8 +92,8 @@ class TokenControllerSpec extends BaseSpec {
         s"return 400 with an error response i.e. an $scenario" in {
           val result: Future[Result] = controller.token(request(requestBody))
 
-          status(result)        shouldBe BAD_REQUEST
-          contentAsJson(result) shouldBe responseBody
+          status(result)        mustBe BAD_REQUEST
+          contentAsJson(result) mustBe responseBody
         }
       }
     }

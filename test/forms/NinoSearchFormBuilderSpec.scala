@@ -35,10 +35,10 @@ class NinoSearchFormBuilderSpec extends BaseSpec {
       )
     )
 
-  "NinoSearchForm" should {
+  "NinoSearchForm" must {
     "return no errors when form is valid" in {
-      validNinoSearchForm.get       shouldBe ninoSearch
-      validNinoSearchForm.hasErrors shouldBe false
+      validNinoSearchForm.get       mustBe ninoSearch
+      validNinoSearchForm.hasErrors mustBe false
     }
 
     "return errors when form is invalid" in {
@@ -54,20 +54,20 @@ class NinoSearchFormBuilderSpec extends BaseSpec {
           )
         )
 
-      invalidNinoSearchForm.errors shouldBe List(
+      invalidNinoSearchForm.errors mustBe List(
         FormError("nino", List("ERR_INVALID_NINO")),
         FormError("dateOfBirth", List("ERR_INVALID_DOB")),
         FormError("statusCheckRange", List("ERR_INVALID_CHECK_STATUS_RANGE"))
       )
 
-      invalidNinoSearchForm.hasErrors shouldBe true
+      invalidNinoSearchForm.hasErrors mustBe true
     }
 
     "return errors when form is empty" in {
       val emptyNinoSearchForm: Form[NinoSearch] =
         NinoSearchFormBuilder(correlationId = "00000000").bind(Map.empty[String, String])
 
-      emptyNinoSearchForm.errors shouldBe List(
+      emptyNinoSearchForm.errors mustBe List(
         FormError("nino", List("ERR_MISSING_NINO")),
         FormError("dateOfBirth", List("ERR_MISSING_DOB")),
         FormError("familyName", List("ERR_MISSING_FAMILY_NAME")),
@@ -75,14 +75,14 @@ class NinoSearchFormBuilderSpec extends BaseSpec {
         FormError("statusCheckRange", List("ERR_MISSING_CHECK_STATUS_RANGE"))
       )
 
-      emptyNinoSearchForm.hasErrors shouldBe true
+      emptyNinoSearchForm.hasErrors mustBe true
     }
 
     "return the correct result when filled" in {
       val emptyNinoSearchForm: Form[NinoSearch] =
         NinoSearchFormBuilder(correlationId = "00000000").bind(Map.empty[String, String])
 
-      emptyNinoSearchForm.fill(ninoSearch).get shouldBe ninoSearch
+      emptyNinoSearchForm.fill(ninoSearch).get mustBe ninoSearch
     }
   }
 }

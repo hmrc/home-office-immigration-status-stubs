@@ -36,31 +36,31 @@ class StatusErrorSpec extends BaseSpec {
     "fields"  -> Json.arr(Json.obj("code" -> "ERR_MISSING_FAMILY_NAME", "name" -> "familyName"))
   )
 
-  "StatusError" should {
+  "StatusError" must {
     "serialise to JSON" in {
-      Json.toJson(statusError) shouldBe json
+      Json.toJson(statusError) mustBe json
     }
 
     "deserialise from JSON" in {
-      json.as[StatusError] shouldBe statusError
+      json.as[StatusError] mustBe statusError
     }
 
     "error when JSON is invalid" in {
-      JsObject.empty.validate[StatusError] shouldBe a[JsError]
+      JsObject.empty.validate[StatusError] mustBe a[JsError]
     }
   }
 
-  "Field" should {
+  "Field" must {
     "serialise to JSON" in {
-      Json.toJson(statusError.fields.head) shouldBe json("fields").as[Seq[JsObject]].head
+      Json.toJson(statusError.fields.head) mustBe json("fields").as[Seq[JsObject]].head
     }
 
     "deserialise from JSON" in {
-      json("fields").as[Seq[Field]].head shouldBe statusError.fields.head
+      json("fields").as[Seq[Field]].head mustBe statusError.fields.head
     }
 
     "error when JSON is invalid" in {
-      JsObject.empty.validate[Field] shouldBe a[JsError]
+      JsObject.empty.validate[Field] mustBe a[JsError]
     }
   }
 

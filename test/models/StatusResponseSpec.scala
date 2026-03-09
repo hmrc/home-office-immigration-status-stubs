@@ -42,7 +42,7 @@ class StatusResponseSpec extends BaseSpec {
   )
 
   "StatusResponse" when {
-    "calling errorResponseBody" should {
+    "calling errorResponseBody" must {
       "produce the expected error response body JSON string" when {
         "key and messages are present" in {
           val errorResponseBodyFields: Seq[FormError] = Seq(
@@ -59,11 +59,11 @@ class StatusResponseSpec extends BaseSpec {
             )
           )
 
-          errorResponseBody(errorResponseBodyFields) shouldBe Json.toJson(errorResponse(errorResponseFields)).toString()
+          errorResponseBody(errorResponseBodyFields) mustBe Json.toJson(errorResponse(errorResponseFields)).toString()
         }
 
         "key and messages are absent" in {
-          errorResponseBody(Seq.empty) shouldBe Json.toJson(errorResponse(Seq.empty)).toString()
+          errorResponseBody(Seq.empty) mustBe Json.toJson(errorResponse(Seq.empty)).toString()
         }
       }
     }

@@ -43,14 +43,14 @@ class MrzSearchEndpointISpec extends IntegrationBaseSpec {
     """.stripMargin
   )
 
-  "POST /v1/status/public-funds/mrz" should {
+  "POST /v1/status/public-funds/mrz" must {
     "return 200 when a valid request is supplied" in {
       val requestBody: JsValue = payload("PASSPORT", "123456789", "CHE")
 
       val response: WSResponse = request().post(requestBody).futureValue
 
-      response.status                shouldBe OK
-      (response.json \ "result").get shouldBe Json.toJson(Data.lawrenceVelazquez)
+      response.status                mustBe OK
+      (response.json \ "result").get mustBe Json.toJson(Data.lawrenceVelazquez)
     }
 
     "return 400 with an error response when an invalid request with missing required fields is supplied" in {
@@ -90,8 +90,8 @@ class MrzSearchEndpointISpec extends IntegrationBaseSpec {
 
       val response: WSResponse = request().post(JsObject.empty).futureValue
 
-      response.status shouldBe BAD_REQUEST
-      response.json   shouldBe responseJson
+      response.status mustBe BAD_REQUEST
+      response.json   mustBe responseJson
     }
 
     Seq(
@@ -133,8 +133,8 @@ class MrzSearchEndpointISpec extends IntegrationBaseSpec {
 
         val response: WSResponse = request().post(requestBody).futureValue
 
-        response.status shouldBe errorStatus
-        response.json   shouldBe errorResponseJson(errorStatus, errCode)
+        response.status mustBe errorStatus
+        response.json   mustBe errorResponseJson(errorStatus, errCode)
       }
     }
   }

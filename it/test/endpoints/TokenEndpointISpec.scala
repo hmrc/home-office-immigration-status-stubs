@@ -32,16 +32,16 @@ class TokenEndpointISpec extends IntegrationBaseSpec {
     buildRequest("/v1/status/public-funds/token")
       .withHttpHeaders("Content-Type" -> "application/x-www-form-urlencoded")
 
-  "POST /v1/status/public-funds/token" should {
+  "POST /v1/status/public-funds/token" must {
     "return 200 and a token in response when a valid request is supplied" in {
       val requestBody: String = payload("client_credentials", "hmrc", "TBC")
 
       val response: WSResponse = request().post(requestBody).futureValue
 
-      response.status                                  shouldBe OK
-      (response.json \ "access_token").validate[UUID]  shouldBe Symbol("success")
-      (response.json \ "refresh_token").validate[UUID] shouldBe Symbol("success")
-      (response.json \ "token_type").as[String]        shouldBe "Bearer"
+      response.status                                  mustBe OK
+      (response.json \ "access_token").validate[UUID]  mustBe Symbol("success")
+      (response.json \ "refresh_token").validate[UUID] mustBe Symbol("success")
+      (response.json \ "token_type").as[String]        mustBe "Bearer"
     }
 
     "return 400 with an error response when an invalid request" which {
@@ -59,8 +59,8 @@ class TokenEndpointISpec extends IntegrationBaseSpec {
 
         val response: WSResponse = request().post(requestBody).futureValue
 
-        response.status shouldBe BAD_REQUEST
-        response.json   shouldBe responseJson
+        response.status mustBe BAD_REQUEST
+        response.json   mustBe responseJson
       }
     }
   }
