@@ -16,35 +16,23 @@
 
 package controllers
 
-import forms.NinoSearchFormBuilder
-import models.StatusResponse
 import play.api.mvc.*
-import services.StubDataService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject.*
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future, blocking}
 
 @Singleton
 class NinoController @Inject() (
-  stubDataService: StubDataService,
   cc: ControllerComponents
 ) extends BackendController(cc) {
 
-  def publicFundsByNino: Action[AnyContent] = Action.async { implicit request =>
-    val correlationId = request.headers.get("X-Correlation-Id").getOrElse("00000000")
-    val result        = NinoSearchFormBuilder(correlationId)
-      .bindFromRequest()
-      .fold(
-        errorForm =>
-          BadRequest(
-            StatusResponse
-              .errorResponseBody(correlationId, "ERR_VALIDATION", BAD_REQUEST, errorForm.errors)
-              .asJson
-          ),
-        search => stubDataService.ninoSearch(search)
-      )
+  private implicit val ec: ExecutionContext = cc.executionContext
 
-    Future.successful(result)
+  def publicFundsByNino: Action[AnyContent] = Action.async { _ =>
+    Future {
+      blocking { Thread.sleep(25000) }
+      GatewayTimeout
+    }
   }
 }
