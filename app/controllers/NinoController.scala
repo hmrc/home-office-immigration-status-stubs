@@ -23,13 +23,15 @@ import services.StubDataService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject.*
-import scala.concurrent.Future
+import scala.concurrent.{blocking, ExecutionContext, Future}
 
 @Singleton
 class NinoController @Inject() (
   stubDataService: StubDataService,
   cc: ControllerComponents
 ) extends BackendController(cc) {
+
+  implicit val ec: ExecutionContext = cc.executionContext
 
   def publicFundsByNino: Action[AnyContent] = Action.async { implicit request =>
     val correlationId = request.headers.get("X-Correlation-Id").getOrElse("00000000")
@@ -44,7 +46,11 @@ class NinoController @Inject() (
           ),
         search => stubDataService.ninoSearch(search)
       )
-
-    Future.successful(result)
+      request.body.asJson.flatMap(json => (json \ "nino").asOpt[String]) match {
+      case Some(nino) if nino == "SP111111A" =>
+        Future { blocking { Thread.sleep(25000) }; GatewayTimeout }
+      case _ =>
+        Future.successful(result)
+    }
   }
 }
