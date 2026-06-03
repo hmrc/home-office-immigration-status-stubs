@@ -48,7 +48,10 @@ class NinoController @Inject() (
       )
       request.body.asJson.flatMap(json => (json \ "nino").asOpt[String]) match {
       case Some(nino) if nino == "SP111111A" =>
-        Future { blocking { Thread.sleep(25000) }; GatewayTimeout }
+        Future {
+          Thread.sleep(25000)
+          GatewayTimeout
+        }
       case _ =>
         Future.successful(result)
     }
