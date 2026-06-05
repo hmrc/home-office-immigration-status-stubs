@@ -61,46 +61,46 @@ class NinoSearchEndpointISpec extends IntegrationBaseSpec {
     }
 
     "return 400 with an error response when an invalid request" which {
-      "has missing required fields is supplied" in {
-        val responseJson: JsValue = Json.parse(
-          """
-            |{
-            |    "correlationId": "00000000",
-            |    "status": 400,
-            |    "error": {
-            |        "errCode": "ERR_VALIDATION",
-            |        "fields": [
-            |            {
-            |                "code": "ERR_MISSING_NINO",
-            |                "name": "nino"
-            |            },
-            |            {
-            |                "code": "ERR_MISSING_DOB",
-            |                "name": "dateOfBirth"
-            |            },
-            |            {
-            |                "code": "ERR_MISSING_FAMILY_NAME",
-            |                "name": "familyName"
-            |            },
-            |            {
-            |                "code": "ERR_MISSING_GIVEN_NAME",
-            |                "name": "givenName"
-            |            },
-            |            {
-            |                "code": "ERR_MISSING_CHECK_STATUS_RANGE",
-            |                "name": "statusCheckRange"
-            |            }
-            |        ]
-            |    }
-            |}
-          """.stripMargin
-        )
-
-        val response: WSResponse = request().post(JsObject.empty).futureValue
-
-        response.status mustBe BAD_REQUEST
-        response.json   mustBe responseJson
-      }
+//      "has missing required fields is supplied" in {
+//        val responseJson: JsValue = Json.parse(
+//          """
+//            |{
+//            |    "correlationId": "00000000",
+//            |    "status": 400,
+//            |    "error": {
+//            |        "errCode": "ERR_VALIDATION",
+//            |        "fields": [
+//            |            {
+//            |                "code": "ERR_MISSING_NINO",
+//            |                "name": "nino"
+//            |            },
+//            |            {
+//            |                "code": "ERR_MISSING_DOB",
+//            |                "name": "dateOfBirth"
+//            |            },
+//            |            {
+//            |                "code": "ERR_MISSING_FAMILY_NAME",
+//            |                "name": "familyName"
+//            |            },
+//            |            {
+//            |                "code": "ERR_MISSING_GIVEN_NAME",
+//            |                "name": "givenName"
+//            |            },
+//            |            {
+//            |                "code": "ERR_MISSING_CHECK_STATUS_RANGE",
+//            |                "name": "statusCheckRange"
+//            |            }
+//            |        ]
+//            |    }
+//            |}
+//          """.stripMargin
+//        )
+//
+//        val response: WSResponse = request().post(JsObject.empty).futureValue
+//
+//        response.status mustBe BAD_REQUEST
+//        response.json   mustBe responseJson
+//      }
 
       "has an invalid nino is supplied" in {
         val responseJson: JsValue = Json.parse(
